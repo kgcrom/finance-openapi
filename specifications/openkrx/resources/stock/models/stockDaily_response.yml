@@ -1,0 +1,62 @@
+type: object
+properties:
+  BAS_DD:
+    type: string
+    description: 기준일자
+    example: 20240514
+  ISU_CD:
+    type: string
+    description: 종목코드
+    example: 005930
+  ISU_NM:
+    type: string
+    description: 종목명
+    example: 삼성전자
+  MKT_NM:
+    type: string
+    description: 시장구분
+    example: 유가증권시장
+  SECT_TP_NM:
+    type: string
+    description: 소속부
+    example: 중견기업부
+  TDD_CLSPRC:
+    type: string
+    description: 종가
+    example: 6250.82
+  CMPPREVDD_PRC:
+    type: string
+    description: 대비
+    example: 15.4
+  FLUC_RT:
+    type: string
+    description: 등락률
+    example: 0.25
+  TDD_OPNPRC:
+    type: string
+    description: 시가
+    example: 6250.82
+  TDD_HGPRC:
+    type: string
+    description: 고가
+    example: 6250.82
+  TDD_LWPRC:
+    type: string
+    description: 저가
+    example: 6250.82
+  ACC_TRDVOL:
+    type: string
+    description: 거래량
+    example: 38188565
+  ACC_TRDVAL:
+    type: string
+    description: 거래대금
+    example: 2722079713896
+  MKTCAP:
+    type: string
+    description: 시가총액
+    example: 2722079713896
+  LIST_SHRS:
+    type: string
+    description: 상장주식수
+    example: 2722079713896

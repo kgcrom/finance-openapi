@@ -1,0 +1,15 @@
+operationId: getKospiBaseInfo
+
+summary: 유가증권 종목 기본정보
+
+description: 유가증권 종목 기본정보
+
+tags:
+  - Stock
+
+parameters:
+  - $ref: parameters.yml#/base_date
+
+responses:
+  "200":
+    $ref: responses/stockInfo_kospi.yml

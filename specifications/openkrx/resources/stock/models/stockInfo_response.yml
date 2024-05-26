@@ -1,0 +1,50 @@
+type: object
+properties:
+  ISU_CD:
+    type: string
+    description: 종목코드
+    example: 005930
+  ISU_SRT_CD:
+    type: string
+    description: 단축코드
+    example: 005930
+  ISU_NM:
+    type: string
+    description: 종목명
+    example: 삼성전자
+  ISU_ABBRV:
+    type: string
+    description: 종목약명
+    example: 삼성전자
+  ISU_ENG_NM:
+    type: string
+    description: 영문 종목명
+    example: Samsung Electronics
+  LIST_DD:
+    type: string
+    description: 상장일
+    example: 20240514
+  MKT_TP_NM:
+    type: string
+    description: 시장구분
+    example: 유가증권시장
+  SECUGRP_NM:
+    type: string
+    description: 증권구분
+    example: 주권
+  SECT_TP_NM:
+    type: string
+    description: 소속부
+    example: 중견기업부
+  KIND_STKCERT_TP_NM:
+    type: string
+    description: 주식종류
+    example: 보통주
+  PARVAL:
+    type: string
+    description: 액면가
+    example: 5000
+  LIST_SHRS:
+    type: string
+    description: 상장주식수
+    example: 5969782550

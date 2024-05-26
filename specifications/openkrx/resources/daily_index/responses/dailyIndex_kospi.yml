@@ -1,0 +1,11 @@
+description: KOSPI 시리즈 지수 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        OutBlock_1:
+          type: array
+          items:
+            $ref: ../models/dailyIndex_response.yml

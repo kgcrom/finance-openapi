@@ -1,0 +1,15 @@
+operationId: getKrxDailyIndex
+
+summary: KRX 시리즈 일별시세정보
+
+description: KRX 시리즈 지수의 시세정보 제공
+
+tags:
+  - Index
+
+parameters:
+  - $ref: parameters.yml#/base_date
+
+responses:
+  "200":
+    $ref: responses/dailyIndex_krx.yml

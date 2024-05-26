@@ -1,0 +1,26 @@
+{
+  "name": "finance-openapi",
+  "version": "1.0.0",
+  "description": "OpenAPI v3 specification for using OpenAPI by finance-clue",
+  "scripts": {
+    "test": "make test",
+    "bundle": "npx @redocly/cli bundle"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kgcrom/finance-openapi.git"
+  },
+  "keywords": [
+    "openapi",
+    "finance-clue"
+  ],
+  "author": "Hangoo Kang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kgcrom/finance-openapi/issues"
+  },
+  "homepage": "https://github.com/kgcrom/finance-openapi#readme",
+  "devDependencies": {
+    "@redocly/cli": "^1.13.0"
+  }
+}

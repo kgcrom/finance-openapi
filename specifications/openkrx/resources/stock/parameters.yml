@@ -1,0 +1,9 @@
+base_date:
+  in: query
+  name: basDd
+  description: 기준일자
+  required: true
+  schema:
+    type: string
+    pattern: '^\d{8}$'
+    example: 20240514

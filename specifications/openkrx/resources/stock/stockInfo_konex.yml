@@ -1,0 +1,15 @@
+operationId: getKonexBaseInfo
+
+summary: 코넥스 기본정보
+
+description: 코넥스 종목 기본정보
+
+tags:
+  - Stock
+
+parameters:
+  - $ref: parameters.yml#/base_date
+
+responses:
+  "200":
+    $ref: responses/stockInfo_konex.yml

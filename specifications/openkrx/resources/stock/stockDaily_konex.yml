@@ -1,0 +1,15 @@
+operationId: getKonexStockDaily
+
+summary: 코넥스 일별매매정보
+
+description: 코넥스시장에 상장되어 있는 주권의 매매정보 제공
+
+tags:
+  - Stock
+
+parameters:
+  - $ref: parameters.yml#/base_date
+
+responses:
+  "200":
+    $ref: responses/stockDaily_konex.yml

@@ -1,0 +1,80 @@
+openapi: 3.0.3
+info:
+  title: KRX
+  description: OpenKrx is a public API for the Korea Exchange (KRX) market data.
+  version: 1.0.0
+  license:
+    name: MIT License
+    url: https://opensource.org/licenses/MIT
+  contact:
+    name: 강한구
+    email: kgcrom@hotmail.com
+servers:
+  - url: https://data-dbg.krx.co.kr
+    description: Korea Exchange (KRX) server
+tags:
+  - name: Index
+    description: 지수 데이터
+  - name: Stock
+    description: 주식 데이터
+  - name: Financial Instrument
+    description: 증권 상품 데이터
+  - name: Bond
+    description: 채권 데이터
+  - name: Derivatives
+    description: 파생상품 데이터
+security:
+  - authKey: []
+
+paths:
+  /svc/apis/idx/krx_dd_trd:
+    get:
+      $ref: resources/daily_index/dailyIndex_krx.yml
+
+  /svc/apis/idx/kospi_dd_trd:
+    get:
+      $ref: resources/daily_index/dailyIndex_kospi.yml
+
+  /svc/apis/idx/kosdaq_dd_trd:
+    get:
+      $ref: resources/daily_index/dailyIndex_kosdaq.yml
+
+  /svc/apis/idx/bon_dd_trd:
+    get:
+      $ref: resources/daily_index/dailyIndex_bond.yml
+
+  /svc/apis/idx/drvprod_dd_trd:
+    get:
+      $ref: resources/daily_index/dailyIndex_derivatives.yml
+
+  /svc/apis/sto/stk_bydd_trd:
+    get:
+      $ref: resources/stock/stockDaily_kospi.yml
+
+  /svc/apis/sto/ksq_bydd_trd:
+    get:
+      $ref: resources/stock/stockDaily_kosdaq.yml
+
+  /svc/apis/sto/knx_bydd_trd:
+    get:
+      $ref: resources/stock/stockDaily_konex.yml
+
+  /svc/apis/sto/stk_isu_base_info:
+    get:
+      $ref: resources/stock/stockInfo_kospi.yml
+
+  /svc/apis/sto/ksq_isu_base_info:
+    get:
+      $ref: resources/stock/stockInfo_kosdaq.yml
+
+  /svc/apis/sto/knx_isu_base_info:
+    get:
+      $ref: resources/stock/stockInfo_konex.yml
+
+components:
+  securitySchemes:
+    authKey:
+      type: apiKey
+      in: header
+      name: AUTH_KEY
+      description: KRX 인증키

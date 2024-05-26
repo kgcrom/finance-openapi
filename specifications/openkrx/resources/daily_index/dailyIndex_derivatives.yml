@@ -1,0 +1,15 @@
+operationId: getDerivativesDailyIndex
+
+summary: 파생상품지수 시세정보
+
+description: 파생상품지수의 시세정보 제공
+
+tags:
+  - Index
+
+parameters:
+  - $ref: parameters.yml#/base_date
+
+responses:
+  "200":
+    $ref: responses/dailyIndex_derivatives.yml

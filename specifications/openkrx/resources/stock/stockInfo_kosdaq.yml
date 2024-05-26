@@ -1,0 +1,15 @@
+operationId: getKosdaqBaseInfo
+
+summary: 코스닥 종목 기본정보
+
+description: 코스닥 종목 기본정보
+
+tags:
+  - Stock
+
+parameters:
+  - $ref: parameters.yml#/base_date
+
+responses:
+  "200":
+    $ref: responses/stockInfo_kosdaq.yml
