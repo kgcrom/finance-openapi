@@ -1,0 +1,11 @@
+description: 소액채권시장 일별매매정보 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        OutBlock_1:
+          type: array
+          items:
+            $ref: ../models/daily_bond.yml

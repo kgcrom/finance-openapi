@@ -1,0 +1,15 @@
+operationId: getSmallBondDailyTrade
+
+summary: 소액채권시장 일별매매정보
+
+description: 소액채권시장에 상장되어있는 채권의 매매정보 제공
+
+tags:
+  - Bond
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/base_date
+
+responses:
+  "200":
+    $ref: responses/bond_small_daily_trade.yml

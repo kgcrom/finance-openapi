@@ -83,6 +83,18 @@ paths:
     get:
       $ref: resources/financial_instrument/instrument_elw.yml
 
+  /svc/apis/bon/kts_bydd_trd:
+    get:
+      $ref: resources/bond/bond_kts_daily_trade.yml
+
+  /svc/apis/bon/bnd_bydd_trd:
+    get:
+      $ref: resources/bond/bond_daily_trade.yml
+
+  /svc/apis/bon/smb_bydd_trd:
+    get:
+      $ref: resources/bond/bond_small_daily_trade.yml
+
 components:
   securitySchemes:
     authKey:
