@@ -4,22 +4,5 @@ content:
   application/json:
     schema:
       allOf:
-        - $ref: ../models/instrument_base.yml
-        - type: object
-          properties:
-            ULY_NM:
-              type: string
-              description: 기초자산명
-              example: NAVER
-            ULY_PRC:
-              type: string
-              description: 기초자산 종가
-              example: 184,400
-            CMPPREVDD_PRC_ULY:
-              type: string
-              description: 기초자산 대비
-              example: 100
-            FLUC_RT_ULY:
-              type: string
-              description: 기초자산 등락률
-              example: 0.05
+        - $ref: ../models/instrument_response.yml#/instrument_base
+        - $ref: ../models/instrument_response.yml#/instrument_elw

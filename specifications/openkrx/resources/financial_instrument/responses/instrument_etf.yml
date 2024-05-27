@@ -4,34 +4,5 @@ content:
   application/json:
     schema:
       allOf:
-        - $ref: ../models/instrument_base.yml
-        - type: object
-          properties:
-            FLUC_RT:
-              type: string
-              description: 등락률
-              example: 0.25
-            NAV:
-              type: string
-              description: 순자산가치
-              example: 104239.73
-            INVSTASST_NETASST_TOTAMT:
-              type: string
-              description: 순자산가치 총액
-              example: 112995865656
-            IDX_IND_NM:
-              type: string
-              description: 기초지수 지수명
-              example: KIS 2025-08만기형 크레딧 A+이상 지수(총수익)
-            OBJ_STKPRC_IDX:
-              type: string
-              description: 기초지수 종가
-              example: 118.01
-            CMPPREVDD_IDX:
-              type: string
-              description: 기초지수 대비
-              example: 0.02
-            FLUC_RT_IDX:
-              type: string
-              description: 기초지수 등락률
-              example: 0.02
+        - $ref: ../models/instrument_response.yml#/instrument_base
+        - $ref: ../models/instrument_response.yml#/instrument_etf
