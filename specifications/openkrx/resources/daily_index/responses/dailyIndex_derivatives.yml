@@ -8,4 +8,4 @@ content:
         OutBlock_1:
           type: array
           items:
-            $ref: ../models/derivatives_index_response.yml
+            $ref: ../models/index_response.yml#/index_derivatives
