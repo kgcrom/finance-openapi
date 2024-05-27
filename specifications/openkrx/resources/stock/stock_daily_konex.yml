@@ -12,4 +12,4 @@ parameters:
 
 responses:
   "200":
-    $ref: responses/stockDaily_konex.yml
+    $ref: responses/stock_daily_konex.yml

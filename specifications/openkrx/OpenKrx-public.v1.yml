@@ -49,27 +49,27 @@ paths:
 
   /svc/apis/sto/stk_bydd_trd:
     get:
-      $ref: resources/stock/stockDaily_kospi.yml
+      $ref: resources/stock/stock_daily_kospi.yml
 
   /svc/apis/sto/ksq_bydd_trd:
     get:
-      $ref: resources/stock/stockDaily_kosdaq.yml
+      $ref: resources/stock/stock_daily_kosdaq.yml
 
   /svc/apis/sto/knx_bydd_trd:
     get:
-      $ref: resources/stock/stockDaily_konex.yml
+      $ref: resources/stock/stock_daily_konex.yml
 
   /svc/apis/sto/stk_isu_base_info:
     get:
-      $ref: resources/stock/stockInfo_kospi.yml
+      $ref: resources/stock/stock_info_kospi.yml
 
   /svc/apis/sto/ksq_isu_base_info:
     get:
-      $ref: resources/stock/stockInfo_kosdaq.yml
+      $ref: resources/stock/stock_info_kosdaq.yml
 
   /svc/apis/sto/knx_isu_base_info:
     get:
-      $ref: resources/stock/stockInfo_konex.yml
+      $ref: resources/stock/stock_info_konex.yml
 
   /svc/apis/etp/etf_bydd_trd:
     get:

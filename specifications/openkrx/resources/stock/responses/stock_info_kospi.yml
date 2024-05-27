@@ -1,4 +1,4 @@
-description: 유가증권 일별매매정보 조회 성공
+description: 유가증권 종목 기본정보 조회 성공
 
 content:
   application/json:
@@ -8,4 +8,4 @@ content:
         OutBlock_1:
           type: array
           items:
-            $ref: ../models/stockDaily_response.yml
+            $ref: ../models/stock_info_response.yml

@@ -12,4 +12,4 @@ parameters:
 
 responses:
   "200":
-    $ref: responses/stockDaily_kospi.yml
+    $ref: responses/stock_daily_kospi.yml

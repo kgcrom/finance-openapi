@@ -12,4 +12,4 @@ parameters:
 
 responses:
   "200":
-    $ref: responses/stockInfo_kosdaq.yml
+    $ref: responses/stock_info_kosdaq.yml
