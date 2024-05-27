@@ -1,0 +1,15 @@
+operationId: getKospiFutures
+
+summary: 주식선물(유가) 일별매매정보
+
+description: 파생상품시장의 주식선물 중 기초자산이 유가증권시장에 속하는 주식선물의 거래정보 제공
+
+tags:
+  - Derivatives
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/base_date
+
+responses:
+  "200":
+    $ref: responses/derivatives_futures_kospi.yml

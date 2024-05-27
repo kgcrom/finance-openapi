@@ -1,0 +1,15 @@
+operationId: getExcludeStockFutures
+
+summary: 선물 일별매매정보 (주식선물外)
+
+description: 파생상품시장의 선물 중 주식선물을 제외한 선물의 매매정보 제공
+
+tags:
+  - Derivatives
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/base_date
+
+responses:
+  "200":
+    $ref: responses/derivatives_futures_exclude_stock.yml

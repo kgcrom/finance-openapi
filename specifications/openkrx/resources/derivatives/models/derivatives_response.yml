@@ -1,0 +1,86 @@
+derivatives_base:
+  type: object
+
+  properties:
+    BAS_DD:
+      type: string
+      description: 기준일자
+      example: 20240514
+    PROD_NM:
+      type: string
+      description: 상품구분
+      example: 코스피200옵션
+    MKT_NM:
+      type: string
+      description: 시장구분(정규/야간)
+      example: 정규
+    ISU_CD:
+      type: string
+      description: 종목코드
+      example: 201R2000
+    TDD_CLSPRC:
+      type: string
+      description: 종가
+      example: 6250.82
+    CMPPREVDD_PRC:
+      type: string
+      description: 대비
+      example: 15.40
+    TDD_OPNPRC:
+      type: string
+      description: 시가
+      example: 6250.82
+    TDD_HGPRC:
+      type: string
+      description: 고가
+      example: 6250.82
+    TDD_LWPRC:
+      type: string
+      description: 저가
+      example: 6250.82
+    ACC_TRDVOL:
+      type: string
+      description: 거래량
+      example: 38188565
+    ACC_TRDVAL:
+      type: string
+      description: 거래대금
+      example: 2722079713896
+    ACC_OPNINT_QTY:
+      type: string
+      description: 미결제약정
+      example: 2722079713896
+
+derivatives_option:
+  type: object
+
+  properties:
+    RGHT_TP_NM:
+      type: string
+      description: 권리유형(CALL/PUT)
+      example: CALL
+    IMP_VOLT:
+      type: string
+      description: 내재변동성
+      example: 0.25
+    NXTDD_BAS_PRC:
+      type: string
+      description: 익일정산가
+      example: 6250.82
+
+derivatives_futures:
+  type: object
+
+  properties:
+    ISU_NM:
+      type: string
+      description: 종목명
+      example: 코스피200옵션
+    SPOT_PRC:
+      type: string
+      description: 현물가
+      example: 6250.82
+    SETL_PRC:
+      type: string
+      description: 정산가
+      example: 6250.82

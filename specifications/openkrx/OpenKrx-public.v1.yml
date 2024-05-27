@@ -95,6 +95,30 @@ paths:
     get:
       $ref: resources/bond/bond_small_daily_trade.yml
 
+  /svc/apis/drv/fut_bydd_trd:
+    get:
+      $ref: resources/derivatives/derivatives_futures_exclude_stock.yml
+
+  /svc/apis/drv/eqsfu_stk_bydd_trd:
+    get:
+      $ref: resources/derivatives/derivatives_futures_kospi.yml
+
+  /svc/apis/drv/eqkfu_ksq_bydd_trd:
+    get:
+      $ref: resources/derivatives/derivatives_futures_kosdaq.yml
+
+  /svc/apis/drv/opt_bydd_trd:
+    get:
+      $ref: resources/derivatives/derivatives_option_exclude_stock.yml
+
+  /svc/apis/drv/eqsop_bydd_trd:
+    get:
+      $ref: resources/derivatives/derivatives_option_kospi.yml
+
+  /svc/apis/drv/eqkop_bydd_trd:
+    get:
+      $ref: resources/derivatives/derivatives_option_kosdaq.yml
+
 components:
   securitySchemes:
     authKey:

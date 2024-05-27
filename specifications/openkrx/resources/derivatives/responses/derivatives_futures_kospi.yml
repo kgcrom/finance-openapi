@@ -1,0 +1,13 @@
+description: 주식선물(유가) 일별매매정보 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        OutBlock_1:
+          type: array
+          items:
+            allOf:
+              - $ref: ../models/derivatives_response.yml#/derivatives_base
+              - $ref: ../models/derivatives_response.yml#/derivatives_futures

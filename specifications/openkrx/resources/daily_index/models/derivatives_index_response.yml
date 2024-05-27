@@ -1,0 +1,39 @@
+type: object
+
+properties:
+  BAS_DD:
+    type: string
+    description: 기준일자
+    example: 20240514
+  IDX_CLSS:
+    type: string
+    description: 계열구분
+    example: 선물지수
+  IDX_NM:
+    type: string
+    description: 지수명
+    example: 코스피 200 선물지
+  CLSPRC_IDX:
+    type: string
+    description: 종가
+    example: 6250.82
+  CMPPREVDD_IDX:
+    type: string
+    description: 대비
+    example: 15.40
+  FLUC_RT:
+    type: string
+    description: 등락률
+    example: 0.25
+  OPNPRC_IDX:
+    type: string
+    description: 시가
+    example: 6250.82
+  HGPRC_IDX:
+    type: string
+    description: 고가
+    example: 6250.82
+  LWPRC_IDX:
+    type: string
+    description: 저가
+    example: 6250.82

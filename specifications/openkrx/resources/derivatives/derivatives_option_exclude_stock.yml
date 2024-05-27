@@ -1,0 +1,15 @@
+operationId: getExcludeStockOption
+
+summary: 옵션 일별매매정보 (주식옵션外)
+
+description: 파생상품시장의 옵션 중 주식옵션을 제외한 옵션의 매매정보 제공
+
+tags:
+  - Derivatives
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/base_date
+
+responses:
+  "200":
+    $ref: responses/derivatives_option_exclude_stock.yml
