@@ -1,0 +1,13 @@
+operationId: getEtnDailyTrade
+
+summary: ETN 일별매매정보
+
+tags:
+  - Financial Instrument
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/base_date
+
+responses:
+  "200":
+    $ref: responses/instrument_etn.yml

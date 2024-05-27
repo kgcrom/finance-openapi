@@ -8,7 +8,7 @@ tags:
   - Index
 
 parameters:
-  - $ref: parameters.yml#/base_date
+  - $ref: ../../shared/parameters.yml#/base_date
 
 responses:
   "200":

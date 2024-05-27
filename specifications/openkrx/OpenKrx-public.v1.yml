@@ -71,6 +71,18 @@ paths:
     get:
       $ref: resources/stock/stockInfo_konex.yml
 
+  /svc/apis/etp/etf_bydd_trd:
+    get:
+      $ref: resources/financial_instrument/instrument_etf.yml
+
+  /svc/apis/etp/etn_bydd_trd:
+    get:
+      $ref: resources/financial_instrument/instrument_etn.yml
+
+  /svc/apis/etp/elw_bydd_trd:
+    get:
+      $ref: resources/financial_instrument/instrument_elw.yml
+
 components:
   securitySchemes:
     authKey:
