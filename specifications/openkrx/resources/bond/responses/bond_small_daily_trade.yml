@@ -8,4 +8,4 @@ content:
         OutBlock_1:
           type: array
           items:
-            $ref: ../models/daily_bond.yml
+            $ref: ../models/bond_response.yml#/bond_base

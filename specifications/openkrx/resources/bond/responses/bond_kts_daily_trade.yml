@@ -9,14 +9,5 @@ content:
           type: array
           items:
             allOf:
-              - $ref: ../models/daily_bond.yml
-              - type: object
-                properties:
-                  BND_EXP_TP_NM:
-                    type: string
-                    description: 만기년수
-                    example: 3
-                  GOVBND_ISU_TP_NM:
-                    type: string
-                    description: 종목구분
-                    example: 지표
+              - $ref: ../models/bond_response.yml#/bond_base
+              - $ref: ../models/bond_response.yml#/bond_kts
