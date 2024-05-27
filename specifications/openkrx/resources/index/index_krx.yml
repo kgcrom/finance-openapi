@@ -12,4 +12,4 @@ parameters:
 
 responses:
   "200":
-    $ref: responses/dailyIndex_krx.yml
+    $ref: responses/index_krx.yml

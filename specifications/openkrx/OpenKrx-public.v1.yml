@@ -29,23 +29,23 @@ security:
 paths:
   /svc/apis/idx/krx_dd_trd:
     get:
-      $ref: resources/daily_index/dailyIndex_krx.yml
+      $ref: resources/index/index_krx.yml
 
   /svc/apis/idx/kospi_dd_trd:
     get:
-      $ref: resources/daily_index/dailyIndex_kospi.yml
+      $ref: resources/index/index_kospi.yml
 
   /svc/apis/idx/kosdaq_dd_trd:
     get:
-      $ref: resources/daily_index/dailyIndex_kosdaq.yml
+      $ref: resources/index/index_kosdaq.yml
 
   /svc/apis/idx/bon_dd_trd:
     get:
-      $ref: resources/daily_index/dailyIndex_bond.yml
+      $ref: resources/index/index_bond.yml
 
   /svc/apis/idx/drvprod_dd_trd:
     get:
-      $ref: resources/daily_index/dailyIndex_derivatives.yml
+      $ref: resources/index/index_derivatives.yml
 
   /svc/apis/sto/stk_bydd_trd:
     get:

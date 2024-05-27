@@ -12,4 +12,4 @@ parameters:
 
 responses:
   "200":
-    $ref: responses/dailyIndex_bond.yml
+    $ref: responses/index_bond.yml

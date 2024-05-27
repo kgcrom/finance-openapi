@@ -12,4 +12,4 @@ parameters:
 
 responses:
   "200":
-    $ref: responses/dailyIndex_kospi.yml
+    $ref: responses/index_kospi.yml
