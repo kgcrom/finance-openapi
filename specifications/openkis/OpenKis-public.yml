@@ -1,0 +1,38 @@
+openapi: 3.0.3
+info:
+  title: OpenKIS
+  description: 한국투자증권에서 제공하는 OpenAPI 정의
+  version: 1.0.0
+  license:
+    name: MIT License
+    url: https://opensource.org/licenses/MIT
+  contact:
+    name: 강한구
+    email: kgcrom@hotmail.com
+
+servers:
+  - url: "https://openapi.koreainvestment.com:9443"
+    description: KIS Production server
+  - url: "https://openapivts.koreainvestment.com:29443"
+    description: KIS Sandbox server
+
+tags:
+  - name: Auth
+    description: 인증
+  - name: DomesticStockQuotations
+    description: 국내주식 기본시세
+
+security:
+  - accessToken: []
+
+paths:
+  /oauth2/tokenP:
+    post:
+      $ref: resources/auth/auth_token.yml
+
+components:
+  securitySchemes:
+    accessToken:
+      type: apiKey
+      in: header
+      name: authorization

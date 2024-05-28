@@ -85,11 +85,10 @@
           id="gh-link"
           href="https://github.com/kgcrom/finance-openapi"
           target="_blank"
-          >Main</a
+          >Github</a
         >
-        <a id="spec-link" href="spec/OpenKrx-public.yml" target="_blank"
-          >KRX File</a
-        >
+        <a id="spec-link" href="?s=kis" target="_self">KIS</a>
+        <a id="spec-link" href="?s=krx" target="_self">KRX</a>
       </div>
     </div>
 
@@ -98,11 +97,23 @@
     <script>
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
-      const pr = urlParams.get("pr");
+      const service = urlParams.get("s");
 
-      let specUrl = "OpenKrx-public.yml";
+      let specUrl = getSpecUrl(service);
 
       document.querySelector("redoc").setAttribute("spec-url", specUrl);
+
+      // create function that return the spec url by service
+      function getSpecUrl(service) {
+        switch (service) {
+          case "kis":
+            return "OpenKis-public.yml";
+          case "krx":
+            return "OpenKrx-public.yml";
+          default:
+            return "OpenKis-public.yml";
+        }
+      }
     </script>
 
     <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"></script>
