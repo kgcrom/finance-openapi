@@ -1,5 +1,5 @@
-OPEN_KRX_SPEC_FILE ?= specifications/openkrx/OpenKrx-public.v1.yml
-OPEN_KRX_BUNDLE_FILE ?= tests/OpenKrx-public.v1.yml
+OPEN_KRX_SPEC_FILE ?= specifications/openkrx/OpenKrx-public.yml
+OPEN_KRX_BUNDLE_FILE ?= docs/OpenKrx-public.yml
 
 .PHONY: dev-dependencies
 dev-dependencies:
