@@ -1,0 +1,35 @@
+description: Access Token 발급 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: |
+            OAuth 토큰이 필요한 API 경우 발급한 Access token<br/>
+            ex) "eyJ0eXUxMiJ9.eyJz…..................................."
+
+            - 일반개인고객/일반법인고객<br/>
+            . Access token 유효기간 1일<br/>
+            .. 일정시간(6시간) 이내에 재호출 시에는 직전 토큰값을 리턴<br/>
+            . OAuth 2.0의 Client Credentials Grant 절차를 준용
+
+            - 제휴법인<br/>
+            . Access token 유효기간 3개월<br/>
+            . Refresh token 유효기간 1년<br/>
+            . OAuth 2.0의 Authorization Code Grant 절차를 준용
+        token_type:
+          type: string
+          description: 접근토큰유형 (Bearer 고정)
+          example: Bearer
+        expires_in:
+          type: integer
+          description: Access token 만료시간 (초)
+          example: 7776000
+        access_token_token_expire:
+          type: string
+          format: date-time
+          description: Access token 만료시간 (년:월:일 시:분:초)
+          example: 2022-08-30 08:10:10
