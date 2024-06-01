@@ -19,9 +19,9 @@ servers:
 tags:
   - name: Auth
     description: 인증
-  - name: DomesticStockQuotations
+  - name: DomesticStockQuote
     description: 국내주식 호가
-  - name: EtfNEtnQuotations
+  - name: EtfNEtnQuote
     description: ETF/ETN 호가
   - name: DomesticStockIndex
     description: 국내주식 지수
@@ -31,6 +31,8 @@ tags:
     description: 국내주식 한국예탁결제원 정보
   - name: DomesticTechnicalAnalysis
     description: 국내주식 시세 분석
+  - name: DomesticRanking
+    description: 국내주식 순위
 
 security:
   - accessToken: []
@@ -57,7 +59,7 @@ paths:
           https://github.com/koreainvestment/open-trading-api/tree/main/stocks_info
 
       tags:
-        - DomesticStockQuotations
+        - DomesticStockQuote
 
   /uapi/domestic-stock/v1/quotations/inquire-ccnl:
     get:
@@ -68,7 +70,7 @@ paths:
       description: 국내현재가 체결 API 입니다. 종목의 체결 정보를 확인할 수 있습니다.
 
       tags:
-        - DomesticStockQuotations
+        - DomesticStockQuote
 
   /uapi/domestic-stock/v1/quotations/inquire-daily-price:
     get:
@@ -79,11 +81,11 @@ paths:
       description: 주식현재가 일자별 API입니다. 일/주/월별 주가를 확인할 수 있으며 최근 30일(주,별)로 제한되어 있습니다.
 
       tags:
-        - DomesticStockQuotations
+        - DomesticStockQuote
 
   /uapi/domestic-stock/v1/quotations/inquire-asking-price-exp-ccn:
     get:
-      operationId: getDomesticStockAskingPriceExp
+      operationId: getDomesticStockQuoteAndExp
 
       summary: 국내주식 현재가 호가/예상체결 조회
 
@@ -93,7 +95,7 @@ paths:
         매수 매도 호가를 확인하실 수 있습니다.<br/> 실시간 데이터를 원하신다면 웹소켓 API를 활용하세요.
 
       tags:
-        - DomesticStockQuotations
+        - DomesticStockQuote
 
   /uapi/domestic-stock/v1/quotations/inquire-investor:
     get:
@@ -109,7 +111,7 @@ paths:
         - 당일 데이터는 장 종료 후 제공됩니다.
 
       tags:
-        - DomesticStockQuotations
+        - DomesticStockQuote
 
   /uapi/domestic-stock/v1/quotations/inquire-member:
     get:
@@ -120,7 +122,7 @@ paths:
       description: 주식 현재가 회원사 API입니다. 회원사의 투자 정보를 확인할 수 있습니다.
 
       tags:
-        - DomesticStockQuotations
+        - DomesticStockQuote
 
   /uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice:
     get:
@@ -133,7 +135,7 @@ paths:
         실전계좌/모의계좌의 경우, 한 번의 호출에 최대 100건까지 확인 가능합니다.
 
       tags:
-        - DomesticStockQuotations
+        - DomesticStockQuote
 
   /uapi/domestic-stock/v1/quotations/inquire-time-itemconclusion:
     get:
@@ -144,7 +146,7 @@ paths:
       description: 주식현재가 당일시간대별체결 API입니다.
 
       tags:
-        - DomesticStockQuotations
+        - DomesticStockQuote
 
   /uapi/domestic-stock/v1/quotations/inquire-time-overtimeconclusion:
     get:
@@ -155,7 +157,7 @@ paths:
       description: 주식현재가 시간외시간별체결 API입니다.
 
       tags:
-        - DomesticStockQuotations
+        - DomesticStockQuote
 
   /uapi/domestic-stock/v1/quotations/inquire-daily-overtimeprice:
     get:
@@ -166,7 +168,7 @@ paths:
       description: 주식현재가 시간외일자별주가 API입니다.
 
       tags:
-        - DomesticStockQuotations
+        - DomesticStockQuote
 
   /uapi/domestic-stock/v1/quotations/inquire-overtime-price:
     get:
@@ -180,11 +182,11 @@ paths:
         한국투자 HTS(eFriend Plus) > [0230] 시간외 현재가 화면의 좌측 상단기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
       tags:
-        - DomesticStockQuotations
+        - DomesticStockQuote
 
   /uapi/domestic-stock/v1/quotations/inquire-overtime-asking-price:
     get:
-      operationId: getDomesticStockOverTimeAskingPrice
+      operationId: getDomesticStockOverTimeQuote
 
       summary: 국내주식 시간외 호가 조회
 
@@ -194,7 +196,7 @@ paths:
         한국투자 HTS(eFriend Plus) > [0230] 시간외 현재가 화면의 '호가' 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
       tags:
-        - DomesticStockQuotations
+        - DomesticStockQuote
 
   /uapi/domestic-stock/v1/quotations/inquire-time-itemchartprice:
     get:
@@ -207,7 +209,7 @@ paths:
         실전계좌/모의계좌의 경우, 한 번의 호출에 최대 30건까지 확인 가능합니다.
 
       tags:
-        - DomesticStockQuotations
+        - DomesticStockQuote
 
   /uapi/domestic-stock/v1/quotations/inquire-price-2:
     get:
@@ -218,7 +220,7 @@ paths:
       description: 주식현재가 시세2 API입니다.
 
       tags:
-        - DomesticStockQuotations
+        - DomesticStockQuote
 
   /uapi/domestic-stock/v1/quotations/exp-closing-price:
     get:
@@ -232,7 +234,7 @@ paths:
         한국투자 HTS(eFriend Plus) > [0183] 장마감 예상체결가 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
       tags:
-        - DomesticStockQuotations
+        - DomesticStockQuote
 
   /uapi/etfetn/v1/quotations/inquire-price:
     get:
@@ -246,7 +248,7 @@ paths:
         한국투자 HTS(eFriend Plus) > [0240] ETF/ETN 현재가 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
       tags:
-        - EtfNEtnQuotations
+        - EtfNEtnQuote
 
   /uapi/etfetn/v1/quotations/nav-comparison-trend:
     get:
@@ -260,7 +262,7 @@ paths:
         한국투자 HTS(eFriend Plus) > [0244] ETF/ETN 비교추이(NAV/IIV) 좌측 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
       tags:
-        - EtfNEtnQuotations
+        - EtfNEtnQuote
 
   /uapi/etfetn/v1/quotations/nav-comparison-time-trend:
     get:
@@ -275,7 +277,7 @@ paths:
         실전계좌의 경우, 한 번의 호출에 최근 30건까지 확인 가능합니다.
 
       tags:
-        - EtfNEtnQuotations
+        - EtfNEtnQuote
 
   /uapi/etfetn/v1/quotations/nav-comparison-daily-trend:
     get:
@@ -290,7 +292,7 @@ paths:
         실전계좌의 경우, 한 번의 호출에 최대 100건까지 확인 가능합니다.
 
       tags:
-        - EtfNEtnQuotations
+        - EtfNEtnQuote
 
   /uapi/etfetn/v1/quotations/inquire-component-stock-price:
     get:
@@ -304,7 +306,7 @@ paths:
         한국투자 HTS(eFriend Plus) > [0245] ETF/ETN 구성종목시세 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다
 
       tags:
-        - EtfNEtnQuotations
+        - EtfNEtnQuote
 
   /uapi/domestic-stock/v1/quotations/inquire-daily-indexchartprice:
     get:
@@ -1083,6 +1085,381 @@ paths:
 
       tags:
         - DomesticTechnicalAnalysis
+
+  /uapi/domestic-stock/v1/quotations/volume-rank:
+    get:
+      operationId: getRankingVolume
+
+      summary: 국내주식 거래량순위
+
+      description: |
+        국내주식 거래량순위 API입니다. 
+
+        한국투자 HTS(eFriend Plus) > [0171] 거래량 순위 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
+        최대 30건 확인 가능하며, 다음 조회가 불가합니다.<br/>
+
+        30건 이상의 목록 조회가 필요한 경우, 대안으로 종목조건검색 API를 이용해서 원하는 종목 100개까지 검색할 수 있는 기능을 제공하고 있습니다.<br/>
+        종목조건검색 API는 HTS(efriend Plus) [0110] 조건검색에서 등록 및 서버저장한 나의 조건 목록을 확인할 수 있는 API로,<br/>
+        HTS [0110]에서 여러가지 조건을 설정할 수 있는데, 그 중 거래량 순위(ex. 0봉전 거래량 상위순 100종목) 에 대해서도 설정해서 종목을 검색할 수 있습니다.<br/>
+        자세한 사용 방법은 공지사항 - [조건검색 필독] 조건검색 API 이용안내 참고 부탁드립니다.
+
+      tags:
+        - DomesticRanking
+
+  /uapi/domestic-stock/v1/ranking/fluctuation:
+    get:
+      operationId: getRankingFluctuationRate
+
+      summary: 국내주식 등락률 순위
+
+      description: |
+        국내주식 등락률 순위 API입니다. 
+
+        한국투자 HTS(eFriend Plus) > [0170] 등락률 순위 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
+        최대 30건 확인 가능하며, 다음 조회가 불가합니다.
+
+        ※ 30건 이상의 목록 조회가 필요한 경우, 대안으로 종목조건검색 API를 이용해서 원하는 종목 100개까지 검색할 수 있는 기능을 제공하고 있습니다.<br/>
+        종목조건검색 API는 HTS(efriend Plus) [0110] 조건검색에서 등록 및 서버저장한 나의 조건 목록을 확인할 수 있는 API로,<br/>
+        자세한 사용 방법은 공지사항 - [조건검색 필독] 조건검색 API 이용안내 참고 부탁드립니다.
+
+      tags:
+        - DomesticRanking
+
+  /uapi/domestic-stock/v1/ranking/profit-asset-index:
+    get:
+      operationId: getRankingProfitAssetIndex
+
+      summary: 국내주식 수익률/자산지표 순위
+
+      description: |
+        국내주식 수익자산지표 순위 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0173] 수익자산지표 순위 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
+        최대 30건 확인 가능하며, 다음 조회가 불가합니다.
+
+        ※ 30건 이상의 목록 조회가 필요한 경우, 대안으로 종목조건검색 API를 이용해서 원하는 종목 100개까지 검색할 수 있는 기능을 제공하고 있습니다.<br/>
+        종목조건검색 API는 HTS(efriend Plus) [0110] 조건검색에서 등록 및 서버저장한 나의 조건 목록을 확인할 수 있는 API로,<br/>
+        자세한 사용 방법은 공지사항 - [조건검색 필독] 조건검색 API 이용안내 참고 부탁드립니다.
+
+      tags:
+        - DomesticRanking
+
+  /uapi/domestic-stock/v1/ranking/market-cap:
+    get:
+      operationId: getRankingMarketCap
+
+      summary: 국내주식 시가총액 상위
+
+      description: |
+        국내주식 시가총액 상위 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0174] 시가총액 상위 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
+        최대 30건 확인 가능하며, 다음 조회가 불가합니다.
+
+        ※ 30건 이상의 목록 조회가 필요한 경우, 대안으로 종목조건검색 API를 이용해서 원하는 종목 100개까지 검색할 수 있는 기능을 제공하고 있습니다.<br/>
+        종목조건검색 API는 HTS(efriend Plus) [0110] 조건검색에서 등록 및 서버저장한 나의 조건 목록을 확인할 수 있는 API로,<br/>
+        자세한 사용 방법은 공지사항 - [조건검색 필독] 조건검색 API 이용안내 참고 부탁드립니다.
+
+      tags:
+        - DomesticRanking
+
+  /uapi/domestic-stock/v1/ranking/finance-ratio:
+    get:
+      operationId: getRankingFinancialRatio
+
+      summary: 국내주식 재무비율 순위
+
+      description: |
+        국내주식 재무비율 순위 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0175] 재무비율순위 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
+        최대 30건 확인 가능하며, 다음 조회가 불가합니다.
+
+        ※ 30건 이상의 목록 조회가 필요한 경우, 대안으로 종목조건검색 API를 이용해서 원하는 종목 100개까지 검색할 수 있는 기능을 제공하고 있습니다.<br/>
+        종목조건검색 API는 HTS(efriend Plus) [0110] 조건검색에서 등록 및 서버저장한 나의 조건 목록을 확인할 수 있는 API로,<br/>
+        자세한 사용 방법은 공지사항 - [조건검색 필독] 조건검색 API 이용안내 참고 부탁드립니다.
+
+      tags:
+        - DomesticRanking
+
+  /uapi/domestic-stock/v1/ranking/after-hour-balance:
+    get:
+      operationId: getRankingAfterBalance
+
+      summary: 국내주식 시간외잔량 순위
+
+      description: |
+        국내주식 시간외잔량 순위 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0176] 시간외잔량 상위 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
+        최대 30건 확인 가능하며, 다음 조회가 불가합니다.
+
+        ※ 30건 이상의 목록 조회가 필요한 경우, 대안으로 종목조건검색 API를 이용해서 원하는 종목 100개까지 검색할 수 있는 기능을 제공하고 있습니다.<br/>
+        종목조건검색 API는 HTS(efriend Plus) [0110] 조건검색에서 등록 및 서버저장한 나의 조건 목록을 확인할 수 있는 API로,<br/>
+        자세한 사용 방법은 공지사항 - [조건검색 필독] 조건검색 API 이용안내 참고 부탁드립니다.
+
+      tags:
+        - DomesticRanking
+
+  /uapi/domestic-stock/v1/ranking/prefer-disparate-ratio:
+    get:
+      operationId: getRankingPreferDisparateRatio
+
+      summary: 국내주식 우선주/괴리율 상위
+
+      description: |
+        국내주식 우선주/괴리율 상위 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0177] 우선주/괴리율 상위 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
+        최대 30건 확인 가능하며, 다음 조회가 불가합니다.
+
+        ※ 30건 이상의 목록 조회가 필요한 경우, 대안으로 종목조건검색 API를 이용해서 원하는 종목 100개까지 검색할 수 있는 기능을 제공하고 있습니다.<br/>
+        종목조건검색 API는 HTS(efriend Plus) [0110] 조건검색에서 등록 및 서버저장한 나의 조건 목록을 확인할 수 있는 API로,<br/>
+        자세한 사용 방법은 공지사항 - [조건검색 필독] 조건검색 API 이용안내 참고 부탁드립니다.
+
+      tags:
+        - DomesticRanking
+
+  /uapi/domestic-stock/v1/ranking/quote-balance:
+    get:
+      operationId: getRankingQuoteBalance
+
+      summary: 국내주식 호가잔량 순위
+
+      description: |
+        국내주식 호가잔량 순위 API입니다. 
+
+        한국투자 HTS(eFriend Plus) > [0172] 호가잔량 순위 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
+        최대 30건 확인 가능하며, 다음 조회가 불가합니다.
+
+        ※ 30건 이상의 목록 조회가 필요한 경우, 대안으로 종목조건검색 API를 이용해서 원하는 종목 100개까지 검색할 수 있는 기능을 제공하고 있습니다.<br/>
+        종목조건검색 API는 HTS(efriend Plus) [0110] 조건검색에서 등록 및 서버저장한 나의 조건 목록을 확인할 수 있는 API로,<br/>
+        자세한 사용 방법은 공지사항 - [조건검색 필독] 조건검색 API 이용안내 참고 부탁드립니다.
+
+      tags:
+        - DomesticRanking
+
+  /uapi/domestic-stock/v1/ranking/disparity:
+    get:
+      operationId: getRankingDisparity
+
+      summary: 국내주식 이격도 순위
+
+      description: |
+        국내주식 이격도 순위 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0178] 이격도 순위 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
+        최대 30건 확인 가능하며, 다음 조회가 불가합니다.
+
+        ※ 30건 이상의 목록 조회가 필요한 경우, 대안으로 종목조건검색 API를 이용해서 원하는 종목 100개까지 검색할 수 있는 기능을 제공하고 있습니다.<br/>
+        종목조건검색 API는 HTS(efriend Plus) [0110] 조건검색에서 등록 및 서버저장한 나의 조건 목록을 확인할 수 있는 API로,<br/>
+        자세한 사용 방법은 공지사항 - [조건검색 필독] 조건검색 API 이용안내 참고 부탁드립니다.
+
+      tags:
+        - DomesticRanking
+
+  /uapi/domestic-stock/v1/ranking/market-value:
+    get:
+      operationId: getRankingMarketValue
+
+      summary: 국내주식 시장가치 순위
+
+      description: |
+        국내주식 시장가치 순위 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0179] 시장가치순위 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
+        최대 30건 확인 가능하며, 다음 조회가 불가합니다.
+
+        ※ 30건 이상의 목록 조회가 필요한 경우, 대안으로 종목조건검색 API를 이용해서 원하는 종목 100개까지 검색할 수 있는 기능을 제공하고 있습니다.<br/>
+        종목조건검색 API는 HTS(efriend Plus) [0110] 조건검색에서 등록 및 서버저장한 나의 조건 목록을 확인할 수 있는 API로,<br/>
+        자세한 사용 방법은 공지사항 - [조건검색 필독] 조건검색 API 이용안내 참고 부탁드립니다.
+
+      tags:
+        - DomesticRanking
+
+  /uapi/domestic-stock/v1/ranking/volume-power:
+    get:
+      operationId: getRankingVolumePower
+
+      summary: 국내주식 체결강도 순위
+
+      description: |
+        국내주식 체결강도 상위 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0168] 체결강도 상위 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
+        최대 30건 확인 가능하며, 다음 조회가 불가합니다.
+
+        ※ 30건 이상의 목록 조회가 필요한 경우, 대안으로 종목조건검색 API를 이용해서 원하는 종목 100개까지 검색할 수 있는 기능을 제공하고 있습니다.<br/>
+        종목조건검색 API는 HTS(efriend Plus) [0110] 조건검색에서 등록 및 서버저장한 나의 조건 목록을 확인할 수 있는 API로,<br/>
+        자세한 사용 방법은 공지사항 - [조건검색 필독] 조건검색 API 이용안내 참고 부탁드립니다.
+
+      tags:
+        - DomesticRanking
+
+  /uapi/domestic-stock/v1/ranking/top-interest-stock:
+    get:
+      operationId: getRankingTopInterestStock
+
+      summary: 국내주식 관심종목등록 상위
+
+      description: |
+        국내주식 관심종목등록 상위 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0180] 관심종목등록상위 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
+        최대 30건 확인 가능하며, 다음 조회가 불가합니다.
+
+        ※ 30건 이상의 목록 조회가 필요한 경우, 대안으로 종목조건검색 API를 이용해서 원하는 종목 100개까지 검색할 수 있는 기능을 제공하고 있습니다.<br/>
+        종목조건검색 API는 HTS(efriend Plus) [0110] 조건검색에서 등록 및 서버저장한 나의 조건 목록을 확인할 수 있는 API로,<br/>
+        자세한 사용 방법은 공지사항 - [조건검색 필독] 조건검색 API 이용안내 참고 부탁드립니다.
+
+      tags:
+        - DomesticRanking
+
+  /uapi/domestic-stock/v1/ranking/exp-trans-updown:
+    get:
+      operationId: getRankingExpTransUpDown
+
+      summary: 국내주식 예상체결 상승/하락 상위
+
+      description: |
+        국내주식 예상체결 상승/하락상위 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0182] 예상체결 상승/하락상위 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
+        최대 30건 확인 가능하며, 다음 조회가 불가합니다.
+
+        ※ 30건 이상의 목록 조회가 필요한 경우, 대안으로 종목조건검색 API를 이용해서 원하는 종목 100개까지 검색할 수 있는 기능을 제공하고 있습니다.<br/>
+        종목조건검색 API는 HTS(efriend Plus) [0110] 조건검색에서 등록 및 서버저장한 나의 조건 목록을 확인할 수 있는 API로,<br/>
+        자세한 사용 방법은 공지사항 - [조건검색 필독] 조건검색 API 이용안내 참고 부탁드립니다.
+
+      tags:
+        - DomesticRanking
+
+  /uapi/domestic-stock/v1/ranking/traded-by-company:
+    get:
+      operationId: getRankingTrade
+
+      summary: 국내주식 당사매매순위 상위
+
+      description: |
+        국내주식 당사매매종목 상위 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0186] 당사매매종목 상위 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
+        최대 30건 확인 가능하며, 다음 조회가 불가합니다.
+
+        ※ 30건 이상의 목록 조회가 필요한 경우, 대안으로 종목조건검색 API를 이용해서 원하는 종목 100개까지 검색할 수 있는 기능을 제공하고 있습니다.<br/>
+        종목조건검색 API는 HTS(efriend Plus) [0110] 조건검색에서 등록 및 서버저장한 나의 조건 목록을 확인할 수 있는 API로,<br/>
+        자세한 사용 방법은 공지사항 - [조건검색 필독] 조건검색 API 이용안내 참고 부탁드립니다.
+
+      tags:
+        - DomesticRanking
+
+  /uapi/domestic-stock/v1/ranking/near-new-highlow:
+    get:
+      operationId: getRankingNearNewHighLow
+
+      summary: 국내주식 신고가/신저가 근접종목 상위
+
+      description: |
+        국내주식 신고/신저근접종목 상위 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0187] 신고/신저 근접종목 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
+        최대 30건 확인 가능하며, 다음 조회가 불가합니다.
+
+        ※ 30건 이상의 목록 조회가 필요한 경우, 대안으로 종목조건검색 API를 이용해서 원하는 종목 100개까지 검색할 수 있는 기능을 제공하고 있습니다.<br/>
+        종목조건검색 API는 HTS(efriend Plus) [0110] 조건검색에서 등록 및 서버저장한 나의 조건 목록을 확인할 수 있는 API로,<br/>
+        자세한 사용 방법은 공지사항 - [조건검색 필독] 조건검색 API 이용안내 참고 부탁드립니다.
+
+      tags:
+        - DomesticRanking
+
+  /uapi/domestic-stock/v1/ranking/bulk-trans-num:
+    get:
+      operationId: getRankingBulkTransNum
+
+      summary: 국내주식 대량체결건수 상위
+
+      description: |
+        국내주식 대량체결건수 상위 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0169] 대량체결건수 상위 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
+        최대 30건 확인 가능하며, 다음 조회가 불가합니다.
+
+        ※ 30건 이상의 목록 조회가 필요한 경우, 대안으로 종목조건검색 API를 이용해서 원하는 종목 100개까지 검색할 수 있는 기능을 제공하고 있습니다.<br/>
+        종목조건검색 API는 HTS(efriend Plus) [0110] 조건검색에서 등록 및 서버저장한 나의 조건 목록을 확인할 수 있는 API로,<br/>
+        자세한 사용 방법은 공지사항 - [조건검색 필독] 조건검색 API 이용안내 참고 부탁드립니다.
+
+      tags:
+        - DomesticRanking
+
+  /uapi/domestic-stock/v1/ranking/short-sale:
+    get:
+      operationId: getRankingShortSale
+
+      summary: 국내주식 공매도 상위종목
+
+      description: |
+        공매도 상위종목 API입니다. 
+
+        한국투자 HTS(eFriend Plus) > [0482] 공매도 상위 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+      tags:
+        - DomesticRanking
+
+  /uapi/domestic-stock/v1/ranking/credit-balance:
+    get:
+      operationId: getRankingCreditBalance
+
+      summary: 국내주식 신용잔고 상위
+
+      description: |
+        국내주식 신용잔고 상위 API입니다. 
+
+        한국투자 HTS(eFriend Plus) > [0475] 신용잔고 상위 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+      tags:
+        - DomesticRanking
+
+  /uapi/domestic-stock/v1/ranking/dividend-rate:
+    get:
+      operationId: getRankingDividendRate
+
+      summary: 국내주식 배당률 상위
+
+      description: |
+        국내주식 배당률 상위 API입니다. 
+
+        한국투자 HTS(eFriend Plus) > [0188] 배당률 상위 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+      tags:
+        - DomesticRanking
+
+  /uapi/domestic-stock/v1/ranking/overtime-fluctuation:
+    get:
+      operationId: getRankingOverTimeFluctuationRate
+
+      summary: 국내주식 시간외등락률 순위
+
+      description: |
+        국내주식 시간외등락율순위 API입니다. 
+
+        한국투자 HTS(eFriend Plus) > [0234] 시간외 등락률순위 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+      tags:
+        - DomesticRanking
+
+  /uapi/domestic-stock/v1/ranking/overtime-volume:
+    get:
+      operationId: getRankingOverTimeVolume
+
+      summary: 국내주식 시간외거래량 순위
+
+      description: |
+        국내주식 시간외거래량순위 API입니다. 
+
+        한국투자 HTS(eFriend Plus) > [0235] 시간외 거래량순위 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+      tags:
+        - DomesticRanking
 
   /uapi/domestic-stock/v1/quotations/chk-holiday:
     get:
