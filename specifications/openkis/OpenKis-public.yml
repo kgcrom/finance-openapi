@@ -25,6 +25,10 @@ tags:
     description: ETF/ETN 호가
   - name: DomesticStockIndex
     description: 국내주식 지수
+  - name: DomesticStockFinancialStatement
+    description: 국내주식 재무 정보
+  - name: DomesticKsdInfo
+    description: 국내주식 한국예탁결제원 정보
 
 security:
   - accessToken: []
@@ -169,7 +173,7 @@ paths:
       summary: 국내주식 시간외 현재가 조회
 
       description: |
-        국내주식 시간외현재가 API입니다. 
+        국내주식 시간외현재가 API입니다.
 
         한국투자 HTS(eFriend Plus) > [0230] 시간외 현재가 화면의 좌측 상단기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
@@ -183,7 +187,7 @@ paths:
       summary: 국내주식 시간외 호가 조회
 
       description: |
-        국내주식 시간외호가 API입니다. 
+        국내주식 시간외호가 API입니다.
 
         한국투자 HTS(eFriend Plus) > [0230] 시간외 현재가 화면의 '호가' 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
@@ -221,7 +225,7 @@ paths:
       summary: 국내주식 장마감 예상체결가 조회
 
       description: |
-        국내주식 장마감 예상체결가 API입니다. 
+        국내주식 장마감 예상체결가 API입니다.
 
         한국투자 HTS(eFriend Plus) > [0183] 장마감 예상체결가 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
@@ -293,7 +297,7 @@ paths:
       summary: ETF/ETN 구성종목 시세 조회
 
       description: |
-        ETF 구성종목시세 API입니다. 
+        ETF 구성종목시세 API입니다.
 
         한국투자 HTS(eFriend Plus) > [0245] ETF/ETN 구성종목시세 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다
 
@@ -391,7 +395,7 @@ paths:
       summary: 국내업종 시간별지수(초) 조회
 
       description: |
-        국내업종 시간별지수(초) API입니다. 
+        국내업종 시간별지수(초) API입니다.
 
         한국투자 HTS(eFriend Plus) > [0211] 업종 시간별지수 화면에서 우측 '10초' 선택 시의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
@@ -405,7 +409,7 @@ paths:
       summary: 국내업종 시간별지수(분) 조회
 
       description: |
-        국내업종 시간별지수(분) API입니다. 
+        국내업종 시간별지수(분) API입니다.
 
         한국투자 HTS(eFriend Plus) > [0211] 업종 시간별지수 화면에서 우측 '1분' 선택 시의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
@@ -419,9 +423,320 @@ paths:
       summary: 국내업종 예상체결지수 추이
 
       description: |
-        국내주식 예상체결지수 추이 API입니다. 
+        국내주식 예상체결지수 추이 API입니다.
 
         한국투자 HTS(eFriend Plus) > [0184] 예상체결지수 추이 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+      tags:
+        - DomesticStockIndex
+
+  /uapi/domestic-stock/v1/finance/balance-sheet:
+    get:
+      operationId: getFinancialBalanceSheet
+
+      summary: 국내주식 대차대조표
+
+      description: |
+        국내주식 대차대조표 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0635] 재무분석종합 화면의 하단 '1. 대차대조표' 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+      tags:
+        - DomesticStockFinancialStatement
+
+  /uapi/domestic-stock/v1/finance/income-statement:
+    get:
+      operationId: getFinancialIncomeStatement
+
+      summary: 국내주식 손익계산서
+
+      description: |
+        국내주식 손익계산서 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0635] 재무분석종합 화면의 하단 '2. 손익계산서' 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+      tags:
+        - DomesticStockFinancialStatement
+
+  /uapi/domestic-stock/v1/finance/financial-ratio:
+    get:
+      operationId: getFinancialRatio
+
+      summary: 국내주식 재무비율
+
+      description: |
+        국내주식 재무비율 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0635] 재무분석종합 화면의 우측의 '재무 비율' 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+      tags:
+        - DomesticStockFinancialStatement
+
+  /uapi/domestic-stock/v1/finance/profit-ratio:
+    get:
+      operationId: getFinancialProfitRatio
+
+      summary: 국내주식 수익성비율
+
+      description: |
+        국내주식 수익성비율 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0635] 재무분석종합 화면의 하단 '4. 수익성비율' 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+      tags:
+        - DomesticStockFinancialStatement
+
+  /uapi/domestic-stock/v1/finance/other-major-ratios:
+    get:
+      operationId: getFinancialOtherMajorRatio
+
+      sumamry: 국내주식 기타주요비율
+
+      description: |
+        국내주식 기타주요비율 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0635] 재무분석종합 화면의 하단 '9. 기타주요비율' 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+      tags:
+        - DomesticStockFinancialStatement
+
+  /uapi/domestic-stock/v1/finance/stability-ratio:
+    get:
+      operationId: getFinancialStabilityRatio
+
+      summary: 국내주식 안정성비율
+
+      description: |
+        국내주식 안정성비율 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0635] 재무분석종합 화면의 하단 '5. 안정성비율' 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+      tags:
+        - DomesticStockFinancialStatement
+
+  /uapi/domestic-stock/v1/finance/growth-ratio:
+    get:
+      operationId: getFinancialGrowthRatio
+
+      summary: 국내주식 성장성비율
+
+      description: |
+        국내주식 성장성비율 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0635] 재무분석종합 화면의 하단 '7.성장성비율' 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+      tags:
+        - DomesticStockFinancialStatement
+
+  /uapi/domestic-stock/v1/quotations/estimate-perform:
+    get:
+      operationId: getFinancialEstimatePerform
+
+      summary: 국내주식 종목추정실적
+
+      description: |
+        국내주식 종목추정실적 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0613] 종목추정실적 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다. 
+
+        ※ 본 화면의 추정실적 및 투자의견은 당월 초의 애널리스트의 의견사항이므로 월중 변동 사항이 있을 수 있음을 유의하시기 바랍니다.<br/>
+        ※ 종목별 수익추정은 리서치본부에서 매월 발표되는 거래소, 코스닥 160여개 기업에 한정합니다. 구체적인 종목 리스트는 추정종목리스트를 참고하기 바랍니다.
+
+      tags:
+        - DomesticStockFinancialStatement
+
+  /uapi/domestic-stock/v1/ksdinfo/dividend:
+    get:
+      operationId: getKsdDividendInfo
+
+      sumamry: 예탁원정보 (배당일정)
+
+      description: |
+        예탁원정보(배당일정) API입니다. 
+
+        한국투자 HTS(eFriend Plus) > [0658] 배당 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+        ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
+        '주식배당지급일'은 배당주식의 주식교부일자를 말합니다. 배당주식의 계좌입고는 배당주식 상장일인데 일반적으로 주권교부일의 익영업일입니다.
+
+      tags:
+        - DomesticKsdInfo
+
+  /uapi/domestic-stock/v1/ksdinfo/purreq:
+    get:
+      operationId: getKsdBuybackInfo
+
+      sumamry: 예탁원정보 (주식매수청구일정)
+
+      description: |
+        예탁원정보(주식매수청구일정) API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0663] 주식매수청구 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+        ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
+
+      tags:
+        - DomesticKsdInfo
+
+  /uapi/domestic-stock/v1/ksdinfo/merger-split:
+    get:
+      operationId: getKsdMergerAndSplit
+
+      sumamry: 예탁원정보 (합병/분할일정)
+
+      description: |
+        예탁원정보(합병/분할일정) API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0664] 합병/분할 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+        ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
+
+      tags:
+        - DomesticKsdInfo
+
+  /uapi/domestic-stock/v1/ksdinfo/rev-split:
+    get:
+      operationId: getKsdChangeParValue
+
+      sumamry: 예탁원정보 (액면교체일정)
+
+      description: |
+        예탁원정보(액면교체일정) API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0657] 액면교체 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+        ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
+
+      tags:
+        - DomesticKsdInfo
+
+  /uapi/domestic-stock/v1/ksdinfo/cap-dcrs:
+    get:
+      operationId: getKsdDecreaseCapital
+
+      sumamry: 예탁원정보 (자본감소일정)
+
+      description: |
+        예탁원정보(자본감소일정) API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0665] 자본감소 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+        ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
+
+      tags:
+        - DomesticKsdInfo
+
+  /uapi/domestic-stock/v1/ksdinfo/list-info:
+    get:
+      operationId: getKsdListInfo
+
+      sumamry: 예탁원정보 (상장정보일정)
+
+      description: |
+        예탁원정보(상장정보일정) API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0666] 상장정보 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+        ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
+
+      tags:
+        - DomesticKsdInfo
+
+  /uapi/domestic-stock/v1/ksdinfo/pub-offer:
+    get:
+      operationId: getKsdPublicOfferSubscription
+
+      summary: 예탁원정보 (공모주청약일정)
+
+      description: |
+        예탁원정보(공모주청약일정) API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0667] 공모주청약 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+        ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
+
+      tags:
+        - DomesticKsdInfo
+
+  /uapi/domestic-stock/v1/ksdinfo/forfeit:
+    get:
+      operationId: getKsdForfeitedStock
+
+      sumamry: 예탁원정보 (실권주일정)
+
+      description: |
+        예탁원정보(실권주일정) API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0668] 실권주 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+        ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
+
+      tags:
+        - DomesticKsdInfo
+
+  /uapi/domestic-stock/v1/ksdinfo/mand-deposit:
+    get:
+      operationId: getKsdMandatoryDeposit
+
+      summary: 예탁원정보 (의무예치일정)
+
+      description: |
+        예탁원정보(의무예치일정) API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0758] 의무예치 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+        ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
+
+      tags:
+        - DomesticKsdInfo
+
+  /uapi/domestic-stock/v1/ksdinfo/paidin-capin:
+    get:
+      operationId: getKsdRightIssue
+
+      summary: 예탁원정보 (유상증자일정)
+
+      description: |
+        예탁원정보(유상증자일정) API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0655] 유상증자 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+        ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
+
+      tags:
+        - DomesticKsdInfo
+
+  /uapi/domestic-stock/v1/ksdinfo/bonus-issue:
+    get:
+      operationId: getKsdBonusIssue
+
+      sumamry: 예탁원정보 (무상증자일정)
+
+      description: |
+        예탁원정보(무상증자일정) API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0656] 무상증자 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+        ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
+
+      tags:
+        - DomesticKsdInfo
+
+  /uapi/domestic-stock/v1/ksdinfo/sharehld-meet:
+    get:
+      operationId: getKsdShareholderMeeting
+
+      sumamry: 예탁원정보 (주주총회일정)
+
+      description: |
+        예탁원정보(주주총회일정) API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0759] 주주총회 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+        ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
+
+      tags:
+        - DomesticKsdInfo
 
   /uapi/domestic-stock/v1/quotations/chk-holiday:
     get:
@@ -465,9 +780,66 @@ paths:
       summary: 종합 시황/공시(제목만)
 
       description: |
-        종합 시황/공시(제목) API입니다. 
+        종합 시황/공시(제목) API입니다.
 
         한국투자 HTS(eFriend Plus) > [0601] 종합 시황/공시 화면의 "우측 상단 리스트" 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+  /uapi/domestic-stock/v1/quotations/search-info:
+    get:
+      operationId: findSearchProductInfo
+
+      summary: 상품기본조회
+
+      description: 국내주식뿐 아니라 선물, 채권, 해외주식의 기본 정보를 조회하는 API 입니다.
+
+  /uapi/domestic-stock/v1/quotations/search-stock-info:
+    get:
+      operationId: findSearchStockInfo
+
+      sumamry: 국내주식 기본조회
+
+      description: |
+        주식기본조회 API입니다.
+
+        국내주식 종목의 종목상세정보를 확인할 수 있습니다.
+
+  /uapi/domestic-stock/v1/quotations/credit-by-company:
+    get:
+      operationId: getFinancialCreditByCompany
+
+      summary: 국내주식 당사 신용가능종목
+
+      description: |
+        국내주식 당사 신용가능종목 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0477] 당사 신용가능 종목 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
+        최대 100건 확인 가능하며, 다음 조회가 불가합니다.
+
+  /uapi/domestic-stock/v1/quotations/invest-opinion:
+    get:
+      operationId: getDomesticStockInvestOpinion
+
+      sumamry: 국내주식 종목투자의견
+
+      description: |
+        국내주식 종목투자의견 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0605] 종목투자의견 화면 의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+        한 번의 호출에 100건까지 조회가 가능하기에, 일자 파라미터(FID_INPUT_DATE_1, FID_INPUT_DATE_2)를 조절하여 다음 데이터 조회하시기 바랍니다.
+
+  /uapi/domestic-stock/v1/quotations/invest-opbysec:
+    get:
+      operationId: getDomesticStockSecuritiesOpinion
+
+      sumamry: 국내주식 증권사별 투자의견
+
+      description: |
+        국내주식 증권사별 투자의견 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0608] 증권사별 투자의견 화면 의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+        한 번의 호출에 20건까지 조회가 가능하기에, 일자 파라미터(FID_INPUT_DATE_1, FID_INPUT_DATE_2)를 조절하여 다음 데이터 조회하시기 바랍니다.
 
 components:
   securitySchemes:
