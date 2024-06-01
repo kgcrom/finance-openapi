@@ -5,6 +5,7 @@
   "scripts": {
     "test": "make test",
     "bundle": "npx @redocly/cli bundle",
+    "lint": "npx @redocly/cli lint",
     "preview": "npx @redocly/cli preview-docs ${SPEC_FILE}"
   },
   "repository": {
@@ -22,6 +23,6 @@
   },
   "homepage": "https://github.com/kgcrom/finance-openapi#readme",
   "devDependencies": {
-    "@redocly/cli": "^1.13.0"
+    "@redocly/cli": "^1.14.0"
   }
 }
