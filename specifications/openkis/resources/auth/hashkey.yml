@@ -7,9 +7,37 @@ description: |
   해쉬키를 사용하면 POST로 보내는 요청(주로 주문/정정/취소 API 해당)의 body 값을 사전에 암호화시킬 수 있습니다.<br/>
   해쉬키는 비필수값으로 사용하지 않아도 POST API 호출은 가능합니다.
 
-responses:
-  200:
-    description: Hashkey 생성 성공
-
 tags:
   - Auth
+
+parameters:
+  - name: content-type
+    in: header
+    schema:
+      type: string
+      default: application/json; charset=utf-8
+
+  - name: appkey
+    in: header
+    schema:
+      type: string
+      description: 한국투자증권 홈페이지에서 발급받은 appkey (절대 노출되지 않도록 주의해주세요.)
+      example: PSg5dctL9dKPo727J13Ur405OSXXXXXXXXXX
+
+  - name: appsecret
+    in: header
+    schema:
+      type: string
+      description: 한국투자증권 홈페이지에서 발급받은 appsecret (절대 노출되지 않도록 주의해주세요.)
+      example: /g84gaZp7W3DJEZhamiTH8ZdJkUJ8603rjo3HcOm5PvIc1YC3YmyJOQoW1H0kNjo4IbHwGUdi3+9oEbH4RKKl8GnEu3n/khxm0OrwHkQur+wbA74fcFXxaUnEbftu0X72Eaw9dEBMuK3rODeeOanrsJ1kZ9oKWykIG04F0nmgdXXXXXXXXXX
+
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        description: 해쉬키 생성을 위한 JSON Body
+
+responses:
+  200:
+    $ref: responses/hashkey.yml

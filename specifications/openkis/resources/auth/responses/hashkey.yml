@@ -1,0 +1,23 @@
+description: Hashkey 생성 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        JsonBody:
+          type: object
+          description: 해쉬키 생성 요청 JsonBody 데이터
+          example: |
+            {
+              "CANO": '00000000',
+              "ACNT_PRDT_CD": "01",
+              "OVRS_EXCG_CD": "SHAA"
+            }
+        HASH:
+          type: string
+          maxLength: 256
+          description: |
+            [POST API 대상] Client가 요청하는 Request Body를 hashkey api로 생성한 Hash값
+            * API문서 > hashkey 참조
+          example: 8b84068222a49302f7ef58226d90403f62e216828f8103465f900de0e7be2f0f
