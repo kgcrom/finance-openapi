@@ -228,204 +228,43 @@ paths:
 
   /uapi/domestic-stock/v1/ksdinfo/dividend:
     get:
-      operationId: getKsdDividendInfo
-
-      summary: 예탁원정보 (배당일정)
-
-      description: |
-        예탁원정보(배당일정) API입니다. 
-
-        한국투자 HTS(eFriend Plus) > [0658] 배당 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-
-        ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
-        '주식배당지급일'은 배당주식의 주식교부일자를 말합니다. 배당주식의 계좌입고는 배당주식 상장일인데 일반적으로 주권교부일의 익영업일입니다.
-
-      responses:
-        200:
-          description: 예탁원정보 (배당일정) 조회 성공
-
-      tags:
-        - DomesticKsdInfo
+      $ref: resources/ksd_info/dividend.yml
 
   /uapi/domestic-stock/v1/ksdinfo/purreq:
     get:
-      operationId: getKsdBuybackInfo
-
-      summary: 예탁원정보 (주식매수청구일정)
-
-      description: |
-        예탁원정보(주식매수청구일정) API입니다.
-
-        한국투자 HTS(eFriend Plus) > [0663] 주식매수청구 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-
-        ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
-
-      responses:
-        200:
-          description: 예탁원정보 (주식매수청구일정) 조회 성공
-
-      tags:
-        - DomesticKsdInfo
+      $ref: resources/ksd_info/purchase_request.yml
 
   /uapi/domestic-stock/v1/ksdinfo/merger-split:
     get:
-      operationId: getKsdMergerAndSplit
-
-      summary: 예탁원정보 (합병/분할일정)
-
-      description: |
-        예탁원정보(합병/분할일정) API입니다.
-
-        한국투자 HTS(eFriend Plus) > [0664] 합병/분할 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-
-        ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
-
-      responses:
-        200:
-          description: 예탁원정보 (합병/분할일정) 조회 성공
-
-      tags:
-        - DomesticKsdInfo
+      $ref: resources/ksd_info/merger_split.yml
 
   /uapi/domestic-stock/v1/ksdinfo/rev-split:
     get:
-      operationId: getKsdChangeParValue
-
-      summary: 예탁원정보 (액면교체일정)
-
-      description: |
-        예탁원정보(액면교체일정) API입니다.
-
-        한국투자 HTS(eFriend Plus) > [0657] 액면교체 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-
-        ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
-
-      responses:
-        200:
-          description: 예탁원정보 (액면교체일정) 조회 성공
-
-      tags:
-        - DomesticKsdInfo
+      $ref: resources/ksd_info/change_par_value.yml
 
   /uapi/domestic-stock/v1/ksdinfo/cap-dcrs:
     get:
-      operationId: getKsdDecreaseCapital
-
-      summary: 예탁원정보 (자본감소일정)
-
-      description: |
-        예탁원정보(자본감소일정) API입니다.
-
-        한국투자 HTS(eFriend Plus) > [0665] 자본감소 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-
-        ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
-
-      responses:
-        200:
-          description: 예탁원정보 (자본감소일정) 조회 성공
-
-      tags:
-        - DomesticKsdInfo
+      $ref: resources/ksd_info/decrease_capital.yml
 
   /uapi/domestic-stock/v1/ksdinfo/list-info:
     get:
-      operationId: getKsdListInfo
-
-      summary: 예탁원정보 (상장정보일정)
-
-      description: |
-        예탁원정보(상장정보일정) API입니다.
-
-        한국투자 HTS(eFriend Plus) > [0666] 상장정보 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-
-        ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
-
-      responses:
-        200:
-          description: 예탁원정보 (상장정보일정) 조회 성공
-
-      tags:
-        - DomesticKsdInfo
+      $ref: resources/ksd_info/list_info.yml
 
   /uapi/domestic-stock/v1/ksdinfo/pub-offer:
     get:
-      operationId: getKsdPublicOfferSubscription
-
-      summary: 예탁원정보 (공모주청약일정)
-
-      description: |
-        예탁원정보(공모주청약일정) API입니다.
-
-        한국투자 HTS(eFriend Plus) > [0667] 공모주청약 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-
-        ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
-
-      responses:
-        200:
-          description: 예탁원정보 (공모주청약일정) 조회 성공
-
-      tags:
-        - DomesticKsdInfo
+      $ref: resources/ksd_info/public_offer_subscription.yml
 
   /uapi/domestic-stock/v1/ksdinfo/forfeit:
     get:
-      operationId: getKsdForfeitedStock
-
-      summary: 예탁원정보 (실권주일정)
-
-      description: |
-        예탁원정보(실권주일정) API입니다.
-
-        한국투자 HTS(eFriend Plus) > [0668] 실권주 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-
-        ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
-
-      responses:
-        200:
-          description: 예탁원정보 (실권주일정) 조회 성공
-
-      tags:
-        - DomesticKsdInfo
+      $ref: resources/ksd_info/forfeited_stock.yml
 
   /uapi/domestic-stock/v1/ksdinfo/mand-deposit:
     get:
-      operationId: getKsdMandatoryDeposit
-
-      summary: 예탁원정보 (의무예치일정)
-
-      description: |
-        예탁원정보(의무예치일정) API입니다.
-
-        한국투자 HTS(eFriend Plus) > [0758] 의무예치 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-
-        ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
-
-      responses:
-        200:
-          description: 예탁원정보 (의무예치일정) 조회 성공
-
-      tags:
-        - DomesticKsdInfo
+      $ref: resources/ksd_info/mandatory_deposit.yml
 
   /uapi/domestic-stock/v1/ksdinfo/paidin-capin:
     get:
-      operationId: getKsdRightIssue
-
-      summary: 예탁원정보 (유상증자일정)
-
-      description: |
-        예탁원정보(유상증자일정) API입니다.
-
-        한국투자 HTS(eFriend Plus) > [0655] 유상증자 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-
-        ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
-
-      responses:
-        200:
-          description: 예탁원정보 (유상증자일정) 조회 성공
-
-      tags:
-        - DomesticKsdInfo
+      $ref: resources/ksd_info/right_issue.yml
 
   /uapi/domestic-stock/v1/ksdinfo/bonus-issue:
     get:

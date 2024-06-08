@@ -1,0 +1,17 @@
+operationId: getKsdPurchaseRequest
+
+summary: 예탁원정보 (주식매수청구일정)
+
+description: |
+  예탁원정보(주식매수청구일정) API입니다.
+
+  한국투자 HTS(eFriend Plus) > [0663] 주식매수청구 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+  ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
+
+responses:
+  200:
+    description: 예탁원정보 (주식매수청구일정) 조회 성공
+
+tags:
+  - DomesticKsdInfo
