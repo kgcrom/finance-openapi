@@ -1,0 +1,15 @@
+operationId: getDomesticStockAskingPriceAndExpectedConclusion
+
+summary: 국내주식 현재가 호가/예상체결 조회
+
+description: |
+  주식현재가 호가 예상체결 API입니다.
+
+  매수 매도 호가를 확인하실 수 있습니다.<br/> 실시간 데이터를 원하신다면 웹소켓 API를 활용하세요.
+
+responses:
+  200:
+    description: 국내주식 현재가 호가/예상체결 조회 성공
+
+tags:
+  - DomesticStockQuote

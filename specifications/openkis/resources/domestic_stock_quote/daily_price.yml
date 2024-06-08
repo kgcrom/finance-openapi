@@ -1,0 +1,12 @@
+operationId: getDomesticStockDailyPrice
+
+summary: 국내주식 일자별 시세 조회
+
+description: 주식현재가 일자별 API입니다. 일/주/월별 주가를 확인할 수 있으며 최근 30일(주,별)로 제한되어 있습니다.
+
+responses:
+  200:
+    description: 국내주식 일자별 시세 조회 성공
+
+tags:
+  - DomesticStockQuote

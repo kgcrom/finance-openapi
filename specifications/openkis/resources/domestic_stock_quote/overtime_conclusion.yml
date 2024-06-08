@@ -1,0 +1,12 @@
+operationId: getDomesticStockOverTimeConclusion
+
+summary: 국내주식 현재가 시간외 시간대별 체결 조회
+
+description: 주식현재가 시간외시간별체결 API입니다.
+
+responses:
+  200:
+    description: 국내주식 현재가 시간외 시간대별 체결 조회 성공
+
+tags:
+  - DomesticStockQuote

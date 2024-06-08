@@ -1,0 +1,15 @@
+operationId: getEtfNEtnComponentStockPrice
+
+summary: ETF/ETN 구성종목 시세 조회
+
+description: |
+  ETF 구성종목시세 API입니다.
+
+  한국투자 HTS(eFriend Plus) > [0245] ETF/ETN 구성종목시세 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다
+
+responses:
+  200:
+    description: ETF/ETN 구성종목 시세 조회 성공
+
+tags:
+  - EtfNEtnQuote

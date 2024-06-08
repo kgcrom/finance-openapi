@@ -1,0 +1,9 @@
+operationId: searchProductInfo
+
+summary: 상품기본조회
+
+description: 국내주식뿐 아니라 선물, 채권, 해외주식의 기본 정보를 조회하는 API 입니다.
+
+responses:
+  200:
+    description: 상품기본조회 조회 성공

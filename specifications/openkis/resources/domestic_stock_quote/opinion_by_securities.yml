@@ -1,0 +1,17 @@
+operationId: getDomesticStockSecuritiesOpinion
+
+summary: 국내주식 증권사별 투자의견
+
+description: |
+  국내주식 증권사별 투자의견 API입니다.
+
+  한국투자 HTS(eFriend Plus) > [0608] 증권사별 투자의견 화면 의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+  한 번의 호출에 20건까지 조회가 가능하기에, 일자 파라미터(FID_INPUT_DATE_1, FID_INPUT_DATE_2)를 조절하여 다음 데이터 조회하시기 바랍니다.
+
+responses:
+  200:
+    description: 국내주식 증권사별 투자의견 조회 성공
+
+tags:
+  - DomesticStockQuote

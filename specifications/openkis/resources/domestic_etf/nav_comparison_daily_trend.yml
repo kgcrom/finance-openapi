@@ -1,0 +1,16 @@
+operationId: getEtfNEtnNavDailyTrend
+
+summary: ETF/ETN NAV 비교 추이(일) 조회
+
+description: |
+  NAV 비교추이(일) API입니다.
+
+  한국투자 HTS(eFriend Plus) > [0244] ETF/ETN 비교추이(NAV/IIV) 좌측 화면 "일별" 비교추이 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
+  실전계좌의 경우, 한 번의 호출에 최대 100건까지 확인 가능합니다.
+
+responses:
+  200:
+    description: ETF/ETN NAV 비교 추이(일) 조회 성공
+
+tags:
+  - EtfNEtnQuote

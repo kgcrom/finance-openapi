@@ -1,0 +1,15 @@
+operationId: getViStatus
+
+summary: 국내주식 변동성완화장치(VI) 현황
+
+description: |
+  HTS(eFriend Plus) [0139] 변동성 완화장치(VI) 현황 데이터를 확인할 수 있는 API입니다.
+
+  최근 30건까지 확인 가능합니다.
+
+responses:
+  200:
+    description: 국내주식 변동성완화장치(VI) 현황 조회 성공
+
+tags:
+  - DomesticStockQuote

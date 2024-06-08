@@ -1,0 +1,15 @@
+operationId: getIndexChartPrice
+
+summary: 국내주식 업종기간별 시세(일/주/월/년) 조회
+
+description: |
+  국내주식 업종기간별시세(일/주/월/년) API입니다.
+
+  실전계좌/모의계좌의 경우, 한 번의 호출에 최대 50건까지 확인 가능합니다.
+
+responses:
+  200:
+    description: 국내주식 업종기간별 시세(일/주/월/년) 조회 성공
+
+tags:
+  - DomesticStockIndex

@@ -145,7 +145,7 @@ paths:
         - DomesticStockQuote
   /uapi/domestic-stock/v1/quotations/inquire-asking-price-exp-ccn:
     get:
-      operationId: getDomesticStockQuoteAndExp
+      operationId: getDomesticStockAskingPriceAndExpectedConclusion
       summary: 국내주식 현재가 호가/예상체결 조회
       description: |
         주식현재가 호가 예상체결 API입니다.
@@ -154,6 +154,42 @@ paths:
       responses:
         '200':
           description: 국내주식 현재가 호가/예상체결 조회 성공
+      tags:
+        - DomesticStockQuote
+  /uapi/domestic-stock/v1/quotations/search-info:
+    get:
+      operationId: searchProductInfo
+      summary: 상품기본조회
+      description: 국내주식뿐 아니라 선물, 채권, 해외주식의 기본 정보를 조회하는 API 입니다.
+      responses:
+        '200':
+          description: 상품기본조회 조회 성공
+  /uapi/domestic-stock/v1/quotations/search-stock-info:
+    get:
+      operationId: searchStockInfo
+      summary: 국내주식 기본조회
+      description: |
+        주식기본조회 API입니다.
+
+        국내주식 종목의 종목상세정보를 확인할 수 있습니다.
+      responses:
+        '200':
+          description: 국내주식 기본조회 조회 성공
+      tags:
+        - DomesticStockQuote
+  /uapi/domestic-stock/v1/quotations/invest-opbysec:
+    get:
+      operationId: getDomesticStockSecuritiesOpinion
+      summary: 국내주식 증권사별 투자의견
+      description: |
+        국내주식 증권사별 투자의견 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0608] 증권사별 투자의견 화면 의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+        한 번의 호출에 20건까지 조회가 가능하기에, 일자 파라미터(FID_INPUT_DATE_1, FID_INPUT_DATE_2)를 조절하여 다음 데이터 조회하시기 바랍니다.
+      responses:
+        '200':
+          description: 국내주식 증권사별 투자의견 조회 성공
       tags:
         - DomesticStockQuote
   /uapi/domestic-stock/v1/quotations/inquire-investor:
@@ -238,7 +274,7 @@ paths:
         - DomesticStockQuote
   /uapi/domestic-stock/v1/quotations/inquire-overtime-asking-price:
     get:
-      operationId: getDomesticStockOverTimeQuote
+      operationId: getDomesticStockOverTimeAskingPrice
       summary: 국내주식 시간외 호가 조회
       description: |
         국내주식 시간외호가 API입니다.
@@ -251,7 +287,7 @@ paths:
         - DomesticStockQuote
   /uapi/domestic-stock/v1/quotations/inquire-time-itemchartprice:
     get:
-      operationId: getDomesticStockMinutePrice
+      operationId: getDomesticStockTimeMinutePrice
       summary: 국내주식 당일 분봉 조회
       description: |
         주식당일분봉조회 API입니다.<br/>
@@ -273,7 +309,7 @@ paths:
         - DomesticStockQuote
   /uapi/domestic-stock/v1/quotations/exp-closing-price:
     get:
-      operationId: getDomesticStockClosingExp
+      operationId: getDomesticStockClosingExpectedConclusion
       summary: 국내주식 장마감 예상체결가 조회
       description: |
         국내주식 장마감 예상체결가 API입니다.
@@ -282,6 +318,48 @@ paths:
       responses:
         '200':
           description: 국내주식 장마감 예상체결가 조회 성공
+      tags:
+        - DomesticStockQuote
+  /uapi/domestic-stock/v1/quotations/inquire-vi-status:
+    get:
+      operationId: getViStatus
+      summary: 국내주식 변동성완화장치(VI) 현황
+      description: |
+        HTS(eFriend Plus) [0139] 변동성 완화장치(VI) 현황 데이터를 확인할 수 있는 API입니다.
+
+        최근 30건까지 확인 가능합니다.
+      responses:
+        '200':
+          description: 국내주식 변동성완화장치(VI) 현황 조회 성공
+      tags:
+        - DomesticStockQuote
+  /uapi/domestic-stock/v1/quotations/credit-by-company:
+    get:
+      operationId: getFinancialCreditByCompany
+      summary: 국내주식 당사 신용가능종목
+      description: |
+        국내주식 당사 신용가능종목 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0477] 당사 신용가능 종목 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
+        최대 100건 확인 가능하며, 다음 조회가 불가합니다.
+      responses:
+        '200':
+          description: 국내주식 당사 신용가능종목 조회 성공
+      tags:
+        - DomesticStockQuote
+  /uapi/domestic-stock/v1/quotations/invest-opinion:
+    get:
+      operationId: getDomesticStockInvestOpinion
+      summary: 국내주식 종목투자의견
+      description: |
+        국내주식 종목투자의견 API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0605] 종목투자의견 화면 의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+        한 번의 호출에 100건까지 조회가 가능하기에, 일자 파라미터(FID_INPUT_DATE_1, FID_INPUT_DATE_2)를 조절하여 다음 데이터 조회하시기 바랍니다.
+      responses:
+        '200':
+          description: 국내주식 종목투자의견 조회 성공
       tags:
         - DomesticStockQuote
   /uapi/etfetn/v1/quotations/inquire-price:
@@ -299,7 +377,7 @@ paths:
         - EtfNEtnQuote
   /uapi/etfetn/v1/quotations/nav-comparison-trend:
     get:
-      operationId: getEtfNEtnNavStockTrend
+      operationId: getEtfNEtnNavComparisonTrend
       summary: ETF/ETN NAV 비교 추이(종목) 조회
       description: |
         NAV 비교추이(종목) API입니다.
@@ -353,7 +431,7 @@ paths:
         - EtfNEtnQuote
   /uapi/domestic-stock/v1/quotations/inquire-daily-indexchartprice:
     get:
-      operationId: getIndexDailyChartPrice
+      operationId: getIndexChartPrice
       summary: 국내주식 업종기간별 시세(일/주/월/년) 조회
       description: |
         국내주식 업종기간별시세(일/주/월/년) API입니다.
@@ -466,6 +544,33 @@ paths:
       responses:
         '200':
           description: 국내업종 예상체결지수 추이 조회 성공
+      tags:
+        - DomesticStockIndex
+  /uapi/domestic-stock/v1/quotations/comp-interest:
+    get:
+      operationId: getDomesticInterest
+      summary: 금리종합(국내채권/금리)
+      description: |
+        금리 종합(국내채권/금리) API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0702] 금리 종합 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
+        ※ 11:30 이후에 신규데이터가 수신되는 점 참고하시기 바랍니다.
+      responses:
+        '200':
+          description: 금리종합(국내채권/금리) 조회 성공
+      tags:
+        - DomesticStockIndex
+  /uapi/domestic-stock/v1/quotations/news-title:
+    get:
+      operationId: getNewsTitle
+      summary: 종합 시황/공시(제목만)
+      description: |
+        종합 시황/공시(제목) API입니다.
+
+        한국투자 HTS(eFriend Plus) > [0601] 종합 시황/공시 화면의 "우측 상단 리스트" 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+      responses:
+        '200':
+          description: 종합 시황/공시(제목) 조회 성공
       tags:
         - DomesticStockIndex
   /uapi/domestic-stock/v1/finance/balance-sheet:
@@ -1441,97 +1546,17 @@ paths:
       responses:
         '200':
           description: 국내 휴장일 조회 성공
-  /uapi/domestic-stock/v1/quotations/inquire-vi-status:
-    get:
-      operationId: checkViStatus
-      summary: 국내주식 변동성완화장치(VI) 현황
+  /uapi/hashkey:
+    post:
+      operationId: getHashKey
+      summary: Hashkey 생성
       description: |
-        HTS(eFriend Plus) [0139] 변동성 완화장치(VI) 현황 데이터를 확인할 수 있는 API입니다.
-
-        최근 30건까지 확인 가능합니다.
+        해쉬키(Hashkey)는 보안을 위한 요소로 사용자가 보낸 요청 값을 중간에 탈취하여 변조하지 못하도록 하는데 사용됩니다.<br/>
+        해쉬키를 사용하면 POST로 보내는 요청(주로 주문/정정/취소 API 해당)의 body 값을 사전에 암호화시킬 수 있습니다.<br/>
+        해쉬키는 비필수값으로 사용하지 않아도 POST API 호출은 가능합니다.
       responses:
         '200':
-          description: 국내주식 변동성완화장치(VI) 현황 조회 성공
-  /uapi/domestic-stock/v1/quotations/comp-interest:
-    get:
-      operationId: getDomesticInterest
-      summary: 금리종합(국내채권/금리)
-      description: |
-        금리 종합(국내채권/금리) API입니다.
-
-        한국투자 HTS(eFriend Plus) > [0702] 금리 종합 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
-        ※ 11:30 이후에 신규데이터가 수신되는 점 참고하시기 바랍니다.
-      responses:
-        '200':
-          description: 금리종합(국내채권/금리) 조회 성공
-  /uapi/domestic-stock/v1/quotations/news-title:
-    get:
-      operationId: getNewsTitle
-      summary: 종합 시황/공시(제목만)
-      description: |
-        종합 시황/공시(제목) API입니다.
-
-        한국투자 HTS(eFriend Plus) > [0601] 종합 시황/공시 화면의 "우측 상단 리스트" 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-      responses:
-        '200':
-          description: 종합 시황/공시(제목) 조회 성공
-  /uapi/domestic-stock/v1/quotations/search-info:
-    get:
-      operationId: findSearchProductInfo
-      summary: 상품기본조회
-      description: 국내주식뿐 아니라 선물, 채권, 해외주식의 기본 정보를 조회하는 API 입니다.
-      responses:
-        '200':
-          description: 상품기본조회 조회 성공
-  /uapi/domestic-stock/v1/quotations/search-stock-info:
-    get:
-      operationId: findSearchStockInfo
-      summary: 국내주식 기본조회
-      description: |
-        주식기본조회 API입니다.
-
-        국내주식 종목의 종목상세정보를 확인할 수 있습니다.
-      responses:
-        '200':
-          description: 국내주식 기본조회 조회 성공
-  /uapi/domestic-stock/v1/quotations/credit-by-company:
-    get:
-      operationId: getFinancialCreditByCompany
-      summary: 국내주식 당사 신용가능종목
-      description: |
-        국내주식 당사 신용가능종목 API입니다.
-
-        한국투자 HTS(eFriend Plus) > [0477] 당사 신용가능 종목 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
-        최대 100건 확인 가능하며, 다음 조회가 불가합니다.
-      responses:
-        '200':
-          description: 국내주식 당사 신용가능종목 조회 성공
-  /uapi/domestic-stock/v1/quotations/invest-opinion:
-    get:
-      operationId: getDomesticStockInvestOpinion
-      summary: 국내주식 종목투자의견
-      description: |
-        국내주식 종목투자의견 API입니다.
-
-        한국투자 HTS(eFriend Plus) > [0605] 종목투자의견 화면 의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-
-        한 번의 호출에 100건까지 조회가 가능하기에, 일자 파라미터(FID_INPUT_DATE_1, FID_INPUT_DATE_2)를 조절하여 다음 데이터 조회하시기 바랍니다.
-      responses:
-        '200':
-          description: 국내주식 종목투자의견 조회 성공
-  /uapi/domestic-stock/v1/quotations/invest-opbysec:
-    get:
-      operationId: getDomesticStockSecuritiesOpinion
-      summary: 국내주식 증권사별 투자의견
-      description: |
-        국내주식 증권사별 투자의견 API입니다.
-
-        한국투자 HTS(eFriend Plus) > [0608] 증권사별 투자의견 화면 의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-
-        한 번의 호출에 20건까지 조회가 가능하기에, 일자 파라미터(FID_INPUT_DATE_1, FID_INPUT_DATE_2)를 조절하여 다음 데이터 조회하시기 바랍니다.
-      responses:
-        '200':
-          description: 국내주식 증권사별 투자의견 조회 성공
+          description: Hashkey 생성 성공
 components:
   securitySchemes:
     accessToken:

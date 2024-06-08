@@ -1,0 +1,16 @@
+operationId: getDomesticInterest
+
+summary: 금리종합(국내채권/금리)
+
+description: |
+  금리 종합(국내채권/금리) API입니다.
+
+  한국투자 HTS(eFriend Plus) > [0702] 금리 종합 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
+  ※ 11:30 이후에 신규데이터가 수신되는 점 참고하시기 바랍니다.
+
+responses:
+  200:
+    description: 금리종합(국내채권/금리) 조회 성공
+
+tags:
+  - DomesticStockIndex

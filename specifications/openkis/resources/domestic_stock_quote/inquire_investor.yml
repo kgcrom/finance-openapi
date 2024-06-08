@@ -1,0 +1,17 @@
+operationId: getDomesticStockInvestor
+
+summary: 국내주식 현재가 투자자 조회
+
+description: |
+  주식현재가 투자자 API입니다. 개인, 외국인, 기관 등 투자 정보를 확인할 수 있습니다.
+
+  [유의사항]<br/>
+  - 외국인은 외국인(외국인투자등록 고유번호가 있는 경우)+기타 외국인을 지칭합니다.<br/>
+  - 당일 데이터는 장 종료 후 제공됩니다.
+
+responses:
+  200:
+    description: 국내주식 현재가 투자자 조회 성공
+
+tags:
+  - DomesticStockQuote
