@@ -1,0 +1,15 @@
+operationId: getRankingOverTimeVolume
+
+summary: 국내주식 시간외거래량 순위
+
+description: |
+  국내주식 시간외거래량순위 API입니다. 
+
+  한국투자 HTS(eFriend Plus) > [0235] 시간외 거래량순위 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+responses:
+  200:
+    description: 국내주식 시간외거래량 순위 조회 성공
+
+tags:
+  - DomesticRanking

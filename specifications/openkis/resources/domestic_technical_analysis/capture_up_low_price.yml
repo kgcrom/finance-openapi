@@ -1,0 +1,15 @@
+operationId: getTechnicalCaptureUpLowPrice
+
+summary: 국내주식 상하한가 포착
+
+description: |
+  국내주식 상하한가 포착 API입니다.
+
+  한국투자 HTS(eFriend Plus) > [0917] 실시간 상하한가 포착 화면 의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+responses:
+  200:
+    description: 국내주식 상하한가 포착 조회 성공
+
+tags:
+  - DomesticTechnicalAnalysis

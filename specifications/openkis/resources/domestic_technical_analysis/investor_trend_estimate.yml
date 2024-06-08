@@ -1,0 +1,18 @@
+operationId: getTechnicalInvestorTrendEstimate
+
+summary: 종목별 외인기관 추정가집계
+
+description: |
+  국내주식 종목별 외국인, 기관 추정가집계 API입니다.
+
+  한국투자 MTS > 국내 현재가 > 투자자 > 투자자동향 탭 > 왼쪽구분을 '추정(주)'로 선택 시 확인 가능한 데이터를 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+  증권사 직원이 장중에 집계/입력한 자료를 단순 누계한 수치로서,
+  입력시간은 외국인 09:30, 11:20, 13:20, 14:30 / 기관종합 10:00, 11:20, 13:20, 14:30 이며, 사정에 따라 변동될 수 있습니다.
+
+responses:
+  200:
+    description: 종목별 외인기관 추정가집계 조회 성공
+
+tags:
+  - DomesticTechnicalAnalysis

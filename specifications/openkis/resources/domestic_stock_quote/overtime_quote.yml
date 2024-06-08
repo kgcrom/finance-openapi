@@ -1,4 +1,4 @@
-operationId: getDomesticStockOverTimeAskingPrice
+operationId: getDomesticStockOverTimeQuote
 
 summary: 국내주식 시간외 호가 조회
 

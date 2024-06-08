@@ -109,6 +109,19 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/auth_revoke'
+  /uapi/hashkey:
+    post:
+      operationId: getHashKey
+      summary: Hashkey 생성
+      description: |
+        해쉬키(Hashkey)는 보안을 위한 요소로 사용자가 보낸 요청 값을 중간에 탈취하여 변조하지 못하도록 하는데 사용됩니다.<br/>
+        해쉬키를 사용하면 POST로 보내는 요청(주로 주문/정정/취소 API 해당)의 body 값을 사전에 암호화시킬 수 있습니다.<br/>
+        해쉬키는 비필수값으로 사용하지 않아도 POST API 호출은 가능합니다.
+      responses:
+        '200':
+          description: Hashkey 생성 성공
+      tags:
+        - Auth
   /uapi/domestic-stock/v1/quotations/inquire-price:
     get:
       operationId: getDomesticStockPrice
@@ -145,7 +158,7 @@ paths:
         - DomesticStockQuote
   /uapi/domestic-stock/v1/quotations/inquire-asking-price-exp-ccn:
     get:
-      operationId: getDomesticStockAskingPriceAndExpectedConclusion
+      operationId: getDomesticStockQuoteAndExpectedConclusion
       summary: 국내주식 현재가 호가/예상체결 조회
       description: |
         주식현재가 호가 예상체결 API입니다.
@@ -251,7 +264,7 @@ paths:
         - DomesticStockQuote
   /uapi/domestic-stock/v1/quotations/inquire-daily-overtimeprice:
     get:
-      operationId: getDomesticStockDailyOverTimePrice
+      operationId: getDomesticStockOverTimeDailyPrice
       summary: 국내주식 현재가 시간외 일자별 주가 조회
       description: 주식현재가 시간외일자별주가 API입니다.
       responses:
@@ -274,7 +287,7 @@ paths:
         - DomesticStockQuote
   /uapi/domestic-stock/v1/quotations/inquire-overtime-asking-price:
     get:
-      operationId: getDomesticStockOverTimeAskingPrice
+      operationId: getDomesticStockOverTimeQuote
       summary: 국내주식 시간외 호가 조회
       description: |
         국내주식 시간외호가 API입니다.
@@ -360,6 +373,20 @@ paths:
       responses:
         '200':
           description: 국내주식 종목투자의견 조회 성공
+      tags:
+        - DomesticStockQuote
+  /uapi/domestic-stock/v1/quotations/chk-holiday:
+    get:
+      operationId: checkDomesticHoliday
+      summary: 국내 휴장일 확인
+      description: |
+        국내휴장일조회 API입니다.
+
+        영업일, 거래일, 개장일, 결제일 여부를 조회할 수 있습니다.<br/>
+        주문을 넣을 수 있는지 확인하고자 하실 경우 개장일여부(opnd_yn)을 사용하시면 됩니다.
+      responses:
+        '200':
+          description: 국내 휴장일 조회 성공
       tags:
         - DomesticStockQuote
   /uapi/etfetn/v1/quotations/inquire-price:
@@ -698,7 +725,7 @@ paths:
         - DomesticKsdInfo
   /uapi/domestic-stock/v1/ksdinfo/purreq:
     get:
-      operationId: getKsdBuybackInfo
+      operationId: getKsdPurchaseRequest
       summary: 예탁원정보 (주식매수청구일정)
       description: |
         예탁원정보(주식매수청구일정) API입니다.
@@ -877,7 +904,7 @@ paths:
         - DomesticTechnicalAnalysis
   /uapi/domestic-stock/v1/quotations/psearch-title:
     get:
-      operationId: getTechnicalPersonalSearchList
+      operationId: getTechnicalPersonalSearch
       summary: 종목조건검색 목록조회
       description: |
         HTS(efriend Plus) [0110] 조건검색에서 등록 및 서버저장한 나의 조건 목록을 확인할 수 있는 API입니다.<br/>
@@ -931,7 +958,7 @@ paths:
         - DomesticTechnicalAnalysis
   /uapi/domestic-stock/v1/quotations/investor-trend-estimate:
     get:
-      operationId: getTechnicalInvestorTrend
+      operationId: getTechnicalInvestorTrendEstimate
       summary: 종목별 외인기관 추정가집계
       description: |
         국내주식 종목별 외국인, 기관 추정가집계 API입니다.
@@ -947,7 +974,7 @@ paths:
         - DomesticTechnicalAnalysis
   /uapi/domestic-stock/v1/quotations/inquire-daily-trade-volume:
     get:
-      operationId: getTechnicalDailyTradeVolume
+      operationId: getTechnicalTradeDailyVolume
       summary: 종목별일별매수매도체결량
       description: |
         종목별일별매수매도체결량 API입니다. 실전계좌의 경우, 한 번의 호출에 최대 100건까지 확인 가능합니다.<br/>
@@ -972,7 +999,7 @@ paths:
         - DomesticTechnicalAnalysis
   /uapi/domestic-stock/v1/quotations/daily-credit-balance:
     get:
-      operationId: getTechnicalDailyCreditBalance
+      operationId: getTechnicalCreditBalanceDaily
       summary: 국내주식 신용잔고 일별추이
       description: |
         국내주식 신용잔고 일별추이 API입니다.<br/>
@@ -987,7 +1014,7 @@ paths:
         - DomesticTechnicalAnalysis
   /uapi/domestic-stock/v1/quotations/exp-price-trend:
     get:
-      operationId: getTechnicalExpTrend
+      operationId: getTechnicalExpectedConclusionTrend
       summary: 국내주식 예상체결가 추이
       description: |
         국내주식 예상체결가 추이 API입니다.<br/>
@@ -1000,7 +1027,7 @@ paths:
         - DomesticTechnicalAnalysis
   /uapi/domestic-stock/v1/quotations/daily-short-sale:
     get:
-      operationId: getTechnicalDailyShortSale
+      operationId: getTechnicalShortSaleDaily
       summary: 국내주식 공매도 일별추이
       description: 국내주식 공매도 일별추이 API입니다.
       responses:
@@ -1010,7 +1037,7 @@ paths:
         - DomesticTechnicalAnalysis
   /uapi/domestic-stock/v1/quotations/comp-program-trade-daily:
     get:
-      operationId: getTechnicalDailyProgramTrade
+      operationId: getTechnicalProgramTradeDaily
       summary: 국내주식 프로그램매매 종합현황(일별)
       description: 국내주식 프로그램매매 종합현황(일별) API입니다.
       responses:
@@ -1034,7 +1061,7 @@ paths:
         - DomesticTechnicalAnalysis
   /uapi/domestic-stock/v1/quotations/comp-program-trade-today:
     get:
-      operationId: getTechnicalHourlyProgramTrade
+      operationId: getTechnicalProgramTradeToday
       summary: 프로그램매매 종합현황(시간)
       description: |
         프로그램매매 종합현황(시간) API입니다.<br/>
@@ -1049,7 +1076,7 @@ paths:
         - DomesticTechnicalAnalysis
   /uapi/domestic-stock/v1/quotations/frgnmem-trade-estimate:
     get:
-      operationId: getTechnicalEstimateForeignTrade
+      operationId: getTechnicalForeignTradeEstimate
       summary: 국내주식 외국계 매매종목 가집계
       description: |
         외국계 매매종목 가집계 API입니다.
@@ -1104,7 +1131,7 @@ paths:
         - DomesticTechnicalAnalysis
   /uapi/domestic-stock/v1/quotations/inquire-investor-daily-by-market:
     get:
-      operationId: getTechnicalDailyInvestorTrendByMarket
+      operationId: getTechnicalInvestorTrendByMarketDaily
       summary: 국내주식 시장별 투자자매매동향(일별)
       description: |
         시장별 투자자매매동향(일별) API입니다.
@@ -1117,7 +1144,7 @@ paths:
         - DomesticTechnicalAnalysis
   /uapi/domestic-stock/v1/quotations/program-trade-by-stock-daily:
     get:
-      operationId: getTechnicalDailyProgramTradeByStock
+      operationId: getTechnicalProgramTradeByStockDaily
       summary: 국내주식 종목별 프로그램매매추이(일별)
       description: |
         국내주식 종목별 프로그램매매추이(일별) API입니다.
@@ -1130,7 +1157,7 @@ paths:
         - DomesticTechnicalAnalysis
   /uapi/domestic-stock/v1/quotations/investor-program-trade-today:
     get:
-      operationId: getTechnicalTodayProgramTrendByInvestor
+      operationId: getTechnicalProgramTrendByInvestorToday
       summary: 국내주식 프로그램매매 투자자매매동향
       description: |
         프로그램매매 투자자매매동향(당일) API입니다.
@@ -1169,7 +1196,7 @@ paths:
         - DomesticTechnicalAnalysis
   /uapi/domestic-stock/v1/quotations/inquire-member-daily:
     get:
-      operationId: getTechnicalDailyMemberTrend
+      operationId: getTechnicalMemberTrendDaily
       summary: 국내주식 현재가 회원사 종목매매동향
       description: |
         주식현재가 회원사 종목매매동향 API입니다.
@@ -1273,7 +1300,7 @@ paths:
         - DomesticRanking
   /uapi/domestic-stock/v1/ranking/after-hour-balance:
     get:
-      operationId: getRankingAfterBalance
+      operationId: getRankingAfterHourBalance
       summary: 국내주식 시간외잔량 순위
       description: |
         국내주식 시간외잔량 순위 API입니다.
@@ -1399,7 +1426,7 @@ paths:
         - DomesticRanking
   /uapi/domestic-stock/v1/ranking/exp-trans-updown:
     get:
-      operationId: getRankingExpTransUpDown
+      operationId: getRankingExpectedConclusionUpDown
       summary: 국내주식 예상체결 상승/하락 상위
       description: |
         국내주식 예상체결 상승/하락상위 API입니다.
@@ -1417,7 +1444,7 @@ paths:
         - DomesticRanking
   /uapi/domestic-stock/v1/ranking/traded-by-company:
     get:
-      operationId: getRankingTrade
+      operationId: getRankingTradeByCompany
       summary: 국내주식 당사매매순위 상위
       description: |
         국내주식 당사매매종목 상위 API입니다.
@@ -1534,29 +1561,6 @@ paths:
           description: 국내주식 시간외거래량 순위 조회 성공
       tags:
         - DomesticRanking
-  /uapi/domestic-stock/v1/quotations/chk-holiday:
-    get:
-      operationId: checkDomesticHoliday
-      summary: 국내 휴장일 확인
-      description: |
-        국내휴장일조회 API입니다.
-
-        영업일, 거래일, 개장일, 결제일 여부를 조회할 수 있습니다.<br/>
-        주문을 넣을 수 있는지 확인하고자 하실 경우 개장일여부(opnd_yn)을 사용하시면 됩니다.
-      responses:
-        '200':
-          description: 국내 휴장일 조회 성공
-  /uapi/hashkey:
-    post:
-      operationId: getHashKey
-      summary: Hashkey 생성
-      description: |
-        해쉬키(Hashkey)는 보안을 위한 요소로 사용자가 보낸 요청 값을 중간에 탈취하여 변조하지 못하도록 하는데 사용됩니다.<br/>
-        해쉬키를 사용하면 POST로 보내는 요청(주로 주문/정정/취소 API 해당)의 body 값을 사전에 암호화시킬 수 있습니다.<br/>
-        해쉬키는 비필수값으로 사용하지 않아도 POST API 호출은 가능합니다.
-      responses:
-        '200':
-          description: Hashkey 생성 성공
 components:
   securitySchemes:
     accessToken:

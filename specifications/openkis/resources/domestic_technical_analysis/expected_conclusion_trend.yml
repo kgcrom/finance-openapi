@@ -1,0 +1,15 @@
+operationId: getTechnicalExpectedConclusionTrend
+
+summary: 국내주식 예상체결가 추이
+
+description: |
+  국내주식 예상체결가 추이 API입니다.<br/>
+  한국투자 HTS(eFriend Plus) > [0184] 예상체결지수 추이 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
+  최대 30건 확인 가능하며, 다음 조회가 불가합니다.
+
+responses:
+  200:
+    description: 국내주식 예상체결가 추이 조회 성공
+
+tags:
+  - DomesticTechnicalAnalysis

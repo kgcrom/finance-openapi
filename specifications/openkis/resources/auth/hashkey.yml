@@ -1,0 +1,15 @@
+operationId: getHashKey
+
+summary: Hashkey 생성
+
+description: |
+  해쉬키(Hashkey)는 보안을 위한 요소로 사용자가 보낸 요청 값을 중간에 탈취하여 변조하지 못하도록 하는데 사용됩니다.<br/>
+  해쉬키를 사용하면 POST로 보내는 요청(주로 주문/정정/취소 API 해당)의 body 값을 사전에 암호화시킬 수 있습니다.<br/>
+  해쉬키는 비필수값으로 사용하지 않아도 POST API 호출은 가능합니다.
+
+responses:
+  200:
+    description: Hashkey 생성 성공
+
+tags:
+  - Auth

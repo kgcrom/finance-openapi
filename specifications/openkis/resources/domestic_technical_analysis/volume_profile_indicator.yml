@@ -1,0 +1,15 @@
+operationId: getTechnicalVolumeProfileIndicator
+
+summary: 국내주식 매물대/거래비중
+
+description: |
+  국내주식 매물대/거래비중 API입니다.
+
+  한국투자 HTS(eFriend Plus) > [0113] 당일가격대별 매물대 화면의 데이터 중 일부를 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+responses:
+  200:
+    description: 국내주식 매물대/거래비중 조회 성공
+
+tags:
+  - DomesticTechnicalAnalysis

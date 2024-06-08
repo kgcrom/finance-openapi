@@ -1,0 +1,12 @@
+operationId: getTechnicalProgramTradeDaily
+
+summary: 국내주식 프로그램매매 종합현황(일별)
+
+description: 국내주식 프로그램매매 종합현황(일별) API입니다.
+
+responses:
+  200:
+    description: 국내주식 프로그램매매 종합현황(일별) 조회 성공
+
+tags:
+  - DomesticTechnicalAnalysis

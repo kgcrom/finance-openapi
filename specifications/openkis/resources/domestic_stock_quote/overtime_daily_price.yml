@@ -1,4 +1,4 @@
-operationId: getDomesticStockDailyOverTimePrice
+operationId: getDomesticStockOverTimeDailyPrice
 
 summary: 국내주식 현재가 시간외 일자별 주가 조회
 

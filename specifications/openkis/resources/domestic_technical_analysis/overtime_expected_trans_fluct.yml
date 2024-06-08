@@ -1,0 +1,16 @@
+operationId: getTechnicalOverTimeExpFluctuationRate
+
+summary: 국내주식 시간외 예상체결 등락률
+
+description: |
+  국내주식 시간외예상체결등락률 API입니다. 
+
+  한국투자 HTS(eFriend Plus) > [0236] 시간외 예상체결등락률 화면의 기능을 API로 개발한 사항으로,<br/>
+  해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+responses:
+  200:
+    description: 국내ㅈ주식 시간외 예상체결 등락률 조회 성공
+
+tags:
+  - DomesticTechnicalAnalysis

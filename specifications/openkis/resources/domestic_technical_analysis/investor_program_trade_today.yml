@@ -1,0 +1,15 @@
+operationId: getTechnicalProgramTrendByInvestorToday
+
+summary: 국내주식 프로그램매매 투자자매매동향
+
+description: |
+  프로그램매매 투자자매매동향(당일) API입니다.
+
+  한국투자 HTS(eFriend Plus) > [0466] 프로그램매매 투자자별 동향 화면 의 "당일동향" 표의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+
+responses:
+  200:
+    description: 국내주식 프로그램매매 투자자매매동향 조회 성공
+
+tags:
+  - DomesticTechnicalAnalysis

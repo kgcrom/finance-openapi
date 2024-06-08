@@ -1,0 +1,17 @@
+operationId: getTechnicalCreditBalanceDaily
+
+summary: 국내주식 신용잔고 일별추이
+
+description: |
+  국내주식 신용잔고 일별추이 API입니다.<br/>
+  한국투자 HTS(eFriend Plus) > [0476] 국내주식 신용잔고 일별추이 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
+  한 번의 호출에 최대 30건 확인 가능하며, fid_input_date_1 을 입력하여 다음 조회가 가능합니다.
+
+  ※ 상환수량은 "매도상환수량+현금상환수량"의 합계 수치입니다.
+
+responses:
+  200:
+    description: 국내주식 신용잔고 일별추이 조회 성공
+
+tags:
+  - DomesticTechnicalAnalysis
