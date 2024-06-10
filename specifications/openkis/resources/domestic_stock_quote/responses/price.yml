@@ -1,0 +1,431 @@
+description: 국내주식 현재가 기본시세 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: object
+          properties:
+            iscd_stat_cls_code:
+              description: |
+                종목상태구분코드
+
+                00 : 그외<br/>
+                51 : 관리종목<br/>
+                52 : 투자위험<br/>
+                53 : 투자경고<br/>
+                54 : 투자주의<br/>
+                55 : 신용가능<br/>
+                57 : 증거금 100%<br/>
+                58 : 거래정지<br/>
+                59 : 단기과열
+              type: string
+              enum: ["00", "51", "52", "53", "54", "55", "57", "58", "59"]
+              example: 00
+            marg_rate:
+              description: |
+                증거금 비율
+              type: string
+              example: 20.00
+              maxLength: 12
+            rprs_mrkt_kor_name:
+              description: 대표 시장 한글 명
+              type: string
+              example: KOSPI200
+              maxLength: 40
+            new_hgpr_lwpr_cls_code:
+              description: |
+                신 고가 저가 구분 코드<br/>
+                조회하는 종목이 신고/신저에 도달했을 경우에만 조회됨
+              type: string
+              example:
+              maxLength: 10
+            bstp_kor_isnm:
+              description: 업종 한글 종목명
+              type: string
+              example: 전기.전자
+              maxLength: 40
+            temp_stop_yn:
+              description: 임시 정지 여부
+              type: string
+              enum: ["Y", "N"]
+              example: N
+            oprc_rang_cont_yn:
+              description: 시가 범위 연장 여부
+              type: string
+              enum: ["Y", "N"]
+              example: N
+            clpr_rang_cont_yn:
+              description: 종가 범위 연장 여부
+              type: string
+              enum: ["Y", "N"]
+              example: N
+            crdt_able_yn:
+              description: 신용 가능 여부
+              type: string
+              enum: ["Y", "N"]
+              example: N
+            grmn_rate_cls_code:
+              description: |
+                보증금 비율 구분 코드
+
+                한국투자 증거금비율 (marg_rate 참고)
+                40 : 20%, 30%, 40%
+                50 : 50%
+                60 : 60%
+              type: string
+              enum: ["40", "50", "60"]
+              example: 40
+            elw_pblc_yn:
+              description: ELW 발행 여부
+              type: string
+              enum: ["Y", "N"]
+              example: N
+            stck_prpr:
+              description: 주식 현재가
+              type: string
+              maxLength: 10
+              example: 128500
+            prdy_vrss:
+              description: 전일 대비
+              type: string
+              maxLength: 10
+              example: 500
+            prdy_vrss_sign:
+              description: |
+                전일 대비 부호
+                1 : 상한
+                2 : 상승
+                3 : 보합
+                4 : 하한
+                5 : 하락
+              type: string
+              enum: ["1", "2", "3", "4", "5"]
+              example: 2
+            prdy_ctrt:
+              description: 전일 대비율
+              type: string
+              example: 0.00
+              maxLength: 10
+            acml_tr_pbmn:
+              description: 누적 거래 대금
+              type: string
+              example: 344570137500
+              maxLength: 18
+            acml_vol:
+              description: 누적 거래량
+              type: string
+              example: 2669075
+              maxLength: 18
+            prdy_vrss_vol_rate:
+              description: |
+                전일 대비 거래량 비율<br/>
+                주식현재가 일자별 API 응답값 사용
+              type: string
+              example: 75.14
+              maxLength: 12
+            stck_oprc:
+              description: 주식 시가
+              type: string
+              example: 128500
+              maxLength: 10
+            stck_hgpr:
+              description: 주식 최고가
+              type: string
+              example: 130000
+              maxLength: 10
+            stck_lwpr:
+              description: 주식 최저가
+              type: string
+              example: 128000
+              maxLength: 10
+            stck_mxpr:
+              description: 주식 상한가
+              type: string
+              example: 167000
+              maxLength: 10
+            stck_llam:
+              description: 주식 하한가
+              type: string
+              example: 128500
+              maxLength: 10
+            stck_sdpr:
+              description: 주식 기준가
+              type: string
+              example: 128500
+              maxLength: 10
+            wghn_avrg_stck_prc:
+              description: 가중 평균 주식 가격
+              type: string
+              example: 129097.23
+              maxLength: 21
+            hts_frgn_ehrt:
+              description: HTS 외국인 소진율
+              type: string
+              example: 49.48
+              maxLength: 82
+            frgn_ntby_qty:
+              description: 외국인 순매수 수량
+              type: string
+              example: 0
+              maxLength: 12
+            pgtr_ntby_qty:
+              description: 프로그램매매 순매수 수량
+              type: string
+              example: 287715
+              maxLength: 18
+            cpfn:
+              description: 자본금
+              type: string
+              example: 36577
+              maxLength: 22
+            rstc_wdth_prc:
+              description: 제한 폭 가격
+              type: string
+              example: 38500
+              maxLength: 10
+            stck_fcam:
+              description: 주식 액면가
+              type: string
+              example: 5000
+              maxLength: 11
+            stck_sspr:
+              description: 주식 대용가
+              type: string
+              example: 97660
+              maxLength: 10
+            aspr_unit:
+              description: 호가단위
+              type: string
+              example: 500
+              maxLength: 10
+            hts_deal_qty_unit_val:
+              description: HTS 매매 수량 단위 값
+              type: string
+              example: 1
+              maxLength: 10
+            lstn_stcn:
+              description: 상장 주수
+              type: string
+              example: 728002365
+              maxLength: 18
+            hts_avls:
+              description: HTS 시가총액
+              type: string
+              example: 935483
+              maxLength: 18
+            per:
+              description: PER
+              type: string
+              example: 19.67
+              maxLength: 10
+            pbr:
+              description: PBR
+              type: string
+              example: 1.72
+              maxLength: 10
+            stac_month:
+              description: 결산 월
+              type: string
+              example: 12
+              enum: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
+            vol_tnrt:
+              description: 거래량 회전율
+              type: string
+              example: 0.37
+              maxLength: 10
+            eps:
+              description: EPS
+              type: string
+              example: 6532.00
+              maxLength: 13
+            bps:
+              description: BPS
+              type: string
+              example: 74721.00
+              maxLength: 13
+            d250_hgpr:
+              description: 250일 최고가
+              type: string
+              example: 149500
+              maxLength: 10
+            d250_hgpr_date:
+              description: 250일 최고가 일자
+              type: string
+              example: 20210225
+              maxLength: 8
+            d250_hgpr_vrss_prpr_rate:
+              description: 250일 최고가 대비 현재가 비율
+              type: string
+              example: -14.05
+              maxLength: 12
+            d250_lwpr:
+              description: 250일 최저가
+              type: string
+              example: 90500
+              maxLength: 10
+            d250_lwpr_date:
+              description: 250일 최저가 일자
+              type: string
+              example: 20211013
+              maxLength: 8
+            d250_lwpr_vrss_prpr_rate:
+              description: 250일 최저가 대비 현재가 비율
+              type: string
+              example: 41.99
+              maxLength: 12
+            stck_dryy_hgpr:
+              description: 주식 연중 최고가
+              type: string
+              example: 132500
+              maxLength: 10
+            dryy_hgpr_vrss_prpr_rate:
+              description: 연중 최고가 대비 현재가 비율
+              type: string
+              example: -3.02
+              maxLength: 12
+            dryy_hgpr_date:
+              description: 연중 최고가 일자
+              type: string
+              example: 20220103
+              maxLength: 8
+            stck_dryy_lwpr:
+              description: 주식 연중 최저가
+              type: string
+              example: 121500
+              maxLength: 10
+            dryy_lwpr_vrss_prpr_rate:
+              description: 연중 최저가 대비 현재가 비율
+              type: string
+              example: 5.76
+              maxLength: 12
+            dryy_lwpr_date:
+              description: 연중 최저가 일자
+              type: string
+              example: 20220105
+              maxLength: 8
+            w52_hgpr:
+              description: 52주일 최고가
+              type: string
+              example: 149500
+              maxLength: 10
+            w52_hgpr_vrss_prpr_ctrt:
+              description: 52주일 최고가 대비 현재가 대비
+              type: string
+              example: -14.05
+              maxLength: 10
+            w52_hgpr_date:
+              description: 52주일 최고가 일자
+              type: string
+              example: 20210225
+              maxLength: 8
+            w52_lwpr:
+              description: 52주일 최저가
+              type: string
+              example: 90500
+              maxLength: 10
+            w52_lwpr_vrss_prpr_ctrt:
+              description: 52주일 최저가 대비 현재가 대비
+              type: string
+              example: 41.99
+              maxLength: 10
+            w52_lwpr_date:
+              description: 52주일 최저가 일자
+              type: string
+              example: 20211013
+              maxLength: 8
+            whol_loan_rmnd_rate:
+              description: 전체 융자 잔고 비율
+              type: string
+              example: 0.22
+              maxLength: 12
+            ssts_yn:
+              description: 공매도가능여부
+              type: string
+              enum: ["Y", "N"]
+              example: Y
+            stck_shrn_iscd:
+              description: 주식 단축 종목코드
+              type: string
+              example: 000660
+              maxLength: 9
+            fcam_cnnm:
+              description: 액면가 통화명
+              type: string
+              example: 5,000
+              maxLength: 20
+            cpfn_cnnm:
+              description: |
+                자본금 통화명<br/>
+                외국주권은 억으로 떨어지며, 그 외에는 만으로 표시됨
+              type: string
+              example: 365.77 억
+              maxLength: 20
+            apprch_rate:
+              description: 접근도
+              type: string
+              maxLength: 13
+            frgn_hldn_qty:
+              description: 외국인 보유 수량
+              type: string
+              example: 360220601
+              maxLength: 18
+            vi_cls_code:
+              description: VI적용구분코드
+              type: string
+              enum: ["Y", "N"]
+              example: N
+            ovtm_vi_cls_code:
+              description: 시간외단일가VI적용구분코드
+              type: string
+              enum: ["Y", "N"]
+              example: N
+            last_ssts_cntg_qty:
+              description: 최종 공매도 체결 수량
+              type: string
+              example: 43916
+              maxLength: 12
+            invt_caful_yn:
+              description: 투자유의여부
+              type: string
+              enum: ["Y", "N"]
+              example: N
+            mrkt_warn_cls_code:
+              description: |
+                시장경고코드
+
+                00 : 없음
+                01 : 투자주의
+                02 : 투자경고
+                03 : 투자위험
+              type: string
+              enum: ["00", "01", "02", "03"]
+              example: 00
+            short_over_yn:
+              description: 단기과열여부
+              type: string
+              enum: ["Y", "N"]
+              example: N
+            sltr_yn:
+              description: 정리매매여부
+              type: string
+              enum: ["Y", "N"]
+              example: N

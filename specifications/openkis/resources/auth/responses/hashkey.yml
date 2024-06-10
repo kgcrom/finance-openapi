@@ -5,15 +5,13 @@ content:
     schema:
       type: object
       properties:
-        JsonBody:
+        BODY:
           type: object
-          description: 해쉬키 생성 요청 JsonBody 데이터
-          example: |
-            {
-              "CANO": '00000000',
-              "ACNT_PRDT_CD": "01",
-              "OVRS_EXCG_CD": "SHAA"
-            }
+          description: 해쉬키 생성 요청 Body 데이터
+          example:
+            CANO: 00000000
+            ACNT_PRDT_CD: 01
+            OVRS_EXCG_CD: SHAA
         HASH:
           type: string
           maxLength: 256

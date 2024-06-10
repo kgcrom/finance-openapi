@@ -143,43 +143,222 @@ paths:
             schema:
               type: object
               description: 해쉬키 생성을 위한 JSON Body
+              example:
+                CANO: 0
+                ACNT_PRDT_CD: 1
+                OVRS_EXCG_CD: SHAA
       responses:
         '200':
           $ref: '#/components/responses/hashkey'
   /uapi/domestic-stock/v1/quotations/inquire-price:
     get:
       operationId: getDomesticStockPrice
-      summary: 국내주식 현재가 기본시세 조회
+      summary: 국내주식 현재가 시세 조회
       description: |
         주식 현재가 시세 API입니다. 실시간 시세를 원하신다면 웹소켓 API를 활용하세요.
 
         ※ 종목코드 마스터파일 파이썬 정제코드는 한국투자증권 Github 참고 부탁드립니다.<br/>
           https://github.com/koreainvestment/open-trading-api/tree/main/stocks_info
-      responses:
-        '200':
-          description: 국내주식 현재가 기본시세 조회 성공
       tags:
         - DomesticStockQuote
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            [실전투자/모의투자]
+            FHKST01010100 : 주식현재가 시세
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHKST01010100
+            default: FHKST01010100
+            example: FHKST01010100
+        - in: query
+          name: FID_COND_MRKT_DIV_CODE
+          description: |
+            FID 조건 시장 분류 코드
+
+            J : 주식, ETF, ETN<br/>
+            W: ELW
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+              - W
+            default: J
+            example: J
+        - in: query
+          name: FID_INPUT_ISCD
+          description: |
+            FID 조건 종목코드
+
+            종목번호 (6자리)<br/>
+            ETN의 경우, Q로 시작 (EX. Q500001)
+          required: true
+          schema:
+            type: string
+            example: '005930'
+      responses:
+        '200':
+          $ref: '#/components/responses/price'
   /uapi/domestic-stock/v1/quotations/inquire-ccnl:
     get:
       operationId: getDomesticStockConclusion
-      summary: 국내주식 현재가 체결시세 조회
+      summary: 국내주식 현재가 체결 조회
       description: 국내현재가 체결 API 입니다. 종목의 체결 정보를 확인할 수 있습니다.
-      responses:
-        '200':
-          description: 국내주식 현재가 체결시세 조회 성공
       tags:
         - DomesticStockQuote
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            [실전투자/모의투자]
+            FHKST01010300 : 주식현재가 체결
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHKST01010300
+            default: FHKST01010300
+            example: FHKST01010300
+        - in: query
+          name: FID_COND_MRKT_DIV_CODE
+          description: |
+            FID 조건 시장 분류 코드
+
+            J : 주식, ETF, ETN<br/>
+            W: ELW
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+              - W
+            default: J
+            example: J
+        - in: query
+          name: FID_INPUT_ISCD
+          description: |
+            FID 조건 종목코드
+
+            종목번호 (6자리)<br/>
+            ETN의 경우, Q로 시작 (EX. Q500001)
+          required: true
+          schema:
+            type: string
+            example: '005930'
+      responses:
+        '200':
+          $ref: '#/components/responses/conclusion'
   /uapi/domestic-stock/v1/quotations/inquire-daily-price:
     get:
       operationId: getDomesticStockDailyPrice
-      summary: 국내주식 일자별 시세 조회
+      summary: 국내주식 현재가 일자별 조회
       description: 주식현재가 일자별 API입니다. 일/주/월별 주가를 확인할 수 있으며 최근 30일(주,별)로 제한되어 있습니다.
-      responses:
-        '200':
-          description: 국내주식 일자별 시세 조회 성공
       tags:
         - DomesticStockQuote
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            [실전투자/모의투자]
+            FHKST01010400 : 주식현재가 일자별
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHKST01010400
+            default: FHKST01010400
+            example: FHKST01010400
+        - in: query
+          name: FID_COND_MRKT_DIV_CODE
+          description: |
+            시장 분류 코드<br/>
+            J : 주식, ETF, ETN
+          required: true
+          schema:
+            type: string
+            default: J
+            example: J
+        - in: query
+          name: FID_INPUT_ISCD
+          description: |
+            종목코드 (6자리)<br/>
+            ETN의 경우, Q로 시작 (EX. Q500001)
+          required: true
+          schema:
+            type: string
+            maxLength: 12
+            example: 660
+        - in: query
+          name: FID_PERIOD_DIV_CODE
+          description: |
+            FID 기간 분류 코드
+
+            D : (일)최근 30거래일<br/>
+            W : (주)최근 30주<br/>
+            M : (월)최근 30개월
+          required: true
+          schema:
+            type: string
+            enum:
+              - D
+              - W
+              - M
+            example: D
+        - in: query
+          name: FID_ORG_ADJ_PRC
+          description: |
+            FID 수정주가 원주가 가격
+
+            0 : 수정주가반영<br/>
+            1 : 수정주가미반영<br/>
+            * 수정주가는 액면분할/액면병합 등 권리 발생 시 과거 시세를 현재 주가에 맞게 보정한 가격
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+            example: 0
+      responses:
+        '200':
+          $ref: '#/components/responses/daily_price'
   /uapi/domestic-stock/v1/quotations/inquire-asking-price-exp-ccn:
     get:
       operationId: getDomesticStockQuoteAndExpectedConclusion
@@ -188,11 +367,59 @@ paths:
         주식현재가 호가 예상체결 API입니다.
 
         매수 매도 호가를 확인하실 수 있습니다.<br/> 실시간 데이터를 원하신다면 웹소켓 API를 활용하세요.
-      responses:
-        '200':
-          description: 국내주식 현재가 호가/예상체결 조회 성공
       tags:
         - DomesticStockQuote
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            [실전투자/모의투자]
+            FHKST01010200 : 주식현재가 호가 예상체결
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHKST01010200
+            default: FHKST01010200
+            example: FHKST01010200
+        - in: query
+          name: FID_COND_MRKT_DIV_CODE
+          description: |
+            FID 조건 시장 분류 코드
+
+            J : 주식, ETF, ETN
+          required: true
+          schema:
+            enum:
+              - J
+            default: J
+            example: J
+        - in: query
+          name: FID_INPUT_ISCD
+          description: |
+            FID 입력 종목코드
+
+            종목번호 (6자리)<br/>
+            ETN의 경우, Q로 시작 (EX. Q500001)
+          required: true
+          schema:
+            type: string
+            maxLength: 12
+            example: 5930
+      responses:
+        '200':
+          $ref: '#/components/responses/quote_and_exp'
   /uapi/domestic-stock/v1/quotations/search-info:
     get:
       operationId: searchProductInfo
@@ -261,6 +488,27 @@ paths:
       description: |
         국내주식기간별시세(일/주/월/년) API입니다.<br/>
         실전계좌/모의계좌의 경우, 한 번의 호출에 최대 100건까지 확인 가능합니다.
+      parameters:
+        - in: query
+          name: FID_INPUT_DATE_1
+          description: |
+            입력 날짜 (시작)<br/>
+            조회 시작일자 (ex. 20220501)
+          required: true
+          schema:
+            type: string
+            maxLength: 10
+            example: 20220501
+        - in: query
+          name: FID_INPUT_DATE_2
+          description: |
+            입력 날짜 (종료)<br/>
+            조회 종료일자 (ex. 20220530)
+          required: true
+          schema:
+            type: string
+            maxLength: 10
+            example: 20220530
       responses:
         '200':
           description: 국내주식 기간별 시세(일/주/월/년) 조회 성공
@@ -1649,15 +1897,13 @@ components:
           schema:
             type: object
             properties:
-              JsonBody:
+              BODY:
                 type: object
-                description: 해쉬키 생성 요청 JsonBody 데이터
-                example: |
-                  {
-                    "CANO": '00000000',
-                    "ACNT_PRDT_CD": "01",
-                    "OVRS_EXCG_CD": "SHAA"
-                  }
+                description: 해쉬키 생성 요청 Body 데이터
+                example:
+                  CANO: 0
+                  ACNT_PRDT_CD: 1
+                  OVRS_EXCG_CD: SHAA
               HASH:
                 type: string
                 maxLength: 256
@@ -1665,3 +1911,1336 @@ components:
                   [POST API 대상] Client가 요청하는 Request Body를 hashkey api로 생성한 Hash값
                   * API문서 > hashkey 참조
                 example: 8b84068222a49302f7ef58226d90403f62e216828f8103465f900de0e7be2f0f
+    price:
+      description: 국내주식 현재가 기본시세 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: object
+                properties:
+                  iscd_stat_cls_code:
+                    description: |
+                      종목상태구분코드
+
+                      00 : 그외<br/>
+                      51 : 관리종목<br/>
+                      52 : 투자위험<br/>
+                      53 : 투자경고<br/>
+                      54 : 투자주의<br/>
+                      55 : 신용가능<br/>
+                      57 : 증거금 100%<br/>
+                      58 : 거래정지<br/>
+                      59 : 단기과열
+                    type: string
+                    enum:
+                      - '00'
+                      - '51'
+                      - '52'
+                      - '53'
+                      - '54'
+                      - '55'
+                      - '57'
+                      - '58'
+                      - '59'
+                    example: 0
+                  marg_rate:
+                    description: |
+                      증거금 비율
+                    type: string
+                    example: 20
+                    maxLength: 12
+                  rprs_mrkt_kor_name:
+                    description: 대표 시장 한글 명
+                    type: string
+                    example: KOSPI200
+                    maxLength: 40
+                  new_hgpr_lwpr_cls_code:
+                    description: |
+                      신 고가 저가 구분 코드<br/>
+                      조회하는 종목이 신고/신저에 도달했을 경우에만 조회됨
+                    type: string
+                    example: null
+                    maxLength: 10
+                  bstp_kor_isnm:
+                    description: 업종 한글 종목명
+                    type: string
+                    example: 전기.전자
+                    maxLength: 40
+                  temp_stop_yn:
+                    description: 임시 정지 여부
+                    type: string
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'N'
+                  oprc_rang_cont_yn:
+                    description: 시가 범위 연장 여부
+                    type: string
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'N'
+                  clpr_rang_cont_yn:
+                    description: 종가 범위 연장 여부
+                    type: string
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'N'
+                  crdt_able_yn:
+                    description: 신용 가능 여부
+                    type: string
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'N'
+                  grmn_rate_cls_code:
+                    description: |
+                      보증금 비율 구분 코드
+
+                      한국투자 증거금비율 (marg_rate 참고)
+                      40 : 20%, 30%, 40%
+                      50 : 50%
+                      60 : 60%
+                    type: string
+                    enum:
+                      - '40'
+                      - '50'
+                      - '60'
+                    example: 40
+                  elw_pblc_yn:
+                    description: ELW 발행 여부
+                    type: string
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'N'
+                  stck_prpr:
+                    description: 주식 현재가
+                    type: string
+                    maxLength: 10
+                    example: 128500
+                  prdy_vrss:
+                    description: 전일 대비
+                    type: string
+                    maxLength: 10
+                    example: 500
+                  prdy_vrss_sign:
+                    description: |
+                      전일 대비 부호
+                      1 : 상한
+                      2 : 상승
+                      3 : 보합
+                      4 : 하한
+                      5 : 하락
+                    type: string
+                    enum:
+                      - '1'
+                      - '2'
+                      - '3'
+                      - '4'
+                      - '5'
+                    example: 2
+                  prdy_ctrt:
+                    description: 전일 대비율
+                    type: string
+                    example: 0
+                    maxLength: 10
+                  acml_tr_pbmn:
+                    description: 누적 거래 대금
+                    type: string
+                    example: 344570137500
+                    maxLength: 18
+                  acml_vol:
+                    description: 누적 거래량
+                    type: string
+                    example: 2669075
+                    maxLength: 18
+                  prdy_vrss_vol_rate:
+                    description: |
+                      전일 대비 거래량 비율<br/>
+                      주식현재가 일자별 API 응답값 사용
+                    type: string
+                    example: 75.14
+                    maxLength: 12
+                  stck_oprc:
+                    description: 주식 시가
+                    type: string
+                    example: 128500
+                    maxLength: 10
+                  stck_hgpr:
+                    description: 주식 최고가
+                    type: string
+                    example: 130000
+                    maxLength: 10
+                  stck_lwpr:
+                    description: 주식 최저가
+                    type: string
+                    example: 128000
+                    maxLength: 10
+                  stck_mxpr:
+                    description: 주식 상한가
+                    type: string
+                    example: 167000
+                    maxLength: 10
+                  stck_llam:
+                    description: 주식 하한가
+                    type: string
+                    example: 128500
+                    maxLength: 10
+                  stck_sdpr:
+                    description: 주식 기준가
+                    type: string
+                    example: 128500
+                    maxLength: 10
+                  wghn_avrg_stck_prc:
+                    description: 가중 평균 주식 가격
+                    type: string
+                    example: 129097.23
+                    maxLength: 21
+                  hts_frgn_ehrt:
+                    description: HTS 외국인 소진율
+                    type: string
+                    example: 49.48
+                    maxLength: 82
+                  frgn_ntby_qty:
+                    description: 외국인 순매수 수량
+                    type: string
+                    example: 0
+                    maxLength: 12
+                  pgtr_ntby_qty:
+                    description: 프로그램매매 순매수 수량
+                    type: string
+                    example: 287715
+                    maxLength: 18
+                  cpfn:
+                    description: 자본금
+                    type: string
+                    example: 36577
+                    maxLength: 22
+                  rstc_wdth_prc:
+                    description: 제한 폭 가격
+                    type: string
+                    example: 38500
+                    maxLength: 10
+                  stck_fcam:
+                    description: 주식 액면가
+                    type: string
+                    example: 5000
+                    maxLength: 11
+                  stck_sspr:
+                    description: 주식 대용가
+                    type: string
+                    example: 97660
+                    maxLength: 10
+                  aspr_unit:
+                    description: 호가단위
+                    type: string
+                    example: 500
+                    maxLength: 10
+                  hts_deal_qty_unit_val:
+                    description: HTS 매매 수량 단위 값
+                    type: string
+                    example: 1
+                    maxLength: 10
+                  lstn_stcn:
+                    description: 상장 주수
+                    type: string
+                    example: 728002365
+                    maxLength: 18
+                  hts_avls:
+                    description: HTS 시가총액
+                    type: string
+                    example: 935483
+                    maxLength: 18
+                  per:
+                    description: PER
+                    type: string
+                    example: 19.67
+                    maxLength: 10
+                  pbr:
+                    description: PBR
+                    type: string
+                    example: 1.72
+                    maxLength: 10
+                  stac_month:
+                    description: 결산 월
+                    type: string
+                    example: 12
+                    enum:
+                      - '01'
+                      - '02'
+                      - '03'
+                      - '04'
+                      - '05'
+                      - '06'
+                      - '07'
+                      - '08'
+                      - '09'
+                      - '10'
+                      - '11'
+                      - '12'
+                  vol_tnrt:
+                    description: 거래량 회전율
+                    type: string
+                    example: 0.37
+                    maxLength: 10
+                  eps:
+                    description: EPS
+                    type: string
+                    example: 6532
+                    maxLength: 13
+                  bps:
+                    description: BPS
+                    type: string
+                    example: 74721
+                    maxLength: 13
+                  d250_hgpr:
+                    description: 250일 최고가
+                    type: string
+                    example: 149500
+                    maxLength: 10
+                  d250_hgpr_date:
+                    description: 250일 최고가 일자
+                    type: string
+                    example: 20210225
+                    maxLength: 8
+                  d250_hgpr_vrss_prpr_rate:
+                    description: 250일 최고가 대비 현재가 비율
+                    type: string
+                    example: -14.05
+                    maxLength: 12
+                  d250_lwpr:
+                    description: 250일 최저가
+                    type: string
+                    example: 90500
+                    maxLength: 10
+                  d250_lwpr_date:
+                    description: 250일 최저가 일자
+                    type: string
+                    example: 20211013
+                    maxLength: 8
+                  d250_lwpr_vrss_prpr_rate:
+                    description: 250일 최저가 대비 현재가 비율
+                    type: string
+                    example: 41.99
+                    maxLength: 12
+                  stck_dryy_hgpr:
+                    description: 주식 연중 최고가
+                    type: string
+                    example: 132500
+                    maxLength: 10
+                  dryy_hgpr_vrss_prpr_rate:
+                    description: 연중 최고가 대비 현재가 비율
+                    type: string
+                    example: -3.02
+                    maxLength: 12
+                  dryy_hgpr_date:
+                    description: 연중 최고가 일자
+                    type: string
+                    example: 20220103
+                    maxLength: 8
+                  stck_dryy_lwpr:
+                    description: 주식 연중 최저가
+                    type: string
+                    example: 121500
+                    maxLength: 10
+                  dryy_lwpr_vrss_prpr_rate:
+                    description: 연중 최저가 대비 현재가 비율
+                    type: string
+                    example: 5.76
+                    maxLength: 12
+                  dryy_lwpr_date:
+                    description: 연중 최저가 일자
+                    type: string
+                    example: 20220105
+                    maxLength: 8
+                  w52_hgpr:
+                    description: 52주일 최고가
+                    type: string
+                    example: 149500
+                    maxLength: 10
+                  w52_hgpr_vrss_prpr_ctrt:
+                    description: 52주일 최고가 대비 현재가 대비
+                    type: string
+                    example: -14.05
+                    maxLength: 10
+                  w52_hgpr_date:
+                    description: 52주일 최고가 일자
+                    type: string
+                    example: 20210225
+                    maxLength: 8
+                  w52_lwpr:
+                    description: 52주일 최저가
+                    type: string
+                    example: 90500
+                    maxLength: 10
+                  w52_lwpr_vrss_prpr_ctrt:
+                    description: 52주일 최저가 대비 현재가 대비
+                    type: string
+                    example: 41.99
+                    maxLength: 10
+                  w52_lwpr_date:
+                    description: 52주일 최저가 일자
+                    type: string
+                    example: 20211013
+                    maxLength: 8
+                  whol_loan_rmnd_rate:
+                    description: 전체 융자 잔고 비율
+                    type: string
+                    example: 0.22
+                    maxLength: 12
+                  ssts_yn:
+                    description: 공매도가능여부
+                    type: string
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'Y'
+                  stck_shrn_iscd:
+                    description: 주식 단축 종목코드
+                    type: string
+                    example: 660
+                    maxLength: 9
+                  fcam_cnnm:
+                    description: 액면가 통화명
+                    type: string
+                    example: 5,000
+                    maxLength: 20
+                  cpfn_cnnm:
+                    description: |
+                      자본금 통화명<br/>
+                      외국주권은 억으로 떨어지며, 그 외에는 만으로 표시됨
+                    type: string
+                    example: 365.77 억
+                    maxLength: 20
+                  apprch_rate:
+                    description: 접근도
+                    type: string
+                    maxLength: 13
+                  frgn_hldn_qty:
+                    description: 외국인 보유 수량
+                    type: string
+                    example: 360220601
+                    maxLength: 18
+                  vi_cls_code:
+                    description: VI적용구분코드
+                    type: string
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'N'
+                  ovtm_vi_cls_code:
+                    description: 시간외단일가VI적용구분코드
+                    type: string
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'N'
+                  last_ssts_cntg_qty:
+                    description: 최종 공매도 체결 수량
+                    type: string
+                    example: 43916
+                    maxLength: 12
+                  invt_caful_yn:
+                    description: 투자유의여부
+                    type: string
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'N'
+                  mrkt_warn_cls_code:
+                    description: |
+                      시장경고코드
+
+                      00 : 없음
+                      01 : 투자주의
+                      02 : 투자경고
+                      03 : 투자위험
+                    type: string
+                    enum:
+                      - '00'
+                      - '01'
+                      - '02'
+                      - '03'
+                    example: 0
+                  short_over_yn:
+                    description: 단기과열여부
+                    type: string
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'N'
+                  sltr_yn:
+                    description: 정리매매여부
+                    type: string
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'N'
+    conclusion:
+      description: 국내주식 현재가 체결 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    stck_cntg_hour:
+                      type: string
+                      description: 주식 체결 시간
+                      maxLength: 6
+                      example: 155955
+                    stck_prpr:
+                      type: string
+                      description: 주식 현재가
+                      example: 78900
+                      maxLength: 10
+                    prdy_vrss:
+                      type: string
+                      description: 전일 대비
+                      example: 900
+                      maxLength: 10
+                    prdy_vrss_sign:
+                      type: string
+                      description: |
+                        전일 대비 부호
+
+                        1 : 상한<br/>
+                        2 : 상승<br/>
+                        3 : 보합<br/>
+                        4 : 하한<br/>
+                        5 : 하락
+                      example: 2
+                      maxLength: 1
+                      enum:
+                        - '1'
+                        - '2'
+                        - '3'
+                        - '4'
+                        - '5'
+                    cntg_vol:
+                      type: string
+                      description: 체결 거래량
+                      example: 2
+                      maxLength: 18
+                    tday_rltv:
+                      type: string
+                      description: |
+                        당일 체결강도
+
+                        체결거래가 발생하는 시점의 체결강도
+                      example: 114.05
+                      maxLength: 13
+                    prdy_ctrt:
+                      type: string
+                      description: 전일 대비율
+                      example: 1.15
+                      maxLength: 82
+    daily_price:
+      description: 국내주식 현재가 일자별 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    stck_bsop_date:
+                      type: string
+                      description: 주식 영업 일자
+                      example: 20220110
+                      maxLength: 8
+                    stck_oprc:
+                      type: string
+                      description: 주식 시가
+                      example: 126500
+                      maxLength: 10
+                    stck_hgpr:
+                      type: string
+                      description: 주식 최고가
+                      example: 127000
+                      maxLength: 10
+                    stck_lwpr:
+                      type: string
+                      description: 주식 최저가
+                      example: 125000
+                      maxLength: 10
+                    stck_clpr:
+                      type: string
+                      description: 주식 종가
+                      example: 124500
+                      maxLength: 10
+                    acml_vol:
+                      type: string
+                      description: 누적 거래량
+                      example: 3908418
+                      maxLength: 18
+                    prdy_vrss_vol_rate:
+                      type: string
+                      description: 전일 대비 거래량 비율
+                      example: 13.31
+                      maxLength: 12
+                    prdy_vrss:
+                      type: string
+                      description: 전일 대비
+                      example: 3500
+                      maxLength: 10
+                    prdy_vrss_sign:
+                      type: string
+                      description: |
+                        전일 대비 부호
+
+                        1 : 상한<br/>
+                        2 : 상승<br/>
+                        3 : 보합<br/>
+                        4 : 하한<br/>
+                        5 : 하락
+                      enum:
+                        - '1'
+                        - '2'
+                        - '3'
+                        - '4'
+                        - '5'
+                      example: 2
+                    prdy_ctrt:
+                      type: string
+                      description: 전일 대비율
+                      example: 2.81
+                      maxLength: 10
+                    hts_frgn_ehrt:
+                      type: string
+                      description: HTS 외국인 소진율
+                      example: 49.93
+                      maxLength: 10
+                    frgn_ntby_qty:
+                      type: string
+                      description: 외국인 순매수 수량
+                      example: 0
+                      maxLength: 12
+                    flng_cls_code:
+                      type: string
+                      description: |
+                        락 구분 코드
+
+                        01 : 권리락<br/>
+                        02 : 배당락<br/>
+                        03 : 분배락<br/>
+                        04 : 권배락<br/>
+                        05 : 중간(분기)배당락<br/>
+                        06 : 권리중간배당락<br/>
+                        07 : 권리분기배당락
+                      enum:
+                        - '01'
+                        - '02'
+                        - '03'
+                        - '04'
+                        - '05'
+                        - '06'
+                        - '07'
+                      example: 1
+                    acml_prtt_rate:
+                      type: string
+                      description: 누적 분할 비율
+                      example: 0
+                      maxLength: 12
+    quote_and_exp:
+      description: 국내주식 현재가 호가/예상체결 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output1:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    aspr_acpt_hour:
+                      type: string
+                      description: 호가 접수 시간
+                      example: 160000
+                      maxLength: 6
+                    askp1:
+                      type: string
+                      description: 매도호가1
+                      example: 128000
+                      maxLength: 10
+                    askp2:
+                      type: string
+                      description: 매도호가2
+                      example: 128500
+                      maxLength: 10
+                    askp3:
+                      type: string
+                      description: 매도호가3
+                      example: 129000
+                      maxLength: 10
+                    askp4:
+                      type: string
+                      description: 매도호가4
+                      example: 129500
+                      maxLength: 10
+                    askp5:
+                      type: string
+                      description: 매도호가5
+                      example: 130000
+                      maxLength: 10
+                    askp6:
+                      type: string
+                      description: 매도호가6
+                      example: 130500
+                      maxLength: 10
+                    askp7:
+                      type: string
+                      description: 매도호가7
+                      example: 131000
+                      maxLength: 10
+                    askp8:
+                      type: string
+                      description: 매도호가8
+                      example: 131500
+                      maxLength: 10
+                    askp9:
+                      type: string
+                      description: 매도호가9
+                      example: 132000
+                      maxLength: 10
+                    askp10:
+                      type: string
+                      description: 매도호가10
+                      example: 132500
+                      maxLength: 10
+                    bidp1:
+                      type: string
+                      description: 매수호가1
+                      example: 127500
+                      maxLength: 10
+                    bidp2:
+                      type: string
+                      description: 매수호가2
+                      example: 127000
+                      maxLength: 10
+                    bidp3:
+                      type: string
+                      description: 매수호가3
+                      example: 126500
+                      maxLength: 10
+                    bidp4:
+                      type: string
+                      description: 매수호가4
+                      example: 126000
+                      maxLength: 10
+                    bidp5:
+                      type: string
+                      description: 매수호가5
+                      example: 125500
+                      maxLength: 10
+                    bidp6:
+                      type: string
+                      description: 매수호가6
+                      example: 125000
+                      maxLength: 10
+                    bidp7:
+                      type: string
+                      description: 매수호가7
+                      example: 124500
+                      maxLength: 10
+                    bidp8:
+                      type: string
+                      description: 매수호가8
+                      example: 124000
+                      maxLength: 10
+                    bidp9:
+                      type: string
+                      description: 매수호가9
+                      example: 123500
+                      maxLength: 10
+                    bidp10:
+                      type: string
+                      description: 매수호가10
+                      example: 123000
+                      maxLength: 10
+                    askp_rsqn1:
+                      type: string
+                      description: 매도호가 잔량1
+                      example: 69454
+                      maxLength: 12
+                    askp_rsqn2:
+                      type: string
+                      description: 매도호가 잔량2
+                      example: 189698
+                      maxLength: 12
+                    askp_rsqn3:
+                      type: string
+                      description: 매도호가 잔량3
+                      example: 154732
+                      maxLength: 12
+                    askp_rsqn4:
+                      type: string
+                      description: 매도호가 잔량4
+                      example: 85703
+                      maxLength: 12
+                    askp_rsqn5:
+                      type: string
+                      description: 매도호가 잔량5
+                      example: 158696
+                      maxLength: 12
+                    askp_rsqn6:
+                      type: string
+                      description: 매도호가 잔량6
+                      example: 31395
+                      maxLength: 12
+                    askp_rsqn7:
+                      type: string
+                      description: 매도호가 잔량7
+                      example: 50738
+                      maxLength: 12
+                    askp_rsqn8:
+                      type: string
+                      description: 매도호가 잔량8
+                      example: 21039
+                      maxLength: 12
+                    askp_rsqn9:
+                      type: string
+                      description: 매도호가 잔량9
+                      example: 39424
+                      maxLength: 12
+                    askp_rsqn10:
+                      type: string
+                      description: 매도호가 잔량10
+                      example: 29126
+                      maxLength: 12
+                    bidp_rsqn1:
+                      type: string
+                      description: 매수호가 잔량1
+                      example: 83147
+                      maxLength: 12
+                    bidp_rsqn2:
+                      type: string
+                      description: 매수호가 잔량2
+                      example: 27469
+                      maxLength: 12
+                    bidp_rsqn3:
+                      type: string
+                      description: 매수호가 잔량3
+                      example: 25200
+                      maxLength: 12
+                    bidp_rsqn4:
+                      type: string
+                      description: 매수호가 잔량4
+                      example: 18544
+                      maxLength: 12
+                    bidp_rsqn5:
+                      type: string
+                      description: 매수호가 잔량5
+                      example: 13251
+                      maxLength: 12
+                    bidp_rsqn6:
+                      type: string
+                      description: 매수호가 잔량6
+                      example: 15742
+                      maxLength: 12
+                    bidp_rsqn7:
+                      type: string
+                      description: 매수호가 잔량7
+                      example: 15070
+                      maxLength: 12
+                    bidp_rsqn8:
+                      type: string
+                      description: 매수호가 잔량8
+                      example: 24995
+                      maxLength: 12
+                    bidp_rsqn9:
+                      type: string
+                      description: 매수호가 잔량9
+                      example: 11658
+                      maxLength: 12
+                    bidp_rsqn10:
+                      type: string
+                      description: 매수호가 잔량10
+                      example: 15773
+                      maxLength: 12
+                    askp_rsqn_icdc1:
+                      type: string
+                      description: 매도호가 잔량 증감1
+                      example: 0
+                      maxLength: 10
+                    askp_rsqn_icdc2:
+                      type: string
+                      description: 매도호가 잔량 증감2
+                      example: 0
+                      maxLength: 10
+                    askp_rsqn_icdc3:
+                      type: string
+                      description: 매도호가 잔량 증감3
+                      example: 0
+                      maxLength: 10
+                    askp_rsqn_icdc4:
+                      type: string
+                      description: 매도호가 잔량 증감4
+                      example: 0
+                      maxLength: 10
+                    askp_rsqn_icdc5:
+                      type: string
+                      description: 매도호가 잔량 증감5
+                      example: 0
+                      maxLength: 10
+                    askp_rsqn_icdc6:
+                      type: string
+                      description: 매도호가 잔량 증감6
+                      example: 0
+                      maxLength: 10
+                    askp_rsqn_icdc7:
+                      type: string
+                      description: 매도호가 잔량 증감7
+                      example: 0
+                      maxLength: 10
+                    askp_rsqn_icdc8:
+                      type: string
+                      description: 매도호가 잔량 증감8
+                      example: 0
+                      maxLength: 10
+                    askp_rsqn_icdc9:
+                      type: string
+                      description: 매도호가 잔량 증감9
+                      example: 0
+                      maxLength: 10
+                    askp_rsqn_icdc10:
+                      type: string
+                      description: 매도호가 잔량 증감10
+                      example: 0
+                      maxLength: 10
+                    bidp_rsqn_icdc1:
+                      type: string
+                      description: 매수호가 잔량 증감1
+                      example: 0
+                      maxLength: 10
+                    bidp_rsqn_icdc2:
+                      type: string
+                      description: 매수호가 잔량 증감2
+                      example: 0
+                      maxLength: 10
+                    bidp_rsqn_icdc3:
+                      type: string
+                      description: 매수호가 잔량 증감3
+                      example: 0
+                      maxLength: 10
+                    bidp_rsqn_icdc4:
+                      type: string
+                      description: 매수호가 잔량 증감4
+                      example: 0
+                      maxLength: 10
+                    bidp_rsqn_icdc5:
+                      type: string
+                      description: 매수호가 잔량 증감5
+                      example: 0
+                      maxLength: 10
+                    bidp_rsqn_icdc6:
+                      type: string
+                      description: 매수호가 잔량 증감6
+                      example: 0
+                      maxLength: 10
+                    bidp_rsqn_icdc7:
+                      type: string
+                      description: 매수호가 잔량 증감7
+                      example: 0
+                      maxLength: 10
+                    bidp_rsqn_icdc8:
+                      type: string
+                      description: 매수호가 잔량 증감8
+                      example: 0
+                      maxLength: 10
+                    bidp_rsqn_icdc9:
+                      type: string
+                      description: 매수호가 잔량 증감9
+                      example: 0
+                      maxLength: 10
+                    bidp_rsqn_icdc10:
+                      type: string
+                      description: 매수호가 잔량 증감10
+                      example: 0
+                      maxLength: 10
+                    total_askp_rsqn:
+                      type: string
+                      description: 총 매도호가 잔량
+                      example: 830005
+                      maxLength: 12
+                    total_bidp_rsqn:
+                      type: string
+                      description: 총 매수호가 잔량
+                      example: 250849
+                      maxLength: 12
+                    total_askp_rsqn_icdc:
+                      type: string
+                      description: 총 매도호가 잔량 증감
+                      example: 0
+                      maxLength: 10
+                    total_bidp_rsqn_icdc:
+                      type: string
+                      description: 총 매수호가 잔량 증감
+                      example: 0
+                      maxLength: 10
+                    ovtm_total_askp_icdc:
+                      type: string
+                      description: 시간외 총 매도호가 증감
+                      example: 0
+                      maxLength: 10
+                    ovtm_total_bidp_icdc:
+                      type: string
+                      description: 시간외 총 매수호가 증감
+                      example: 0
+                      maxLength: 10
+                    ovtm_total_askp_rsqn:
+                      type: string
+                      description: 시간외 총 매도호가 잔량
+                      example: 2943
+                      maxLength: 12
+                    ovtm_total_bidp_rsqn:
+                      type: string
+                      description: 시간외 총 매수호가 잔량
+                      example: 0
+                      maxLength: 12
+                    ntby_aspr_rsqn:
+                      type: string
+                      description: 순매수 호가 잔량
+                      example: -579156
+                      maxLength: 12
+                    new_mkop_cls_code:
+                      type: string
+                      description: |
+                        신 장운영 구분 코드
+
+                        '00' : 장전 예상체결가와 장마감 동시호가
+                        '49' : 장후 예상체결가
+
+                        (1) 첫 번째 비트
+                        1 : 장개시전
+                        2 : 장중
+                        3 : 장종료후
+                        4 : 시간외단일가
+                        7 : 일반Buy-in
+                        8 : 당일Buy-in
+                        (2) 두 번째 비트
+                        0 : 보통
+                        1 : 종가
+                        2 : 대량
+                        3 : 바스켓
+                        7 : 정리매매
+                        8 : Buy-in
+                      example: 0
+                      maxLength: 2
+              output2:
+                properties:
+                  antc_mkop_cls_code:
+                    type: string
+                    description: |
+                      예상 장운영 구분 코드
+
+                      311 : 예상체결시작
+                      112 : 예상체결종료
+                    enum:
+                      - '311'
+                      - '112'
+                    example: 311
+                  stck_prpr:
+                    type: string
+                    description: 주식 현재가
+                    example: 128000
+                    maxLength: 10
+                  stck_oprc:
+                    type: string
+                    description: 주식 시가
+                    example: 125500
+                    maxLength: 10
+                  stck_hgpr:
+                    type: string
+                    description: 주식 최고가
+                    example: 128500
+                    maxLength: 10
+                  stck_lwpr:
+                    type: string
+                    description: 주식 최저가
+                    example: 125000
+                    maxLength: 10
+                  stck_sdpr:
+                    type: string
+                    description: 주식 기준가
+                    example: 126000
+                    maxLength: 10
+                  antc_cnpr:
+                    type: string
+                    description: 예상 체결가
+                    example: 128000
+                    maxLength: 10
+                  antc_cntg_vrss_sign:
+                    type: string
+                    description: |
+                      예상 체결 대비 부호
+
+                      1 : 상한
+                      2 : 상승
+                      3 : 보합
+                      4 : 하한
+                      5 : 하락
+                    enum:
+                      - '1'
+                      - '2'
+                      - '3'
+                      - '4'
+                      - '5'
+                    example: 2
+                  antc_cntg_vrss:
+                    type: string
+                    description: 예상 체결 대비
+                    example: 3500
+                    maxLength: 10
+                  antc_cntg_prdy_ctrt:
+                    type: string
+                    description: 예상 체결 전일 대비율
+                    example: 2.81
+                    maxLength: 11
+                  antc_vol:
+                    type: string
+                    description: 예상 거래량
+                    example: 220006
+                    maxLength: 18
+                  stck_shrn_iscd:
+                    type: string
+                    description: 주식 단축 종목코드
+                    example: 660
+                    maxLength: 9
+                  vi_cls_code:
+                    type: string
+                    description: VI적용구분코드
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'N'
+  parameters:
+    personal_secret_key:
+      in: header
+      name: personalseckey
+      description: |
+        고객 식별키
+
+        [법인 필수] 제휴사 회원 관리를 위한 고객식별키
+      required: false
+      schema:
+        type: string
+        example: 1234567
+    tr_cont:
+      in: header
+      name: tr_cont
+      description: |
+        연속 거래 여부
+
+        공백 : 초기 조회<br/>
+        N: 다음 데이터 조회 (output header의 tr_cont가 M일 경우)
+      required: false
+      schema:
+        type: string
+        example: ''
+    customer_type:
+      in: header
+      name: custtype
+      description: |
+        고객타입
+
+        B : 법인<br/>
+        P : 개인
+      required: false
+      schema:
+        type: string
+        enum:
+          - B
+          - P
+        default: P
+        example: B
+    sequence_no:
+      in: header
+      name: seq_no
+      description: |
+        일련번호
+
+        [법인 필수] 001
+      required: false
+      schema:
+        type: string
+        example: '001'
+    mac_address:
+      in: header
+      name: mac_address
+      description: |
+        맥주소
+
+        법인고객 혹은 개인고객의 Mac address 값
+      required: false
+      schema:
+        type: string
+    phone_number:
+      in: header
+      name: phone_number
+      description: |
+        핸드폰번호
+
+        [법인 필수] 제휴사APP을 사용하는 경우 사용자(회원) 핸드폰번호<br/>
+        ex) 01011112222 (하이픈 등 구분값 제거)
+      required: false
+      schema:
+        type: string
+        example: 1011112222
+    ip_address:
+      in: header
+      name: ip_address
+      description: |
+        접속 단말 공인 IP
+
+        [법인 필수] 사용자(회원)의 IP Address
+      required: false
+      schema:
+        type: string
+        example: 192.168.0.12
+    hashkey:
+      in: header
+      name: hashkey
+      description: |
+        해쉬키
+
+        [POST API 대상] Client가 요청하는 Request Body를 hashkey api로 생성한 Hash값<br/>
+        * API문서 > hashkey 참조
+      required: false
+      schema:
+        type: string
+        example: 1234567
+    gt_uid:
+      in: header
+      name: gt_uid
+      description: |
+        Global UID
+
+        [법인 필수] 거래고유번호로 사용하므로 거래별로 UNIQUE해야 함
+      required: false
+      schema:
+        type: string
+        example: 1234567
+  headers:
+    content-type:
+      description: 컨텐츠타입
+      schema:
+        type: string
+      example: application/json; charset=utf-8
+    tr_id:
+      description: 거래ID, 요청한 tr_id
+      schema:
+        type: string
+        maxLength: 13
+      example: 0
+    tr_cont:
+      description: |
+        연속 거래 여부
+
+        F or M : 다음 데이터 있음
+        D or E : 마지막 데이터
+      schema:
+        type: string
+        enum:
+          - F
+          - M
+          - D
+          - E
+      example: D
+    gt_uid:
+      description: Global UID, 거래고유번호
+      schema:
+        type: string
+        maxLength: 32
+  schemas:
+    rt_cd:
+      description: |
+        성공 실패 여부
+
+        0: 성공<br/>
+        0 이외의 값: 실패
+      type: string
+      example: 0
+    msg_cd:
+      description: 응답코드
+      type: string
+      maxLength: 8
+      example: MCA00000
+    msg1:
+      description: 응답메시지
+      type: string
+      maxLength: 80
+      example: 정상처리 되었습니다!

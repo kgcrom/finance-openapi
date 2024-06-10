@@ -6,6 +6,28 @@ description: |
   국내주식기간별시세(일/주/월/년) API입니다.<br/>
   실전계좌/모의계좌의 경우, 한 번의 호출에 최대 100건까지 확인 가능합니다.
 
+parameters:
+  - in: query
+    name: FID_INPUT_DATE_1
+    description: |
+      입력 날짜 (시작)<br/>
+      조회 시작일자 (ex. 20220501)
+    required: true
+    schema:
+      type: string
+      maxLength: 10
+      example: 20220501
+  - in: query
+    name: FID_INPUT_DATE_2
+    description: |
+      입력 날짜 (종료)<br/>
+      조회 종료일자 (ex. 20220530)
+    required: true
+    schema:
+      type: string
+      maxLength: 10
+      example: 20220530
+
 responses:
   200:
     description: 국내주식 기간별 시세(일/주/월/년) 조회 성공

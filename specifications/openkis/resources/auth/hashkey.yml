@@ -37,6 +37,10 @@ requestBody:
       schema:
         type: object
         description: 해쉬키 생성을 위한 JSON Body
+        example:
+          CANO: 00000000
+          ACNT_PRDT_CD: 01
+          OVRS_EXCG_CD: SHAA
 
 responses:
   200:

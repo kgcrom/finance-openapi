@@ -1,0 +1,20 @@
+rt_cd:
+  description: |
+    성공 실패 여부
+
+    0: 성공<br/>
+    0 이외의 값: 실패
+  type: string
+  example: 0
+
+msg_cd:
+  description: 응답코드
+  type: string
+  maxLength: 8
+  example: MCA00000
+
+msg1:
+  description: 응답메시지
+  type: string
+  maxLength: 80
+  example: 정상처리 되었습니다!

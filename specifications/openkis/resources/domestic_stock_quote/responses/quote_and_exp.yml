@@ -1,0 +1,480 @@
+description: 국내주식 현재가 호가/예상체결 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output1:
+          type: array
+          items:
+            type: object
+            properties:
+              aspr_acpt_hour:
+                type: string
+                description: 호가 접수 시간
+                example: 160000
+                maxLength: 6
+              askp1:
+                type: string
+                description: 매도호가1
+                example: 128000
+                maxLength: 10
+              askp2:
+                type: string
+                description: 매도호가2
+                example: 128500
+                maxLength: 10
+              askp3:
+                type: string
+                description: 매도호가3
+                example: 129000
+                maxLength: 10
+              askp4:
+                type: string
+                description: 매도호가4
+                example: 129500
+                maxLength: 10
+              askp5:
+                type: string
+                description: 매도호가5
+                example: 130000
+                maxLength: 10
+              askp6:
+                type: string
+                description: 매도호가6
+                example: 130500
+                maxLength: 10
+              askp7:
+                type: string
+                description: 매도호가7
+                example: 131000
+                maxLength: 10
+              askp8:
+                type: string
+                description: 매도호가8
+                example: 131500
+                maxLength: 10
+              askp9:
+                type: string
+                description: 매도호가9
+                example: 132000
+                maxLength: 10
+              askp10:
+                type: string
+                description: 매도호가10
+                example: 132500
+                maxLength: 10
+              bidp1:
+                type: string
+                description: 매수호가1
+                example: 127500
+                maxLength: 10
+              bidp2:
+                type: string
+                description: 매수호가2
+                example: 127000
+                maxLength: 10
+              bidp3:
+                type: string
+                description: 매수호가3
+                example: 126500
+                maxLength: 10
+              bidp4:
+                type: string
+                description: 매수호가4
+                example: 126000
+                maxLength: 10
+              bidp5:
+                type: string
+                description: 매수호가5
+                example: 125500
+                maxLength: 10
+              bidp6:
+                type: string
+                description: 매수호가6
+                example: 125000
+                maxLength: 10
+              bidp7:
+                type: string
+                description: 매수호가7
+                example: 124500
+                maxLength: 10
+              bidp8:
+                type: string
+                description: 매수호가8
+                example: 124000
+                maxLength: 10
+              bidp9:
+                type: string
+                description: 매수호가9
+                example: 123500
+                maxLength: 10
+              bidp10:
+                type: string
+                description: 매수호가10
+                example: 123000
+                maxLength: 10
+              askp_rsqn1:
+                type: string
+                description: 매도호가 잔량1
+                example: 69454
+                maxLength: 12
+              askp_rsqn2:
+                type: string
+                description: 매도호가 잔량2
+                example: 189698
+                maxLength: 12
+              askp_rsqn3:
+                type: string
+                description: 매도호가 잔량3
+                example: 154732
+                maxLength: 12
+              askp_rsqn4:
+                type: string
+                description: 매도호가 잔량4
+                example: 85703
+                maxLength: 12
+              askp_rsqn5:
+                type: string
+                description: 매도호가 잔량5
+                example: 158696
+                maxLength: 12
+              askp_rsqn6:
+                type: string
+                description: 매도호가 잔량6
+                example: 31395
+                maxLength: 12
+              askp_rsqn7:
+                type: string
+                description: 매도호가 잔량7
+                example: 50738
+                maxLength: 12
+              askp_rsqn8:
+                type: string
+                description: 매도호가 잔량8
+                example: 21039
+                maxLength: 12
+              askp_rsqn9:
+                type: string
+                description: 매도호가 잔량9
+                example: 39424
+                maxLength: 12
+              askp_rsqn10:
+                type: string
+                description: 매도호가 잔량10
+                example: 29126
+                maxLength: 12
+              bidp_rsqn1:
+                type: string
+                description: 매수호가 잔량1
+                example: 83147
+                maxLength: 12
+              bidp_rsqn2:
+                type: string
+                description: 매수호가 잔량2
+                example: 27469
+                maxLength: 12
+              bidp_rsqn3:
+                type: string
+                description: 매수호가 잔량3
+                example: 25200
+                maxLength: 12
+              bidp_rsqn4:
+                type: string
+                description: 매수호가 잔량4
+                example: 18544
+                maxLength: 12
+              bidp_rsqn5:
+                type: string
+                description: 매수호가 잔량5
+                example: 13251
+                maxLength: 12
+              bidp_rsqn6:
+                type: string
+                description: 매수호가 잔량6
+                example: 15742
+                maxLength: 12
+              bidp_rsqn7:
+                type: string
+                description: 매수호가 잔량7
+                example: 15070
+                maxLength: 12
+              bidp_rsqn8:
+                type: string
+                description: 매수호가 잔량8
+                example: 24995
+                maxLength: 12
+              bidp_rsqn9:
+                type: string
+                description: 매수호가 잔량9
+                example: 11658
+                maxLength: 12
+              bidp_rsqn10:
+                type: string
+                description: 매수호가 잔량10
+                example: 15773
+                maxLength: 12
+              askp_rsqn_icdc1:
+                type: string
+                description: 매도호가 잔량 증감1
+                example: 0
+                maxLength: 10
+              askp_rsqn_icdc2:
+                type: string
+                description: 매도호가 잔량 증감2
+                example: 0
+                maxLength: 10
+              askp_rsqn_icdc3:
+                type: string
+                description: 매도호가 잔량 증감3
+                example: 0
+                maxLength: 10
+              askp_rsqn_icdc4:
+                type: string
+                description: 매도호가 잔량 증감4
+                example: 0
+                maxLength: 10
+              askp_rsqn_icdc5:
+                type: string
+                description: 매도호가 잔량 증감5
+                example: 0
+                maxLength: 10
+              askp_rsqn_icdc6:
+                type: string
+                description: 매도호가 잔량 증감6
+                example: 0
+                maxLength: 10
+              askp_rsqn_icdc7:
+                type: string
+                description: 매도호가 잔량 증감7
+                example: 0
+                maxLength: 10
+              askp_rsqn_icdc8:
+                type: string
+                description: 매도호가 잔량 증감8
+                example: 0
+                maxLength: 10
+              askp_rsqn_icdc9:
+                type: string
+                description: 매도호가 잔량 증감9
+                example: 0
+                maxLength: 10
+              askp_rsqn_icdc10:
+                type: string
+                description: 매도호가 잔량 증감10
+                example: 0
+                maxLength: 10
+              bidp_rsqn_icdc1:
+                type: string
+                description: 매수호가 잔량 증감1
+                example: 0
+                maxLength: 10
+              bidp_rsqn_icdc2:
+                type: string
+                description: 매수호가 잔량 증감2
+                example: 0
+                maxLength: 10
+              bidp_rsqn_icdc3:
+                type: string
+                description: 매수호가 잔량 증감3
+                example: 0
+                maxLength: 10
+              bidp_rsqn_icdc4:
+                type: string
+                description: 매수호가 잔량 증감4
+                example: 0
+                maxLength: 10
+              bidp_rsqn_icdc5:
+                type: string
+                description: 매수호가 잔량 증감5
+                example: 0
+                maxLength: 10
+              bidp_rsqn_icdc6:
+                type: string
+                description: 매수호가 잔량 증감6
+                example: 0
+                maxLength: 10
+              bidp_rsqn_icdc7:
+                type: string
+                description: 매수호가 잔량 증감7
+                example: 0
+                maxLength: 10
+              bidp_rsqn_icdc8:
+                type: string
+                description: 매수호가 잔량 증감8
+                example: 0
+                maxLength: 10
+              bidp_rsqn_icdc9:
+                type: string
+                description: 매수호가 잔량 증감9
+                example: 0
+                maxLength: 10
+              bidp_rsqn_icdc10:
+                type: string
+                description: 매수호가 잔량 증감10
+                example: 0
+                maxLength: 10
+              total_askp_rsqn:
+                type: string
+                description: 총 매도호가 잔량
+                example: 830005
+                maxLength: 12
+              total_bidp_rsqn:
+                type: string
+                description: 총 매수호가 잔량
+                example: 250849
+                maxLength: 12
+              total_askp_rsqn_icdc:
+                type: string
+                description: 총 매도호가 잔량 증감
+                example: 0
+                maxLength: 10
+              total_bidp_rsqn_icdc:
+                type: string
+                description: 총 매수호가 잔량 증감
+                example: 0
+                maxLength: 10
+              ovtm_total_askp_icdc:
+                type: string
+                description: 시간외 총 매도호가 증감
+                example: 0
+                maxLength: 10
+              ovtm_total_bidp_icdc:
+                type: string
+                description: 시간외 총 매수호가 증감
+                example: 0
+                maxLength: 10
+              ovtm_total_askp_rsqn:
+                type: string
+                description: 시간외 총 매도호가 잔량
+                example: 2943
+                maxLength: 12
+              ovtm_total_bidp_rsqn:
+                type: string
+                description: 시간외 총 매수호가 잔량
+                example: 0
+                maxLength: 12
+              ntby_aspr_rsqn:
+                type: string
+                description: 순매수 호가 잔량
+                example: -579156
+                maxLength: 12
+              new_mkop_cls_code:
+                type: string
+                description: |
+                  신 장운영 구분 코드
+
+                  '00' : 장전 예상체결가와 장마감 동시호가
+                  '49' : 장후 예상체결가
+
+                  (1) 첫 번째 비트
+                  1 : 장개시전
+                  2 : 장중
+                  3 : 장종료후
+                  4 : 시간외단일가
+                  7 : 일반Buy-in
+                  8 : 당일Buy-in
+                  (2) 두 번째 비트
+                  0 : 보통
+                  1 : 종가
+                  2 : 대량
+                  3 : 바스켓
+                  7 : 정리매매
+                  8 : Buy-in
+                example: 00
+                maxLength: 2
+        output2:
+          properties:
+            antc_mkop_cls_code:
+              type: string
+              description: |
+                예상 장운영 구분 코드
+
+                311 : 예상체결시작
+                112 : 예상체결종료
+              enum: ["311", "112"]
+              example: 311
+            stck_prpr:
+              type: string
+              description: 주식 현재가
+              example: 128000
+              maxLength: 10
+            stck_oprc:
+              type: string
+              description: 주식 시가
+              example: 125500
+              maxLength: 10
+            stck_hgpr:
+              type: string
+              description: 주식 최고가
+              example: 128500
+              maxLength: 10
+            stck_lwpr:
+              type: string
+              description: 주식 최저가
+              example: 125000
+              maxLength: 10
+            stck_sdpr:
+              type: string
+              description: 주식 기준가
+              example: 126000
+              maxLength: 10
+            antc_cnpr:
+              type: string
+              description: 예상 체결가
+              example: 128000
+              maxLength: 10
+            antc_cntg_vrss_sign:
+              type: string
+              description: |
+                예상 체결 대비 부호
+
+                1 : 상한
+                2 : 상승
+                3 : 보합
+                4 : 하한
+                5 : 하락
+              enum: ["1", "2", "3", "4", "5"]
+              example: 2
+            antc_cntg_vrss:
+              type: string
+              description: 예상 체결 대비
+              example: 3500
+              maxLength: 10
+            antc_cntg_prdy_ctrt:
+              type: string
+              description: 예상 체결 전일 대비율
+              example: 2.81
+              maxLength: 11
+            antc_vol:
+              type: string
+              description: 예상 거래량
+              example: 220006
+              maxLength: 18
+            stck_shrn_iscd:
+              type: string
+              description: 주식 단축 종목코드
+              example: 000660
+              maxLength: 9
+            vi_cls_code:
+              type: string
+              description: VI적용구분코드
+              enum: ["Y", "N"]
+              example: N

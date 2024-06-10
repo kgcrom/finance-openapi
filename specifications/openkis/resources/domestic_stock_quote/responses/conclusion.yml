@@ -1,0 +1,74 @@
+description: 국내주식 현재가 체결 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: array
+          items:
+            type: object
+            properties:
+              stck_cntg_hour:
+                type: string
+                description: 주식 체결 시간
+                maxLength: 6
+                example: 155955
+              stck_prpr:
+                type: string
+                description: 주식 현재가
+                example: 78900
+                maxLength: 10
+              prdy_vrss:
+                type: string
+                description: 전일 대비
+                example: 900
+                maxLength: 10
+              prdy_vrss_sign:
+                type: string
+                description: |
+                  전일 대비 부호
+
+                  1 : 상한<br/>
+                  2 : 상승<br/>
+                  3 : 보합<br/>
+                  4 : 하한<br/>
+                  5 : 하락
+                example: 2
+                maxLength: 1
+                enum: ["1", "2", "3", "4", "5"]
+              cntg_vol:
+                type: string
+                description: 체결 거래량
+                example: 2
+                maxLength: 18
+              tday_rltv:
+                type: string
+                description: |
+                  당일 체결강도
+
+                  체결거래가 발생하는 시점의 체결강도
+                example: 114.05
+                maxLength: 13
+              prdy_ctrt:
+                type: string
+                description: 전일 대비율
+                example: 1.15
+                maxLength: 82

@@ -1,0 +1,114 @@
+description: 국내주식 현재가 일자별 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: array
+          items:
+            type: object
+            properties:
+              stck_bsop_date:
+                type: string
+                description: 주식 영업 일자
+                example: 20220110
+                maxLength: 8
+              stck_oprc:
+                type: string
+                description: 주식 시가
+                example: 126500
+                maxLength: 10
+              stck_hgpr:
+                type: string
+                description: 주식 최고가
+                example: 127000
+                maxLength: 10
+              stck_lwpr:
+                type: string
+                description: 주식 최저가
+                example: 125000
+                maxLength: 10
+              stck_clpr:
+                type: string
+                description: 주식 종가
+                example: 124500
+                maxLength: 10
+              acml_vol:
+                type: string
+                description: 누적 거래량
+                example: 3908418
+                maxLength: 18
+              prdy_vrss_vol_rate:
+                type: string
+                description: 전일 대비 거래량 비율
+                example: 13.31
+                maxLength: 12
+              prdy_vrss:
+                type: string
+                description: 전일 대비
+                example: 3500
+                maxLength: 10
+              prdy_vrss_sign:
+                type: string
+                description: |
+                  전일 대비 부호
+
+                  1 : 상한<br/>
+                  2 : 상승<br/>
+                  3 : 보합<br/>
+                  4 : 하한<br/>
+                  5 : 하락
+                enum: ["1", "2", "3", "4", "5"]
+                example: 2
+              prdy_ctrt:
+                type: string
+                description: 전일 대비율
+                example: 2.81
+                maxLength: 10
+              hts_frgn_ehrt:
+                type: string
+                description: HTS 외국인 소진율
+                example: 49.93
+                maxLength: 10
+              frgn_ntby_qty:
+                type: string
+                description: 외국인 순매수 수량
+                example: 0
+                maxLength: 12
+              flng_cls_code:
+                type: string
+                description: |
+                  락 구분 코드
+
+                  01 : 권리락<br/>
+                  02 : 배당락<br/>
+                  03 : 분배락<br/>
+                  04 : 권배락<br/>
+                  05 : 중간(분기)배당락<br/>
+                  06 : 권리중간배당락<br/>
+                  07 : 권리분기배당락
+                enum: ["01", "02", "03", "04", "05", "06", "07"]
+                example: 01
+              acml_prtt_rate:
+                type: string
+                description: 누적 분할 비율
+                example: 0.00
+                maxLength: 12
