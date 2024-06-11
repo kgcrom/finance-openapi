@@ -2,14 +2,14 @@ content-type:
   description: 컨텐츠타입
   schema:
     type: string
-  example: application/json; charset=utf-8
+    example: application/json; charset=utf-8
 
 tr_id:
   description: 거래ID, 요청한 tr_id
   schema:
     type: string
     maxLength: 13
-  example: 0000
+    example: 0000
 
 tr_cont:
   description: |
@@ -20,7 +20,7 @@ tr_cont:
   schema:
     type: string
     enum: ["F", "M", "D", "E"]
-  example: D
+    example: D
 
 gt_uid:
   description: Global UID, 거래고유번호

@@ -66,18 +66,6 @@ paths:
     get:
       $ref: resources/domestic_stock_quote/quote_and_exp.yml
 
-  /uapi/domestic-stock/v1/quotations/search-info:
-    get:
-      $ref: resources/domestic_stock_quote/search_info.yml
-
-  /uapi/domestic-stock/v1/quotations/search-stock-info:
-    get:
-      $ref: resources/domestic_stock_quote/search_stock_info.yml
-
-  /uapi/domestic-stock/v1/quotations/invest-opbysec:
-    get:
-      $ref: resources/domestic_stock_quote/opinion_by_securities.yml
-
   /uapi/domestic-stock/v1/quotations/inquire-investor:
     get:
       $ref: resources/domestic_stock_quote/inquire_investor.yml
@@ -137,6 +125,18 @@ paths:
   /uapi/domestic-stock/v1/quotations/chk-holiday:
     get:
       $ref: resources/domestic_stock_quote/check_holiday.yml
+
+  /uapi/domestic-stock/v1/quotations/search-info:
+    get:
+      $ref: resources/domestic_stock_quote/search_info.yml
+
+  /uapi/domestic-stock/v1/quotations/search-stock-info:
+    get:
+      $ref: resources/domestic_stock_quote/search_stock_info.yml
+
+  /uapi/domestic-stock/v1/quotations/invest-opbysec:
+    get:
+      $ref: resources/domestic_stock_quote/opinion_by_securities.yml
 
   /uapi/etfetn/v1/quotations/inquire-price:
     get:

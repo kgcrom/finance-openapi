@@ -4,9 +4,56 @@ summary: 국내주식 현재가 당일시간대별 체결 조회
 
 description: 주식현재가 당일시간대별체결 API입니다.
 
-responses:
-  200:
-    description: 국내주식 현재가 당일시간대별 체결 조회 성공
-
 tags:
   - DomesticStockQuote
+
+parameters:
+  - $ref: parameters.yml#/personal_secret_key
+  - $ref: parameters.yml#/tr_cont
+  - $ref: parameters.yml#/customer_type
+  - $ref: parameters.yml#/sequence_no
+  - $ref: parameters.yml#/mac_address
+  - $ref: parameters.yml#/phone_number
+  - $ref: parameters.yml#/ip_address
+  - $ref: parameters.yml#/hashkey
+  - $ref: parameters.yml#/gt_uid
+  - $ref: parameters.yml#/fid_input_iscd
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      [실전투자/모의투자]
+      FHPST01060000 : 주식현재가 당일시간대별체결
+    required: true
+    schema:
+      type: string
+      enum: ["FHPST01060000"]
+      default: FHPST01060000
+      example: FHPST01060000
+  - in: query
+    name: fid_cond_mrkt_div_code
+    description: |
+      시장 분류 코드<br/>
+      J : 주식, ETF, ETN
+    required: true
+    schema:
+      type: string
+      default: J
+      example: J
+  - in: query
+    name: fid_input_hour_1
+    description: |
+      조회 시작시간
+
+      기준시간 (6자리; HH:MM:SS)
+      ex) 155000 입력시 15시 50분 00초 기준 이전 체결 내역이 조회됨
+    required: true
+    schema:
+      type: string
+      maxLength: 10
+      example: 155000
+
+responses:
+  200:
+    $ref: responses/time_conclusion.yml

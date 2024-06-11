@@ -1,0 +1,268 @@
+description: 국내주식 기간별 시세(일/주/월/년) 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output1:
+          type: object
+          properties:
+            prdy_vrss:
+              type: string
+              description: 전일 대비
+              example: 1000
+              maxLength: 10
+            prdy_vrss_sign:
+              type: string
+              description: |
+                전일 대비 부호
+
+                1 : 상한
+                2 : 상승
+                3 : 보합
+                4 : 하한
+                5 : 하락
+              enum: ["1", "2", "3", "4", "5"]
+              example: 2
+            prdy_ctrt:
+              type: string
+              description: 전일 대비율
+              example: 0.78
+              maxLength: 11
+            stck_prdy_clpr:
+              type: string
+              description: 주식 전일 종가
+              example: 129500
+              maxLength: 10
+            acml_vol:
+              type: string
+              description: 누적 거래량
+              example: 2106409
+              maxLength: 18
+            acml_tr_pbmn:
+              type: string
+              description: 누적 거래 대금
+              example: 236062833000
+              maxLength: 18
+            hts_kor_isnm:
+              type: string
+              description: HTS 한글 종목명
+              example: 삼성전자
+              maxLength: 40
+            stck_prpr:
+              type: string
+              description: 주식 현재가
+              example: 130500
+              maxLength: 10
+            stck_shrn_iscd:
+              type: string
+              description: 주식 단축 종목코드
+              example: 005930
+              maxLength: 9
+            prdy_vol:
+              type: string
+              description: 전일 거래량
+              example: 3680049
+              maxLength: 18
+            stck_mxpr:
+              type: string
+              description: 상한가
+              example: 144000
+              maxLength: 10
+            stck_llam:
+              type: string
+              description: 하한가
+              example: 111500
+              maxLength: 10
+            stck_oprc:
+              type: string
+              description: 시가
+              example: 130000
+              maxLength: 10
+            stck_hgpr:
+              type: string
+              description: 최고가
+              example: 131000
+              maxLength: 10
+            stck_lwpr:
+              type: string
+              description: 최저가
+              example: 129500
+              maxLength: 10
+            stck_prdy_oprc:
+              type: string
+              description: 주식 전일 시가
+              example: 130000
+              maxLength: 10
+            stck_prdy_hgpr:
+              type: string
+              description: 주식 전일 최고가
+              example: 131000
+              maxLength: 10
+            stck_prdy_lwpr:
+              type: string
+              description: 주식 전일 최저가
+              example: 129500
+              maxLength: 10
+            askp:
+              type: string
+              description: 매도호가
+              example: 112500
+              maxLength: 10
+            bidp:
+              type: string
+              description: 매수호가
+              example: 112000
+              maxLength: 10
+            prdy_vrss_vol:
+              type: string
+              description: 전일 대비 거래량
+              example: -1573640
+              maxLength: 10
+            vol_tnrt:
+              type: string
+              description: 거래량 회전율
+              example: 0.29
+              maxLength: 11
+            stck_fcam:
+              type: string
+              description: 주식 액면가
+              example: 100
+              maxLength: 11
+            lstn_stcn:
+              type: string
+              description: 상장 주수
+              example: 728002365
+              maxLength: 18
+            cpfn:
+              type: string
+              description: 자본금
+              example: 36577
+              maxLength: 22
+            hts_avls:
+              type: string
+              description: HTS 시가총액
+              example: 815363
+              maxLength: 18
+            per:
+              type: string
+              description: PER
+              example: 8.49
+              maxLength: 11
+            pbr:
+              type: string
+              description: PBR
+              example: 1.26
+              maxLength: 11
+            eps:
+              type: string
+              description: EPS
+              example: 13190.00
+              maxLength: 14
+            itewhol_loan_rmnd_ratem:
+              type: string
+              description: 전체 융자 잔고 비율
+              example: 0.32
+              maxLength: 13
+            output2:
+              type: array
+              items:
+                type: object
+                properties:
+                  stck_bsop_date:
+                    type: string
+                    description: 주식 영업 일자
+                    example: 20220113
+                    maxLength: 8
+                  stck_clpr:
+                    type: string
+                    description: 주식 종가
+                    example: 129500
+                    maxLength: 10
+                  stck_oprc:
+                    type: string
+                    description: 주식 시가
+                    example: 130000
+                    maxLength: 10
+                  stck_hgpr:
+                    type: string
+                    description: 주식 최고가
+                    example: 131000
+                    maxLength: 10
+                  stck_lwpr:
+                    type: string
+                    description: 주식 최저가
+                    example: 129500
+                    maxLength: 10
+                  acml_vol:
+                    type: string
+                    description: 누적 거래량
+                    example: 2203472
+                    maxLength: 18
+                  acml_tr_pbmn:
+                    type: string
+                    description: 누적 거래 대금
+                    example: 237914727500
+                    maxLength: 18
+                  flng_cls_code:
+                    type: string
+                    description: |
+                      락 구분 코드
+
+                      00:해당사항없음(락이 발생안한 경우)
+                      01:권리락
+                      02:배당락
+                      03:분배락
+                      04:권배락
+                      05:중간(분기)배당락
+                      06:권리중간배당락
+                      07:권리분기배당락
+                    example: 00
+                    maxLength: 2
+                  prtt_rate:
+                    type: string
+                    description: 분할 비율
+                    example: 0.00
+                    maxLength: 11
+                  mod_yn:
+                    type: string
+                    description: 분할변경여부
+                    enum: ["Y", "N"]
+                    example: N
+                  prdy_vrss_sign:
+                    type: string
+                    description: |
+                      전일 대비 부호
+
+                      1 : 상한
+                      2 : 상승
+                      3 : 보합
+                      4 : 하한
+                      5 : 하락
+                    enum: ["1", "2", "3", "4", "5"]
+                    example: 3
+                  prdy_vrss:
+                    type: string
+                    description: 전일 대비
+                    example: 0
+                    maxLength: 10
+                  revl_issu_reas:
+                    type: string
+                    description: 재평가사유코드
+                    example: 00
+                    maxLength: 2

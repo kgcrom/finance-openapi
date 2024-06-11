@@ -21,6 +21,7 @@ tr_cont:
   required: false
   schema:
     type: string
+    default: ""
     example: ""
 
 customer_type:
@@ -110,3 +111,31 @@ gt_uid:
   schema:
     type: string
     example: 1234567
+
+fid_org_adj_prc:
+  in: query
+  name: fid_org_adj_prc
+  description: |
+    FID 수정주가 원주가 가격
+
+    0 : 수정주가반영<br/>
+    1 : 수정주가미반영<br/>
+    * 수정주가는 액면분할/액면병합 등 권리 발생 시 과거 시세를 현재 주가에 맞게 보정한 가격
+  required: true
+  schema:
+    type: string
+    enum: ["0", "1"]
+    example: 0
+
+fid_input_iscd:
+  in: query
+  name: fid_input_iscd
+  description: |
+    FID 조건 종목코드
+
+    종목번호 (6자리)<br/>
+    ETN의 경우, Q로 시작 (EX. Q500001)
+  required: true
+  schema:
+    type: string
+    example: "005930"

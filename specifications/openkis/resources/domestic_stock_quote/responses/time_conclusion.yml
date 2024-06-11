@@ -1,0 +1,129 @@
+description: 국내주식 현재가 당일시간대별 체결 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: object
+          properties:
+            stck_prpr:
+              type: string
+              description: 주식 현재가
+              example: 104000
+              maxLength: 10
+            prdy_vrss:
+              type: string
+              description: 전일 대비
+              example: -3000
+              maxLength: 10
+            prdy_vrss_sign:
+              type: string
+              description: |
+                전일 대비 부호
+
+                1: 상승
+                2: 하락
+                3: 보합
+                4: 상한
+                5: 하한
+              enum: ["1", "2", "3", "4", "5"]
+              example: 1
+            prdy_ctrt:
+              type: string
+              description: 전일 대비율
+              example: -2.80
+              maxLength: 11
+            acml_vol:
+              type: string
+              description: 누적 거래량
+              example: 2315529
+              maxLength: 18
+            prdy_vol:
+              type: string
+              description: 전일 거래량
+              example: 1638006
+              maxLength: 18
+            rprs_mrkt_kor_name:
+              type: string
+              description: 대표 시장 한글명
+              example: KOSPI200
+              maxLength: 40
+            output2:
+              type: array
+              description: 시간별체결 정보
+              items:
+                type: object
+                properties:
+                  stck_cntg_hour:
+                    type: string
+                    description: 주식 체결 시간
+                    example: 141159
+                    maxLength: 6
+                  stck_prpr:
+                    type: string
+                    description: 주식 현재가
+                    example: 104000
+                    maxLength: 10
+                  prdy_vrss:
+                    type: string
+                    description: 전일 대비
+                    example: -2500
+                    maxLength: 10
+                  prdy_vrss_sign:
+                    type: string
+                    description: |
+                      전일 대비 부호
+
+                      1: 상승
+                      2: 하락
+                      3: 보합
+                      4: 상한
+                      5: 하한
+                    enum: ["1", "2", "3", "4", "5"]
+                    example: 1
+                  prdy_ctrt:
+                    type: string
+                    description: 전일 대비율
+                    example: -2.34
+                    maxLength: 11
+                  askp:
+                    type: string
+                    description: 매도호가
+                    example: 105000
+                    maxLength: 10
+                  bidp:
+                    type: string
+                    description: 매수호가
+                    example: 104500
+                    maxLength: 10
+                  tday_rltv:
+                    type: string
+                    description: 당일 체결강도
+                    example: 42.43
+                    maxLength: 14
+                  acml_vol:
+                    type: string
+                    description: 누적 거래량
+                    example: 1979727
+                    maxLength: 18
+                  cnqn:
+                    type: string
+                    description: 체결량
+                    example: 20
+                    maxLength: 18

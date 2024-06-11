@@ -17,6 +17,7 @@ parameters:
   - $ref: parameters.yml#/ip_address
   - $ref: parameters.yml#/hashkey
   - $ref: parameters.yml#/gt_uid
+  - $ref: parameters.yml#/fid_input_iscd
   - in: header
     name: tr_id
     description: |
@@ -31,7 +32,7 @@ parameters:
       default: FHKST01010300
       example: FHKST01010300
   - in: query
-    name: FID_COND_MRKT_DIV_CODE
+    name: fid_cond_mrkt_div_code
     description: |
       FID 조건 시장 분류 코드
 
@@ -43,17 +44,6 @@ parameters:
       enum: ["J", "W"]
       default: J
       example: J
-  - in: query
-    name: FID_INPUT_ISCD
-    description: |
-      FID 조건 종목코드
-
-      종목번호 (6자리)<br/>
-      ETN의 경우, Q로 시작 (EX. Q500001)
-    required: true
-    schema:
-      type: string
-      example: "005930"
 
 responses:
   200:
