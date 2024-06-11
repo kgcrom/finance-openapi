@@ -27,7 +27,7 @@ parameters:
     description: |
       거래ID
 
-      [실전투자/모의투자]
+      [실전투자/모의투자]<br/>
       FHKST01010100 : 주식현재가 시세
     required: true
     schema:

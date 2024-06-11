@@ -4,9 +4,44 @@ summary: 국내주식 현재가 시간외 일자별 주가 조회
 
 description: 주식현재가 시간외일자별주가 API입니다.
 
-responses:
-  200:
-    description: 국내주식 현재가 시간외 일자별 주가 조회 성공
-
 tags:
   - DomesticStockQuote
+
+parameters:
+  - $ref: parameters.yml#/personal_secret_key
+  - $ref: parameters.yml#/tr_cont
+  - $ref: parameters.yml#/customer_type
+  - $ref: parameters.yml#/sequence_no
+  - $ref: parameters.yml#/mac_address
+  - $ref: parameters.yml#/phone_number
+  - $ref: parameters.yml#/ip_address
+  - $ref: parameters.yml#/hashkey
+  - $ref: parameters.yml#/gt_uid
+  - $ref: parameters.yml#/fid_input_iscd
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      [실전투자/모의투자]<br/>
+      FHPST02310000 : 주식현재가 시간외일자별체결
+    required: true
+    schema:
+      type: string
+      enum: ["FHPST02320000"]
+      default: FHPST02320000
+      example: FHPST02320000
+  - in: query
+    name: fid_cond_mrkt_div_code
+    description: |
+      시장 분류 코드<br/>
+      J : 주식, ETF, ETN
+    required: true
+    schema:
+      type: string
+      default: J
+      example: J
+
+responses:
+  200:
+    $ref: responses/overtime_daily_price.yml

@@ -28,7 +28,7 @@ parameters:
     description: |
       거래ID
 
-      [실전투자/모의투자]
+      [실전투자/모의투자]<br/>
       FHKST01010900 : 주식현재가 투자자
     required: true
     schema:

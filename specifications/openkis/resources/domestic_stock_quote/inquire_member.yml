@@ -20,7 +20,7 @@ parameters:
     description: |
       거래ID
 
-      [실전투자/모의투자]
+      [실전투자/모의투자]<br/>
       FHKST01010600 : 주식현재가 회원사
     required: true
     schema:

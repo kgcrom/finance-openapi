@@ -177,7 +177,7 @@ paths:
           description: |
             거래ID
 
-            [실전투자/모의투자]
+            [실전투자/모의투자]<br/>
             FHKST01010100 : 주식현재가 시세
           required: true
           schema:
@@ -227,7 +227,7 @@ paths:
           description: |
             거래ID
 
-            [실전투자/모의투자]
+            [실전투자/모의투자]<br/>
             FHKST01010300 : 주식현재가 체결
           required: true
           schema:
@@ -278,7 +278,7 @@ paths:
           description: |
             거래ID
 
-            [실전투자/모의투자]
+            [실전투자/모의투자]<br/>
             FHKST01010400 : 주식현재가 일자별
           required: true
           schema:
@@ -342,7 +342,7 @@ paths:
           description: |
             거래ID
 
-            [실전투자/모의투자]
+            [실전투자/모의투자]<br/>
             FHKST01010200 : 주식현재가 호가 예상체결
           required: true
           schema:
@@ -395,7 +395,7 @@ paths:
           description: |
             거래ID
 
-            [실전투자/모의투자]
+            [실전투자/모의투자]<br/>
             FHKST01010900 : 주식현재가 투자자
           required: true
           schema:
@@ -441,7 +441,7 @@ paths:
           description: |
             거래ID
 
-            [실전투자/모의투자]
+            [실전투자/모의투자]<br/>
             FHKST01010600 : 주식현재가 회원사
           required: true
           schema:
@@ -486,7 +486,7 @@ paths:
           description: |
             거래ID
 
-            [실전투자/모의투자]
+            [실전투자/모의투자]<br/>
             FHKST03010100 : 국내주식 기간별 시세(일/주/월/년)
           required: true
           schema:
@@ -569,7 +569,7 @@ paths:
           description: |
             거래ID
 
-            [실전투자/모의투자]
+            [실전투자/모의투자]<br/>
             FHPST01060000 : 주식현재가 당일시간대별체결
           required: true
           schema:
@@ -593,7 +593,7 @@ paths:
           description: |
             조회 시작시간
 
-            기준시간 (6자리; HH:MM:SS)
+            기준시간 (6자리; HH:MM:SS)<br/>
             ex) 155000 입력시 15시 50분 00초 기준 이전 체결 내역이 조회됨
           required: true
           schema:
@@ -608,21 +608,104 @@ paths:
       operationId: getDomesticStockOverTimeConclusion
       summary: 국내주식 현재가 시간외 시간대별 체결 조회
       description: 주식현재가 시간외시간별체결 API입니다.
-      responses:
-        '200':
-          description: 국내주식 현재가 시간외 시간대별 체결 조회 성공
       tags:
         - DomesticStockQuote
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - $ref: '#/components/parameters/fid_input_iscd'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            [실전투자/모의투자]<br/>
+            FHPST02310000 : 주식현재가 시간외시간별체결
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHPST02310000
+            default: FHPST02310000
+            example: FHPST02310000
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            시장 분류 코드<br/>
+            J : 주식, ETF, ETN
+          required: true
+          schema:
+            type: string
+            default: J
+            example: J
+        - in: query
+          name: fid_hour_cls_code
+          description: |
+            시간 구분 코드
+
+            1 : 시간외 (Default)
+          required: true
+          schema:
+            type: string
+            enum:
+              - '1'
+            default: 1
+            example: 1
+      responses:
+        '200':
+          $ref: '#/components/responses/overtime_conclusion'
   /uapi/domestic-stock/v1/quotations/inquire-daily-overtimeprice:
     get:
       operationId: getDomesticStockOverTimeDailyPrice
       summary: 국내주식 현재가 시간외 일자별 주가 조회
       description: 주식현재가 시간외일자별주가 API입니다.
-      responses:
-        '200':
-          description: 국내주식 현재가 시간외 일자별 주가 조회 성공
       tags:
         - DomesticStockQuote
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - $ref: '#/components/parameters/fid_input_iscd'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            [실전투자/모의투자]<br/>
+            FHPST02310000 : 주식현재가 시간외일자별체결
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHPST02320000
+            default: FHPST02320000
+            example: FHPST02320000
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            시장 분류 코드<br/>
+            J : 주식, ETF, ETN
+          required: true
+          schema:
+            type: string
+            default: J
+            example: J
+      responses:
+        '200':
+          $ref: '#/components/responses/overtime_daily_price'
   /uapi/domestic-stock/v1/quotations/inquire-overtime-price:
     get:
       operationId: getDomesticStockOverTimePrice
@@ -656,21 +739,145 @@ paths:
       description: |
         주식당일분봉조회 API입니다.<br/>
         실전계좌/모의계좌의 경우, 한 번의 호출에 최대 30건까지 확인 가능합니다.
-      responses:
-        '200':
-          description: 국내주식 당일 분봉 조회 성공
       tags:
         - DomesticStockQuote
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - $ref: '#/components/parameters/fid_input_iscd'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            [실전투자/모의투자]<br/>
+            FHKST03010200 : 주식 당일 분봉 조회
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHKST03010200
+            default: FHKST03010200
+            example: FHKST03010200
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            시장 분류 코드<br/>
+            J : 주식, ETF, ETN<br/>
+            U: 업종
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+              - U
+            default: J
+            example: J
+        - in: query
+          name: fid_etc_cls_code
+          description: |
+            FID 기타 구분 코드
+
+            기타 구분 코드("")
+          required: true
+          schema:
+            type: string
+            default: ''
+            example: ''
+        - in: query
+          name: fid_input_hour_1
+          description: |
+            FID 입력 시간1
+
+            조회대상(FID_COND_MRKT_DIV_CODE)에 따라 입력하는 값 상이
+
+            종목(J)일 경우, 조회 시작일자(HHMMSS)<br/>
+            ex) "123000" 입력 시 12시 30분 이전부터 1분 간격으로 조회
+
+            업종(U)일 경우, 조회간격(초) (60 or 120 만 입력 가능)<br/>
+            ex) "60" 입력 시 현재시간부터 1분간격으로 조회<br/>
+            "120" 입력 시 현재시간부터 2분간격으로 조회
+
+            ※ FID_INPUT_HOUR_1 에 미래일시 입력 시에 현재가로 조회됩니다.<br/>
+            ex) 오전 10시에 113000 입력 시에 오전 10시~11시30분 사이의 데이터가 오전 10시 값으로 조회됨
+          required: true
+          schema:
+            type: string
+            example: 123000
+            maxLength: 6
+        - in: query
+          name: fid_pw_data_incu_yn
+          description: |
+            FID 과거 데이터 포함 여부
+
+            과거 데이터 포함 여부(Y/N)<br/>
+            * 업종(U) 조회시에만 동작하는 구분값<br/>
+            N : 당일데이터만 조회<br/>
+            Y : 이후데이터도 조회<br/>
+            (조회시점이 083000(오전8:30)일 경우 전일자 업종 시세 데이터도 같이 조회됨)
+          required: true
+          schema:
+            type: string
+            enum:
+              - 'Y'
+              - 'N'
+            default: 'N'
+            example: 'N'
+      responses:
+        '200':
+          $ref: '#/components/responses/time_minute_price'
   /uapi/domestic-stock/v1/quotations/inquire-price-2:
     get:
       operationId: getDomesticStockPrice2
       summary: 국내주식 현재가 시세2 조회
       description: 주식현재가 시세2 API입니다.
-      responses:
-        '200':
-          description: 국내주식 현재가 시세2 조회 성공
       tags:
         - DomesticStockQuote
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - $ref: '#/components/parameters/fid_input_iscd'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            [실전투자/모의투자]<br/>
+            FHPST01010000 : 주식현재가 시세2
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHPST01010000
+            default: FHPST01010000
+            example: FHPST01010000
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            시장 분류 코드<br/>
+            J : 주식, ETF, ETN
+          required: true
+          schema:
+            type: string
+            default: J
+            example: J
+      responses:
+        '200':
+          $ref: '#/components/responses/price2'
   /uapi/domestic-stock/v1/quotations/exp-closing-price:
     get:
       operationId: getDomesticStockClosingExpectedConclusion
@@ -2161,10 +2368,11 @@ components:
                   prdy_vrss_sign:
                     description: |
                       전일 대비 부호
-                      1 : 상한
-                      2 : 상승
-                      3 : 보합
-                      4 : 하한
+
+                      1 : 상한<br/>
+                      2 : 상승<br/>
+                      3 : 보합<br/>
+                      4 : 하한<br/>
                       5 : 하락
                     type: string
                     enum:
@@ -3164,10 +3372,10 @@ components:
                     description: |
                       예상 체결 대비 부호
 
-                      1 : 상한
-                      2 : 상승
-                      3 : 보합
-                      4 : 하한
+                      1 : 상한<br/>
+                      2 : 상승<br/>
+                      3 : 보합<br/>
+                      4 : 하한<br/>
                       5 : 하락
                     enum:
                       - '1'
@@ -3250,10 +3458,10 @@ components:
                       description: |
                         전일 대비 부호
 
-                        1 : 상한
-                        2 : 상승
-                        3 : 보합
-                        4 : 하한
+                        1 : 상한<br/>
+                        2 : 상승<br/>
+                        3 : 보합<br/>
+                        4 : 하한<br/>
                         5 : 하락
                       enum:
                         - '1'
@@ -3407,10 +3615,10 @@ components:
                     description: |
                       전일 대비 부호
 
-                      1 : 상한
-                      2 : 상승
-                      3 : 보합
-                      4 : 하한
+                      1 : 상한<br/>
+                      2 : 상승<br/>
+                      3 : 보합<br/>
+                      4 : 하한<br/>
                       5 : 하락
                     enum:
                       - '1'
@@ -3631,10 +3839,10 @@ components:
                           description: |
                             전일 대비 부호
 
-                            1 : 상한
-                            2 : 상승
-                            3 : 보합
-                            4 : 하한
+                            1 : 상한<br/>
+                            2 : 상승<br/>
+                            3 : 보합<br/>
+                            4 : 하한<br/>
                             5 : 하락
                           enum:
                             - '1'
@@ -3691,11 +3899,11 @@ components:
                     description: |
                       전일 대비 부호
 
-                      1: 상승
-                      2: 하락
-                      3: 보합
-                      4: 상한
-                      5: 하한
+                      1 : 상한<br/>
+                      2 : 상승<br/>
+                      3 : 보합<br/>
+                      4 : 하한<br/>
+                      5 : 하락
                     enum:
                       - '1'
                       - '2'
@@ -3749,11 +3957,11 @@ components:
                           description: |
                             전일 대비 부호
 
-                            1: 상승
-                            2: 하락
-                            3: 보합
-                            4: 상한
-                            5: 하한
+                            1 : 상한<br/>
+                            2 : 상승<br/>
+                            3 : 보합<br/>
+                            4 : 하한<br/>
+                            5 : 하락
                           enum:
                             - '1'
                             - '2'
@@ -3791,6 +3999,937 @@ components:
                           description: 체결량
                           example: 20
                           maxLength: 18
+    overtime_conclusion:
+      description: 국내주식 현재가 시간외 시간대별 체결 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output1:
+                type: object
+                properties:
+                  ovtm_untp_prpr:
+                    type: string
+                    description: 시간외 단일가 현재가
+                    example: 2835
+                    maxLength: 10
+                  ovtm_untp_prdy_vrss:
+                    type: string
+                    description: 시간외 단일가 전일 대비
+                    example: 5
+                    maxLength: 10
+                  ovtm_untp_prdy_vrss_sign:
+                    type: string
+                    description: |
+                      시간외 단일가 전일 대비 부호
+
+                      1 : 상한<br/>
+                      2 : 상승<br/>
+                      3 : 보합<br/>
+                      4 : 하한<br/>
+                      5 : 하락
+                    example: '5'
+                    maxLength: 1
+                  ovtm_untp_prdy_ctrt:
+                    type: string
+                    description: 시간외 단일가 전일 대비율
+                    example: -241
+                    maxLength: 11
+                  ovtm_untp_vol:
+                    type: string
+                    description: 시간외 단일가 전일 거래량
+                    example: 68086
+                    maxLength: 18
+                  ovtm_untp_tr_pbmn:
+                    type: string
+                    description: 시간외 단일가 거래 대금
+                    example: 194135625
+                    maxLength: 18
+                  ovtm_untp_mxpr:
+                    type: string
+                    description: 시간외 단일가 상한가
+                    example: 3195
+                    maxLength: 10
+                  ovtm_untp_llam:
+                    type: string
+                    description: 시간외 단일가 하한가
+                    example: 2615
+                    maxLength: 10
+                  ovtm_untp_oprc:
+                    type: string
+                    description: 시간외 단일가 시가2
+                    example: 2900
+                    maxLength: 10
+                  ovtm_untp_hgpr:
+                    type: string
+                    description: 시간외 단일가 최고가
+                    example: 2900
+                    maxLength: 10
+                  ovtm_untp_lwpr:
+                    type: string
+                    description: 시간외 단일가 최저가
+                    example: 2835
+                    maxLength: 10
+                  ovtm_untp_antc_cnpr:
+                    type: string
+                    description: 시간외 단일가 예상 체결가
+                    example: 0
+                    maxLength: 10
+                  ovtm_untp_antc_cntg_vrss:
+                    type: string
+                    description: 시간외 단일가 예상 체결 대비
+                    example: 0
+                    maxLength: 10
+                  ovtm_untp_antc_cntg_vrss_sign:
+                    type: string
+                    description: |
+                      시간외 단일가 예상 체결 대비
+
+                      1 : 상한<br/>
+                      2 : 상승<br/>
+                      3 : 보합<br/>
+                      4 : 하한<br/>
+                      5 : 하락
+                    enum:
+                      - '1'
+                      - '2'
+                      - '3'
+                      - '4'
+                      - '5'
+                    example: 1
+                  ovtm_untp_antc_cntg_ctrt:
+                    type: string
+                    description: 시간외 단일가 예상 체결 대비율
+                    example: 0
+                    maxLength: 11
+                  ovtm_untp_antc_vol:
+                    type: string
+                    description: 시간외 단일가 예상 거래량
+                    example: 0
+                    maxLength: 18
+                  uplm_sign:
+                    type: string
+                    description: 상한 부호
+                    example: 1
+                    maxLength: 1
+                  lslm_sign:
+                    type: string
+                    description: 하한 부호
+                    example: 4
+                    maxLength: 1
+                  output2:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        stck_cntg_hour:
+                          type: string
+                          description: 주식 체결 시간
+                          example: 180025
+                          maxLength: 6
+                        stck_prpr:
+                          type: string
+                          description: 주식 현재가
+                          example: 2835
+                          maxLength: 10
+                        prdy_vrss:
+                          type: string
+                          description: 전일 대비
+                          example: -70
+                          maxLength: 10
+                        prdy_vrss_sign:
+                          type: string
+                          description: |
+                            전일 대비 부호
+
+                            1 : 상한<br/>
+                            2 : 상승<br/>
+                            3 : 보합<br/>
+                            4 : 하한<br/>
+                            5 : 하락
+                          enum:
+                            - '1'
+                            - '2'
+                            - '3'
+                            - '4'
+                            - '5'
+                          example: 5
+                        prdy_ctrt:
+                          type: string
+                          description: 전일 대비율
+                          example: -2.41
+                          maxLength: 11
+                        askp:
+                          type: string
+                          description: 매도호가
+                          example: 2840
+                          maxLength: 10
+                        bidp:
+                          type: string
+                          description: 매수호가
+                          example: 2835
+                          maxLength: 10
+                        acml_vol:
+                          type: string
+                          description: 누적 거래량
+                          example: 68086
+                          maxLength: 18
+                        cntg_vol:
+                          type: string
+                          description: 체결 거래량
+                          example: 12865
+                          maxLength: 18
+    overtime_daily_price:
+      description: 국내주식 현재가 시간외 일자별 주가 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output1:
+                type: object
+                properties:
+                  ovtm_untp_prpr:
+                    type: string
+                    description: 시간외 단일가 현재가
+                    example: 106000
+                    maxLength: 10
+                  ovtm_untp_prdy_vrss:
+                    type: string
+                    description: 시간외 단일가 전일 대비
+                    example: 500
+                    maxLength: 10
+                  ovtm_untp_prdy_vrss_sign:
+                    type: string
+                    description: |
+                      시간외 단일가 전일 대비 부호
+
+                      1 : 상한<br/>
+                      2 : 상승<br/>
+                      3 : 보합<br/>
+                      4 : 하한<br/>
+                      5 : 하락
+                    enum:
+                      - '1'
+                      - '2'
+                      - '3'
+                      - '4'
+                      - '5'
+                    example: '2'
+                  ovtm_untp_prdy_ctrt:
+                    type: string
+                    description: 시간외 단일가 전일 대비율
+                    example: 0.47
+                    maxLength: 11
+                  ovtm_untp_vol:
+                    type: string
+                    description: 시간외 단일가 거래량
+                    example: 12740
+                    maxLength: 18
+                  ovtm_untp_tr_pbmn:
+                    type: string
+                    description: 시간외 단일가 거래 대금
+                    example: 1348318000
+                    maxLength: 18
+                  ovtm_untp_mxpr:
+                    type: string
+                    description: 시간외 단일가 상한가
+                    example: 116000
+                    maxLength: 18
+                  ovtm_untp_llam:
+                    type: string
+                    description: 시간외 단일가 하한가
+                    example: 105500
+                    maxLength: 18
+                  ovtm_untp_oprc:
+                    type: string
+                    description: 시간외 단일가 시가
+                    example: 0
+                    maxLength: 10
+                  ovtm_untp_hgpr:
+                    type: string
+                    description: 시간외 단일가 최고가
+                    example: 106000
+                    maxLength: 10
+                  ovtm_untp_lwpr:
+                    type: string
+                    description: 시간외 단일가 최저가
+                    example: 105500
+                    maxLength: 10
+                  ovtm_untp_antc_prpr:
+                    type: string
+                    description: 시간외 단일가 예상 체결가
+                    example: 0
+                    maxLength: 10
+                  ovtm_untp_antc_vrss:
+                    type: string
+                    description: 시간외 단일가 예상 체결 대비
+                    example: 0
+                    maxLength: 10
+                  ovtm_untp_antc_vrss_sign:
+                    type: string
+                    description: |
+                      시간외 단일가 예상 체결 대비
+
+                      1 : 상한<br/>
+                      2 : 상승<br/>
+                      3 : 보합<br/>
+                      4 : 하한<br/>
+                      5 : 하락
+                    enum:
+                      - '1'
+                      - '2'
+                      - '3'
+                      - '4'
+                      - '5'
+                    example: 3
+                  ovtm_untp_antc_ctrt:
+                    type: string
+                    description: 시간외 단일가 예상 체결 대비율
+                    example: 0.47
+                    maxLength: 11
+                  ovtm_untp_antc_vol:
+                    type: string
+                    description: 시간외 단일가 예상 거래량
+                    example: 0
+                    maxLength: 18
+                  output2:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        stck_bsop_date:
+                          type: string
+                          description: 주식 영업 일자
+                          example: 20220609
+                          maxLength: 8
+                        ovtm_untp_prpr:
+                          type: string
+                          description: 시간외 단일가 현재가
+                          example: 106000
+                          maxLength: 10
+                        ovtm_untp_prdy_vrss:
+                          type: string
+                          description: 시간외 단일가 전일 대비
+                          example: 500
+                          maxLength: 10
+                        ovtm_untp_prdy_vrss_sign:
+                          type: string
+                          description: |
+                            시간외 단일가 전일 대비 부호
+
+                            1 : 상한<br/>
+                            2 : 상승<br/>
+                            3 : 보합<br/>
+                            4 : 하한<br/>
+                            5 : 하락
+                          enum:
+                            - '1'
+                            - '2'
+                            - '3'
+                            - '4'
+                            - '5'
+                          example: '2'
+                        ovtm_untp_prdy_ctrt:
+                          type: string
+                          description: 시간외 단일가 전일 대비율
+                          example: 0.47
+                          maxLength: 11
+                        ovtm_untp_vol:
+                          type: string
+                          description: 시간외 단일가 거래량
+                          example: 12740
+                          maxLength: 18
+                        stck_clpr:
+                          type: string
+                          description: 주식 종가
+                          example: 105500
+                          maxLength: 10
+                        prdy_vrss:
+                          type: string
+                          description: 전일 대비
+                          example: -500
+                          maxLength: 10
+                        prdy_vrss_sign:
+                          type: string
+                          description: |
+                            전일 대비 부호
+
+                            1 : 상한<br/>
+                            2 : 상승<br/>
+                            3 : 보합<br/>
+                            4 : 하한<br/>
+                            5 : 하락
+                          enum:
+                            - '1'
+                            - '2'
+                            - '3'
+                            - '4'
+                            - '5'
+                          example: 4
+                        prdy_ctrt:
+                          type: string
+                          description: 전일 대비율
+                          example: -0.47
+                          maxLength: 11
+                        acml_vol:
+                          type: string
+                          description: 누적 거래량
+                          example: 4640744
+                          maxLength: 18
+                        ovtm_untp_tr_pbmn:
+                          type: string
+                          description: 시간외 단일가 거래 대금
+                          example: 1348318000
+                          maxLength: 18
+    time_minute_price:
+      description: 국내주식 당일 분봉 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output1:
+                type: object
+                properties:
+                  prdy_vrss:
+                    type: string
+                    description: 전일 대비
+                    example: -100
+                    maxLength: 10
+                  prdy_vrss_sign:
+                    type: string
+                    description: |
+                      전일 대비 부호
+
+                      1 : 상한<br/>
+                      2 : 상승<br/>
+                      3 : 보합<br/>
+                      4 : 하한<br/>
+                      5 : 하락
+                    enum:
+                      - '1'
+                      - '2'
+                      - '3'
+                      - '4'
+                      - '5'
+                    example: '5'
+                  prdy_ctrt:
+                    type: string
+                    description: 전일 대비율
+                    example: -0.11
+                    maxLength: 11
+                  stck_prdy_clpr:
+                    type: string
+                    description: 주식 전일 종가
+                    example: 92400
+                    maxLength: 10
+                  acml_vol:
+                    type: string
+                    description: 누적 거래량
+                    example: 1046883
+                    maxLength: 18
+                  acml_tr_pbmn:
+                    type: string
+                    description: 누적 거래 대금
+                    example: 96910660000
+                    maxLength: 18
+                  hts_kor_isnm:
+                    type: string
+                    description: HTS 한글 종목명
+                    example: 삼성전자
+                    maxLength: 40
+                  stck_prpr:
+                    type: string
+                    description: 주식 현재가
+                    example: 92300
+                    maxLength: 10
+                  output2:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        stck_bsop_date:
+                          type: string
+                          description: 주식 영업 일자
+                          example: 20220902
+                          maxLength: 8
+                        stck_cntg_hour:
+                          type: string
+                          description: 주식 체결 시간
+                          example: 100000
+                          maxLength: 6
+                        acml_tr_pbmn:
+                          type: string
+                          description: 누적 거래 대금
+                          example: 55858827400
+                          maxLength: 18
+                        stck_prpr:
+                          type: string
+                          description: 주식 현재가
+                          example: 92500
+                          maxLength: 10
+                        stck_oprc:
+                          type: string
+                          description: 주식 시가2
+                          example: 92400
+                          maxLength: 10
+                        stck_hgpr:
+                          type: string
+                          description: 주식 최고가
+                          example: 92500
+                          maxLength: 10
+                        stck_lwpr:
+                          type: string
+                          description: 주식 최저가
+                          example: 92400
+                          maxLength: 10
+                        cntg_vol:
+                          type: string
+                          description: 체결 거래량
+                          example: 1383
+                          maxLength: 18
+    price2:
+      description: 국내주식 현재가 시세2 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: object
+                properties:
+                  rprs_mrkt_kor_name:
+                    type: string
+                    description: 대표 시장 한글 명
+                    example: KOSPI200
+                    maxLength: 40
+                  new_hgpr_lwpr_cls_code:
+                    type: string
+                    description: |
+                      신 고가 저가 구분 코드<br/>
+                      조회하는 종목이 신고/신저에 도달했을 경우에만 조회됨
+                    maxLength: 10
+                  mxpr_llam_cls_code:
+                    type: string
+                    description: |
+                      상하한가 구분 코드<br/>
+                      조회하는 종목이 상/하한가에 도달했을 경우에만 조회됨
+                    maxLength: 10
+                  crdt_able_yn:
+                    type: string
+                    description: 신용 가능 여부
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'Y'
+                  stck_mxpr:
+                    type: string
+                    description: 주식 상한가
+                    example: 95400
+                    maxLength: 10
+                  elw_pblc_yn:
+                    type: string
+                    description: ELW 발행 여부
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'Y'
+                  prdy_clpr_vrss_oprc_rate:
+                    type: string
+                    description: 전일 종가 대비 시가2 비율
+                    example: 0.54
+                    maxLength: 84
+                  crdt_rate:
+                    type: string
+                    description: 신용 비율
+                    example: 20
+                    maxLength: 84
+                  marg_rate:
+                    type: string
+                    description: 증거금 비율
+                    example: 20
+                    maxLength: 84
+                  lwpr_vrss_prpr:
+                    type: string
+                    description: 최저가 대비 현재가
+                    example: 900
+                    maxLength: 10
+                  lwpr_vrss_prpr_sign:
+                    type: string
+                    description: |
+                      최저가 대비 현재가 부호
+
+                      1 : 상한<br/>
+                      2 : 상승<br/>
+                      3 : 보합<br/>
+                      4 : 하한<br/>
+                      5 : 하락
+                    enum:
+                      - '1'
+                      - '2'
+                      - '3'
+                      - '4'
+                      - '5'
+                    example: '5'
+                  prdy_clpr_vrss_lwpr_rate:
+                    type: string
+                    description: 전일 종가 대비 최저가 비율
+                    example: 0.14
+                    maxLength: 84
+                  stck_lwpr:
+                    type: string
+                    description: 주식 최저가
+                    example: 73500
+                    maxLength: 10
+                  hgpr_vrss_prpr:
+                    type: string
+                    description: 최고가 대비 현재가
+                    example: 900
+                    maxLength: 10
+                  hgpr_vrss_prpr_sign:
+                    type: string
+                    description: |
+                      최고가 대비 현재가 부호
+
+                      1 : 상한<br/>
+                      2 : 상승<br/>
+                      3 : 보합<br/>
+                      4 : 하한<br/>
+                      5 : 하락
+                    enum:
+                      - '1'
+                      - '2'
+                      - '3'
+                      - '4'
+                      - '5'
+                    example: '2'
+                  prdy_clpr_vrss_hgpr_rate:
+                    type: string
+                    description: 전일 종가 대비 최고가 비율
+                    example: 1.5
+                    maxLength: 84
+                  stck_hgpr:
+                    type: string
+                    description: 주식 최고가
+                    example: 74500
+                    maxLength: 10
+                  oprc_vrss_prpr:
+                    type: string
+                    description: 시가2 대비 현재가
+                    example: 600
+                    maxLength: 10
+                  oprc_vrss_prpr_sign:
+                    type: string
+                    description: |
+                      시가2 대비 현재가 부호
+
+                      1 : 상한<br/>
+                      2 : 상승<br/>
+                      3 : 보합<br/>
+                      4 : 하한<br/>
+                      5 : 하락
+                    enum:
+                      - '1'
+                      - '2'
+                      - '3'
+                      - '4'
+                      - '5'
+                    example: '2'
+                  mang_issu_yn:
+                    type: string
+                    description: 관리 종목 여부
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'N'
+                  divi_app_cls_code:
+                    type: string
+                    description: |
+                      동시호가배분처리코드
+
+                      11:매수상한배분<br/>
+                      12:매수하한배분<br/>
+                      13: 매도상한배분<br/>
+                      14:매도하한배분
+                    enum:
+                      - '11'
+                      - '12'
+                      - '13'
+                      - '14'
+                    example: 11
+                  short_over_yn:
+                    type: string
+                    description: 단기과열여부
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'N'
+                  mrkt_warn_cls_code:
+                    type: string
+                    description: |
+                      시장경고코드
+
+                      00: 없음 01: 투자주의 02:투자경고 03:투자위험
+                    enum:
+                      - '00'
+                      - '01'
+                      - '02'
+                      - '03'
+                    example: 0
+                  invt_caful_yn:
+                    type: string
+                    description: 투자유의여부
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'N'
+                  stange_runup_yn:
+                    type: string
+                    description: 이상급등여부
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'N'
+                  ssts_hot_yn:
+                    type: string
+                    description: 공매도과열 여부
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'N'
+                  low_current_yn:
+                    type: string
+                    description: 저유동성 종목 여부
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'N'
+                  vi_cls_code:
+                    type: string
+                    description: VI적용구분코드
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'N'
+                  short_over_cls_code:
+                    type: string
+                    description: 단기과열구분코드
+                    maxLength: 10
+                  stck_llam:
+                    type: string
+                    description: 주식 하한가
+                    example: 51400
+                    maxLength: 10
+                  new_lstn_cls_name:
+                    type: string
+                    description: 신규 상장 구분 명
+                    example: 신규상장
+                    maxLength: 40
+                  vlnt_deal_cls_name:
+                    type: string
+                    description: 임의 매매 구분 명
+                    example: 임의매매
+                    maxLength: 16
+                  flng_cls_name:
+                    type: string
+                    description: |
+                      락 구분 이름<br/>
+                      특별한 경우에만 데이터 출력
+                    example: 1
+                    maxLength: 40
+                  revl_issu_reas_name:
+                    type: string
+                    description: |
+                      재평가 종목 사유 명<br/>
+                      특별한 경우에만 데이터 출력
+                    maxLength: 40
+                  mrkt_warn_cls_name:
+                    type: string
+                    description: |
+                      시장 경고 구분 명<br/>
+                      특별한 경우에만 데이터 출력<br/>
+                      "투자환기" / "투자경고"
+                    maxLength: 40
+                  stck_sdpr:
+                    type: string
+                    description: 주식 기준가
+                    example: 73400
+                    maxLength: 10
+                  bstp_cls_code:
+                    type: string
+                    description: 업종 구분 코드
+                    example: 5930
+                    maxLength: 4
+                  stck_prdy_clpr:
+                    type: string
+                    description: 주식 전일 종가
+                    example: 73400
+                    maxLength: 10
+                  insn_pbnt_yn:
+                    type: string
+                    description: 불성실 공시 여부
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'N'
+                  fcam_mod_cls_name:
+                    type: string
+                    description: |
+                      액면가 변경 구분 명<br/>
+                      특별한 경우에만 데이터 출력
+                    maxLength: 10
+                  stck_prpr:
+                    type: string
+                    description: 주식 현재가
+                    example: 74400
+                    maxLength: 10
+                  prdy_vrss:
+                    type: string
+                    description: 전일 대비
+                    example: 1000
+                    maxLength: 10
+                  prdy_vrss_sign:
+                    type: string
+                    description: |
+                      전일 대비 부호
+
+                      1 : 상한<br/>
+                      2 : 상승<br/>
+                      3 : 보합<br/>
+                      4 : 하한<br/>
+                      5 : 하락
+                    enum:
+                      - '1'
+                      - '2'
+                      - '3'
+                      - '4'
+                      - '5'
+                    example: '2'
+                  prdy_ctrt:
+                    type: string
+                    description: 전일 대비율
+                    example: 1.36
+                    maxLength: 82
+                  acml_tr_pbmn:
+                    type: string
+                    description: 누적 거래 대금
+                    example: 276161183000
+                    maxLength: 18
+                  acml_vol:
+                    type: string
+                    description: 누적 거래량
+                    example: 3733708
+                    maxLength: 18
+                  prdy_vrss_vol_rate:
+                    type: string
+                    description: 전일 대비 거래량 비율
+                    example: 33.46
+                    maxLength: 84
+                  bstp_kor_isnm:
+                    type: string
+                    description: 업종 한글 종목명
+                    example: 전기.전자
+                    maxLength: 40
+                  sltr_yn:
+                    type: string
+                    description: 정리매매 여부
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'N'
+                  trht_yn:
+                    type: string
+                    description: 거래정지 여부
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'N'
+                  oprc_rang_cont_yn:
+                    type: string
+                    description: 시가 범위 연장 여부
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'N'
+                  vlnt_fin_cls_code:
+                    type: string
+                    description: 임의 종료 구분 코드
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'N'
+                  stck_oprc:
+                    type: string
+                    description: 주식 시가2
+                    example: 73800
+                    maxLength: 10
+                  prdy_vol:
+                    type: string
+                    description: 전일 거래량
+                    example: 11160062
+                    maxLength: 18
   parameters:
     personal_secret_key:
       in: header

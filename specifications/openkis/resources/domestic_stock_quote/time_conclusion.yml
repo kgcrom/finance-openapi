@@ -23,7 +23,7 @@ parameters:
     description: |
       거래ID
 
-      [실전투자/모의투자]
+      [실전투자/모의투자]<br/>
       FHPST01060000 : 주식현재가 당일시간대별체결
     required: true
     schema:
@@ -46,7 +46,7 @@ parameters:
     description: |
       조회 시작시간
 
-      기준시간 (6자리; HH:MM:SS)
+      기준시간 (6자리; HH:MM:SS)<br/>
       ex) 155000 입력시 15시 50분 00초 기준 이전 체결 내역이 조회됨
     required: true
     schema:
