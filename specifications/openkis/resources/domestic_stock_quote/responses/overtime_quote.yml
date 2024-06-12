@@ -1,0 +1,326 @@
+description: 국내주식 시간외 호가 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: object
+          properties:
+            ovtm_untp_last_hour:
+              type: string
+              description: 시간외 단일가 최종 시간
+              example: 161847
+              maxLength: 6
+            ovtm_untp_askp1:
+              type: string
+              description: 시간외 단일가 매도호가1
+              example: 83600
+              maxLength: 10
+            ovtm_untp_askp2:
+              type: string
+              description: 시간외 단일가 매도호가2
+              example: 83700
+              maxLength: 10
+            ovtm_untp_askp3:
+              type: string
+              description: 시간외 단일가 매도호가3
+              example: 83800
+              maxLength: 10
+            ovtm_untp_askp4:
+              type: string
+              description: 시간외 단일가 매도호가4
+              example: 0
+              maxLength: 10
+            ovtm_untp_askp5:
+              type: string
+              description: 시간외 단일가 매도호가5
+              example: 0
+              maxLength: 10
+            ovtm_untp_askp6:
+              type: string
+              description: 시간외 단일가 매도호가6
+              example: 0
+              maxLength: 10
+            ovtm_untp_askp7:
+              type: string
+              description: 시간외 단일가 매도호가7
+              example: 0
+              maxLength: 10
+            ovtm_untp_askp8:
+              type: string
+              description: 시간외 단일가 매도호가8
+              example: 0
+              maxLength: 10
+            ovtm_untp_askp9:
+              type: string
+              description: 시간외 단일가 매도호가9
+              example: 0
+              maxLength: 10
+            ovtm_untp_askp10:
+              type: string
+              description: 시간외 단일가 매도호가10
+              example: 0
+              maxLength: 10
+            ovtm_untp_bidp1:
+              type: string
+              description: 시간외 단일가 매수호가1
+              example: 83500
+              maxLength: 10
+            ovtm_untp_bidp2:
+              type: string
+              description: 시간외 단일가 매수호가2
+              example: 83400
+              maxLength: 10
+            ovtm_untp_bidp3:
+              type: string
+              description: 시간외 단일가 매수호가3
+              example: 83300
+              maxLength: 10
+            ovtm_untp_bidp4:
+              type: string
+              description: 시간외 단일가 매수호가4
+              example: 0
+              maxLength: 10
+            ovtm_untp_bidp5:
+              type: string
+              description: 시간외 단일가 매수호가5
+              example: 0
+              maxLength: 10
+            ovtm_untp_bidp6:
+              type: string
+              description: 시간외 단일가 매수호가6
+              example: 0
+              maxLength: 10
+            ovtm_untp_bidp7:
+              type: string
+              description: 시간외 단일가 매수호가7
+              example: 0
+              maxLength: 10
+            ovtm_untp_bidp8:
+              type: string
+              description: 시간외 단일가 매수호가8
+              example: 0
+              maxLength: 10
+            ovtm_untp_bidp9:
+              type: string
+              description: 시간외 단일가 매수호가9
+              example: 0
+              maxLength: 10
+            ovtm_untp_bidp10:
+              type: string
+              description: 시간외 단일가 매수호가10
+              example: 0
+              maxLength: 10
+            ovtm_untp_askp_icdc1:
+              type: string
+              description: 시간외 단일가 매도호가 증감1
+              example: 0
+              maxLength: 10
+            ovtm_untp_askp_icdc2:
+              type: string
+              description: 시간외 단일가 매도호가 증감2
+              example: 0
+              maxLength: 10
+            ovtm_untp_askp_icdc3:
+              type: string
+              description: 시간외 단일가 매도호가 증감3
+              example: 0
+              maxLength: 10
+            ovtm_untp_bidp_icdc1:
+              type: string
+              description: 시간외 단일가 매수호가 증감1
+              example: 1
+              maxLength: 10
+            ovtm_untp_bidp_icdc2:
+              type: string
+              description: 시간외 단일가 매수호가 증감2
+              example: 0
+              maxLength: 10
+            ovtm_untp_bidp_icdc3:
+              type: string
+              description: 시간외 단일가 매수호가 증감3
+              example: 0
+              maxLength: 10
+            ovtm_untp_askp_rsqn1:
+              type: string
+              description: 시간외 단일가 매도호가 잔량1
+              example: 4498
+              maxLength: 12
+            ovtm_untp_askp_rsqn2:
+              type: string
+              description: 시간외 단일가 매도호가 잔량2
+              example: 11671
+              maxLength: 12
+            ovtm_untp_askp_rsqn3:
+              type: string
+              description: 시간외 단일가 매도호가 잔량3
+              example: 9625
+              maxLength: 12
+            ovtm_untp_askp_rsqn4:
+              type: string
+              description: 시간외 단일가 매도호가 잔량4
+              example: 0
+              maxLength: 12
+            ovtm_untp_askp_rsqn5:
+              type: string
+              description: 시간외 단일가 매도호가 잔량5
+              example: 0
+              maxLength: 12
+            ovtm_untp_askp_rsqn6:
+              type: string
+              description: 시간외 단일가 매도호가 잔량6
+              example: 0
+              maxLength: 12
+            ovtm_untp_askp_rsqn7:
+              type: string
+              description: 시간외 단일가 매도호가 잔량7
+              example: 0
+              maxLength: 12
+            ovtm_untp_askp_rsqn8:
+              type: string
+              description: 시간외 단일가 매도호가 잔량8
+              example: 0
+              maxLength: 12
+            ovtm_untp_askp_rsqn9:
+              type: string
+              description: 시간외 단일가 매도호가 잔량9
+              example: 0
+              maxLength: 12
+            ovtm_untp_askp_rsqn10:
+              type: string
+              description: 시간외 단일가 매도호가 잔량10
+              example: 0
+              maxLength: 12
+            ovtm_untp_bidp_rsqn1:
+              type: string
+              description: 시간외 단일가 매수호가 잔량1
+              example: 1219
+              maxLength: 12
+            ovtm_untp_bidp_rsqn2:
+              type: string
+              description: 시간외 단일가 매수호가 잔량2
+              example: 2242
+              maxLength: 12
+            ovtm_untp_bidp_rsqn3:
+              type: string
+              description: 시간외 단일가 매수호가 잔량3
+              example: 5603
+              maxLength: 12
+            ovtm_untp_bidp_rsqn4:
+              type: string
+              description: 시간외 단일가 매수호가 잔량4
+              example: 0
+              maxLength: 12
+            ovtm_untp_bidp_rsqn5:
+              type: string
+              description: 시간외 단일가 매수호가 잔량5
+              example: 0
+              maxLength: 12
+            ovtm_untp_bidp_rsqn6:
+              type: string
+              description: 시간외 단일가 매수호가 잔량6
+              example: 0
+              maxLength: 12
+            ovtm_untp_bidp_rsqn7:
+              type: string
+              description: 시간외 단일가 매수호가 잔량7
+              example: 0
+              maxLength: 12
+            ovtm_untp_bidp_rsqn8:
+              type: string
+              description: 시간외 단일가 매수호가 잔량8
+              example: 0
+              maxLength: 12
+            ovtm_untp_bidp_rsqn9:
+              type: string
+              description: 시간외 단일가 매수호가 잔량9
+              example: 0
+              maxLength: 12
+            ovtm_untp_bidp_rsqn10:
+              type: string
+              description: 시간외 단일가 매수호가 잔량10
+              example: 0
+              maxLength: 12
+            ovtm_untp_total_askp_rsqn:
+              type: string
+              description: 시간외 단일가 총 매도호가 잔량
+              example: 25794
+              maxLength: 12
+            ovtm_untp_total_bidp_rsqn:
+              type: string
+              description: 시간외 단일가 총 매수호가 잔량
+              example: 9064
+              maxLength: 12
+            ovtm_untp_total_askp_rsqn_icdc:
+              type: string
+              description: 시간외 단일가 총 매도호가 증감
+              example: 0
+              maxLength: 10
+            ovtm_untp_total_bidp_rsqn_icdc:
+              type: string
+              description: 시간외 단일가 총 매수호가 증감
+              example: 1
+              maxLength: 10
+            ovtm_untp_ntby_bidp_rsqn:
+              type: string
+              description: 시간외 단일가 순매수 호가 잔량
+              example: -16730
+              maxLength: 12
+            total_askp_rsqn:
+              type: string
+              description: 총 매도호가 잔량
+              example: 923970
+              maxLength: 12
+            total_bidp_rsqn:
+              type: string
+              description: 총 매수호가 잔량
+              example: 756893
+              maxLength: 12
+            total_askp_rsqn_icdc:
+              type: string
+              description: 총 매도호가 잔량 증감
+              example: 0
+              maxLength: 10
+            total_bidp_rsqn_icdc:
+              type: string
+              description: 총 매수호가 잔량 증감
+              example: 0
+              maxLength: 10
+            ovtm_total_askp_rsqn:
+              type: string
+              description: 시간외 총 매도호가 잔량
+              example: 36230
+              maxLength: 12
+            ovtm_total_bidp_rsqn:
+              type: string
+              description: 시간외 총 매수호가 잔량
+              example: 0
+              maxLength: 12
+            ovtm_total_askp_icdc:
+              type: string
+              description: 시간외 총 매도호가 증감
+              example: 0
+              maxLength: 10
+            ovtm_total_bidp_icdc:
+              type: string
+              description: 시간외 총 매수호가 증감
+              example: 0
+              maxLength: 10

@@ -1,0 +1,207 @@
+description: 국내주식 시간외 현재가 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output1:
+          type: object
+          properties:
+            bstp_kor_isnm:
+              type: string
+              description: 업종 한글 종목명
+              example: 전기.전자
+              maxLength: 40
+            mang_issu_cls_name:
+              type: string
+              description: 관리 종목 구분 명
+              maxLength: 40
+            ovtm_untp_prpr:
+              type: string
+              description: 시간외 단일가 현재가
+              example: 83600
+              maxLength: 10
+            ovtm_untp_prdy_vrss:
+              type: string
+              description: 시간외 단일가 전일 대비
+              example: -100
+              maxLength: 10
+            ovtm_untp_prdy_vrss_sign:
+              type: string
+              description: |
+                시간외 단일가 전일 대비 부호
+
+                1 : 상한<br/>
+                2 : 상승<br/>
+                3 : 보합<br/>
+                4 : 하한<br/>
+                5 : 하락
+              enum: ["1", "2", "3", "4", "5"]
+              example: "5"
+            ovtm_untp_prdy_ctrt:
+              type: string
+              description: 시간외 단일가 전일 대비율
+              example: -0.12
+              maxLength: 11
+            ovtm_untp_vol:
+              type: string
+              description: 시간외 단일가 전일 거래량
+              example: 3500
+              maxLength: 18
+            ovtm_untp_tr_pbmn:
+              type: string
+              description: 시간외 단일가 전일 거래 대금
+              example: 292600000
+              maxLength: 18
+            ovtm_untp_mxpr:
+              type: string
+              description: 시간외 단일가 상한가
+              example: 92000
+              maxLength: 10
+            ovtm_untp_llam:
+              type: string
+              description: 시간외 단일가 하한가
+              example: 75400
+              maxLength: 10
+            ovtm_untp_oprc:
+              type: string
+              description: 시간외 단일가 시가2
+              example: 83600
+              maxLength: 10
+            ovtm_untp_hgpr:
+              type: string
+              description: 시간외 단일가 최고가
+              example: 83600
+              maxLength: 10
+            ovtm_untp_lwpr:
+              type: string
+              description: 시간외 단일가 최저가
+              example: 83600
+              maxLength: 10
+            marg_rate:
+              type: string
+              description: 증거금 비율
+              example: 20.0
+              maxLength: 84
+            ovtm_untp_antc_cnpr:
+              type: string
+              description: 시간외 단일가 예상 체결가
+              example: 83500
+              maxLength: 10
+            ovtm_untp_antc_cntg_vrss:
+              type: string
+              description: 시간외 단일가 예상 체결 대비
+              example: -200
+              maxLength: 10
+            ovtm_untp_antc_cntg_vrss_sign:
+              type: string
+              description: |
+                시간외 단일가 예상 체결 대비 부호
+
+                1 : 상한<br/>
+                2 : 상승<br/>
+                3 : 보합<br/>
+                4 : 하한<br/>
+                5 : 하락
+              enum: ["1", "2", "3", "4", "5"]
+              example: "5"
+            ovtm_untp_antc_cntg_ctrt:
+              type: string
+              description: 시간외 단일가 예상 체결 대비율
+              example: -0.24
+              maxLength: 11
+            ovtm_untp_antc_cnqn:
+              type: string
+              description: 시간외 단일가 예상 체결량
+              example: 4442
+              maxLength: 18
+            crdt_able_yn:
+              type: string
+              description: 신용 가능 여부
+              enum: ["Y", "N"]
+              example: Y
+            new_lstn_cls_name:
+              type: string
+              description: 신규 상장 구분 명
+              maxLength: 40
+            sltr_yn:
+              type: string
+              description: 정리매매 여부
+              enum: ["Y", "N"]
+              example: Y
+            mang_issu_yn:
+              type: string
+              description: 관리 종목 여부
+              enum: ["Y", "N"]
+              example: Y
+            mrkt_warn_cls_code:
+              type: string
+              description: 시장 경고 구분 코드
+              maxLength: 2
+            trht_yn:
+              type: string
+              description: 거래정지 여부
+              enum: ["Y", "N"]
+              example: Y
+            vlnt_deal_cls_name:
+              type: string
+              description: 임의 매매 구분 명
+              maxLength: 16
+            ovtm_untp_sdpr:
+              type: string
+              description: 시간외 단일가 기준가
+              example: 83700
+              maxLength: 10
+            mrkt_warn_cls_name:
+              type: string
+              description: 시장 경구 구분 명
+              maxLength: 40
+            revl_issu_reas_name:
+              type: string
+              description: 재평가 종목 사유 명
+              maxLength: 40
+            insn_pbnt_yn:
+              type: string
+              description: 불성실 공시 여부
+              enum: ["Y", "N"]
+              example: Y
+            flng_cls_name:
+              type: string
+              description: 락 구분 이름
+              maxLength: 40
+            rprs_mrkt_kor_name:
+              type: string
+              description: 대표 시장 한글 명
+              example: KOSPI200
+              maxLength: 40
+            ovtm_vi_cls_code:
+              type: string
+              description: 시간외단일가VI적용구분코드
+              maxLength: 1
+            bidp:
+              type: string
+              description: 매수호가
+              example: 83600
+              maxLength: 10
+            askp:
+              type: string
+              description: 매도호가
+              example: 83700
+              maxLength: 10

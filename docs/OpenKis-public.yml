@@ -714,11 +714,46 @@ paths:
         국내주식 시간외현재가 API입니다.
 
         한국투자 HTS(eFriend Plus) > [0230] 시간외 현재가 화면의 좌측 상단기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-      responses:
-        '200':
-          description: 국내주식 시간외 현재가 조회 성공
       tags:
         - DomesticStockQuote
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - $ref: '#/components/parameters/fid_input_iscd'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자미지원<br/>
+            FHPST02300000 : 국내주식 시간외 현재가
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHPST02300000
+            default: FHPST02300000
+            example: FHPST02300000
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            시장 분류 코드<br/>
+            J : 주식, ETF, ETN
+          required: true
+          schema:
+            type: string
+            default: J
+            example: J
+      responses:
+        '200':
+          $ref: '#/components/responses/overtime_price'
   /uapi/domestic-stock/v1/quotations/inquire-overtime-asking-price:
     get:
       operationId: getDomesticStockOverTimeQuote
@@ -727,11 +762,49 @@ paths:
         국내주식 시간외호가 API입니다.
 
         한국투자 HTS(eFriend Plus) > [0230] 시간외 현재가 화면의 '호가' 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-      responses:
-        '200':
-          description: 국내주식 시간외 호가 조회 성공
       tags:
         - DomesticStockQuote
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - $ref: '#/components/parameters/fid_input_iscd'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHPST02300400 : 주식 당일 분봉 조회
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHPST02300400
+            default: FHPST02300400
+            example: FHPST02300400
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            시장 분류 코드<br/>
+            J : 주식, ETF, ETN<br/>
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+              - U
+            default: J
+            example: J
+      responses:
+        '200':
+          $ref: '#/components/responses/overtime_quote'
   /uapi/domestic-stock/v1/quotations/inquire-time-itemchartprice:
     get:
       operationId: getDomesticStockTimeMinutePrice
@@ -757,7 +830,7 @@ paths:
           description: |
             거래ID
 
-            [실전투자/모의투자]<br/>
+            모의투자 미지원<br/>
             FHKST03010200 : 주식 당일 분봉 조회
           required: true
           schema:
@@ -856,7 +929,7 @@ paths:
           description: |
             거래ID
 
-            [실전투자/모의투자]<br/>
+            모의투자 미지원<br/>
             FHPST01010000 : 주식현재가 시세2
           required: true
           schema:
@@ -952,6 +1025,8 @@ paths:
       operationId: searchProductInfo
       summary: 상품기본조회
       description: 국내주식뿐 아니라 선물, 채권, 해외주식의 기본 정보를 조회하는 API 입니다.
+      tags:
+        - DomesticStockQuote
       responses:
         '200':
           description: 상품기본조회 조회 성공
@@ -963,11 +1038,11 @@ paths:
         주식기본조회 API입니다.
 
         국내주식 종목의 종목상세정보를 확인할 수 있습니다.
+      tags:
+        - DomesticStockQuote
       responses:
         '200':
           description: 국내주식 기본조회 조회 성공
-      tags:
-        - DomesticStockQuote
   /uapi/domestic-stock/v1/quotations/invest-opbysec:
     get:
       operationId: getDomesticStockSecuritiesOpinion
@@ -4413,6 +4488,557 @@ components:
                           description: 시간외 단일가 거래 대금
                           example: 1348318000
                           maxLength: 18
+    overtime_price:
+      description: 국내주식 시간외 현재가 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output1:
+                type: object
+                properties:
+                  bstp_kor_isnm:
+                    type: string
+                    description: 업종 한글 종목명
+                    example: 전기.전자
+                    maxLength: 40
+                  mang_issu_cls_name:
+                    type: string
+                    description: 관리 종목 구분 명
+                    maxLength: 40
+                  ovtm_untp_prpr:
+                    type: string
+                    description: 시간외 단일가 현재가
+                    example: 83600
+                    maxLength: 10
+                  ovtm_untp_prdy_vrss:
+                    type: string
+                    description: 시간외 단일가 전일 대비
+                    example: -100
+                    maxLength: 10
+                  ovtm_untp_prdy_vrss_sign:
+                    type: string
+                    description: |
+                      시간외 단일가 전일 대비 부호
+
+                      1 : 상한<br/>
+                      2 : 상승<br/>
+                      3 : 보합<br/>
+                      4 : 하한<br/>
+                      5 : 하락
+                    enum:
+                      - '1'
+                      - '2'
+                      - '3'
+                      - '4'
+                      - '5'
+                    example: '5'
+                  ovtm_untp_prdy_ctrt:
+                    type: string
+                    description: 시간외 단일가 전일 대비율
+                    example: -0.12
+                    maxLength: 11
+                  ovtm_untp_vol:
+                    type: string
+                    description: 시간외 단일가 전일 거래량
+                    example: 3500
+                    maxLength: 18
+                  ovtm_untp_tr_pbmn:
+                    type: string
+                    description: 시간외 단일가 전일 거래 대금
+                    example: 292600000
+                    maxLength: 18
+                  ovtm_untp_mxpr:
+                    type: string
+                    description: 시간외 단일가 상한가
+                    example: 92000
+                    maxLength: 10
+                  ovtm_untp_llam:
+                    type: string
+                    description: 시간외 단일가 하한가
+                    example: 75400
+                    maxLength: 10
+                  ovtm_untp_oprc:
+                    type: string
+                    description: 시간외 단일가 시가2
+                    example: 83600
+                    maxLength: 10
+                  ovtm_untp_hgpr:
+                    type: string
+                    description: 시간외 단일가 최고가
+                    example: 83600
+                    maxLength: 10
+                  ovtm_untp_lwpr:
+                    type: string
+                    description: 시간외 단일가 최저가
+                    example: 83600
+                    maxLength: 10
+                  marg_rate:
+                    type: string
+                    description: 증거금 비율
+                    example: 20
+                    maxLength: 84
+                  ovtm_untp_antc_cnpr:
+                    type: string
+                    description: 시간외 단일가 예상 체결가
+                    example: 83500
+                    maxLength: 10
+                  ovtm_untp_antc_cntg_vrss:
+                    type: string
+                    description: 시간외 단일가 예상 체결 대비
+                    example: -200
+                    maxLength: 10
+                  ovtm_untp_antc_cntg_vrss_sign:
+                    type: string
+                    description: |
+                      시간외 단일가 예상 체결 대비 부호
+
+                      1 : 상한<br/>
+                      2 : 상승<br/>
+                      3 : 보합<br/>
+                      4 : 하한<br/>
+                      5 : 하락
+                    enum:
+                      - '1'
+                      - '2'
+                      - '3'
+                      - '4'
+                      - '5'
+                    example: '5'
+                  ovtm_untp_antc_cntg_ctrt:
+                    type: string
+                    description: 시간외 단일가 예상 체결 대비율
+                    example: -0.24
+                    maxLength: 11
+                  ovtm_untp_antc_cnqn:
+                    type: string
+                    description: 시간외 단일가 예상 체결량
+                    example: 4442
+                    maxLength: 18
+                  crdt_able_yn:
+                    type: string
+                    description: 신용 가능 여부
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'Y'
+                  new_lstn_cls_name:
+                    type: string
+                    description: 신규 상장 구분 명
+                    maxLength: 40
+                  sltr_yn:
+                    type: string
+                    description: 정리매매 여부
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'Y'
+                  mang_issu_yn:
+                    type: string
+                    description: 관리 종목 여부
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'Y'
+                  mrkt_warn_cls_code:
+                    type: string
+                    description: 시장 경고 구분 코드
+                    maxLength: 2
+                  trht_yn:
+                    type: string
+                    description: 거래정지 여부
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'Y'
+                  vlnt_deal_cls_name:
+                    type: string
+                    description: 임의 매매 구분 명
+                    maxLength: 16
+                  ovtm_untp_sdpr:
+                    type: string
+                    description: 시간외 단일가 기준가
+                    example: 83700
+                    maxLength: 10
+                  mrkt_warn_cls_name:
+                    type: string
+                    description: 시장 경구 구분 명
+                    maxLength: 40
+                  revl_issu_reas_name:
+                    type: string
+                    description: 재평가 종목 사유 명
+                    maxLength: 40
+                  insn_pbnt_yn:
+                    type: string
+                    description: 불성실 공시 여부
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'Y'
+                  flng_cls_name:
+                    type: string
+                    description: 락 구분 이름
+                    maxLength: 40
+                  rprs_mrkt_kor_name:
+                    type: string
+                    description: 대표 시장 한글 명
+                    example: KOSPI200
+                    maxLength: 40
+                  ovtm_vi_cls_code:
+                    type: string
+                    description: 시간외단일가VI적용구분코드
+                    maxLength: 1
+                  bidp:
+                    type: string
+                    description: 매수호가
+                    example: 83600
+                    maxLength: 10
+                  askp:
+                    type: string
+                    description: 매도호가
+                    example: 83700
+                    maxLength: 10
+    overtime_quote:
+      description: 국내주식 시간외 호가 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: object
+                properties:
+                  ovtm_untp_last_hour:
+                    type: string
+                    description: 시간외 단일가 최종 시간
+                    example: 161847
+                    maxLength: 6
+                  ovtm_untp_askp1:
+                    type: string
+                    description: 시간외 단일가 매도호가1
+                    example: 83600
+                    maxLength: 10
+                  ovtm_untp_askp2:
+                    type: string
+                    description: 시간외 단일가 매도호가2
+                    example: 83700
+                    maxLength: 10
+                  ovtm_untp_askp3:
+                    type: string
+                    description: 시간외 단일가 매도호가3
+                    example: 83800
+                    maxLength: 10
+                  ovtm_untp_askp4:
+                    type: string
+                    description: 시간외 단일가 매도호가4
+                    example: 0
+                    maxLength: 10
+                  ovtm_untp_askp5:
+                    type: string
+                    description: 시간외 단일가 매도호가5
+                    example: 0
+                    maxLength: 10
+                  ovtm_untp_askp6:
+                    type: string
+                    description: 시간외 단일가 매도호가6
+                    example: 0
+                    maxLength: 10
+                  ovtm_untp_askp7:
+                    type: string
+                    description: 시간외 단일가 매도호가7
+                    example: 0
+                    maxLength: 10
+                  ovtm_untp_askp8:
+                    type: string
+                    description: 시간외 단일가 매도호가8
+                    example: 0
+                    maxLength: 10
+                  ovtm_untp_askp9:
+                    type: string
+                    description: 시간외 단일가 매도호가9
+                    example: 0
+                    maxLength: 10
+                  ovtm_untp_askp10:
+                    type: string
+                    description: 시간외 단일가 매도호가10
+                    example: 0
+                    maxLength: 10
+                  ovtm_untp_bidp1:
+                    type: string
+                    description: 시간외 단일가 매수호가1
+                    example: 83500
+                    maxLength: 10
+                  ovtm_untp_bidp2:
+                    type: string
+                    description: 시간외 단일가 매수호가2
+                    example: 83400
+                    maxLength: 10
+                  ovtm_untp_bidp3:
+                    type: string
+                    description: 시간외 단일가 매수호가3
+                    example: 83300
+                    maxLength: 10
+                  ovtm_untp_bidp4:
+                    type: string
+                    description: 시간외 단일가 매수호가4
+                    example: 0
+                    maxLength: 10
+                  ovtm_untp_bidp5:
+                    type: string
+                    description: 시간외 단일가 매수호가5
+                    example: 0
+                    maxLength: 10
+                  ovtm_untp_bidp6:
+                    type: string
+                    description: 시간외 단일가 매수호가6
+                    example: 0
+                    maxLength: 10
+                  ovtm_untp_bidp7:
+                    type: string
+                    description: 시간외 단일가 매수호가7
+                    example: 0
+                    maxLength: 10
+                  ovtm_untp_bidp8:
+                    type: string
+                    description: 시간외 단일가 매수호가8
+                    example: 0
+                    maxLength: 10
+                  ovtm_untp_bidp9:
+                    type: string
+                    description: 시간외 단일가 매수호가9
+                    example: 0
+                    maxLength: 10
+                  ovtm_untp_bidp10:
+                    type: string
+                    description: 시간외 단일가 매수호가10
+                    example: 0
+                    maxLength: 10
+                  ovtm_untp_askp_icdc1:
+                    type: string
+                    description: 시간외 단일가 매도호가 증감1
+                    example: 0
+                    maxLength: 10
+                  ovtm_untp_askp_icdc2:
+                    type: string
+                    description: 시간외 단일가 매도호가 증감2
+                    example: 0
+                    maxLength: 10
+                  ovtm_untp_askp_icdc3:
+                    type: string
+                    description: 시간외 단일가 매도호가 증감3
+                    example: 0
+                    maxLength: 10
+                  ovtm_untp_bidp_icdc1:
+                    type: string
+                    description: 시간외 단일가 매수호가 증감1
+                    example: 1
+                    maxLength: 10
+                  ovtm_untp_bidp_icdc2:
+                    type: string
+                    description: 시간외 단일가 매수호가 증감2
+                    example: 0
+                    maxLength: 10
+                  ovtm_untp_bidp_icdc3:
+                    type: string
+                    description: 시간외 단일가 매수호가 증감3
+                    example: 0
+                    maxLength: 10
+                  ovtm_untp_askp_rsqn1:
+                    type: string
+                    description: 시간외 단일가 매도호가 잔량1
+                    example: 4498
+                    maxLength: 12
+                  ovtm_untp_askp_rsqn2:
+                    type: string
+                    description: 시간외 단일가 매도호가 잔량2
+                    example: 11671
+                    maxLength: 12
+                  ovtm_untp_askp_rsqn3:
+                    type: string
+                    description: 시간외 단일가 매도호가 잔량3
+                    example: 9625
+                    maxLength: 12
+                  ovtm_untp_askp_rsqn4:
+                    type: string
+                    description: 시간외 단일가 매도호가 잔량4
+                    example: 0
+                    maxLength: 12
+                  ovtm_untp_askp_rsqn5:
+                    type: string
+                    description: 시간외 단일가 매도호가 잔량5
+                    example: 0
+                    maxLength: 12
+                  ovtm_untp_askp_rsqn6:
+                    type: string
+                    description: 시간외 단일가 매도호가 잔량6
+                    example: 0
+                    maxLength: 12
+                  ovtm_untp_askp_rsqn7:
+                    type: string
+                    description: 시간외 단일가 매도호가 잔량7
+                    example: 0
+                    maxLength: 12
+                  ovtm_untp_askp_rsqn8:
+                    type: string
+                    description: 시간외 단일가 매도호가 잔량8
+                    example: 0
+                    maxLength: 12
+                  ovtm_untp_askp_rsqn9:
+                    type: string
+                    description: 시간외 단일가 매도호가 잔량9
+                    example: 0
+                    maxLength: 12
+                  ovtm_untp_askp_rsqn10:
+                    type: string
+                    description: 시간외 단일가 매도호가 잔량10
+                    example: 0
+                    maxLength: 12
+                  ovtm_untp_bidp_rsqn1:
+                    type: string
+                    description: 시간외 단일가 매수호가 잔량1
+                    example: 1219
+                    maxLength: 12
+                  ovtm_untp_bidp_rsqn2:
+                    type: string
+                    description: 시간외 단일가 매수호가 잔량2
+                    example: 2242
+                    maxLength: 12
+                  ovtm_untp_bidp_rsqn3:
+                    type: string
+                    description: 시간외 단일가 매수호가 잔량3
+                    example: 5603
+                    maxLength: 12
+                  ovtm_untp_bidp_rsqn4:
+                    type: string
+                    description: 시간외 단일가 매수호가 잔량4
+                    example: 0
+                    maxLength: 12
+                  ovtm_untp_bidp_rsqn5:
+                    type: string
+                    description: 시간외 단일가 매수호가 잔량5
+                    example: 0
+                    maxLength: 12
+                  ovtm_untp_bidp_rsqn6:
+                    type: string
+                    description: 시간외 단일가 매수호가 잔량6
+                    example: 0
+                    maxLength: 12
+                  ovtm_untp_bidp_rsqn7:
+                    type: string
+                    description: 시간외 단일가 매수호가 잔량7
+                    example: 0
+                    maxLength: 12
+                  ovtm_untp_bidp_rsqn8:
+                    type: string
+                    description: 시간외 단일가 매수호가 잔량8
+                    example: 0
+                    maxLength: 12
+                  ovtm_untp_bidp_rsqn9:
+                    type: string
+                    description: 시간외 단일가 매수호가 잔량9
+                    example: 0
+                    maxLength: 12
+                  ovtm_untp_bidp_rsqn10:
+                    type: string
+                    description: 시간외 단일가 매수호가 잔량10
+                    example: 0
+                    maxLength: 12
+                  ovtm_untp_total_askp_rsqn:
+                    type: string
+                    description: 시간외 단일가 총 매도호가 잔량
+                    example: 25794
+                    maxLength: 12
+                  ovtm_untp_total_bidp_rsqn:
+                    type: string
+                    description: 시간외 단일가 총 매수호가 잔량
+                    example: 9064
+                    maxLength: 12
+                  ovtm_untp_total_askp_rsqn_icdc:
+                    type: string
+                    description: 시간외 단일가 총 매도호가 증감
+                    example: 0
+                    maxLength: 10
+                  ovtm_untp_total_bidp_rsqn_icdc:
+                    type: string
+                    description: 시간외 단일가 총 매수호가 증감
+                    example: 1
+                    maxLength: 10
+                  ovtm_untp_ntby_bidp_rsqn:
+                    type: string
+                    description: 시간외 단일가 순매수 호가 잔량
+                    example: -16730
+                    maxLength: 12
+                  total_askp_rsqn:
+                    type: string
+                    description: 총 매도호가 잔량
+                    example: 923970
+                    maxLength: 12
+                  total_bidp_rsqn:
+                    type: string
+                    description: 총 매수호가 잔량
+                    example: 756893
+                    maxLength: 12
+                  total_askp_rsqn_icdc:
+                    type: string
+                    description: 총 매도호가 잔량 증감
+                    example: 0
+                    maxLength: 10
+                  total_bidp_rsqn_icdc:
+                    type: string
+                    description: 총 매수호가 잔량 증감
+                    example: 0
+                    maxLength: 10
+                  ovtm_total_askp_rsqn:
+                    type: string
+                    description: 시간외 총 매도호가 잔량
+                    example: 36230
+                    maxLength: 12
+                  ovtm_total_bidp_rsqn:
+                    type: string
+                    description: 시간외 총 매수호가 잔량
+                    example: 0
+                    maxLength: 12
+                  ovtm_total_askp_icdc:
+                    type: string
+                    description: 시간외 총 매도호가 증감
+                    example: 0
+                    maxLength: 10
+                  ovtm_total_bidp_icdc:
+                    type: string
+                    description: 시간외 총 매수호가 증감
+                    example: 0
+                    maxLength: 10
     time_minute_price:
       description: 국내주식 당일 분봉 조회 성공
       headers:

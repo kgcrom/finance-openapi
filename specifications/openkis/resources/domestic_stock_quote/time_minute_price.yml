@@ -25,7 +25,7 @@ parameters:
     description: |
       거래ID
 
-      [실전투자/모의투자]<br/>
+      모의투자 미지원<br/>
       FHKST03010200 : 주식 당일 분봉 조회
     required: true
     schema:

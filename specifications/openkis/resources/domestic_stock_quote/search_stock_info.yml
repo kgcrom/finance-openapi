@@ -7,9 +7,9 @@ description: |
 
   국내주식 종목의 종목상세정보를 확인할 수 있습니다.
 
+tags:
+  - DomesticStockQuote
+
 responses:
   200:
     description: 국내주식 기본조회 조회 성공
-
-tags:
-  - DomesticStockQuote
