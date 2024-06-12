@@ -26,7 +26,7 @@ parameters:
     description: |
       거래ID
 
-      모의투자미지원<br/>
+      모의투자 미지원<br/>
       FHPST02300000 : 국내주식 시간외 현재가
     required: true
     schema:

@@ -732,7 +732,7 @@ paths:
           description: |
             거래ID
 
-            모의투자미지원<br/>
+            모의투자 미지원<br/>
             FHPST02300000 : 국내주식 시간외 현재가
           required: true
           schema:
@@ -781,7 +781,7 @@ paths:
             거래ID
 
             모의투자 미지원<br/>
-            FHPST02300400 : 주식 당일 분봉 조회
+            FHPST02300400 : 국내주식 시간외호가 조회
           required: true
           schema:
             type: string
@@ -959,11 +959,117 @@ paths:
         국내주식 장마감 예상체결가 API입니다.
 
         한국투자 HTS(eFriend Plus) > [0183] 장마감 예상체결가 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-      responses:
-        '200':
-          description: 국내주식 장마감 예상체결가 조회 성공
       tags:
         - DomesticStockQuote
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHKST117300C0 : 국내주식 장마감 예상체결가 조회
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHKST117300C0
+            default: FHKST117300C0
+            example: FHKST117300C0
+        - in: query
+          name: fid_rank_sort_cls_code
+          description: |
+            순위 정렬 구분 코드
+
+            0:전체<br/>
+            1:상한가마감예상<br/>
+            2:하한가마감예상<br/>
+            3:직전대비상승률상위<br/>
+            4:직전대비하락률상위
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+              - '2'
+              - '3'
+              - '4'
+            default: 0
+            example: 0
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            FID 조건 시장 분류 코드
+
+            J : 주식
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+            default: J
+            example: J
+        - in: query
+          name: fid_cond_scr_div_code
+          description: |
+            FID 조건 화면 구분 코드<br/>
+            Unique key(11173)
+          required: true
+          schema:
+            type: string
+            enum:
+              - '11173'
+            default: 11173
+            example: 11173
+        - in: query
+          name: fid_input_iscd
+          description: |
+            종목코드
+
+            0000:전체<br/>
+            0001:거래소<br/>
+            1001:코스닥<br/>
+            2001:코스피200<br/>
+            4001: KRX100
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0000'
+              - '0001'
+              - '1001'
+              - '2001'
+              - '4001'
+            default: 0
+            example: 0
+        - in: query
+          name: fid_blng_cls_code
+          description: |
+            소속 구분 코드
+
+            0:전체<br/>
+            1:종가범위연장
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+            default: 0
+            example: 0
+      responses:
+        '200':
+          $ref: '#/components/responses/closing_expected_conclusion'
   /uapi/domestic-stock/v1/quotations/inquire-vi-status:
     get:
       operationId: getViStatus
@@ -972,11 +1078,126 @@ paths:
         HTS(eFriend Plus) [0139] 변동성 완화장치(VI) 현황 데이터를 확인할 수 있는 API입니다.
 
         최근 30건까지 확인 가능합니다.
-      responses:
-        '200':
-          description: 국내주식 변동성완화장치(VI) 현황 조회 성공
       tags:
         - DomesticStockQuote
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - $ref: '#/components/parameters/fid_input_iscd'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHPST01390000 : 변동성완화장치(VI) 현황
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHPST01390000
+            default: FHPST01390000
+            example: FHPST01390000
+        - in: query
+          name: fid_div_cls_code
+          description: |
+            FID 분류 구분 코드
+
+            0: 전체<br/>
+            1: 상승<br/>
+            2: 하락
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+              - '2'
+            default: 0
+            example: 0
+        - in: query
+          name: fid_cond_scr_div_code
+          description: |
+            FID 조건 화면 구분 코드<br/>
+            Unique key(20139)
+          required: true
+          schema:
+            type: string
+            enum:
+              - '20139'
+            default: 20139
+            example: 20139
+        - in: query
+          name: fid_mrkt_cls_code
+          description: |
+            FID 시장 구분 코드
+
+            0: 전체<br/>
+            1: 거래소<br/>
+            2: 코스닥
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+              - '2'
+            default: 0
+            example: 0
+        - in: query
+          name: fid_rank_sort_cls_code
+          description: |
+            FID 순위 정렬 구분 코드
+
+            0: 전체<br/>
+            1: 정적<br/>
+            2: 동적<br/>
+            3: 정적&동적
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+              - '2'
+              - '3'
+            default: 0
+            example: 0
+        - in: query
+          name: fid_input_date_1
+          description: |
+            FID 입력일자
+
+            YYYYMMDD
+          required: true
+          schema:
+            type: string
+            pattern: ^[0-9]{8}$
+            example: 20210101
+        - in: query
+          name: fid_trgt_cls_code
+          description: FID 대상 구분 코드
+          required: true
+          schema:
+            type: string
+            maxLength: 32
+        - in: query
+          name: fid_trgt_exls_cls_code
+          description: FID 대상 제외 구분 코드
+          required: true
+          schema:
+            type: string
+            maxLength: 32
+      responses:
+        '200':
+          $ref: '#/components/responses/vi_status'
   /uapi/domestic-stock/v1/quotations/credit-by-company:
     get:
       operationId: getFinancialCreditByCompany
@@ -5556,6 +5777,194 @@ components:
                     description: 전일 거래량
                     example: 11160062
                     maxLength: 18
+    closing_expected_conclusion:
+      description: 국내주식 장마감 예상체결가 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    stck_shrn_iscd:
+                      type: string
+                      description: 주식 단축 종목코드
+                      example: '000020'
+                      maxLength: 9
+                    hts_kor_isnm:
+                      type: string
+                      description: HTS 한글 종목명
+                      example: 동화약품
+                      maxLength: 40
+                    stck_prpr:
+                      type: string
+                      description: 주식 현재가
+                      example: 8140
+                      maxLength: 10
+                    prdy_vrss:
+                      type: string
+                      description: 전일 대비
+                      example: 60
+                      maxLength: 10
+                    prdy_vrss_sign:
+                      type: string
+                      description: |
+                        전일 대비 부호
+
+                        1 : 상한<br/>
+                        2 : 상승<br/>
+                        3 : 보합<br/>
+                        4 : 하한<br/>
+                        5 : 하락
+                      enum:
+                        - '1'
+                        - '2'
+                        - '3'
+                        - '4'
+                        - '5'
+                      example: 2
+                    prdy_ctrt:
+                      type: string
+                      description: 전일 대비율
+                      example: 0.74
+                      maxLength: 11
+                    sdpr_vrss_prpr:
+                      type: string
+                      description: 기준가 대비 현재가
+                      example: 0
+                      maxLength: 10
+                    sdpr_vrss_prpr_rate:
+                      type: string
+                      description: 기준가 대비 현재가 비율
+                      example: 0
+                      maxLength: 84
+                    cntg_vol:
+                      type: string
+                      description: 체결 거래량
+                      example: 326
+                      maxLength: 18
+    vi_status:
+      description: 국내주식 변동성완화장치(VI) 현황 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    hts_kor_isnm:
+                      type: string
+                      description: HTS 한글 종목명
+                      example: KODEX Fn멀티팩터
+                      maxLength: 40
+                    mksc_shrn_iscd:
+                      type: string
+                      description: 유가증권 단축 종목코드
+                      example: 337120
+                      maxLength: 9
+                    vi_cls_code:
+                      type: string
+                      description: |
+                        VI발동상태<br/>
+                        Y: 발동 / N: 해제
+                      enum:
+                        - 'Y'
+                        - 'N'
+                      example: 'Y'
+                    bsop_date:
+                      type: string
+                      description: 영업 일자
+                      example: 20240126
+                      maxLength: 8
+                    cntg_vi_hour:
+                      type: string
+                      description: VI발동시간
+                      example: 174012
+                      maxLength: 6
+                    vi_cncl_hour:
+                      type: string
+                      description: VI해제시간
+                      example: 174212
+                      maxLength: 6
+                    vi_kind_code:
+                      type: string
+                      description: |
+                        VI종류코드
+
+                        1:정적<br/>
+                        2:동적<br/>
+                        3:정적&동적
+                      enum:
+                        - '1'
+                        - '2'
+                        - '3'
+                      example: 1
+                    vi_prc:
+                      type: string
+                      description: VI발동가격
+                      example: 12135
+                      maxLength: 10
+                    vi_stnd_prc:
+                      type: string
+                      description: 정적VI발동기준가격
+                      example: 0
+                      maxLength: 10
+                    vi_dprt:
+                      type: string
+                      description: 정적VI발동괴리율
+                      example: 0
+                      maxLength: 8
+                    vi_dmc_stnd_prc:
+                      type: string
+                      description: 동적VI발동기준가격
+                      example: 13275
+                      maxLength: 10
+                    vi_dmc_dprt:
+                      type: string
+                      description: 동적VI발동괴리율
+                      example: -8.59
+                      maxLength: 8
+                    vi_count:
+                      type: string
+                      description: VI발동횟수
+                      example: 2
+                      maxLength: 7
   parameters:
     personal_secret_key:
       in: header

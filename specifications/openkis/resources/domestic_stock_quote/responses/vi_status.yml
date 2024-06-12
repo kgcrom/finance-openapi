@@ -1,0 +1,100 @@
+description: 국내주식 변동성완화장치(VI) 현황 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: array
+          items:
+            type: object
+            properties:
+              hts_kor_isnm:
+                type: string
+                description: HTS 한글 종목명
+                example: KODEX Fn멀티팩터
+                maxLength: 40
+              mksc_shrn_iscd:
+                type: string
+                description: 유가증권 단축 종목코드
+                example: 337120
+                maxLength: 9
+              vi_cls_code:
+                type: string
+                description: |
+                  VI발동상태<br/>
+                  Y: 발동 / N: 해제
+                enum: ["Y", "N"]
+                example: Y
+              bsop_date:
+                type: string
+                description: 영업 일자
+                example: 20240126
+                maxLength: 8
+              cntg_vi_hour:
+                type: string
+                description: VI발동시간
+                example: 174012
+                maxLength: 6
+              vi_cncl_hour:
+                type: string
+                description: VI해제시간
+                example: 174212
+                maxLength: 6
+              vi_kind_code:
+                type: string
+                description: |
+                  VI종류코드
+
+                  1:정적<br/>
+                  2:동적<br/>
+                  3:정적&동적
+                enum: ["1", "2", "3"]
+                example: 1
+              vi_prc:
+                type: string
+                description: VI발동가격
+                example: 12135
+                maxLength: 10
+              vi_stnd_prc:
+                type: string
+                description: 정적VI발동기준가격
+                example: 0
+                maxLength: 10
+              vi_dprt:
+                type: string
+                description: 정적VI발동괴리율
+                example: 0.00
+                maxLength: 8
+              vi_dmc_stnd_prc:
+                type: string
+                description: 동적VI발동기준가격
+                example: 13275
+                maxLength: 10
+              vi_dmc_dprt:
+                type: string
+                description: 동적VI발동괴리율
+                example: -8.59
+                maxLength: 8
+              vi_count:
+                type: string
+                description: VI발동횟수
+                example: 2
+                maxLength: 7

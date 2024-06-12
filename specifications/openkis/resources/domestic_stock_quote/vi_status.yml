@@ -7,9 +7,113 @@ description: |
 
   최근 30건까지 확인 가능합니다.
 
-responses:
-  200:
-    description: 국내주식 변동성완화장치(VI) 현황 조회 성공
-
 tags:
   - DomesticStockQuote
+
+parameters:
+  - $ref: parameters.yml#/personal_secret_key
+  - $ref: parameters.yml#/tr_cont
+  - $ref: parameters.yml#/customer_type
+  - $ref: parameters.yml#/sequence_no
+  - $ref: parameters.yml#/mac_address
+  - $ref: parameters.yml#/phone_number
+  - $ref: parameters.yml#/ip_address
+  - $ref: parameters.yml#/hashkey
+  - $ref: parameters.yml#/gt_uid
+  - $ref: parameters.yml#/fid_input_iscd
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      모의투자 미지원<br/>
+      FHPST01390000 : 변동성완화장치(VI) 현황
+    required: true
+    schema:
+      type: string
+      enum: ["FHPST01390000"]
+      default: FHPST01390000
+      example: FHPST01390000
+  - in: query
+    name: fid_div_cls_code
+    description: |
+      FID 분류 구분 코드
+
+      0: 전체<br/>
+      1: 상승<br/>
+      2: 하락
+    required: true
+    schema:
+      type: string
+      enum: ["0", "1", "2"]
+      default: 0
+      example: 0
+  - in: query
+    name: fid_cond_scr_div_code
+    description: |
+      FID 조건 화면 구분 코드<br/>
+      Unique key(20139)
+    required: true
+    schema:
+      type: string
+      enum: ["20139"]
+      default: 20139
+      example: 20139
+  - in: query
+    name: fid_mrkt_cls_code
+    description: |
+      FID 시장 구분 코드
+
+      0: 전체<br/>
+      1: 거래소<br/>
+      2: 코스닥
+    required: true
+    schema:
+      type: string
+      enum: ["0", "1", "2"]
+      default: 0
+      example: 0
+  - in: query
+    name: fid_rank_sort_cls_code
+    description: |
+      FID 순위 정렬 구분 코드
+
+      0: 전체<br/>
+      1: 정적<br/>
+      2: 동적<br/>
+      3: 정적&동적
+    required: true
+    schema:
+      type: string
+      enum: ["0", "1", "2", "3"]
+      default: 0
+      example: 0
+  - in: query
+    name: fid_input_date_1
+    description: |
+      FID 입력일자
+
+      YYYYMMDD
+    required: true
+    schema:
+      type: string
+      pattern: "^[0-9]{8}$"
+      example: 20210101
+  - in: query
+    name: fid_trgt_cls_code
+    description: FID 대상 구분 코드
+    required: true
+    schema:
+      type: string
+      maxLength: 32
+  - in: query
+    name: fid_trgt_exls_cls_code
+    description: FID 대상 제외 구분 코드
+    required: true
+    schema:
+      type: string
+      maxLength: 32
+
+responses:
+  200:
+    $ref: responses/vi_status.yml
