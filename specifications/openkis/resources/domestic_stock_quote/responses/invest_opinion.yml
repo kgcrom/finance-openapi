@@ -1,0 +1,88 @@
+description: 국내주식 종목투자의견 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: array
+          items:
+            type: object
+            properties:
+              stck_bsop_date:
+                type: string
+                description: 주식영업일자
+                example: 20231113
+                maxLength: 8
+              invt_opnn:
+                type: string
+                description: 투자의견
+                example: 매수
+                maxLength: 40
+              invt_opnn_cls_code:
+                type: string
+                description: 투자의견구분코드
+                example: 1
+                maxLength: 2
+              rgbf_invt_opnn:
+                type: string
+                description: 직전투자의견
+                example: 매수
+                maxLength: 40
+              rgbf_invt_opnn_cls_code:
+                type: string
+                description: 직전투자의견구분코드
+                example: 1
+                maxLength: 2
+              mbcr_name:
+                type: string
+                description: 회원사명
+                example: SK
+                maxLength: 50
+              hts_goal_prc:
+                type: string
+                description: HTS목표가격
+                example: 105000
+                maxLength: 10
+              stck_prdy_clpr:
+                type: string
+                description: 주식전일종가
+                example: 75900
+                maxLength: 10
+              stck_nday_esdg:
+                type: string
+                description: 주식N일괴리도
+                example: -29100
+                maxLength: 10
+              nday_dprt:
+                type: string
+                description: N일괴리율
+                example: -27.71
+                maxLength: 82
+              stft_esdg:
+                type: string
+                description: 주식선물괴리도
+                example: -27400
+                maxLength: 10
+              dprt:
+                type: string
+                description: 괴리율
+                example: -26.10
+                maxLength: 82

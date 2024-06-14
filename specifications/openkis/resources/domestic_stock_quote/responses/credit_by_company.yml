@@ -1,0 +1,43 @@
+description: 국내주식 당사 신용가능종목 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: array
+          items:
+            type: object
+            properties:
+              stck_shrn_iscd:
+                type: string
+                description: 주식 단축 종목코드
+                example: "005930"
+                maxLength: 9
+              hts_kor_isnm:
+                type: string
+                description: HTS 한글 종목명
+                example: 삼성전자
+                maxLength: 40
+              crdt_rate:
+                type: string
+                description: 신용 비율
+                example: 40.00
+                maxLength: 84

@@ -1207,11 +1207,103 @@ paths:
 
         한국투자 HTS(eFriend Plus) > [0477] 당사 신용가능 종목 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
         최대 100건 확인 가능하며, 다음 조회가 불가합니다.
-      responses:
-        '200':
-          description: 국내주식 당사 신용가능종목 조회 성공
       tags:
         - DomesticStockQuote
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHPST04770000 : 국내주식 당사 신용 가능종목 조회
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHPST04770000
+            default: FHPST04770000
+            example: FHPST04770000
+        - in: query
+          name: fid_rank_sort_cls_code
+          description: |
+            순위 정렬 구분 코드<br/>
+            0:코드순, 1:이름순
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+            default: 0
+            example: 0
+        - in: query
+          name: fid_slct_yn
+          description: |
+            선택 여부<br/>
+            0:신용주문가능, 1: 신용주문불가
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+            default: 0
+            example: 0
+        - in: query
+          name: fid_input_iscd
+          description: |
+            입력 종목코드
+
+            0000:전체, 0001:거래소, 1001:코스닥, 2001:코스피200, 4001: KRX100
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0000'
+              - '0001'
+              - '1001'
+              - '2001'
+              - '4001'
+            example: '0000'
+        - in: query
+          name: fid_cond_scr_div_code
+          description: |
+            조건 화면 분류 코드
+
+            Unique key(20477)
+          required: true
+          schema:
+            type: string
+            enum:
+              - '20477'
+            default: 20477
+            example: 20477
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            조건 시장 분류 코드
+
+            시장구분코드 (주식 J)
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+            default: J
+            example: J
+      responses:
+        '200':
+          $ref: '#/components/responses/credit_by_company'
   /uapi/domestic-stock/v1/quotations/invest-opinion:
     get:
       operationId: getDomesticStockInvestOpinion
@@ -1222,11 +1314,80 @@ paths:
         한국투자 HTS(eFriend Plus) > [0605] 종목투자의견 화면 의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
         한 번의 호출에 100건까지 조회가 가능하기에, 일자 파라미터(FID_INPUT_DATE_1, FID_INPUT_DATE_2)를 조절하여 다음 데이터 조회하시기 바랍니다.
-      responses:
-        '200':
-          description: 국내주식 종목투자의견 조회 성공
       tags:
         - DomesticStockQuote
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - $ref: '#/components/parameters/fid_input_iscd'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHKST663300C0 : 국내주식 종목투자의견
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHKST663300C0
+            default: FHKST663300C0
+            example: FHKST663300C0
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            조건시장분류코드<br/>
+            J : 주식
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+            default: J
+            example: J
+        - in: query
+          name: fid_cond_scr_div_code
+          description: |
+            조건화면분류코드<br/>
+            16633 : Primary key
+          required: true
+          schema:
+            type: string
+            enum:
+              - '16633'
+            default: 16633
+            example: 16633
+        - in: query
+          name: fid_input_date_1
+          description: |
+            입력날짜1<br/>
+            이후 ~(ex) 20231113
+          required: true
+          schema:
+            type: string
+            example: 20231113
+            maxLength: 10
+        - in: query
+          name: fid_input_date_2
+          description: |
+            입력날짜2<br/>
+            ~ 이전(ex) 20240513
+          required: true
+          schema:
+            type: string
+            example: 20240513
+            maxLength: 10
+      responses:
+        '200':
+          $ref: '#/components/responses/invest_opinion'
   /uapi/domestic-stock/v1/quotations/chk-holiday:
     get:
       operationId: checkDomesticHoliday
@@ -1236,11 +1397,64 @@ paths:
 
         영업일, 거래일, 개장일, 결제일 여부를 조회할 수 있습니다.<br/>
         주문을 넣을 수 있는지 확인하고자 하실 경우 개장일여부(opnd_yn)을 사용하시면 됩니다.
-      responses:
-        '200':
-          description: 국내 휴장일 조회 성공
       tags:
         - DomesticStockQuote
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            CTCA0903R : 주식현재가 시간외일자별체결
+          required: true
+          schema:
+            type: string
+            enum:
+              - CTCA0903R
+            default: CTCA0903R
+            example: CTCA0903R
+        - in: query
+          name: bass_dt
+          description: |
+            기준일자
+
+            기준일자(YYYYMMDD)
+          required: true
+          schema:
+            type: string
+            example: 20210802
+            maxLength: 8
+        - in: query
+          name: ctx_area_nk
+          description: 연속조회키
+          required: true
+          schema:
+            type: string
+            default: ''
+            example: ''
+            maxLength: 6
+        - in: query
+          name: ctx_area_fk
+          description: 연속조회검색조건
+          required: true
+          schema:
+            type: string
+            default: ''
+            example: ''
+            maxLength: 6
+      responses:
+        '200':
+          $ref: '#/components/responses/check_holiday'
   /uapi/domestic-stock/v1/quotations/search-info:
     get:
       operationId: searchProductInfo
@@ -5965,6 +6179,235 @@ components:
                       description: VI발동횟수
                       example: 2
                       maxLength: 7
+    credit_by_company:
+      description: 국내주식 당사 신용가능종목 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    stck_shrn_iscd:
+                      type: string
+                      description: 주식 단축 종목코드
+                      example: '005930'
+                      maxLength: 9
+                    hts_kor_isnm:
+                      type: string
+                      description: HTS 한글 종목명
+                      example: 삼성전자
+                      maxLength: 40
+                    crdt_rate:
+                      type: string
+                      description: 신용 비율
+                      example: 40
+                      maxLength: 84
+    invest_opinion:
+      description: 국내주식 종목투자의견 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    stck_bsop_date:
+                      type: string
+                      description: 주식영업일자
+                      example: 20231113
+                      maxLength: 8
+                    invt_opnn:
+                      type: string
+                      description: 투자의견
+                      example: 매수
+                      maxLength: 40
+                    invt_opnn_cls_code:
+                      type: string
+                      description: 투자의견구분코드
+                      example: 1
+                      maxLength: 2
+                    rgbf_invt_opnn:
+                      type: string
+                      description: 직전투자의견
+                      example: 매수
+                      maxLength: 40
+                    rgbf_invt_opnn_cls_code:
+                      type: string
+                      description: 직전투자의견구분코드
+                      example: 1
+                      maxLength: 2
+                    mbcr_name:
+                      type: string
+                      description: 회원사명
+                      example: SK
+                      maxLength: 50
+                    hts_goal_prc:
+                      type: string
+                      description: HTS목표가격
+                      example: 105000
+                      maxLength: 10
+                    stck_prdy_clpr:
+                      type: string
+                      description: 주식전일종가
+                      example: 75900
+                      maxLength: 10
+                    stck_nday_esdg:
+                      type: string
+                      description: 주식N일괴리도
+                      example: -29100
+                      maxLength: 10
+                    nday_dprt:
+                      type: string
+                      description: N일괴리율
+                      example: -27.71
+                      maxLength: 82
+                    stft_esdg:
+                      type: string
+                      description: 주식선물괴리도
+                      example: -27400
+                      maxLength: 10
+                    dprt:
+                      type: string
+                      description: 괴리율
+                      example: -26.1
+                      maxLength: 82
+    check_holiday:
+      description: 국내 휴장일 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              ctx_area_nk:
+                type: string
+                description: 연속조회키
+                example: 20230119
+                maxLength: 6
+              ctx_area_fk:
+                type: string
+                description: 연속조회검색조건
+                example: 20221227
+                maxLength: 6
+              output:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    bass_dt:
+                      type: string
+                      description: 기준일자(YYYYMMDD)
+                      example: 20210802
+                      maxLength: 8
+                    wday_dvsn_cd:
+                      type: string
+                      description: |
+                        요일구분코드
+
+                        01:일요일<br/>
+                        02:월요일<br/>
+                        03:화요일<br/>
+                        04:수요일<br/>
+                        05:목요일<br/>
+                        06:금요일<br/>
+                        07:토요일
+                      enum:
+                        - '01'
+                        - '02'
+                        - '03'
+                        - '04'
+                        - '05'
+                        - '06'
+                        - '07'
+                      example: '01'
+                    bzdy_yn:
+                      type: string
+                      description: |
+                        영업일여부<br/>
+                        금융기관이 업무를 하는 날
+                      enum:
+                        - 'Y'
+                        - 'N'
+                      example: 'Y'
+                    tr_day_yn:
+                      type: string
+                      description: |
+                        거래일여부<br/>
+                        증권 업무가 가능한 날(입출금, 이체 등의 업무 포함)
+                      enum:
+                        - 'Y'
+                        - 'N'
+                      example: 'Y'
+                    opnd_yn:
+                      type: string
+                      description: |
+                        개장일여부<br/>
+                        주식시장이 개장되는 날<br/>
+                        * 주문을 넣고자 할 경우 개장일여부(opnd_yn)를 사용
+                      enum:
+                        - 'Y'
+                        - 'N'
+                      example: 'Y'
+                    sttl_day_yn:
+                      type: string
+                      description: |
+                        결제일여부<br/>
+                        주식 거래에서 실제로 주식을 인수하고 돈을 지불하는 날
+                      enum:
+                        - 'Y'
+                        - 'N'
+                      example: 'Y'
   parameters:
     personal_secret_key:
       in: header

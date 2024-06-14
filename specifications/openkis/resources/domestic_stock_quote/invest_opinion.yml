@@ -9,9 +9,76 @@ description: |
 
   한 번의 호출에 100건까지 조회가 가능하기에, 일자 파라미터(FID_INPUT_DATE_1, FID_INPUT_DATE_2)를 조절하여 다음 데이터 조회하시기 바랍니다.
 
-responses:
-  200:
-    description: 국내주식 종목투자의견 조회 성공
-
 tags:
   - DomesticStockQuote
+
+parameters:
+  - $ref: parameters.yml#/personal_secret_key
+  - $ref: parameters.yml#/tr_cont
+  - $ref: parameters.yml#/customer_type
+  - $ref: parameters.yml#/sequence_no
+  - $ref: parameters.yml#/mac_address
+  - $ref: parameters.yml#/phone_number
+  - $ref: parameters.yml#/ip_address
+  - $ref: parameters.yml#/hashkey
+  - $ref: parameters.yml#/gt_uid
+  - $ref: parameters.yml#/fid_input_iscd
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      모의투자 미지원<br/>
+      FHKST663300C0 : 국내주식 종목투자의견
+    required: true
+    schema:
+      type: string
+      enum: ["FHKST663300C0"]
+      default: FHKST663300C0
+      example: FHKST663300C0
+  - in: query
+    name: fid_cond_mrkt_div_code
+    description: |
+      조건시장분류코드<br/>
+      J : 주식
+    required: true
+    schema:
+      type: string
+      enum: ["J"]
+      default: J
+      example: J
+  - in: query
+    name: fid_cond_scr_div_code
+    description: |
+      조건화면분류코드<br/>
+      16633 : Primary key
+    required: true
+    schema:
+      type: string
+      enum: ["16633"]
+      default: 16633
+      example: 16633
+  - in: query
+    name: fid_input_date_1
+    description: |
+      입력날짜1<br/>
+      이후 ~(ex) 20231113
+    required: true
+    schema:
+      type: string
+      example: 20231113
+      maxLength: 10
+  - in: query
+    name: fid_input_date_2
+    description: |
+      입력날짜2<br/>
+      ~ 이전(ex) 20240513
+    required: true
+    schema:
+      type: string
+      example: 20240513
+      maxLength: 10
+
+responses:
+  200:
+    $ref: responses/invest_opinion.yml

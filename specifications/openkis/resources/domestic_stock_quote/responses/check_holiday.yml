@@ -1,0 +1,86 @@
+description: 국내 휴장일 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        ctx_area_nk:
+          type: string
+          description: 연속조회키
+          example: 20230119
+          maxLength: 6
+        ctx_area_fk:
+          type: string
+          description: 연속조회검색조건
+          example: 20221227
+          maxLength: 6
+        output:
+          type: array
+          items:
+            type: object
+            properties:
+              bass_dt:
+                type: string
+                description: 기준일자(YYYYMMDD)
+                example: 20210802
+                maxLength: 8
+              wday_dvsn_cd:
+                type: string
+                description: |
+                  요일구분코드
+
+                  01:일요일<br/>
+                  02:월요일<br/>
+                  03:화요일<br/>
+                  04:수요일<br/>
+                  05:목요일<br/>
+                  06:금요일<br/>
+                  07:토요일
+                enum: ["01", "02", "03", "04", "05", "06", "07"]
+                example: "01"
+              bzdy_yn:
+                type: string
+                description: |
+                  영업일여부<br/>
+                  금융기관이 업무를 하는 날
+                enum: ["Y", "N"]
+                example: "Y"
+              tr_day_yn:
+                type: string
+                description: |
+                  거래일여부<br/>
+                  증권 업무가 가능한 날(입출금, 이체 등의 업무 포함)
+                enum: ["Y", "N"]
+                example: "Y"
+              opnd_yn:
+                type: string
+                description: |
+                  개장일여부<br/>
+                  주식시장이 개장되는 날<br/>
+                  * 주문을 넣고자 할 경우 개장일여부(opnd_yn)를 사용
+                enum: ["Y", "N"]
+                example: "Y"
+              sttl_day_yn:
+                type: string
+                description: |
+                  결제일여부<br/>
+                  주식 거래에서 실제로 주식을 인수하고 돈을 지불하는 날
+                enum: ["Y", "N"]
+                example: "Y"
