@@ -1,0 +1,121 @@
+description: 상품기본정보 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: object
+          properties:
+            pdno:
+              type: string
+              description: 상품번호
+              example: AAPL
+              maxLength: 12
+            prdt_type_cd:
+              type: string
+              description: 상품유형코드
+              example: 512
+              maxLength: 3
+            prdt_name:
+              type: string
+              description: 상품명
+              example: 애플
+              maxLength: 60
+            prdt_name120:
+              type: string
+              description: 상품명120
+              example: 애플
+              maxLength: 120
+            prdt_abrv_name:
+              type: string
+              description: 상품약어명
+              example: 애플
+              maxLength: 60
+            prdt_eng_name:
+              type: string
+              description: 상품영문명
+              example: APPLE INC
+              maxLength: 60
+            prdt_eng_name120:
+              type: string
+              description: 상품영문명120
+              example: APPLE INC
+              maxLength: 120
+            prdt_eng_abrv_name:
+              type: string
+              description: 상품영문약어명
+              example: APPLE INC
+              maxLength: 60
+            std_pdno:
+              type: string
+              description: 표준상품번호
+              example: US0378331005
+              maxLength: 12
+            shtn_pdno:
+              type: string
+              description: 단축상품번호
+              example: AAPL
+              maxLength: 12
+            prdt_sale_stat_cd:
+              type: string
+              description: 상품판매상태코드
+              maxLength: 2
+            prdt_risk_grad_cd:
+              type: string
+              description: 상품위험등급코드
+              maxLength: 2
+            prdt_clsf_cd:
+              type: string
+              description: 상품분류코드
+              example: 101210
+              maxLength: 6
+            prdt_clsf_name:
+              type: string
+              description: 상품분류명
+              example: 해외주식
+              maxLength: 60
+            sale_strt_dt:
+              type: string
+              description: 판매시작일자
+              maxLength: 8
+            sale_end_dt:
+              type: string
+              description: 판매종료일자
+              maxLength: 8
+            wrap_asst_type_cd:
+              type: string
+              description: 랩어카운트자산유형코드
+              example: "06"
+              maxLength: 2
+            ivst_prdt_type_cd:
+              type: string
+              description: 투자상품유형코드
+              example: 1012
+              maxLength: 4
+            ivst_prdt_type_cd_name:
+              type: string
+              description: 투자상품유형코드명
+              example: 해외주식
+              maxLength: 60
+            frst_erlm_dt:
+              type: string
+              description: 최초등록일자
+              maxLength: 8

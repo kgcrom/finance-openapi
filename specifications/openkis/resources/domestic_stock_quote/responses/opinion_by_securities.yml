@@ -1,4 +1,4 @@
-description: 국내주식 종목투자의견 조회 성공
+description: 국내주식 증권사별 투자의견 조회 성공
 
 headers:
   content-type:
@@ -29,12 +29,22 @@ content:
               stck_bsop_date:
                 type: string
                 description: 주식영업일자
-                example: 20231113
+                example: 20240613
                 maxLength: 8
+              stck_shrn_iscd:
+                type: string
+                description: 주식단축종목코드
+                example: 286940
+                maxLength: 9
+              hts_kor_isnm:
+                type: string
+                description: HTS한글종목명
+                example: 롯데이노베이트
+                maxLength: 40
               invt_opnn:
                 type: string
                 description: 투자의견
-                example: BUY
+                example: NotRated
                 maxLength: 40
               invt_opnn_cls_code:
                 type: string
@@ -44,7 +54,7 @@ content:
               rgbf_invt_opnn:
                 type: string
                 description: 직전투자의견
-                example: BUY
+                example: NotRated
                 maxLength: 40
               rgbf_invt_opnn_cls_code:
                 type: string
@@ -54,35 +64,52 @@ content:
               mbcr_name:
                 type: string
                 description: 회원사명
-                example: 하이투자
+                example: 상상인
                 maxLength: 50
+              stck_prpr:
+                type: string
+                description: 주식현재가
+                example: 28150
+                maxLength: 10
+              prdy_vrss:
+                type: string
+                description: 전일대비
+                example: -450
+                maxLength: 10
+              prdy_vrss_sign:
+                type: string
+                description: |
+                  전일대비부호
+
+                  1 : 상한<br/>
+                  2 : 상승<br/>
+                  3 : 보합<br/>
+                  4 : 하한<br/>
+                  5 : 하락
+                enum: ["1", "2", "3", "4", "5"]
+                example: 5
+              prdy_ctrt:
+                type: string
+                description: 전일대비율
+                example: -1.57
+                maxLength: 8
               hts_goal_prc:
                 type: string
                 description: HTS목표가격
-                example: 84000
+                example: 38000
                 maxLength: 10
               stck_prdy_clpr:
                 type: string
                 description: 주식전일종가
-                example: 72900
+                example: 27900
                 maxLength: 10
-              stck_nday_esdg:
-                type: string
-                description: 주식N일괴리도
-                example: -11100
-                maxLength: 10
-              nday_dprt:
-                type: string
-                description: N일괴리율
-                example: -13.21
-                maxLength: 82
               stft_esdg:
                 type: string
                 description: 주식선물괴리도
-                example: -4000
+                example: -9850
                 maxLength: 10
               dprt:
                 type: string
                 description: 괴리율
-                example: -4.76
-                maxLength: 82
+                example: -25.92
+                maxLength: 8

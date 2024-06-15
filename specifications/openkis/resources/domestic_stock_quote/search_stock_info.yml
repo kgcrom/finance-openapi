@@ -10,6 +10,56 @@ description: |
 tags:
   - DomesticStockQuote
 
+parameters:
+  - $ref: parameters.yml#/personal_secret_key
+  - $ref: parameters.yml#/tr_cont
+  - $ref: parameters.yml#/customer_type
+  - $ref: parameters.yml#/sequence_no
+  - $ref: parameters.yml#/mac_address
+  - $ref: parameters.yml#/phone_number
+  - $ref: parameters.yml#/ip_address
+  - $ref: parameters.yml#/hashkey
+  - $ref: parameters.yml#/gt_uid
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      모의투자 미지원<br/>
+      CTPF1002R : 국내주식 종목투자의견
+    required: true
+    schema:
+      type: string
+      enum: ["CTPF1002R"]
+      default: CTPF1002R
+      example: CTPF1002R
+  - in: query
+    name: prdt_type_cd
+    description: |
+      상품유형코드
+
+      300: 주식, ETF, ETN, ELW<br/>
+      301 : 선물옵션<br/>
+      302 : 채권<br/>
+      306 : ELS
+    required: true
+    schema:
+      type: string
+      enum: ["300", "301", "302", "306"]
+      example: 300
+  - in: query
+    name: pdno
+    description: |
+      상품코드
+
+      종목번호 (6자리)<br/>
+      ETN의 경우, Q로 시작 (EX. Q500001)
+    required: true
+    schema:
+      type: string
+      example: 000660
+      maxLength: 12
+
 responses:
   200:
-    description: 국내주식 기본조회 조회 성공
+    $ref: responses/invest_opinion.yml

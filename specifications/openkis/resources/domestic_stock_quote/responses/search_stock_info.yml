@@ -1,0 +1,499 @@
+description: 국내주식 기본정보 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: object
+          properties:
+            pdno:
+              type: string
+              description: 상품번호
+              example: 00000A000660
+              maxLength: 12
+            prdt_type_cd:
+              type: string
+              description: 상품유형코드
+              example: 300
+              maxLength: 3
+            mket_id_cd:
+              type: string
+              description: |
+                시장ID코드
+
+                AGR.농축산물파생<br/>
+                BON.채권파생<br/>
+                CMD.일반상품시장<br/>
+                CUR.통화파생<br/>
+                ENG.에너지파생<br/>
+                EQU.주식파생<br/>
+                ETF.ETF파생<br/>
+                IRT.금리파생<br/>
+                KNX.코넥스<br/>
+                KSQ.코스닥<br/>
+                MTL.금속파생<br/>
+                SPI.주가지수파생<br/>
+                STK.유가증권
+              enum: ["AGR", "BON", "CMD", "CUR", "ENG", "EQU", "ETF", "IRT", "KNX", "KSQ", "MTL", "SPI", "STK"]
+              example: STK
+            scty_grp_id_cd:
+              type: string
+              description: |
+                증권그룹ID코드
+
+                BC.수익증권<br/>
+                DR.주식예탁증서<br/>
+                EF.ETF<br/>
+                EN.ETN<br/>
+                EW.ELW<br/>
+                FE.해외ETF<br/>
+                FO.선물옵션<br/>
+                FS.외국주권<br/>
+                FU.선물<br/>
+                FX.플렉스 선물<br/>
+                GD.금현물<br/>
+                IC.투자계약증권<br/>
+                IF.사회간접자본투융자회사<br/>
+                KN.코넥스주권<br/>
+                MF.투자회사<br/>
+                OP.옵션<br/>
+                RT.부동산투자회사<br/>
+                SC.선박투자회사<br/>
+                SR.신주인수권증서<br/>
+                ST.주권<br/>
+                SW.신주인수권증권<br/>
+                TC.신탁수익증권
+              enum:
+                [
+                  "BC",
+                  "DR",
+                  "EF",
+                  "EN",
+                  "EW",
+                  "FE",
+                  "FO",
+                  "FS",
+                  "FU",
+                  "FX",
+                  "GD",
+                  "IC",
+                  "IF",
+                  "KN",
+                  "MF",
+                  "OP",
+                  "RT",
+                  "SC",
+                  "SR",
+                  "ST",
+                  "SW",
+                  "TC",
+                ]
+              example: ST
+            excg_dvsn_cd:
+              type: string
+              description: |
+                거래소구분코드
+
+                01.한국증권<br/>
+                02.증권거래소<br/>
+                03.코스닥<br/>
+                04.K-OTC<br/>
+                05.선물거래소<br/>
+                06.CME<br/>
+                07.EUREX<br/>
+                21.금현물<br/>
+                50.미국주간<br/>
+                51.홍콩<br/>
+                52.상해B<br/>
+                53.심천<br/>
+                54.홍콩거래소<br/>
+                55.미국<br/>
+                56.일본<br/>
+                57.상해A<br/>
+                58.심천A<br/>
+                59.베트남<br/>
+                61.장전시간외시장<br/>
+                64.경쟁대량매매<br/>
+                65.경매매시장<br/>
+                81.시간외단일가시장
+              enum:
+                [
+                  "01",
+                  "02",
+                  "03",
+                  "04",
+                  "05",
+                  "06",
+                  "07",
+                  "21",
+                  "50",
+                  "51",
+                  "52",
+                  "53",
+                  "54",
+                  "55",
+                  "56",
+                  "57",
+                  "58",
+                  "59",
+                  "61",
+                  "64",
+                  "65",
+                  "81",
+                ]
+              example: "02"
+            setl_mmdd:
+              type: string
+              description: 결산월일
+              example: 12
+              maxLength: 4
+            lstg_stqt:
+              type: string
+              description: 상장주수
+              example: 728002365
+              maxLength: 19
+            lstg_cptl_amt:
+              type: string
+              description: 상장자본금액
+              example: 0
+              maxLength: 19
+            cpta:
+              type: string
+              description: 자본금
+              example: 3657652050000
+              maxLength: 19
+            papr:
+              type: string
+              description: 액면가
+              example: 5000
+              maxLength: 19
+            issue_pric:
+              type: string
+              description: 발행가격
+              example: 5000
+              maxLength: 19
+            kospi200_item_yn:
+              type: string
+              description: 코스피200종목여부
+              enum: ["Y", "N"]
+              example: Y
+            scts_mket_lstg_dt:
+              type: string
+              description: 유가증권시장상장일자
+              example: 19961226
+              maxLength: 8
+            scts_mket_lstg_abol_dt:
+              type: string
+              description: 유가증권시장상장폐지일자
+              maxLength: 8
+            kosdaq_mket_lstg_dt:
+              type: string
+              description: 코스닥시장상장일자
+              maxLength: 8
+            kosdaq_mket_lstg_abol_dt:
+              type: string
+              description: 코스닥시장상장폐지일자
+            frbd_mket_lstg_dt:
+              type: string
+              description: 프리보드시장상장일자
+              example: 19961226
+              maxLength: 8
+            frbd_mket_lstg_abol_dt:
+              type: string
+              description: 프리보드시장상장폐지일자
+              maxLength: 8
+            reits_kind_cd:
+              type: string
+              description: 리츠종류코드
+              maxLength: 1
+            etf_dvsn_cd:
+              type: string
+              description: ETF구분코드
+              example: 0
+              maxLength: 2
+            oilf_fund_yn:
+              type: string
+              description: 유전펀드여부
+              enum: ["Y", "N"]
+              example: N
+            idx_bztp_lcls_cd:
+              type: string
+              description: 지수업종대분류코드
+              example: "002"
+              maxLength: 3
+            idx_bztp_mcls_cd:
+              type: string
+              description: 지수업종중분류코드
+              example: "013"
+              maxLength: 3
+            idx_bztp_scls_cd:
+              type: string
+              description: 지수업종소분류코드
+              example: "013"
+              maxLength: 3
+            stck_kind_cd:
+              type: string
+              description: |
+                주식종류코드
+
+                000.해당사항없음<br/>
+                101.보통주<br/>
+                201.우선주<br/>
+                202.2우선주<br/>
+                203.3우선주<br/>
+                204.4우선주<br/>
+                205.5우선주<br/>
+                206.6우선주<br/>
+                207.7우선주<br/>
+                208.8우선주<br/>
+                209.9우선주<br/>
+                210.10우선주<br/>
+                211.11우선주<br/>
+                212.12우선주<br/>
+                213.13우선주<br/>
+                214.14우선주<br/>
+                215.15우선주<br/>
+                216.16우선주<br/>
+                217.17우선주<br/>
+                218.18우선주<br/>
+                219.19우선주<br/>
+                220.20우선주<br/>
+                301.후배주<br/>
+                401.혼합주
+              enum:
+                [
+                  "000",
+                  "101",
+                  "201",
+                  "202",
+                  "203",
+                  "204",
+                  "205",
+                  "206",
+                  "207",
+                  "208",
+                  "209",
+                  "210",
+                  "211",
+                  "212",
+                  "213",
+                  "214",
+                  "215",
+                  "216",
+                  "217",
+                  "218",
+                  "219",
+                  "220",
+                  "301",
+                  "401",
+                ]
+              example: 101
+            mfnd_opng_dt:
+              type: string
+              description: 뮤추얼펀드개시일자
+              maxLength: 8
+            mfnd_end_dt:
+              type: string
+              description: 뮤추얼펀드종료일자
+              maxLength: 8
+            dpsi_erlm_cncl_dt:
+              type: string
+              description: 예탁등록취소일자
+              maxLength: 8
+            etf_cu_qty:
+              type: string
+              description: ETFCU수량
+              maxLength: 10
+            prdt_name:
+              type: string
+              description: 상품명
+              example: 에스케이하이닉스보통주
+              maxLength: 60
+            prdt_name120:
+              type: string
+              description: 상품명120
+              example: 에스케이하이닉스보통주
+              maxLength: 120
+            prdt_abrv_name:
+              type: string
+              description: 상품약어명
+              example: SK하이닉스
+              maxLength: 60
+            std_pdno:
+              type: string
+              description: 표준상품번호
+              example: KR7000660001
+              maxLength: 12
+            prdt_eng_name:
+              type: string
+              description: 상품영문명
+              example: SK hynix
+              maxLength: 60
+            prdt_eng_name120:
+              type: string
+              description: 상품영문명120
+              example: SK hynix
+              maxLength: 120
+            prdt_eng_abrv_name:
+              type: string
+              description: 상품영문약어명
+              example: SK hynix
+              maxLength: 60
+            dpsi_aptm_erlm_yn:
+              type: string
+              description: 예탁지정등록여부
+              enum: ["Y", "N"]
+              example: Y
+            etf_txtn_type_cd:
+              type: string
+              description: ETF과세유형코드
+              example: "00"
+              maxLength: 2
+            etf_type_cd:
+              type: string
+              description: ETF유형코드
+              maxLength: 2
+            lstg_abol_dt:
+              type: string
+              description: 상장폐지일자
+              maxLength: 8
+            nwst_odst_dvsn_cd:
+              type: string
+              description: 신주구주구분코드
+              example: "1"
+              maxLength: 2
+            sbst_pric:
+              type: string
+              description: 대용가격
+              example: 172380
+              maxLength: 19
+            thco_sbst_pric:
+              type: string
+              description: 당사대용가격
+              example: 172380
+              maxLength: 19
+            thco_sbst_pric_chng_dt:
+              type: string
+              description: 당사대용가격변경일자
+              example: 20240614
+              maxLength: 8
+            tr_stop_yn:
+              type: string
+              description: 거래정지여부
+              enum: ["Y", "N"]
+              example: N
+            admn_item_yn:
+              type: string
+              description: 관리종목여부
+              enum: ["Y", "N"]
+              example: N
+            thdt_clpr:
+              type: string
+              description: 당일종가
+              example: 221000
+              maxLength: 19
+            bfdy_clpr:
+              type: string
+              description: 전일종가
+              example: 221000
+              maxLength: 19
+            clpr_chng_dt:
+              type: string
+              description: 종가변경일자
+              example: 20240614
+              maxLength: 8
+            std_idst_clsf_cd:
+              type: string
+              description: 표준산업분류코드
+              example: "032601"
+              maxLength: 6
+            std_idst_clsf_cd_name:
+              type: string
+              description: 표준산업분류코드명
+              example: 반도체 제조업
+              maxLength: 130
+            idx_bztp_lcls_cd_name:
+              type: string
+              description: 지수업종대분류코드명
+              example: 시가총액규모대
+              maxLength: 60
+            idx_bztp_mcls_cd_name:
+              type: string
+              description: 지수업종중분류코드명
+              example: 전기,전자
+              maxLength: 60
+            idx_bztp_scls_cd_name:
+              type: string
+              description: 지수업종소분류코드명
+              example: 전기,전자
+              maxLength: 60
+            ocr_no:
+              type: string
+              description: OCR번호
+              example: 1147
+              maxLength: 4
+            crfd_item_yn:
+              type: string
+              description: 크라우드펀딩종목여부
+              enum: ["Y", "N"]
+              example: N
+            elec_scty_yn:
+              type: string
+              description: 전자증권여부
+              enum: ["Y", "N"]
+              example: Y
+            issu_istt_cd:
+              type: string
+              description: 발행기관코드
+              example: "00066"
+              maxLength: 5
+            etf_chas_erng_rt_dbnb:
+              type: string
+              description: ETF추적수익율배수
+              example: 0
+              maxLength: 19
+            etf_etn_ivst_heed_item_yn:
+              type: string
+              description: ETFETN투자유의종목여부
+              enum: ["Y", "N"]
+              example: N
+            stln_int_rt_dvsn_cd:
+              type: string
+              description: 대주이자율구분코드
+              example: "01"
+              maxLength: 2
+            frnr_psnl_lmt_rt:
+              type: string
+              description: 외국인개인한도비율
+              example: "0.00000000"
+              maxLength: 24
+            lstg_rqsr_issu_istt_cd:
+              type: string
+              description: 상장신청인발행기관코드
+              maxLength: 5
+            lstg_rqsr_item_cd:
+              type: string
+              description: 상장신청인종목코드
+              maxLength: 12
+            trst_istt_issu_istt_cd:
+              type: string
+              description: 신탁기관발행기관코드
+              maxLength: 5

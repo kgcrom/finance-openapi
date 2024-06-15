@@ -90,14 +90,6 @@ paths:
     get:
       $ref: resources/domestic_stock_quote/overtime_daily_price.yml
 
-  /uapi/domestic-stock/v1/quotations/inquire-overtime-price:
-    get:
-      $ref: resources/domestic_stock_quote/overtime_price.yml
-
-  /uapi/domestic-stock/v1/quotations/inquire-overtime-asking-price:
-    get:
-      $ref: resources/domestic_stock_quote/overtime_quote.yml
-
   /uapi/domestic-stock/v1/quotations/inquire-time-itemchartprice:
     get:
       $ref: resources/domestic_stock_quote/time_minute_price.yml
@@ -105,6 +97,14 @@ paths:
   /uapi/domestic-stock/v1/quotations/inquire-price-2:
     get:
       $ref: resources/domestic_stock_quote/price2.yml
+
+  /uapi/domestic-stock/v1/quotations/inquire-overtime-price:
+    get:
+      $ref: resources/domestic_stock_quote/overtime_price.yml
+
+  /uapi/domestic-stock/v1/quotations/inquire-overtime-asking-price:
+    get:
+      $ref: resources/domestic_stock_quote/overtime_quote.yml
 
   /uapi/domestic-stock/v1/quotations/exp-closing-price:
     get:
@@ -122,6 +122,10 @@ paths:
     get:
       $ref: resources/domestic_stock_quote/invest_opinion.yml
 
+  /uapi/domestic-stock/v1/quotations/invest-opbysec:
+    get:
+      $ref: resources/domestic_stock_quote/opinion_by_securities.yml
+
   /uapi/domestic-stock/v1/quotations/chk-holiday:
     get:
       $ref: resources/domestic_stock_quote/check_holiday.yml
@@ -133,10 +137,6 @@ paths:
   /uapi/domestic-stock/v1/quotations/search-stock-info:
     get:
       $ref: resources/domestic_stock_quote/search_stock_info.yml
-
-  /uapi/domestic-stock/v1/quotations/invest-opbysec:
-    get:
-      $ref: resources/domestic_stock_quote/opinion_by_securities.yml
 
   /uapi/etfetn/v1/quotations/inquire-price:
     get:

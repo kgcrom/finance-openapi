@@ -7,6 +7,61 @@ description: 국내주식뿐 아니라 선물, 채권, 해외주식의 기본 �
 tags:
   - DomesticStockQuote
 
+parameters:
+  - $ref: parameters.yml#/personal_secret_key
+  - $ref: parameters.yml#/tr_cont
+  - $ref: parameters.yml#/customer_type
+  - $ref: parameters.yml#/sequence_no
+  - $ref: parameters.yml#/mac_address
+  - $ref: parameters.yml#/phone_number
+  - $ref: parameters.yml#/ip_address
+  - $ref: parameters.yml#/hashkey
+  - $ref: parameters.yml#/gt_uid
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      모의투자 미지원<br/>
+      CTPF1604R : 주식현재가 시간외일자별체결
+    required: true
+    schema:
+      type: string
+      enum: ["CTPF1604R"]
+      default: CTPF1604R
+      example: CTPF1604R
+  - in: query
+    name: pdno
+    description: |
+      상품번호
+
+      주식(하이닉스) : 000660 (코드 : 300)
+      선물(101S12) : KR4101SC0009 (코드 : 301)
+      미국(AAPL) : AAPL (코드 : 512)
+    required: true
+    schema:
+      type: string
+      example: 000660
+      maxLength: 12
+  - in: query
+    name: prdt_type_cd
+    description: |
+      상품유형코드
+
+      300 주식
+      301 선물옵션
+      302 채권
+      512 미국 나스닥 / 513 미국 뉴욕 / 529 미국 아멕스
+      515 일본
+      501 홍콩 / 543 홍콩CNY / 558 홍콩USD
+      507 베트남 하노이 / 508 베트남 호치민
+      551 중국 상해A / 552 중국 심천A
+    required: true
+    schema:
+      type: string
+      enum: ["300", "301", "302", "512", "513", "529", "515", "501", "543", "558", "507", "508", "551", "552"]
+      example: 300
+
 responses:
   200:
-    description: 상품기본조회 조회 성공
+    $ref: responses/search_info.yml
