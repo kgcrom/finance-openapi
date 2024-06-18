@@ -140,7 +140,7 @@ paths:
 
   /uapi/etfetn/v1/quotations/inquire-price:
     get:
-      $ref: resources/domestic_etf/price.yml
+      $ref: resources/domestic_etf/etf_price.yml
 
   /uapi/etfetn/v1/quotations/nav-comparison-trend:
     get:

@@ -1,11 +1,11 @@
-operationId: getEtfNEtnNavComparisonTrend
+operationId: getEtfNEtnPrice
 
-summary: ETF/ETN NAV 비교 추이(종목) 조회
+summary: ETF/ETN 현재가 기본시세 조회
 
 description: |
-  NAV 비교추이(종목) API입니다.
+  ETF/ETN 현재가 API입니다.
 
-  한국투자 HTS(eFriend Plus) > [0244] ETF/ETN 비교추이(NAV/IIV) 좌측 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+  한국투자 HTS(eFriend Plus) > [0240] ETF/ETN 현재가 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
 tags:
   - EtfNEtnQuote
@@ -27,18 +27,17 @@ parameters:
       거래ID
 
       모의투자 미지원<br/>
-      FHPST02440000 : ETF/ETN NAV 비교 추이(종목)
+      FHPST02400000 : ETF/ETN 현재가
     required: true
     schema:
       type: string
-      enum: ["FHPST02440000"]
-      default: FHPST02440000
-      example: FHPST02440000
+      enum: ["FHPST02400000"]
+      default: FHPST02400000
+      example: FHPST02400000
   - in: query
     name: fid_cond_mrkt_div_code
     description: |
-      FID 조건 시장 분류 코드
-
+      FID 조건시장분류코드<br/>
       J : 주식
     required: true
     schema:
@@ -49,4 +48,4 @@ parameters:
 
 responses:
   200:
-    $ref: responses/nav_comparison_trend.yml
+    $ref: responses/etf_price.yml

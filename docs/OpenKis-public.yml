@@ -1720,11 +1720,48 @@ paths:
         ETF/ETN 현재가 API입니다.
 
         한국투자 HTS(eFriend Plus) > [0240] ETF/ETN 현재가 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-      responses:
-        '200':
-          description: ETF/ETN 현재가 기본시세 조회 성공
       tags:
         - EtfNEtnQuote
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - $ref: '#/components/parameters/fid_input_iscd'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHPST02400000 : ETF/ETN 현재가
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHPST02400000
+            default: FHPST02400000
+            example: FHPST02400000
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            FID 조건시장분류코드<br/>
+            J : 주식
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+            default: J
+            example: J
+      responses:
+        '200':
+          $ref: '#/components/responses/etf_price'
   /uapi/etfetn/v1/quotations/nav-comparison-trend:
     get:
       operationId: getEtfNEtnNavComparisonTrend
@@ -1733,11 +1770,49 @@ paths:
         NAV 비교추이(종목) API입니다.
 
         한국투자 HTS(eFriend Plus) > [0244] ETF/ETN 비교추이(NAV/IIV) 좌측 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-      responses:
-        '200':
-          description: ETF/ETN NAV 비교 추이(종목) 조회 성공
       tags:
         - EtfNEtnQuote
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - $ref: '#/components/parameters/fid_input_iscd'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHPST02440000 : ETF/ETN NAV 비교 추이(종목)
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHPST02440000
+            default: FHPST02440000
+            example: FHPST02440000
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            FID 조건 시장 분류 코드
+
+            J : 주식
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+            default: J
+            example: J
+      responses:
+        '200':
+          $ref: '#/components/responses/nav_comparison_trend'
   /uapi/etfetn/v1/quotations/nav-comparison-time-trend:
     get:
       operationId: getEtfNEtnNavMinuteTrend
@@ -1747,11 +1822,62 @@ paths:
 
         한국투자 HTS(eFriend Plus) > [0244] ETF/ETN 비교추이(NAV/IIV) 좌측 화면 "분별" 비교추이 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
         실전계좌의 경우, 한 번의 호출에 최근 30건까지 확인 가능합니다.
-      responses:
-        '200':
-          description: ETF/ETN NAV 비교 추이(분) 조회 성공
       tags:
         - EtfNEtnQuote
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - $ref: '#/components/parameters/fid_input_iscd'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHPST02440100 : ETF/ETN NAV 비교 추이(분)
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHPST02440100
+            default: FHPST02440100
+            example: FHPST02440100
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            FID 조건 시장 분류 코드
+
+            E : 고정값
+          required: true
+          schema:
+            type: string
+            enum:
+              - E
+            default: E
+            example: E
+        - in: query
+          name: fid_hour_cls_code
+          description: |
+            FID 시간대 구분 코드
+
+            1분 :60<br/>
+            3분: 180<br/>
+            …<br/>
+            120분:7200
+          required: true
+          schema:
+            type: string
+            example: 60
+      responses:
+        '200':
+          $ref: '#/components/responses/nav_comparison_minute_trend'
   /uapi/etfetn/v1/quotations/nav-comparison-daily-trend:
     get:
       operationId: getEtfNEtnNavDailyTrend
@@ -1761,11 +1887,71 @@ paths:
 
         한국투자 HTS(eFriend Plus) > [0244] ETF/ETN 비교추이(NAV/IIV) 좌측 화면 "일별" 비교추이 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
         실전계좌의 경우, 한 번의 호출에 최대 100건까지 확인 가능합니다.
-      responses:
-        '200':
-          description: ETF/ETN NAV 비교 추이(일) 조회 성공
       tags:
         - EtfNEtnQuote
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - $ref: '#/components/parameters/fid_input_iscd'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHPST02440200 : ETF/ETN NAV 비교 추이(일)
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHPST02440200
+            default: FHPST02440200
+            example: FHPST02440200
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            FID 조건 시장 분류 코드
+
+            J : 주식
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+            default: J
+            example: J
+        - in: query
+          name: fid_input_date_1
+          description: |
+            FID 입력 일자 1
+
+            조회 시작일자 (ex. 20240101, YYYYMMDD)
+          required: true
+          schema:
+            type: string
+            pattern: ^[0-9]{8}$
+            example: 20240101
+        - in: query
+          name: fid_input_date_2
+          description: |
+            FID 입력 일자 2
+
+            조회 종료일자 (ex. 20240220, YYYYMMDD)
+          required: true
+          schema:
+            type: string
+            pattern: ^[0-9]{8}$
+            example: 20240220
+      responses:
+        '200':
+          $ref: '#/components/responses/nav_comparison_daily_trend'
   /uapi/etfetn/v1/quotations/inquire-component-stock-price:
     get:
       operationId: getEtfNEtnComponentStockPrice
@@ -1774,11 +1960,62 @@ paths:
         ETF 구성종목시세 API입니다.
 
         한국투자 HTS(eFriend Plus) > [0245] ETF/ETN 구성종목시세 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다
-      responses:
-        '200':
-          description: ETF/ETN 구성종목 시세 조회 성공
       tags:
         - EtfNEtnQuote
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - $ref: '#/components/parameters/fid_input_iscd'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHKST121600C0 : ETF/ETN 구성종목 시세
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHKST121600C0
+            default: FHKST121600C0
+            example: FHKST121600C0
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            FID 조건 시장 분류 코드
+
+            J : 주식
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+            default: J
+            example: J
+        - in: query
+          name: fid_cond_scr_div_code
+          description: |
+            조건 화면 분류 코드
+
+            Unique key( 11216 )
+          required: true
+          schema:
+            type: string
+            enum:
+              - '11216'
+            default: 11216
+            example: 11216
+      responses:
+        '200':
+          $ref: '#/components/responses/component_stock_price'
   /uapi/domestic-stock/v1/quotations/inquire-daily-indexchartprice:
     get:
       operationId: getIndexChartPrice
@@ -6866,6 +7103,955 @@ components:
                     type: string
                     description: 최초등록일자
                     maxLength: 8
+    etf_price:
+      description: ETF/ETN 현재가 기본시세 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: object
+                properties:
+                  stck_prpr:
+                    type: string
+                    description: 주식 현재가
+                    example: 19020
+                    maxLength: 10
+                  prdy_vrss_sign:
+                    type: string
+                    description: |
+                      전일 대비 부호
+
+                      1 : 상한<br/>
+                      2 : 상승<br/>
+                      3 : 보합<br/>
+                      4 : 하한<br/>
+                      5 : 하락
+                    enum:
+                      - '1'
+                      - '2'
+                      - '3'
+                      - '4'
+                      - '5'
+                    example: 3
+                  prdy_vrss:
+                    type: string
+                    description: 전일 대비
+                    example: 0
+                    maxLength: 10
+                  prdy_ctrt:
+                    type: string
+                    description: 전일 대비율
+                    example: 0
+                    maxLength: 82
+                  acml_vol:
+                    type: string
+                    description: 누적 거래량
+                    example: 0
+                    maxLength: 18
+                  prdy_vol:
+                    type: string
+                    description: 전일 거래량
+                    example: 1733827
+                    maxLength: 18
+                  stck_mxpr:
+                    type: string
+                    description: 주식 상한가
+                    example: 24725
+                    maxLength: 10
+                  stck_llam:
+                    type: string
+                    description: 주식 하한가
+                    example: 13315
+                    maxLength: 10
+                  stck_prdy_clpr:
+                    type: string
+                    description: 주식 전일 종가
+                    example: 19020
+                    maxLength: 10
+                  stck_oprc:
+                    type: string
+                    description: 주식 시가2
+                    example: 0
+                    maxLength: 10
+                  prdy_clpr_vrss_oprc_rate:
+                    type: string
+                    description: 전일 종가 대비 시가2 비율
+                    example: 0
+                    maxLength: 84
+                  stck_hgpr:
+                    type: string
+                    description: 주식 최고가
+                    example: 0
+                    maxLength: 10
+                  prdy_clpr_vrss_hgpr_rate:
+                    type: string
+                    description: 전일 종가 대비 최고가 비율
+                    example: 0
+                    maxLength: 84
+                  stck_lwpr:
+                    type: string
+                    description: 주식 최저가
+                    example: 0
+                    maxLength: 10
+                  prdy_clpr_vrss_lwpr_rate:
+                    type: string
+                    description: 전일 종가 대비 최저가 비율
+                    example: 0
+                    maxLength: 84
+                  prdy_last_nav:
+                    type: string
+                    description: 전일 최종 NAV
+                    example: 19028.18
+                    maxLength: 112
+                  nav:
+                    type: string
+                    description: NAV
+                    example: 19028.18
+                    maxLength: 112
+                  nav_prdy_vrss:
+                    type: string
+                    description: NAV 전일 대비
+                    example: 0
+                    maxLength: 112
+                  nav_prdy_vrss_sign:
+                    type: string
+                    description: |
+                      NAV 전일 대비 부호
+
+                      1 : 상한<br/>
+                      2 : 상승<br/>
+                      3 : 보합<br/>
+                      4 : 하한<br/>
+                      5 : 하락
+                    enum:
+                      - '1'
+                      - '2'
+                      - '3'
+                      - '4'
+                      - '5'
+                    example: 3
+                  nav_prdy_ctrt:
+                    type: string
+                    description: NAV 전일 대비율
+                    example: 0
+                    maxLength: 82
+                  trc_errt:
+                    type: string
+                    description: 추적 오차율
+                    example: 0.44
+                    maxLength: 82
+                  stck_sdpr:
+                    type: string
+                    description: 주식 기준가
+                    example: 19020
+                    maxLength: 10
+                  stck_sspr:
+                    type: string
+                    description: 주식 대용가
+                    example: 14070
+                    maxLength: 10
+                  etf_crcl_stcn:
+                    type: string
+                    description: ETF 유통 주수
+                    example: 62400000
+                    maxLength: 18
+                  etf_ntas_ttam:
+                    type: string
+                    description: ETF 순자산 총액
+                    example: 11873
+                    maxLength: 22
+                  etf_frcr_ntas_ttam:
+                    type: string
+                    description: ETF 외화 순자산 총액
+                    example: 0
+                    maxLength: 22
+                  frgn_limt_rate:
+                    type: string
+                    description: 외국인 한도 비율
+                    example: 100
+                    maxLength: 84
+                  frgn_oder_able_qty:
+                    type: string
+                    description: 외국인 주문 가능 수량
+                    example: 62247678
+                    maxLength: 18
+                  etf_cu_unit_scrt_cnt:
+                    type: string
+                    description: ETF CU 단위 증권 수
+                    example: 100000
+                    maxLength: 18
+                  etf_cnfg_issu_cnt:
+                    type: string
+                    description: ETF 구성 종목 수
+                    example: 26
+                    maxLength: 18
+                  etf_dvdn_cycl:
+                    type: string
+                    description: ETF 배당 주기
+                    example: 10
+                    maxLength: 2
+                  crcd:
+                    type: string
+                    description: 통화 코드
+                    example: KRW
+                    maxLength: 4
+                  etf_crcl_ntas_ttam:
+                    type: string
+                    description: ETF 유통 순자산 총액
+                    example: 0
+                    maxLength: 22
+                  etf_frcr_crcl_ntas_ttam:
+                    type: string
+                    description: ETF 외화 유통 순자산 총액
+                    example: 0
+                    maxLength: 22
+                  etf_frcr_last_ntas_wrth_val:
+                    type: string
+                    description: ETF 외화 최종 순자산 가치 값
+                    example: 0
+                    maxLength: 13
+                  lp_oder_able_cls_code:
+                    type: string
+                    description: LP 주문 가능 구분 코드
+                    example: 'N'
+                    maxLength: 2
+                  stck_dryy_hgpr:
+                    type: string
+                    description: 주식 연중 최고가
+                    example: 23523
+                    maxLength: 10
+                  dryy_hgpr_vrss_prpr_rate:
+                    type: string
+                    description: 연중 최고가 대비 현재가 비율
+                    example: -19.14
+                    maxLength: 84
+                  dryy_hgpr_date:
+                    type: string
+                    description: 연중 최고가 일자
+                    example: 20240102
+                    maxLength: 8
+                  stck_dryy_lwpr:
+                    type: string
+                    description: 주식 연중 최저가
+                    example: 17910
+                    maxLength: 10
+                  dryy_lwpr_vrss_prpr_rate:
+                    type: string
+                    description: 연중 최저가 대비 현재가 비율
+                    example: 6.2
+                    maxLength: 84
+                  dryy_lwpr_date:
+                    type: string
+                    description: 연중 최저가 일자
+                    example: 20240530
+                    maxLength: 8
+                  bstp_kor_isnm:
+                    type: string
+                    description: 업종 한글 종목명
+                    example: ETF(실물복제/수익증권)
+                    maxLength: 40
+                  vi_cls_code:
+                    type: string
+                    description: VI적용구분코드
+                    enum:
+                      - 'Y'
+                      - 'N'
+                    example: 'N'
+                  lstn_stcn:
+                    type: string
+                    description: 상장 주수
+                    example: 62400000
+                    maxLength: 18
+                  frgn_hldn_qty:
+                    type: string
+                    description: 외국인 보유 수량
+                    example: 152322
+                    maxLength: 18
+                  frgn_hldn_qty_rate:
+                    type: string
+                    description: 외국인 보유 수량 비율
+                    example: 0.24
+                    maxLength: 84
+                  etf_trc_ert_mltp:
+                    type: string
+                    description: ETF 추적 수익률 배수
+                    example: 1
+                    maxLength: 126
+                  dprt:
+                    type: string
+                    description: 괴리율
+                    example: -0.04
+                    maxLength: 82
+                  mbcr_name:
+                    type: string
+                    description: 회원사 명
+                    example: 삼성자산운용(ETF)
+                    maxLength: 50
+                  stck_lstn_date:
+                    type: string
+                    description: 주식 상장 일자
+                    example: 20180912
+                    maxLength: 8
+                  mtrt_date:
+                    type: string
+                    description: 만기 일자
+                    example: 0
+                    maxLength: 8
+                  shrg_type_code:
+                    type: string
+                    description: 분배금형태코드
+                    maxLength: 2
+                  lp_hldn_rate:
+                    type: string
+                    description: LP 보유 비율
+                    example: 0
+                    maxLength: 84
+                  etf_trgt_nmix_bstp_code:
+                    type: string
+                    description: ETF대상지수업종코드
+                    example: 9999
+                    maxLength: 4
+                  etf_div_name:
+                    type: string
+                    description: ETF 분류 명
+                    example: 수익증권형
+                    maxLength: 40
+                  etf_rprs_bstp_kor_isnm:
+                    type: string
+                    description: ETF 대표 업종 한글 종목명
+                    example: FnGuide 2차전지 산업 지수
+                    maxLength: 40
+                  lp_hldn_vol:
+                    type: string
+                    description: ETN LP 보유량
+                    example: 0
+                    maxLength: 18
+    nav_comparison_trend:
+      description: ETF/ETN NAV 비교 추이(종목) 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output1:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    stck_prpr:
+                      type: string
+                      description: 주식 현재가
+                      example: 19020
+                      maxLength: 10
+                    prdy_vrss:
+                      type: string
+                      description: 전일 대비
+                      example: 0
+                      maxLength: 10
+                    prdy_vrss_sign:
+                      type: string
+                      description: |
+                        전일 대비 부호
+
+                        1 : 상한<br/>
+                        2 : 상승<br/>
+                        3 : 보합<br/>
+                        4 : 하한<br/>
+                        5 : 하락
+                      enum:
+                        - '1'
+                        - '2'
+                        - '3'
+                        - '4'
+                        - '5'
+                      example: 3
+                    prdy_ctrt:
+                      type: string
+                      description: 전일 대비율
+                      example: 0
+                      maxLength: 82
+                    acml_vol:
+                      type: string
+                      description: 누적 거래량
+                      example: 0
+                      maxLength: 18
+                    acml_tr_pbmn:
+                      type: string
+                      description: 누적 거래 대금
+                      example: 0
+                      maxLength: 60
+                    stck_prdy_clpr:
+                      type: string
+                      description: 주식 전일 종가
+                      example: 0
+                      maxLength: 10
+                    stck_oprc:
+                      type: string
+                      description: 주식 시가
+                      example: 19020
+                      maxLength: 10
+                    stck_hgpr:
+                      type: string
+                      description: 주식 최고가
+                      example: 0
+                      maxLength: 10
+                    stck_lwpr:
+                      type: string
+                      description: 주식 최저가
+                      example: 0
+                      maxLength: 10
+                    stck_mxpr:
+                      type: string
+                      description: 주식 상한가
+                      example: 24725
+                      maxLength: 10
+                    stck_llam:
+                      type: string
+                      description: 주식 하한가
+                      example: 13315
+                      maxLength: 10
+              output2:
+                type: object
+                properties:
+                  nav:
+                    type: string
+                    description: NAV
+                    example: 19028.18
+                    maxLength: 11
+                  nav_prdy_vrss_sign:
+                    type: string
+                    description: |
+                      NAV 전일 대비 부호
+
+                      1 : 상한<br/>
+                      2 : 상승<br/>
+                      3 : 보합<br/>
+                      4 : 하한<br/>
+                      5 : 하락
+                    enum:
+                      - '1'
+                      - '2'
+                      - '3'
+                      - '4'
+                      - '5'
+                    example: 3
+                  nav_prdy_vrss:
+                    type: string
+                    description: NAV 전일 대비
+                    example: 0
+                    maxLength: 11
+                  nav_prdy_ctrt:
+                    type: string
+                    description: NAV 전일 대비율
+                    example: 0
+                    maxLength: 8
+                  prdy_clpr_nav:
+                    type: string
+                    description: NAV전일종가
+                    example: 19028.18
+                    maxLength: 11
+                  oprc_nav:
+                    type: string
+                    description: NAV시가
+                    example: 0
+                    maxLength: 11
+                  hprc_nav:
+                    type: string
+                    description: NAV고가
+                    example: 0
+                    maxLength: 11
+                  lprc_nav:
+                    type: string
+                    description: NAV저가
+                    example: 0
+                    maxLength: 11
+    nav_comparison_minute_trend:
+      description: ETF/ETN NAV 비교 추이(분) 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    bsop_hour:
+                      type: string
+                      description: |
+                        영업 시간
+
+                        hhmmss
+                      example: 153000
+                      maxLength: 6
+                    nav:
+                      type: string
+                      description: NAV
+                      example: 37922.77
+                      maxLength: 112
+                    nav_prdy_vrss_sign:
+                      type: string
+                      description: |
+                        NAV 전일 대비 부호
+
+                        1 : 상한<br/>
+                        2 : 상승<br/>
+                        3 : 보합<br/>
+                        4 : 하한<br/>
+                        5 : 하락
+                      enum:
+                        - '1'
+                        - '2'
+                        - '3'
+                        - '4'
+                        - '5'
+                      example: 2
+                    nav_prdy_vrss:
+                      type: string
+                      description: NAV 전일 대비
+                      example: 389.11
+                      maxLength: 112
+                    nav_prdy_ctrt:
+                      type: string
+                      description: NAV 전일 대비율
+                      example: 1.03
+                      maxLength: 84
+                    nav_vrss_prpr:
+                      type: string
+                      description: NAV 대비 현재가
+                      example: -77.77
+                      maxLength: 112
+                    dprt:
+                      type: string
+                      description: 괴리율
+                      example: -0.21
+                      maxLength: 82
+                    stck_prpr:
+                      type: string
+                      description: 주식 현재가
+                      example: 37845
+                      maxLength: 10
+                    prdy_vrss:
+                      type: string
+                      description: 전일 대비
+                      example: 395
+                      maxLength: 10
+                    prdy_vrss_sign:
+                      type: string
+                      description: |
+                        전일 대비 부호
+
+                        1 : 상한<br/>
+                        2 : 상승<br/>
+                        3 : 보합<br/>
+                        4 : 하한<br/>
+                        5 : 하락
+                      enum:
+                        - '1'
+                        - '2'
+                        - '3'
+                        - '4'
+                        - '5'
+                      example: 2
+                    prdy_ctrt:
+                      type: string
+                      description: 전일 대비율
+                      example: 1.05
+                      maxLength: 82
+                    acml_vol:
+                      type: string
+                      description: 누적 거래량
+                      example: 2806771
+                      maxLength: 18
+                    cntg_vol:
+                      type: string
+                      description: 체결 거래량
+                      example: 46085
+                      maxLength: 18
+    nav_comparison_daily_trend:
+      description: ETF/ETN NAV 비교 추이(일) 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    stck_bsop_date:
+                      type: string
+                      description: 주식 영업 일자
+                      example: 20210615
+                      maxLength: 8
+                    stck_clpr:
+                      type: string
+                      description: 주식 종가
+                      example: 40751
+                      maxLength: 10
+                    prdy_vrss:
+                      type: string
+                      description: 전일 대비
+                      example: 94
+                      maxLength: 10
+                    prdy_vrss_sign:
+                      type: string
+                      description: |
+                        전일 대비 부호
+
+                        1 : 상한<br/>
+                        2 : 상승<br/>
+                        3 : 보합<br/>
+                        4 : 하한<br/>
+                        5 : 하락
+                      enum:
+                        - '1'
+                        - '2'
+                        - '3'
+                        - '4'
+                        - '5'
+                      example: 2
+                    prdy_ctrt:
+                      type: string
+                      description: 전일 대비율
+                      example: 0.23
+                      maxLength: 82
+                    acml_vol:
+                      type: string
+                      description: 누적 거래량
+                      example: 3267790
+                      maxLength: 18
+                    cntg_vol:
+                      type: string
+                      description: 체결 거래량
+                      maxLength: 18
+                    dprt:
+                      type: string
+                      description: 괴리율
+                      example: -0.22
+                      maxLength: 82
+                    nav_vrss_prpr:
+                      type: string
+                      description: NAV 대비 현재가
+                      example: -2671.04
+                      maxLength: 112
+                    nav:
+                      type: string
+                      description: NAV
+                      example: 43422.04
+                      maxLength: 112
+                    nav_prdy_vrss_sign:
+                      type: string
+                      description: |
+                        NAV 전일 대비 부호
+
+                        1 : 상한<br/>
+                        2 : 상승<br/>
+                        3 : 보합<br/>
+                        4 : 하한<br/>
+                        5 : 하락
+                      enum:
+                        - '1'
+                        - '2'
+                        - '3'
+                        - '4'
+                        - '5'
+                      example: 2
+                    nav_prdy_vrss:
+                      type: string
+                      description: NAV 전일 대비
+                      example: 90.07
+                      maxLength: 112
+                    nav_prdy_ctrt:
+                      type: string
+                      description: NAV 전일 대비율
+                      example: 0.21
+                      maxLength: 84
+    component_stock_price:
+      description: ETF/ETN 구성종목 시세 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: object
+                properties:
+                  stck_prpr:
+                    type: string
+                    description: 주식 현재가
+                    example: 37450
+                    maxLength: 10
+                  prdy_vrss:
+                    type: string
+                    description: 전일 대비
+                    example: 0
+                    maxLength: 10
+                  prdy_vrss_sign:
+                    type: string
+                    description: |
+                      전일 대비 부호
+
+                      1 : 상한<br/>
+                      2 : 상승<br/>
+                      3 : 보합<br/>
+                      4 : 하한<br/>
+                      5 : 하락
+                    enum:
+                      - '1'
+                      - '2'
+                      - '3'
+                      - '4'
+                      - '5'
+                    example: 3
+                  prdy_ctrt:
+                    type: string
+                    description: 전일 대비
+                    example: 0
+                    maxLength: 82
+                  etf_cnfg_issu_avls:
+                    type: string
+                    description: 전일 대비율
+                    example: 187568
+                    maxLength: 18
+                  nav:
+                    type: string
+                    description: NAV
+                    example: 37533.66
+                    maxLength: 112
+                  nav_prdy_vrss_sign:
+                    type: string
+                    description: |
+                      결제 일자
+
+                      1 : 상한<br/>
+                      2 : 상승<br/>
+                      3 : 보합<br/>
+                      4 : 하한<br/>
+                      5 : 하락
+                    enum:
+                      - '1'
+                      - '2'
+                      - '3'
+                      - '4'
+                      - '5'
+                    example: 3
+                  nav_prdy_vrss:
+                    type: string
+                    description: 전체 융자 신규 주수
+                    example: 0
+                    maxLength: 112
+                  nav_prdy_ctrt:
+                    type: string
+                    description: 전체 융자 상환 주수
+                    example: 0
+                    maxLength: 84
+                  etf_ntas_ttam:
+                    type: string
+                    description: 전체 융자 잔고 주수
+                    example: 61742
+                    maxLength: 22
+                  prdy_clpr_nav:
+                    type: string
+                    description: 전체 융자 신규 금액
+                    example: 37533.66
+                    maxLength: 112
+                  oprc_nav:
+                    type: string
+                    description: 전체 융자 상환 금액
+                    example: 0
+                    maxLength: 112
+                  hprc_nav:
+                    type: string
+                    description: 전체 융자 잔고 금액
+                    example: 0
+                    maxLength: 112
+                  lprc_nav:
+                    type: string
+                    description: 전체 융자 잔고 비율
+                    example: 0
+                    maxLength: 112
+                  etf_cu_unit_scrt_cnt:
+                    type: string
+                    description: ETF CU 단위 증권 수
+                    example: 50000
+                    maxLength: 18
+                  etf_cnfg_issu_cnt:
+                    type: string
+                    description: 전체 대주 신규 주수
+                    example: 201
+                    maxLength: 18
+              output2:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    stck_shrn_iscd:
+                      type: string
+                      description: 주식 단축 종목코드
+                      example: 5930
+                      maxLength: 9
+                    hts_kor_isnm:
+                      type: string
+                      description: HTS 한글 종목명
+                      example: 삼성전자
+                      maxLength: 40
+                    stck_prpr:
+                      type: string
+                      description: 주식 현재가
+                      example: 78100
+                      maxLength: 10
+                    prdy_vrss:
+                      type: string
+                      description: 전일 대비
+                      example: 1700
+                      maxLength: 10
+                    prdy_vrss_sign:
+                      type: string
+                      description: |
+                        전일 대비 부호
+
+                        1 : 상한<br/>
+                        2 : 상승<br/>
+                        3 : 보합<br/>
+                        4 : 하한<br/>
+                        5 : 하락
+                      enum:
+                        - '1'
+                        - '2'
+                        - '3'
+                        - '4'
+                        - '5'
+                      example: 2
+                    prdy_ctrt:
+                      type: string
+                      description: 전일 대비율
+                      example: 2.18
+                      maxLength: 82
+                    acml_vol:
+                      type: string
+                      description: 누적 거래량
+                      example: 18207598
+                      maxLength: 18
+                    acml_tr_pbmn:
+                      type: string
+                      description: 누적 거래 대금
+                      example: 1451893499146
+                      maxLength: 18
+                    tday_rsfl_rate:
+                      type: string
+                      description: 당일 등락 비율
+                      example: 2.05
+                      maxLength: 52
+                    prdy_vrss_vol:
+                      type: string
+                      description: 전일 대비 거래량
+                      example: 2084547
+                      maxLength: 18
+                    tr_pbmn_tnrt:
+                      type: string
+                      description: 거래대금회전율
+                      example: 0.3
+                      maxLength: 82
+                    hts_avls:
+                      type: string
+                      description: HTS 시가총액
+                      example: 4763886
+                      maxLength: 18
+                    etf_cnfg_issu_avls:
+                      type: string
+                      description: ETF구성종목시가총액
+                      example: 570011400
+                      maxLength: 18
+                    etf_cnfg_issu_rlim:
+                      type: string
+                      description: ETF구성종목비중
+                      example: 30.08
+                      maxLength: 72
+                    etf_vltn_amt:
+                      type: string
+                      description: ETF구성종목내평가금액
+                      example: 557868300
+                      maxLength: 18
   parameters:
     personal_secret_key:
       in: header

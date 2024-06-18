@@ -1,0 +1,207 @@
+description: ETF/ETN 구성종목 시세 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: object
+          properties:
+            stck_prpr:
+              type: string
+              description: 주식 현재가
+              example: 37450
+              maxLength: 10
+            prdy_vrss:
+              type: string
+              description: 전일 대비
+              example: 0
+              maxLength: 10
+            prdy_vrss_sign:
+              type: string
+              description: |
+                전일 대비 부호
+
+                1 : 상한<br/>
+                2 : 상승<br/>
+                3 : 보합<br/>
+                4 : 하한<br/>
+                5 : 하락
+              enum: ["1", "2", "3", "4", "5"]
+              example: 3
+            prdy_ctrt:
+              type: string
+              description: 전일 대비
+              example: 0.00
+              maxLength: 82
+            etf_cnfg_issu_avls:
+              type: string
+              description: 전일 대비율
+              example: 187568
+              maxLength: 18
+            nav:
+              type: string
+              description: NAV
+              example: 37533.66
+              maxLength: 112
+            nav_prdy_vrss_sign:
+              type: string
+              description: |
+                결제 일자
+
+                1 : 상한<br/>
+                2 : 상승<br/>
+                3 : 보합<br/>
+                4 : 하한<br/>
+                5 : 하락
+              enum: ["1", "2", "3", "4", "5"]
+              example: 3
+            nav_prdy_vrss:
+              type: string
+              description: 전체 융자 신규 주수
+              example: 0.00
+              maxLength: 112
+            nav_prdy_ctrt:
+              type: string
+              description: 전체 융자 상환 주수
+              example: 0.00
+              maxLength: 84
+            etf_ntas_ttam:
+              type: string
+              description: 전체 융자 잔고 주수
+              example: 61742
+              maxLength: 22
+            prdy_clpr_nav:
+              type: string
+              description: 전체 융자 신규 금액
+              example: 37533.66
+              maxLength: 112
+            oprc_nav:
+              type: string
+              description: 전체 융자 상환 금액
+              example: 0.00
+              maxLength: 112
+            hprc_nav:
+              type: string
+              description: 전체 융자 잔고 금액
+              example: 0.00
+              maxLength: 112
+            lprc_nav:
+              type: string
+              description: 전체 융자 잔고 비율
+              example: 0.00
+              maxLength: 112
+            etf_cu_unit_scrt_cnt:
+              type: string
+              description: ETF CU 단위 증권 수
+              example: 50000
+              maxLength: 18
+            etf_cnfg_issu_cnt:
+              type: string
+              description: 전체 대주 신규 주수
+              example: 201
+              maxLength: 18
+        output2:
+          type: array
+          items:
+            type: object
+            properties:
+              stck_shrn_iscd:
+                type: string
+                description: 주식 단축 종목코드
+                example: 005930
+                maxLength: 9
+              hts_kor_isnm:
+                type: string
+                description: HTS 한글 종목명
+                example: 삼성전자
+                maxLength: 40
+              stck_prpr:
+                type: string
+                description: 주식 현재가
+                example: 78100
+                maxLength: 10
+              prdy_vrss:
+                type: string
+                description: 전일 대비
+                example: 1700
+                maxLength: 10
+              prdy_vrss_sign:
+                type: string
+                description: |
+                  전일 대비 부호
+
+                  1 : 상한<br/>
+                  2 : 상승<br/>
+                  3 : 보합<br/>
+                  4 : 하한<br/>
+                  5 : 하락
+                enum: ["1", "2", "3", "4", "5"]
+                example: 2
+              prdy_ctrt:
+                type: string
+                description: 전일 대비율
+                example: 2.18
+                maxLength: 82
+              acml_vol:
+                type: string
+                description: 누적 거래량
+                example: 18207598
+                maxLength: 18
+              acml_tr_pbmn:
+                type: string
+                description: 누적 거래 대금
+                example: 1451893499146
+                maxLength: 18
+              tday_rsfl_rate:
+                type: string
+                description: 당일 등락 비율
+                example: 2.05
+                maxLength: 52
+              prdy_vrss_vol:
+                type: string
+                description: 전일 대비 거래량
+                example: 2084547
+                maxLength: 18
+              tr_pbmn_tnrt:
+                type: string
+                description: 거래대금회전율
+                example: 0.30
+                maxLength: 82
+              hts_avls:
+                type: string
+                description: HTS 시가총액
+                example: 4763886
+                maxLength: 18
+              etf_cnfg_issu_avls:
+                type: string
+                description: ETF구성종목시가총액
+                example: 570011400
+                maxLength: 18
+              etf_cnfg_issu_rlim:
+                type: string
+                description: ETF구성종목비중
+                example: 30.08
+                maxLength: 72
+              etf_vltn_amt:
+                type: string
+                description: ETF구성종목내평가금액
+                example: 557868300
+                maxLength: 18

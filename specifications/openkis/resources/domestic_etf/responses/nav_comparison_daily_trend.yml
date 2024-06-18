@@ -1,0 +1,106 @@
+description: ETF/ETN NAV 비교 추이(일) 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: array
+          items:
+            type: object
+            properties:
+              stck_bsop_date:
+                type: string
+                description: 주식 영업 일자
+                example: 20210615
+                maxLength: 8
+              stck_clpr:
+                type: string
+                description: 주식 종가
+                example: 40751
+                maxLength: 10
+              prdy_vrss:
+                type: string
+                description: 전일 대비
+                example: 94
+                maxLength: 10
+              prdy_vrss_sign:
+                type: string
+                description: |
+                  전일 대비 부호
+
+                  1 : 상한<br/>
+                  2 : 상승<br/>
+                  3 : 보합<br/>
+                  4 : 하한<br/>
+                  5 : 하락
+                enum: ["1", "2", "3", "4", "5"]
+                example: 2
+              prdy_ctrt:
+                type: string
+                description: 전일 대비율
+                example: 0.23
+                maxLength: 82
+              acml_vol:
+                type: string
+                description: 누적 거래량
+                example: 3267790
+                maxLength: 18
+              cntg_vol:
+                type: string
+                description: 체결 거래량
+                maxLength: 18
+              dprt:
+                type: string
+                description: 괴리율
+                example: -0.22
+                maxLength: 82
+              nav_vrss_prpr:
+                type: string
+                description: NAV 대비 현재가
+                example: -2671.04
+                maxLength: 112
+              nav:
+                type: string
+                description: NAV
+                example: 43422.04
+                maxLength: 112
+              nav_prdy_vrss_sign:
+                type: string
+                description: |
+                  NAV 전일 대비 부호
+
+                  1 : 상한<br/>
+                  2 : 상승<br/>
+                  3 : 보합<br/>
+                  4 : 하한<br/>
+                  5 : 하락
+                enum: ["1", "2", "3", "4", "5"]
+                example: 2
+              nav_prdy_vrss:
+                type: string
+                description: NAV 전일 대비
+                example: 90.07
+                maxLength: 112
+              nav_prdy_ctrt:
+                type: string
+                description: NAV 전일 대비율
+                example: 0.21
+                maxLength: 84

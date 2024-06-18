@@ -1,0 +1,145 @@
+description: ETF/ETN NAV 비교 추이(종목) 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output1:
+          type: array
+          items:
+            type: object
+            properties:
+              stck_prpr:
+                type: string
+                description: 주식 현재가
+                example: 19020
+                maxLength: 10
+              prdy_vrss:
+                type: string
+                description: 전일 대비
+                example: 0
+                maxLength: 10
+              prdy_vrss_sign:
+                type: string
+                description: |
+                  전일 대비 부호
+
+                  1 : 상한<br/>
+                  2 : 상승<br/>
+                  3 : 보합<br/>
+                  4 : 하한<br/>
+                  5 : 하락
+                enum: ["1", "2", "3", "4", "5"]
+                example: 3
+              prdy_ctrt:
+                type: string
+                description: 전일 대비율
+                example: 0.00
+                maxLength: 82
+              acml_vol:
+                type: string
+                description: 누적 거래량
+                example: 0
+                maxLength: 18
+              acml_tr_pbmn:
+                type: string
+                description: 누적 거래 대금
+                example: 0
+                maxLength: 60
+              stck_prdy_clpr:
+                type: string
+                description: 주식 전일 종가
+                example: 0
+                maxLength: 10
+              stck_oprc:
+                type: string
+                description: 주식 시가
+                example: 19020
+                maxLength: 10
+              stck_hgpr:
+                type: string
+                description: 주식 최고가
+                example: 0
+                maxLength: 10
+              stck_lwpr:
+                type: string
+                description: 주식 최저가
+                example: 0
+                maxLength: 10
+              stck_mxpr:
+                type: string
+                description: 주식 상한가
+                example: 24725
+                maxLength: 10
+              stck_llam:
+                type: string
+                description: 주식 하한가
+                example: 13315
+                maxLength: 10
+        output2:
+          type: object
+          properties:
+            nav:
+              type: string
+              description: NAV
+              example: 19028.18
+              maxLength: 11
+            nav_prdy_vrss_sign:
+              type: string
+              description: |
+                NAV 전일 대비 부호
+
+                1 : 상한<br/>
+                2 : 상승<br/>
+                3 : 보합<br/>
+                4 : 하한<br/>
+                5 : 하락
+              enum: ["1", "2", "3", "4", "5"]
+              example: 3
+            nav_prdy_vrss:
+              type: string
+              description: NAV 전일 대비
+              example: 0.00
+              maxLength: 11
+            nav_prdy_ctrt:
+              type: string
+              description: NAV 전일 대비율
+              example: 0.00
+              maxLength: 8
+            prdy_clpr_nav:
+              type: string
+              description: NAV전일종가
+              example: 19028.18
+              maxLength: 11
+            oprc_nav:
+              type: string
+              description: NAV시가
+              example: 0.00
+              maxLength: 11
+            hprc_nav:
+              type: string
+              description: NAV고가
+              example: 0.00
+              maxLength: 11
+            lprc_nav:
+              type: string
+              description: NAV저가
+              example: 0.00
+              maxLength: 11
