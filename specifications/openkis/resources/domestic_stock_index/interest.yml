@@ -1,4 +1,4 @@
-operationId: getDomesticInterest
+operationId: getIndexInterest
 
 summary: 금리종합(국내채권/금리)
 
@@ -8,9 +8,81 @@ description: |
   한국투자 HTS(eFriend Plus) > [0702] 금리 종합 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
   ※ 11:30 이후에 신규데이터가 수신되는 점 참고하시기 바랍니다.
 
-responses:
-  200:
-    description: 금리종합(국내채권/금리) 조회 성공
-
 tags:
   - DomesticStockIndex
+
+parameters:
+  - $ref: parameters.yml#/personal_secret_key
+  - $ref: parameters.yml#/tr_cont
+  - $ref: parameters.yml#/customer_type
+  - $ref: parameters.yml#/sequence_no
+  - $ref: parameters.yml#/mac_address
+  - $ref: parameters.yml#/phone_number
+  - $ref: parameters.yml#/ip_address
+  - $ref: parameters.yml#/hashkey
+  - $ref: parameters.yml#/gt_uid
+  - $ref: parameters.yml#/fid_input_iscd
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      모의투자 미지원<br/>
+      FHPST07020000 : 금리종합(국내채권/금리)
+    required: true
+    schema:
+      type: string
+      enum: ["FHPST07020000"]
+      default: FHPST07020000
+      example: FHPST07020000
+  - in: query
+    name: fid_cond_mrkt_div_code
+    description: |
+      FID 조건 시장 분류 코드
+
+      I : 지수
+    required: true
+    schema:
+      type: string
+      enum: ["I"]
+      default: I
+      example: I
+  - in: query
+    name: fid_cond_scr_div_code
+    description: |
+      조건화면분류코드
+
+      Unique key(20702)
+    required: true
+    schema:
+      type: string
+      enum: ["20702"]
+      default: 20702
+      example: 20702
+  - in: query
+    name: fid_div_cls_code
+    description: |
+      분류구분코드
+
+      1: 해외금리지표
+    required: true
+    schema:
+      type: string
+      enum: ["1"]
+      default: 1
+      example: 1
+  - in: query
+    name: fid_div_cls_code1
+    description: |
+      분류구분코드
+
+      공백 : 전체
+    required: true
+    schema:
+      type: string
+      default: ""
+      example: ""
+
+responses:
+  200:
+    $ref: responses/interest.yml

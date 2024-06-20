@@ -7,9 +7,85 @@ description: |
 
   한국투자 HTS(eFriend Plus) > [0214] 업종 전체시세 화면 의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
-responses:
-  200:
-    description: 국내업종 구분별 전체 시세 조회 성공
-
 tags:
   - DomesticStockIndex
+
+parameters:
+  - $ref: parameters.yml#/personal_secret_key
+  - $ref: parameters.yml#/tr_cont
+  - $ref: parameters.yml#/customer_type
+  - $ref: parameters.yml#/sequence_no
+  - $ref: parameters.yml#/mac_address
+  - $ref: parameters.yml#/phone_number
+  - $ref: parameters.yml#/ip_address
+  - $ref: parameters.yml#/hashkey
+  - $ref: parameters.yml#/gt_uid
+  - $ref: parameters.yml#/fid_input_iscd
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      모의투자 미지원<br/>
+      FHPUP02140000 : 국내업종 현재 지수
+    required: true
+    schema:
+      type: string
+      enum: ["FHPUP02140000"]
+      default: FHPUP02140000
+      example: FHPUP02140000
+  - in: query
+    name: fid_cond_mrkt_div_code
+    description: |
+      FID 조건 시장 분류 코드
+
+      U : 업종
+    required: true
+    schema:
+      type: string
+      enum: ["U"]
+      default: U
+      example: U
+  - in: query
+    name: fid_mrkt_cls_code
+    description: |
+      FID 시장 구분 코드
+
+      K:거래소<br/>
+      Q:코스닥<br/>
+      K2:코스피200<br/>
+    required: true
+    schema:
+      type: string
+      enum: ["K", "Q", "K2"]
+      example: K
+  - in: query
+    name: fid_blng_cls_code
+    description: |
+      FID 소속 구분 코드
+
+      시장구분코드에 따라 아래와 같이 입력<br/>
+      시장구분코드(K:거래소) 0:전업종, 1:기타구분, 2:자본금구분 3:상업별구분<br/>
+      시장구분코드(Q:코스닥) 0:전업종, 1:기타구분, 2:벤처구분 3:일반구분<br/>
+      시장구분코드(K2:코스닥) 0:전업종
+    required: true
+    schema:
+      type: string
+      enum: ["0", "1", "2", "3"]
+      example: 0
+  - in: query
+    name: fid_cond_scr_div_code
+    description: |
+      FID 조건 화면 분류 코드
+
+      Unique key( 20214 )
+    required: true
+    schema:
+      type: string
+      enum: ["20214"]
+      default: 20214
+      example: 20214
+
+responses:
+  200:
+    $ref: responses/category_price.yml

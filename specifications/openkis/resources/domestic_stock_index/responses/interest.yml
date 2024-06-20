@@ -1,0 +1,115 @@
+description: 금리종합(국내채권/금리) 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output1:
+          type: object
+          properties:
+            bcdt_code:
+              type: string
+              description: 자료코드
+              example: 00000
+              maxLength: 5
+            hts_kor_isnm:
+              type: string
+              description: HTS 한글 종목명
+              example: 삼성전자
+              maxLength: 40
+            bond_mnrt_prpr:
+              type: string
+              description: 채권금리 현재가
+              example: 0
+              maxLength: 114
+            prdy_vrss_sign:
+              type: string
+              description: |
+                전일 대비 부호
+
+                1 : 상한<br/>
+                2 : 상승<br/>
+                3 : 보합<br/>
+                4 : 하한<br/>
+                5 : 하락
+              enum: ["1", "2", "3", "4", "5"]
+              example: 3
+            bond_mnrt_prdy_vrss:
+              type: string
+              description: 채권금리 전일 대비
+              example: 0
+              maxLength: 114
+            prdy_ctrt:
+              type: string
+              description: 전일 대비율
+              example: 0.00
+              maxLength: 82
+            stck_bsop_date:
+              type: string
+              description: 주식 영업일자
+              example: 20210101
+              maxLength: 8
+            output2:
+              type: array
+              items:
+                type: object
+                properties:
+                  bcdt_code:
+                    type: string
+                    description: 자료코드
+                    example: 00000
+                    maxLength: 5
+                  hts_kor_isnm:
+                    type: string
+                    description: HTS 한글 종목명
+                    example: 삼성전자
+                    maxLength: 40
+                  bond_mnrt_prpr:
+                    type: string
+                    description: 채권금리 현재가
+                    example: 0
+                    maxLength: 114
+                  prdy_vrss_sign:
+                    type: string
+                    description: |
+                      전일 대비 부호
+
+                      1 : 상한<br/>
+                      2 : 상승<br/>
+                      3 : 보합<br/>
+                      4 : 하한<br/>
+                      5 : 하락
+                    enum: ["1", "2", "3", "4", "5"]
+                    example: 3
+                  bond_mnrt_prdy_vrss:
+                    type: string
+                    description: 채권금리 전일 대비
+                    example: 0
+                    maxLength: 114
+                  bstp_nmix_prdy_ctrt:
+                    type: string
+                    description: 업종 지수 전일 대비율
+                    example: 0.00
+                    maxLength: 82
+                  stck_bsop_date:
+                    type: string
+                    description: 주식 영업일자
+                    example: 20210101
+                    maxLength: 8

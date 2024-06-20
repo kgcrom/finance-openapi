@@ -168,11 +168,11 @@ paths:
 
   /uapi/domestic-stock/v1/quotations/inquire-index-price:
     get:
-      $ref: resources/domestic_stock_index/price.yml
+      $ref: resources/domestic_stock_index/index_price.yml
 
   /uapi/domestic-stock/v1/quotations/inquire-index-daily-price:
     get:
-      $ref: resources/domestic_stock_index/daily_price.yml
+      $ref: resources/domestic_stock_index/daily_index_price.yml
 
   /uapi/domestic-stock/v1/quotations/inquire-index-category-price:
     get:
@@ -184,15 +184,15 @@ paths:
 
   /uapi/domestic-stock/v1/quotations/inquire-index-tickprice:
     get:
-      $ref: resources/domestic_stock_index/tick_price.yml
+      $ref: resources/domestic_stock_index/tick_index_price.yml
 
   /uapi/domestic-stock/v1/quotations/inquire-index-timeprice:
     get:
-      $ref: resources/domestic_stock_index/minute_price.yml
+      $ref: resources/domestic_stock_index/minute_index_price.yml
 
   /uapi/domestic-stock/v1/quotations/exp-index-trend:
     get:
-      $ref: resources/domestic_stock_index/expected_conclusion_trend.yml
+      $ref: resources/domestic_stock_index/expected_conclusion_index_trend.yml
 
   /uapi/domestic-stock/v1/quotations/comp-interest:
     get:

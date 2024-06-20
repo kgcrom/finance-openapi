@@ -1,0 +1,140 @@
+description: 국내주식 예상체결 전체지수 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output1:
+          type: object
+          properties:
+            bstp_nmix_prpr:
+              type: string
+              description: 업종 지수 현재가
+              example: 0
+              maxLength: 112
+            bstp_nmix_prdy_vrss:
+              type: string
+              description: 업종 지수 전일 대비
+              example: 0
+              maxLength: 112
+            prdy_vrss_sign:
+              type: string
+              description: |
+                전일 대비 부호
+
+                1 : 상한<br/>
+                2 : 상승<br/>
+                3 : 보합<br/>
+                4 : 하한<br/>
+                5 : 하락
+              enum: ["1", "2", "3", "4", "5"]
+              example: 3
+            prdy_ctrt:
+              type: string
+              description: 전일 대비율
+              example: 0.00
+              maxLength: 82
+            acml_vol:
+              type: string
+              description: 누적 거래량
+              example: 0
+              maxLength: 18
+            ascn_issu_cnt:
+              type: string
+              description: 상승 종목 수
+              example: 0
+              maxLength: 7
+            down_issu_cnt:
+              type: string
+              description: 하락 종목 수
+              example: 0
+              maxLength: 7
+            stnr_issu_cnt:
+              type: string
+              description: 보합 종목 수
+              example: 0
+              maxLength: 7
+            bstp_cls_code:
+              type: string
+              description: 업종 구분 코드
+              example: 0
+              maxLength: 4
+            output2:
+              type: array
+              items:
+                type: object
+                properties:
+                  hts_kor_isnm:
+                    type: string
+                    description: HTS 한글 종목명
+                    example: 0
+                    maxLength: 40
+                  bstp_nmix_prpr:
+                    type: string
+                    description: 업종 지수 현재가
+                    example: 0
+                    maxLength: 112
+                  bstp_nmix_prdy_vrss:
+                    type: string
+                    description: 업종 지수 전일 대비
+                    example: 0
+                    maxLength: 112
+                  prdy_vrss_sign:
+                    type: string
+                    description: |
+                      전일 대비 부호
+
+                      1 : 상한<br/>
+                      2 : 상승<br/>
+                      3 : 보합<br/>
+                      4 : 하한<br/>
+                      5 : 하락
+                    enum: ["1", "2", "3", "4", "5"]
+                    example: 3
+                  bstp_nmix_prdy_ctrt:
+                    type: string
+                    description: 업종 지수 전일 대비율
+                    example: 0.00
+                    maxLength: 82
+                  acml_vol:
+                    type: string
+                    description: 누적 거래량
+                    example: 0
+                    maxLength: 18
+                  nmix_sdpr:
+                    type: string
+                    description: 지수 기준가
+                    example: 0
+                    maxLength: 112
+                  ascn_issu_cnt:
+                    type: string
+                    description: 상승 종목 수
+                    example: 0
+                    maxLength: 7
+                  stnr_issu_cnt:
+                    type: string
+                    description: 보합 종목 수
+                    example: 0
+                    maxLength: 7
+                  down_issu_cnt:
+                    type: string
+                    description: 하락 종목 수
+                    example: 0
+                    maxLength: 7

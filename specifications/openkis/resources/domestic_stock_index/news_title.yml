@@ -1,4 +1,4 @@
-operationId: getNewsTitle
+operationId: getIndexNewsTitle
 
 summary: 종합 시황/공시(제목만)
 
@@ -7,9 +7,117 @@ description: |
 
   한국투자 HTS(eFriend Plus) > [0601] 종합 시황/공시 화면의 "우측 상단 리스트" 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
-responses:
-  200:
-    description: 종합 시황/공시(제목) 조회 성공
-
 tags:
   - DomesticStockIndex
+
+parameters:
+  - $ref: parameters.yml#/personal_secret_key
+  - $ref: parameters.yml#/tr_cont
+  - $ref: parameters.yml#/customer_type
+  - $ref: parameters.yml#/sequence_no
+  - $ref: parameters.yml#/mac_address
+  - $ref: parameters.yml#/phone_number
+  - $ref: parameters.yml#/ip_address
+  - $ref: parameters.yml#/hashkey
+  - $ref: parameters.yml#/gt_uid
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      모의투자 미지원<br/>
+      FHKST01011800 : 종합 시황/공시(제목)
+    required: true
+    schema:
+      type: string
+      enum: ["FHKST01011800"]
+      default: FHKST01011800
+      example: FHKST01011800
+  - in: query
+    name: fid_news_ofer_entp_code
+    description: 뉴스 제공 업체 코드 (공백)
+    required: true
+    schema:
+      type: string
+      default: ""
+      example: ""
+      maxLength: 40
+  - in: query
+    name: fid_cond_mrkt_cls_code
+    description: 조건 시장 구분 코드(공백)
+    required: true
+    schema:
+      type: string
+      default: ""
+      example: ""
+      maxLength: 6
+  - in: query
+    name: fid_input_iscd
+    description: |
+      입력 종목코드
+
+      공백: 전체<br/>
+      종목코드 : 해당코드가 등록된 뉴스
+    required: true
+    schema:
+      type: string
+      default: ""
+      example: ""
+      maxLength: 12
+  - in: query
+    name: fid_titl_cntt
+    description: 제목 내용 (공백)
+    required: true
+    schema:
+      type: string
+      default: ""
+      example: ""
+      maxLength: 132
+  - in: query
+    name: fid_input_date_1
+    description: |
+      입력 날짜
+
+      공백: 현재기준<br/>
+      조회일자(ex 00YYYYMMDD)
+    required: true
+    schema:
+      type: string
+      default: ""
+      example: ""
+      maxLength: 10
+  - in: query
+    name: fid_input_hour_1
+    description: |
+      입력 시간
+
+      공백: 현재기준<br/>
+      조회시간(ex 0000HHMMSS)
+    required: true
+    schema:
+      type: string
+      default: ""
+      example: ""
+      maxLength: 10
+  - in: query
+    name: fid_rank_sort_cls_code
+    description: 순위 정렬 구분 코드 (공백)
+    required: true
+    schema:
+      type: string
+      default: ""
+      example: ""
+      maxLength: 2
+  - in: query
+    name: fid_input_srno
+    description: 입력 일련번호 (공백)
+    required: true
+    schema:
+      type: string
+      default: ""
+      example: ""
+      maxLength: 20
+
+responses:
+  200:
+    $ref: responses/news_title.yml

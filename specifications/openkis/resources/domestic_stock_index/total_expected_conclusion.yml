@@ -7,9 +7,82 @@ description: |
 
   한국투자 HTS(eFriend Plus) > [0185] 예상체결 전체지수 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
-responses:
-  200:
-    description: 국내주식 예상체결 전체지수 조회 성공
-
 tags:
   - DomesticStockIndex
+
+parameters:
+  - $ref: parameters.yml#/personal_secret_key
+  - $ref: parameters.yml#/tr_cont
+  - $ref: parameters.yml#/customer_type
+  - $ref: parameters.yml#/sequence_no
+  - $ref: parameters.yml#/mac_address
+  - $ref: parameters.yml#/phone_number
+  - $ref: parameters.yml#/ip_address
+  - $ref: parameters.yml#/hashkey
+  - $ref: parameters.yml#/gt_uid
+  - $ref: parameters.yml#/fid_input_iscd
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      모의투자 미지원<br/>
+      FHKUP11750000 : 국내주식 예상체결 전체지수
+    required: true
+    schema:
+      type: string
+      enum: ["FHKUP11750000"]
+      default: FHKUP11750000
+      example: FHKUP11750000
+  - in: query
+    name: fid_mrkt_cls_code
+    description: |
+      FID 시장 구분 코드
+
+      O: 전체
+      K: 거래소
+      Q: 코스닥
+    required: true
+    schema:
+      type: string
+      enum: ["O", "K", "Q"]
+      default: O
+      example: O
+  - in: query
+    name: fid_cond_mrkt_div_code
+    description: |
+      FID 조건 시장 분류 코드
+
+      U : 업종
+    required: true
+    schema:
+      type: string
+      enum: ["U"]
+      default: U
+      example: U
+  - in: query
+    name: fid_cond_scr_div_code
+    description: 조건 화면 분류 코드	Unique key(11175)
+    required: true
+    schema:
+      type: string
+      enum: ["11175"]
+      default: 11175
+      example: 11175
+  - in: query
+    name: fid_mkop_cls_code
+    description: |
+      장운영 구분 코드
+
+      1: 장시작전<br/>
+      2: 장마감
+    required: true
+    schema:
+      type: string
+      enum: ["1", "2"]
+      default: 1
+      example: 1
+
+responses:
+  200:
+    $ref: responses/total_expected_conclusion.yml

@@ -1,14 +1,14 @@
-operationId: getEtfNEtnPrice
+operationId: getIndexPrice
 
-summary: ETF/ETN 현재가 기본시세 조회
+summary: 국내업종 현재 지수 조회
 
 description: |
-  ETF/ETN 현재가 API입니다.
+  국내업종 현재지수 API입니다.
 
-  한국투자 HTS(eFriend Plus) > [0240] ETF/ETN 현재가 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+  한국투자 HTS(eFriend Plus) > [0210] 업종 현재지수 화면 의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
 tags:
-  - EtfNEtnQuote
+  - DomesticStockIndex
 
 parameters:
   - $ref: parameters.yml#/personal_secret_key
@@ -27,25 +27,26 @@ parameters:
       거래ID
 
       모의투자 미지원<br/>
-      FHPST02400000 : ETF/ETN 현재가
+      FHPUP02100000 : 국내업종 현재 지수
     required: true
     schema:
       type: string
-      enum: ["FHPST02400000"]
-      default: FHPST02400000
-      example: FHPST02400000
+      enum: ["FHPUP02100000"]
+      default: FHPUP02100000
+      example: FHPUP02100000
   - in: query
     name: fid_cond_mrkt_div_code
     description: |
-      FID 조건시장분류코드<br/>
-      J : 주식
+      FID 조건 시장 분류 코드
+
+      U : 업종
     required: true
     schema:
       type: string
-      enum: ["J"]
-      default: J
-      example: J
+      enum: ["U"]
+      default: U
+      example: U
 
 responses:
   200:
-    $ref: responses/etf_price.yml
+    $ref: responses/index_price.yml

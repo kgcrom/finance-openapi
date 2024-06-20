@@ -1,0 +1,234 @@
+description: 국내업종 현재 지수 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: object
+          properties:
+            bstp_nmix_prpr:
+              type: string
+              description: 업종 지수 현재가
+              example: 0
+              maxLength: 112
+            bstp_nmix_prdy_vrss:
+              type: string
+              description: 업종 지수 전일 대비
+              example: 0
+              maxLength: 112
+            prdy_vrss_sign:
+              type: string
+              description: |
+                전일 대비 부호
+
+                1 : 상한<br/>
+                2 : 상승<br/>
+                3 : 보합<br/>
+                4 : 하한<br/>
+                5 : 하락
+              enum: ["1", "2", "3", "4", "5"]
+              example: 3
+            bstp_nmix_prdy_ctrt:
+              type: string
+              description: 업종 지수 전일 대비율
+              example: 0.00
+              maxLength: 82
+            acml_vol:
+              type: string
+              description: 누적 거래량
+              example: 0
+              maxLength: 18
+            prdy_vol:
+              type: string
+              description: 전일 거래량
+              example: 0
+              maxLength: 18
+            acml_tr_pbmn:
+              type: string
+              description: 누적 거래 대금
+              example: 0
+              maxLength: 18
+            prdy_tr_pbmn:
+              type: string
+              description: 전일 거래 대금
+              example: 0
+              maxLength: 18
+            bstp_nmix_oprc:
+              type: string
+              description: 업종 지수 시가2
+              example: 0
+              maxLength: 112
+            prdy_nmix_vrss_nmix_oprc:
+              type: string
+              description: 전일 지수 대비 지수 시가2
+              example: 0
+              maxLength: 112
+            oprc_vrss_prpr_sign:
+              type: string
+              description: |
+                시가2 대비 현재가 부호
+
+                1 : 상한<br/>
+                2 : 상승<br/>
+                3 : 보합<br/>
+                4 : 하한<br/>
+                5 : 하락
+              enum: ["1", "2", "3", "4", "5"]
+              example: 3
+            bstp_nmix_oprc_prdy_ctrt:
+              type: string
+              description: 업종 지수 시가2 전일 대비율
+              example: 0.00
+              maxLength: 82
+            bstp_nmix_hgpr:
+              type: string
+              description: 업종 지수 최고가
+              example: 0
+              maxLength: 112
+            prdy_nmix_vrss_nmix_hgpr:
+              type: string
+              description: 전일 지수 대비 지수 최고가
+              example: 0
+              maxLength: 112
+            hgpr_vrss_prpr_sign:
+              type: string
+              description: |
+                최고가 대비 현재가 부호
+
+                1 : 상한<br/>
+                2 : 상승<br/>
+                3 : 보합<br/>
+                4 : 하한<br/>
+                5 : 하락
+              enum: ["1", "2", "3", "4", "5"]
+              example: 3
+            bstp_nmix_hgpr_prdy_ctrt:
+              type: string
+              description: 업종 지수 최고가 전일 대비율
+              example: 0.00
+              maxLength: 82
+            bstp_nmix_lwpr:
+              type: string
+              description: 업종 지수 최저가
+              example: 0
+              maxLength: 112
+            prdy_clpr_vrss_lwpr:
+              type: string
+              description: 전일 종가 대비 최저가
+              example: 0
+              maxLength: 10
+            lwpr_vrss_prpr_sign:
+              type: string
+              description: |
+                최저가 대비 현재가 부호
+
+                1 : 상한<br/>
+                2 : 상승<br/>
+                3 : 보합<br/>
+                4 : 하한<br/>
+                5 : 하락
+              enum: ["1", "2", "3", "4", "5"]
+              example: 3
+            prdy_clpr_vrss_lwpr_rate:
+              type: string
+              description: 전일 종가 대비 최저가 비율
+              example: 0.00
+              maxLength: 84
+            ascn_issu_cnt:
+              type: string
+              description: 상승 종목 수
+              example: 0
+              maxLength: 7
+            uplm_issu_cnt:
+              type: string
+              description: 상한 종목 수
+              example: 0
+              maxLength: 7
+            stnr_issu_cnt:
+              type: string
+              description: 보합 종목 수
+              example: 0
+              maxLength: 7
+            down_issu_cnt:
+              type: string
+              description: 하락 종목 수
+              example: 0
+              maxLength: 7
+            lslm_issu_cnt:
+              type: string
+              description: 하한 종목 수
+              example: 0
+              maxLength: 7
+            dryy_bstp_nmix_hgpr:
+              type: string
+              description: 연중업종지수최고가
+              example: 0
+              maxLength: 112
+            dryy_hgpr_vrss_prpr_rate:
+              type: string
+              description: 연중 최고가 대비 현재가 비율
+              example: 0.00
+              maxLength: 84
+            dryy_bstp_nmix_hgpr_date:
+              type: string
+              description: 연중업종지수최고가일자
+              example: 0
+              maxLength: 8
+            dryy_bstp_nmix_lwpr:
+              type: string
+              description: 연중업종지수최저가
+              example: 0
+              maxLength: 112
+            dryy_lwpr_vrss_prpr_rate:
+              type: string
+              description: 연중 최저가 대비 현재가 비율
+              example: 0.00
+              maxLength: 84
+            dryy_bstp_nmix_lwpr_date:
+              type: string
+              description: 연중업종지수최저가일자
+              example: 0
+              maxLength: 8
+            total_askp_rsqn:
+              type: string
+              description: 총 매도호가 잔량
+              example: 0
+              maxLength: 12
+            total_bidp_rsqn:
+              type: string
+              description: 총 매수호가 잔량
+              example: 0
+              maxLength: 12
+            seln_rsqn_rate:
+              type: string
+              description: 매도 잔량 비율
+              example: 0.00
+              maxLength: 84
+            shnu_rsqn_rate:
+              type: string
+              description: 매수2 잔량 비율
+              example: 0.00
+              maxLength: 84
+            ntby_rsqn:
+              type: string
+              description: 순매수 잔량
+              example: 0
+              maxLength: 12
