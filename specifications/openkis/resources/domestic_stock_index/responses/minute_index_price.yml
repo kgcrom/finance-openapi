@@ -27,17 +27,17 @@ content:
             bsop_hour:
               type: string
               description: 영업 시간
-              example: 090000
+              example: 153000
               maxLength: 6
             bstp_nmix_prpr:
               type: string
               description: 업종 지수 현재가
-              example: 0
+              example: 2784.25
               maxLength: 112
             bstp_nmix_prdy_vrss:
               type: string
               description: 업종 지수 전일 대비
-              example: 0
+              example: -23.38
               maxLength: 112
             prdy_vrss_sign:
               type: string
@@ -50,24 +50,24 @@ content:
                 4 : 하한<br/>
                 5 : 하락
               enum: ["1", "2", "3", "4", "5"]
-              example: 3
+              example: 5
             bstp_nmix_prdy_ctrt:
               type: string
               description: 업종 지수 전일 대비율
-              example: 0.00
+              example: -0.83
               maxLength: 82
             acml_tr_pbmn:
               type: string
               description: 누적 거래 대금
-              example: 0
+              example: 14120217
               maxLength: 18
             acml_vol:
               type: string
               description: 누적 거래량
-              example: 0
+              example: 617526
               maxLength: 18
             cntg_vol:
               type: string
               description: 체결 거래량
-              example: 0
+              example: 40049
               maxLength: 18

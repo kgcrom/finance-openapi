@@ -27,17 +27,17 @@ content:
             bcdt_code:
               type: string
               description: 자료코드
-              example: 00000
+              example: Y0201
               maxLength: 5
             hts_kor_isnm:
               type: string
               description: HTS 한글 종목명
-              example: 삼성전자
+              example: 미국 30년T-BOND
               maxLength: 40
             bond_mnrt_prpr:
               type: string
               description: 채권금리 현재가
-              example: 0
+              example: 4.3600
               maxLength: 114
             prdy_vrss_sign:
               type: string
@@ -50,21 +50,21 @@ content:
                 4 : 하한<br/>
                 5 : 하락
               enum: ["1", "2", "3", "4", "5"]
-              example: 3
+              example: 5
             bond_mnrt_prdy_vrss:
               type: string
               description: 채권금리 전일 대비
-              example: 0
+              example: -0.0400
               maxLength: 114
             prdy_ctrt:
               type: string
               description: 전일 대비율
-              example: 0.00
+              example: -0.91
               maxLength: 82
             stck_bsop_date:
               type: string
               description: 주식 영업일자
-              example: 20210101
+              example: 20240618
               maxLength: 8
             output2:
               type: array
@@ -74,17 +74,17 @@ content:
                   bcdt_code:
                     type: string
                     description: 자료코드
-                    example: 00000
+                    example: Y0101
                     maxLength: 5
                   hts_kor_isnm:
                     type: string
                     description: HTS 한글 종목명
-                    example: 삼성전자
+                    example: 국고채 3년
                     maxLength: 40
                   bond_mnrt_prpr:
                     type: string
                     description: 채권금리 현재가
-                    example: 0
+                    example: 3.1960
                     maxLength: 114
                   prdy_vrss_sign:
                     type: string
@@ -97,19 +97,19 @@ content:
                       4 : 하한<br/>
                       5 : 하락
                     enum: ["1", "2", "3", "4", "5"]
-                    example: 3
+                    example: 2
                   bond_mnrt_prdy_vrss:
                     type: string
                     description: 채권금리 전일 대비
-                    example: 0
+                    example: 0.0340
                     maxLength: 114
                   bstp_nmix_prdy_ctrt:
                     type: string
                     description: 업종 지수 전일 대비율
-                    example: 0.00
+                    example: 1.08
                     maxLength: 82
                   stck_bsop_date:
                     type: string
                     description: 주식 영업일자
-                    example: 20210101
+                    example: 20240620
                     maxLength: 8

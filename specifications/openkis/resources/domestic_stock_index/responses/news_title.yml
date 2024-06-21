@@ -29,7 +29,7 @@ content:
               cntt_usiq_srno:
                 type: string
                 description: 내용 조회용 일련번호
-                example: ""
+                example: "2024062011005138887"
                 maxLength: 20
               news_ofer_entp_code:
                 type: string
@@ -65,22 +65,22 @@ content:
                   Z : 인베스트조선<br/>
                   a : IRGO<br/>
                   d : NSP통신<br/>
-                example: 2
+                example: 6
                 maxLength: 1
               data_dt:
                 type: string
                 description: 작성일자
-                example: ""
+                example: "20240620"
                 maxLength: 8
               data_tm:
                 type: string
                 description: 작성시간
-                example: ""
+                example: "110051"
                 maxLength: 6
               hts_pbnt_titl_cntt:
                 type: string
                 description: HTS 공시 제목 내용
-                example: ""
+                example: "서스틴베스트, 상반기 기업 ESG 성과평가…1위 네이버"
                 maxLength: 400
               news_lrdv_code:
                 type: string
@@ -358,17 +358,17 @@ content:
                   A5: 수익증권<br/>
                   A6: 투자자참고사항<br/>
                   A7: 뮤츄얼펀드<br/>
-                example: "20"
+                example: "02"
                 maxLength: 8
               dorg:
                 type: string
                 description: 자료원
-                example: ""
+                example: "연합뉴스"
                 maxLength: 20
               iscd1:
                 type: string
                 description: 종목 코드1
-                example: ""
+                example: "010130"
                 maxLength: 9
               iscd2:
                 type: string
@@ -390,3 +390,53 @@ content:
                 description: 종목 코드5
                 example: ""
                 maxLength: 9
+              kor_isnm1:
+                type: string
+                description: 종목명1
+                example: "고려아연"
+                maxLength: 40
+              kor_isnm2:
+                type: string
+                description: 종목명2
+                example: ""
+                maxLength: 40
+              kor_isnm3:
+                type: string
+                description: 종목명3
+                example: ""
+                maxLength: 40
+              kor_isnm4:
+                type: string
+                description: 종목명4
+                example: ""
+                maxLength: 40
+              kor_isnm5:
+                type: string
+                description: 종목명5
+                example: ""
+                maxLength: 40
+              kor_isnm6:
+                type: string
+                description: 종목명6
+                example: ""
+                maxLength: 40
+              kor_isnm7:
+                type: string
+                description: 종목명7
+                example: ""
+                maxLength: 40
+              kor_isnm8:
+                type: string
+                description: 종목명8
+                example: ""
+                maxLength: 40
+              kor_isnm9:
+                type: string
+                description: 종목명9
+                example: ""
+                maxLength: 40
+              kor_isnm10:
+                type: string
+                description: 종목명10
+                example: ""
+                maxLength: 40

@@ -56,7 +56,6 @@ parameters:
     schema:
       type: string
       enum: ["1", "2"]
-      default: 1
       example: 1
   - in: query
     name: fid_input_hour_1
@@ -68,7 +67,6 @@ parameters:
     schema:
       type: string
       enum: ["10", "30", "60", "600"]
-      default: 10
       example: 10
   - in: query
     name: fid_input_iscd

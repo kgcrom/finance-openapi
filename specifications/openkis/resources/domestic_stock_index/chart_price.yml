@@ -7,9 +7,76 @@ description: |
 
   실전계좌/모의계좌의 경우, 한 번의 호출에 최대 50건까지 확인 가능합니다.
 
-responses:
-  200:
-    description: 국내주식 업종기간별 시세(일/주/월/년) 조회 성공
-
 tags:
   - DomesticStockIndex
+
+parameters:
+  - $ref: parameters.yml#/personal_secret_key
+  - $ref: parameters.yml#/tr_cont
+  - $ref: parameters.yml#/customer_type
+  - $ref: parameters.yml#/sequence_no
+  - $ref: parameters.yml#/mac_address
+  - $ref: parameters.yml#/phone_number
+  - $ref: parameters.yml#/ip_address
+  - $ref: parameters.yml#/hashkey
+  - $ref: parameters.yml#/gt_uid
+  - $ref: parameters.yml#/fid_input_iscd
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      [실전투자/모의투자]<br/>
+      FHKUP03500100 : 국내업종 현재 지수
+    required: true
+    schema:
+      type: string
+      enum: ["FHKUP03500100"]
+      default: FHKUP03500100
+      example: FHKUP03500100
+  - in: query
+    name: fid_cond_mrkt_div_code
+    description: |
+      FID 조건 시장 분류 코드
+
+      U : 업종
+    required: true
+    schema:
+      type: string
+      enum: ["U"]
+      default: U
+      example: U
+  - in: query
+    name: fid_input_date_1
+    description: 조회 시작일자 (ex. 20220501)
+    required: true
+    schema:
+      type: string
+      example: 20220501
+      maxLength: 10
+  - in: query
+    name: fid_input_date_2
+    description: 조회 종료일자 (ex. 20220530)
+    required: true
+    schema:
+      type: string
+      example: 20220530
+      maxLength: 10
+  - in: query
+    name: fid_period_div_code
+    description: |
+      FID 기간 구분 코드
+
+      D : 일<br/>
+      W : 주<br/>
+      M : 월<br/>
+      Y : 년
+    required: true
+    schema:
+      type: string
+      enum: ["D", "W", "M", "Y"]
+      example: D
+
+responses:
+  200:
+    $ref: responses/chart_price.yml

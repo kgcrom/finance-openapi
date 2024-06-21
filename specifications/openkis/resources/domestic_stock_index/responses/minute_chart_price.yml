@@ -1,0 +1,158 @@
+description: 국내주식 업종분봉 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output1:
+          type: object
+          properties:
+            bstp_nmix_prdy_vrss:
+              type: string
+              description: 업종 지수 전일 대비
+              example: 10.30
+              maxLength: 112
+            prdy_vrss_sign:
+              type: string
+              description: |
+                전일 대비 부호
+
+                1 : 상한<br/>
+                2 : 상승<br/>
+                3 : 보합<br/>
+                4 : 하한<br/>
+                5 : 하락
+              enum: ["1", "2", "3", "4", "5"]
+              example: 2
+            bstp_nmix_prdy_ctrt:
+              type: string
+              description: 업종 지수 전일 대비율
+              example: 0.37
+              maxLength: 82
+            prdy_nmix:
+              type: string
+              description: 전일 지수
+              example: 2807.63
+              maxLength: 112
+            acml_vol:
+              type: string
+              description: 누적 거래량
+              example: 758166
+              maxLength: 18
+            acml_tr_pbmn:
+              type: string
+              description: 누적 거래 대금
+              example: 758166
+              maxLength: 18
+            hts_kor_isnm:
+              type: string
+              description: HTS 한글 종목명
+              example: 코스피200
+              maxLength: 40
+            bstp_nmix_prpr:
+              type: string
+              description: 업종 지수 현재가
+              example: 2807.63
+              maxLength: 112
+            bstp_cls_code:
+              type: string
+              description: 업종 구분 코드
+              example: 112
+              maxLength: 4
+            prdy_vol:
+              type: string
+              description: 전일 거래량
+              example: 646706
+              maxLength: 18
+            bstp_nmix_oprc:
+              type: string
+              description: 업종 지수 시가2
+              example: 2802.10
+              maxLength: 112
+            bstp_nmix_hgpr:
+              type: string
+              description: 업종 지수 최고가
+              example: 2807.63
+              maxLength: 112
+            bstp_nmix_lwpr:
+              type: string
+              description: 업종 지수 최저가
+              example: 2807.63
+              maxLength: 112
+            futs_prdy_oprc:
+              type: string
+              description: 선물 전일 시가
+              example: 2807.63
+              maxLength: 112
+            futs_prdy_hgpr:
+              type: string
+              description: 선물 전일 최고가
+              example: 2807.63
+              maxLength: 112
+            futs_prdy_lwpr:
+              type: string
+              description: 선물 전일 최저가
+              example: 2807.63
+              maxLength: 112
+        output2:
+          type: array
+          items:
+            type: object
+            properties:
+              stck_bsop_date:
+                type: string
+                description: 주식 영업 일자
+                example: 20210806
+                maxLength: 8
+              stck_cntg_hour:
+                type: string
+                description: 주식 체결 시간
+                example: 090000
+                maxLength: 6
+              bstp_nmix_prpr:
+                type: string
+                description: 업종 지수 현재가
+                example: 2807.63
+                maxLength: 112
+              bstp_nmix_oprc:
+                type: string
+                description: 업종 지수 시가2
+                example: 2802.10
+                maxLength: 112
+              bstp_nmix_hgpr:
+                type: string
+                description: 업종 지수 최고가
+                example: 2807.63
+                maxLength: 112
+              bstp_nmix_lwpr:
+                type: string
+                description: 업종 지수 최저가
+                example: 2807.63
+                maxLength: 112
+              cntg_vol:
+                type: string
+                description: 체결 거래량
+                example: 758166
+                maxLength: 18
+              acml_tr_pbmn:
+                type: string
+                description: 누적 거래 대금
+                example: 758166
+                maxLength: 18

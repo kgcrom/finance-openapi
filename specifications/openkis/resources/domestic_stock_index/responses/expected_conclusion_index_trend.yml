@@ -27,12 +27,12 @@ content:
             stck_cntg_hour:
               type: string
               description: 주식 단축 종목코드
-              example: 000000
+              example: 085950
               maxLength: 6
             bstp_nmix_prpr:
               type: string
-              description: HTS 한글 종목명
-              example: 삼성전자
+              description: 업종 지수 현재가
+              example: 2790.37
               maxLength: 112
             prdy_vrss_sign:
               type: string
@@ -45,24 +45,24 @@ content:
                 4 : 하한<br/>
                 5 : 하락
               enum: ["1", "2", "3", "4", "5"]
-              example: 3
+              example: 5
             bstp_nmix_prdy_vrss:
               type: string
               description: 전일 대비
-              example: 0
+              example: -17.26
               maxLength: 112
             prdy_ctrt:
               type: string
               description: 전일 대비 부호
-              example: 0.00
+              example: -0.61
               maxLength: 82
             acml_vol:
               type: string
               description: 전일 대비율
-              example: 0
+              example: 6326
               maxLength: 18
             acml_tr_pbmn:
               type: string
               description: 기준가 대비 현재가
-              example: 0
+              example: 205510
               maxLength: 18

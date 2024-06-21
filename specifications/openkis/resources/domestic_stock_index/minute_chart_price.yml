@@ -7,9 +7,80 @@ description: |
 
   실전계좌의 경우, 한 번의 호출에 최대 102건까지 확인 가능합니다.
 
-responses:
-  200:
-    description: 국내주식 업종분봉 조회 성공
-
 tags:
   - DomesticStockIndex
+
+parameters:
+  - $ref: parameters.yml#/personal_secret_key
+  - $ref: parameters.yml#/tr_cont
+  - $ref: parameters.yml#/customer_type
+  - $ref: parameters.yml#/sequence_no
+  - $ref: parameters.yml#/mac_address
+  - $ref: parameters.yml#/phone_number
+  - $ref: parameters.yml#/ip_address
+  - $ref: parameters.yml#/hashkey
+  - $ref: parameters.yml#/gt_uid
+  - $ref: parameters.yml#/fid_input_iscd
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      모의투자 미지원<br/>
+      FHKUP03500200 : 국내주식 업종 분봉조회
+    required: true
+    schema:
+      type: string
+      enum: ["FHKUP03500200"]
+      default: FHKUP03500200
+      example: FHKUP03500200
+  - in: query
+    name: fid_cond_mrkt_div_code
+    description: |
+      FID 조건 시장 분류 코드
+
+      U : 업종
+    required: true
+    schema:
+      type: string
+      enum: ["U"]
+      default: U
+      example: U
+  - in: query
+    name: fid_etc_cls_code
+    description: |
+      FID 기타 구분 코드
+
+      0: 기본<br/>
+      1:장마감, 시간외 제외
+    required: true
+    schema:
+      type: string
+      enum: ["0", "1"]
+      example: 0
+  - in: query
+    name: fid_input_hour_1
+    description: |
+      FID 입력 시간
+
+      30(30초), 60(1분), 300(5분), 600(10분)
+    required: true
+    schema:
+      type: string
+      example: 60
+  - in: query
+    name: fid_pw_data_incu_yn
+    description: |
+      FID 과거 데이터 포함 여부
+
+      Y : 과거<br/>
+      N : 당일
+    required: true
+    schema:
+      type: string
+      enum: ["Y", "N"]
+      example: N
+
+responses:
+  200:
+    $ref: responses/minute_chart_price.yml

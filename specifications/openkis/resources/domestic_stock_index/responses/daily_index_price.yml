@@ -27,12 +27,12 @@ content:
             bstp_nmix_prpr:
               type: string
               description: 업종 지수 현재가
-              example: 0
+              example: 2807.63
               maxLength: 112
             bstp_nmix_prdy_vrss:
               type: string
               description: 업종 지수 전일 대비
-              example: 0
+              example: 10.30
               maxLength: 112
             prdy_vrss_sign:
               type: string
@@ -45,61 +45,61 @@ content:
                 4 : 하한<br/>
                 5 : 하락
               enum: ["1", "2", "3", "4", "5"]
-              example: 3
+              example: 2
             bstp_nmix_prdy_ctrt:
               type: string
               description: 업종 지수 전일 대비율
-              example: 0.00
+              example: 0.37
               maxLength: 82
             acml_vol:
               type: string
               description: 누적 거래량
-              example: 0
+              example: 758166
               maxLength: 18
             acml_tr_pbmn:
               type: string
               description: 누적 거래 대금
-              example: 0
+              example: 13576970
               maxLength: 18
             bstp_nmix_oprc:
               type: string
               description: 업종 지수 시가
-              example: 0
+              example: 2802.10
               maxLength: 112
             bstp_nmix_hgpr:
               type: string
               description: 업종 지수 최고가
-              example: 0
+              example: 2812.62
               maxLength: 112
             bstp_nmix_lwpr:
               type: string
               description: 업종 지수 최저가
-              example: 0
+              example: 2796.37
               maxLength: 112
             prdy_vol:
               type: string
               description: 전일 거래량
-              example: 0
+              example: 676706
               maxLength: 18
             ascn_issu_cnt:
               type: string
               description: 상승 종목 수
-              example: 0
+              example: 499
               maxLength: 7
             down_issu_cnt:
               type: string
               description: 하락 종목 수
-              example: 0
+              example: 371
               maxLength: 7
             stnr_issu_cnt:
               type: string
               description: 보합 종목 수
-              example: 0
+              example: 62
               maxLength: 7
             uplm_issu_cnt:
               type: string
               description: 상한 종목 수
-              example: 0
+              example: 4
               maxLength: 7
             lslm_issu_cnt:
               type: string
@@ -109,17 +109,27 @@ content:
             prdy_tr_pbmn:
               type: string
               description: 전일 거래 대금
-              example: 0
+              example: 14069564
               maxLength: 18
             dryy_bstp_nmix_hgpr_date:
               type: string
               description: 연중업종지수최고가일자
-              example: 0
+              example: 20240620
               maxLength: 8
+            dryy_bstp_nmix_hgpr:
+              type: string
+              description: 연중업종지수최고가
+              example: 2812.62
+              maxLength: 112
+            dryy_bstp_nmix_lwpr:
+              type: string
+              description: 연중업종지수최저가
+              example: 2429.12
+              maxLength: 112
             dryy_bstp_nmix_lwpr_date:
               type: string
               description: 연중업종지수최저가일자
-              example: 0
+              example: 20240118
               maxLength: 8
         output2:
           type: array
@@ -129,12 +139,12 @@ content:
               stck_bsop_date:
                 type: string
                 description: 주식 영업 일자
-                example: 0
+                example: 20240620
                 maxLength: 8
               bstp_nmix_prpr:
                 type: string
                 description: 업종 지수 현재가
-                example: 0
+                example: 2807.63
                 maxLength: 112
               prdy_vrss_sign:
                 type: string
@@ -147,54 +157,54 @@ content:
                   4 : 하한<br/>
                   5 : 하락
                 enum: ["1", "2", "3", "4", "5"]
-                example: 3
+                example: 2
               bstp_nmix_prdy_vrss:
                 type: string
                 description: 업종 지수 전일 대비
-                example: 0
+                example: 10.30
                 maxLength: 112
               bstp_nmix_prdy_ctrt:
                 type: string
                 description: 업종 지수 전일 대비율
-                example: 0.00
+                example: 0.37
                 maxLength: 82
               bstp_nmix_oprc:
                 type: string
                 description: 업종 지수 시가2
-                example: 0
+                example: 2802.10
                 maxLength: 112
               bstp_nmix_hgpr:
                 type: string
                 description: 업종 지수 최고가
-                example: 0
+                example: 2812.62
                 maxLength: 112
               bstp_nmix_lwpr:
                 type: string
                 description: 업종 지수 최저가
-                example: 0
+                example: 2796.37
                 maxLength: 112
               acml_vol_rlim:
                 type: string
                 description: 누적 거래량 비중
-                example: 0
+                example: 100.00
                 maxLength: 72
               acml_vol:
                 type: string
                 description: 누적 거래량
-                example: 0
+                example: 758166
                 maxLength: 18
               acml_tr_pbmn:
                 type: string
                 description: 누적 거래 대금
-                example: 0
+                example: 13576970
                 maxLength: 18
               invt_new_psdg:
                 type: string
                 description: 투자 신 심리도
-                example: 0
+                example: 61.12
                 maxLength: 112
               d20_dsrt:
                 type: string
                 description: 20일 이격도
-                example: 0
+                example: 103.37
                 maxLength: 112

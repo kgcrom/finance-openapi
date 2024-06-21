@@ -1,4 +1,4 @@
-operationId: getIndexTotalExp
+operationId: getIndexTotalExpectedConclusion
 
 summary: 국내주식 예상체결 전체지수 조회
 
@@ -46,7 +46,6 @@ parameters:
     schema:
       type: string
       enum: ["O", "K", "Q"]
-      default: O
       example: O
   - in: query
     name: fid_cond_mrkt_div_code
@@ -80,7 +79,6 @@ parameters:
     schema:
       type: string
       enum: ["1", "2"]
-      default: 1
       example: 1
 
 responses:
