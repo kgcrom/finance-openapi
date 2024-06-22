@@ -11,16 +11,26 @@ tags:
   - DomesticStockIndex
 
 parameters:
-  - $ref: parameters.yml#/personal_secret_key
-  - $ref: parameters.yml#/tr_cont
-  - $ref: parameters.yml#/customer_type
-  - $ref: parameters.yml#/sequence_no
-  - $ref: parameters.yml#/mac_address
-  - $ref: parameters.yml#/phone_number
-  - $ref: parameters.yml#/ip_address
-  - $ref: parameters.yml#/hashkey
-  - $ref: parameters.yml#/gt_uid
-  - $ref: parameters.yml#/fid_input_iscd
+  - $ref: ../../shared/parameters.yml#/personal_secret_key
+  - $ref: ../../shared/parameters.yml#/tr_cont
+  - $ref: ../../shared/parameters.yml#/customer_type
+  - $ref: ../../shared/parameters.yml#/sequence_no
+  - $ref: ../../shared/parameters.yml#/mac_address
+  - $ref: ../../shared/parameters.yml#/phone_number
+  - $ref: ../../shared/parameters.yml#/ip_address
+  - $ref: ../../shared/parameters.yml#/hashkey
+  - $ref: ../../shared/parameters.yml#/gt_uid
+  - in: query
+    name: fid_input_iscd
+    description: |
+      FID 입력 종목코드
+
+      0000:전체, 0001:코스피, 1001:코스닥, 2001:코스피200.. 등<br/>
+      포탈 (FAQ : 종목정보 다운로드(국내) - 업종코드 참조)
+    required: true
+    schema:
+      type: string
+      example: "0001"
   - in: header
     name: tr_id
     description: |
