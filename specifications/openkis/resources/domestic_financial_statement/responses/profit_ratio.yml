@@ -1,0 +1,51 @@
+description: 국내주식 수익성비율 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: object
+          properties:
+            stac_yymm:
+              type: string
+              description: 결산 년월
+              example: 202403
+              maxLength: 6
+            cptl_ntin_rate:
+              type: string
+              description: 총자본 순이익율
+              example: 5.83
+              maxLength: 92
+            self_cptl_ntin_inrt:
+              type: string
+              description: 자기자본 순이익율
+              example: 7.40
+              maxLength: 92
+            sale_ntin_rate:
+              type: string
+              description: 매출액 순이익율
+              example: 9.39
+              maxLength: 92
+            sale_totl_rate:
+              type: string
+              description: 매출액 총이익율
+              example: 36.19
+              maxLength: 92

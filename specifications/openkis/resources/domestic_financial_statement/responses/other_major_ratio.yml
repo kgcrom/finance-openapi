@@ -1,0 +1,51 @@
+description: 국내주식 기타주요비율 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: object
+          properties:
+            stac_yymm:
+              type: string
+              description: 결산 년월
+              example: 202403
+              maxLength: 6
+            payout_rate:
+              type: string
+              description: 배당 성향
+              example: 0.00
+              maxLength: 92
+            eva:
+              type: string
+              description: EVA
+              example: 0.00
+              maxLength: 82
+            ebitda:
+              type: string
+              description: EBITDA
+              example: 165568.00
+              maxLength: 82
+            ev_ebitda:
+              type: string
+              description: EV_EBITDA
+              example: 0.00
+              maxLength: 82

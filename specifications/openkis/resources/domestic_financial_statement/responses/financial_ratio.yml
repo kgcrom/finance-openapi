@@ -1,0 +1,76 @@
+description: 국내주식 재무비율 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: object
+          properties:
+            stac_yymm:
+              type: string
+              description: 결산 년월
+              example: 202403
+              maxLength: 6
+            grs:
+              type: string
+              description: 매출액 증가율
+              example: 12.8200
+              maxLength: 124
+            bsop_prfi_inrt:
+              type: string
+              description: 영업 이익 증가율
+              example: 931.9000
+              maxLength: 124
+            ntin_inrt:
+              type: string
+              description: 순이익 증가율
+              example: 328.9800
+              maxLength: 124
+            roe_val:
+              type: string
+              description: ROE 값
+              example: 7.40
+              maxLength: 132
+            eps:
+              type: string
+              description: EPS
+              example: 975.00
+              maxLength: 112
+            sps:
+              type: string
+              description: 주당매출액
+              example: 42349
+              maxLength: 18
+            bps:
+              type: string
+              description: BPS
+              example: 53339.00
+              maxLength: 112
+            rsrv_rate:
+              type: string
+              description: 유보 비율
+              example: 40268.7400
+              maxLength: 84
+            lblt_rate:
+              type: string
+              description: 부채 비율
+              example: 26.6100
+              maxLength: 84

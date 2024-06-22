@@ -2984,11 +2984,71 @@ paths:
         국내주식 대차대조표 API입니다.
 
         한국투자 HTS(eFriend Plus) > [0635] 재무분석종합 화면의 하단 '1. 대차대조표' 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-      responses:
-        '200':
-          description: 국내주식 대차대조표 조회 성공
       tags:
         - DomesticStockFinancialStatement
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: query
+          name: fid_input_iscd
+          description: |
+            FID 입력 종목코드
+
+            000660: 종목코드
+          required: true
+          schema:
+            type: string
+          example: '000660'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHKST66430100 : 국내주식 대차대조표
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHKST66430100
+            default: FHKST66430100
+            example: FHKST66430100
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            조건 시장 분류 코드
+
+            J
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+            default: J
+            example: J
+        - in: query
+          name: fid_div_cls_code
+          description: |
+            분류 구분 코드
+
+            0: 년, 1: 분기
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+            example: 0
+      responses:
+        '200':
+          $ref: '#/components/responses/balance_sheet'
   /uapi/domestic-stock/v1/finance/income-statement:
     get:
       operationId: getFinancialIncomeStatement
@@ -2997,11 +3057,71 @@ paths:
         국내주식 손익계산서 API입니다.
 
         한국투자 HTS(eFriend Plus) > [0635] 재무분석종합 화면의 하단 '2. 손익계산서' 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-      responses:
-        '200':
-          description: 국내주식 손익계산서 조회 성공
       tags:
         - DomesticStockFinancialStatement
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: query
+          name: fid_input_iscd
+          description: |
+            FID 입력 종목코드
+
+            000660: 종목코드
+          required: true
+          schema:
+            type: string
+          example: '000660'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHKST66430200 : 국내주식 손익계산서
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHKST66430200
+            default: FHKST66430200
+            example: FHKST66430200
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            조건 시장 분류 코드
+
+            J
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+            default: J
+            example: J
+        - in: query
+          name: fid_div_cls_code
+          description: |
+            분류 구분 코드
+
+            0: 년, 1: 분기
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+            example: 0
+      responses:
+        '200':
+          $ref: '#/components/responses/income_statement'
   /uapi/domestic-stock/v1/finance/financial-ratio:
     get:
       operationId: getFinancialRatio
@@ -3010,11 +3130,71 @@ paths:
         국내주식 재무비율 API입니다.
 
         한국투자 HTS(eFriend Plus) > [0635] 재무분석종합 화면의 우측의 '재무 비율' 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-      responses:
-        '200':
-          description: 국내주식 재무비율 조회 성공
       tags:
         - DomesticStockFinancialStatement
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: query
+          name: fid_input_iscd
+          description: |
+            FID 입력 종목코드
+
+            000660: 종목코드
+          required: true
+          schema:
+            type: string
+          example: '000660'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHKST66430300 : 국내주식 재무비율
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHKST66430300
+            default: FHKST66430300
+            example: FHKST66430300
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            조건 시장 분류 코드
+
+            J
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+            default: J
+            example: J
+        - in: query
+          name: fid_div_cls_code
+          description: |
+            분류 구분 코드
+
+            0: 년, 1: 분기
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+            example: 0
+      responses:
+        '200':
+          $ref: '#/components/responses/financial_ratio'
   /uapi/domestic-stock/v1/finance/profit-ratio:
     get:
       operationId: getFinancialProfitRatio
@@ -3023,11 +3203,71 @@ paths:
         국내주식 수익성비율 API입니다.
 
         한국투자 HTS(eFriend Plus) > [0635] 재무분석종합 화면의 하단 '4. 수익성비율' 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-      responses:
-        '200':
-          description: 국내주식 수익성비율 조회 성공
       tags:
         - DomesticStockFinancialStatement
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: query
+          name: fid_input_iscd
+          description: |
+            FID 입력 종목코드
+
+            000660: 종목코드
+          required: true
+          schema:
+            type: string
+          example: '000660'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHKST66430400 : 국내주식 수익성비율
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHKST66430400
+            default: FHKST66430400
+            example: FHKST66430400
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            조건 시장 분류 코드
+
+            J
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+            default: J
+            example: J
+        - in: query
+          name: fid_div_cls_code
+          description: |
+            분류 구분 코드
+
+            0: 년, 1: 분기
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+            example: 0
+      responses:
+        '200':
+          $ref: '#/components/responses/profit_ratio'
   /uapi/domestic-stock/v1/finance/other-major-ratios:
     get:
       operationId: getFinancialOtherMajorRatio
@@ -3036,11 +3276,71 @@ paths:
         국내주식 기타주요비율 API입니다.
 
         한국투자 HTS(eFriend Plus) > [0635] 재무분석종합 화면의 하단 '9. 기타주요비율' 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-      responses:
-        '200':
-          description: 국내주식 기타주요비율 조회 성공
       tags:
         - DomesticStockFinancialStatement
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: query
+          name: fid_input_iscd
+          description: |
+            FID 입력 종목코드
+
+            000660: 종목코드
+          required: true
+          schema:
+            type: string
+          example: '000660'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHKST66430500 : 국내주식 기타주요비율
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHKST66430500
+            default: FHKST66430500
+            example: FHKST66430500
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            조건 시장 분류 코드
+
+            J
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+            default: J
+            example: J
+        - in: query
+          name: fid_div_cls_code
+          description: |
+            분류 구분 코드
+
+            0: 년, 1: 분기
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+            example: 0
+      responses:
+        '200':
+          $ref: '#/components/responses/other_major_ratio'
   /uapi/domestic-stock/v1/finance/stability-ratio:
     get:
       operationId: getFinancialStabilityRatio
@@ -3049,11 +3349,71 @@ paths:
         국내주식 안정성비율 API입니다.
 
         한국투자 HTS(eFriend Plus) > [0635] 재무분석종합 화면의 하단 '5. 안정성비율' 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-      responses:
-        '200':
-          description: 국내주식 안정성비율 조회 성공
       tags:
         - DomesticStockFinancialStatement
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: query
+          name: fid_input_iscd
+          description: |
+            FID 입력 종목코드
+
+            000660: 종목코드
+          required: true
+          schema:
+            type: string
+          example: '000660'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHKST66430600 : 국내주식 대차대조표
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHKST66430600
+            default: FHKST66430600
+            example: FHKST66430600
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            조건 시장 분류 코드
+
+            J
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+            default: J
+            example: J
+        - in: query
+          name: fid_div_cls_code
+          description: |
+            분류 구분 코드
+
+            0: 년, 1: 분기
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+            example: 0
+      responses:
+        '200':
+          $ref: '#/components/responses/stability_ratio'
   /uapi/domestic-stock/v1/finance/growth-ratio:
     get:
       operationId: getFinancialGrowthRatio
@@ -3062,11 +3422,71 @@ paths:
         국내주식 성장성비율 API입니다.
 
         한국투자 HTS(eFriend Plus) > [0635] 재무분석종합 화면의 하단 '7.성장성비율' 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-      responses:
-        '200':
-          description: 국내주식 성장성비율 조회 성공
       tags:
         - DomesticStockFinancialStatement
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: query
+          name: fid_input_iscd
+          description: |
+            FID 입력 종목코드
+
+            000660: 종목코드
+          required: true
+          schema:
+            type: string
+          example: '000660'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHKST66430800 : 국내주식 성장성비율
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHKST66430800
+            default: FHKST66430800
+            example: FHKST66430800
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            조건 시장 분류 코드
+
+            J
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+            default: J
+            example: J
+        - in: query
+          name: fid_div_cls_code
+          description: |
+            분류 구분 코드
+
+            0: 년, 1: 분기
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+            example: 0
+      responses:
+        '200':
+          $ref: '#/components/responses/growth_ratio'
   /uapi/domestic-stock/v1/quotations/estimate-perform:
     get:
       operationId: getFinancialEstimatePerform
@@ -3078,11 +3498,42 @@ paths:
 
         ※ 본 화면의 추정실적 및 투자의견은 당월 초의 애널리스트의 의견사항이므로 월중 변동 사항이 있을 수 있음을 유의하시기 바랍니다.<br/>
         ※ 종목별 수익추정은 리서치본부에서 매월 발표되는 거래소, 코스닥 160여개 기업에 한정합니다. 구체적인 종목 리스트는 추정종목리스트를 참고하기 바랍니다.
-      responses:
-        '200':
-          description: 국내주식 종목추정실적 조회 성공
       tags:
         - DomesticStockFinancialStatement
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            HHKST668300C0 : 국내주식 종목추정실적
+          required: true
+          schema:
+            type: string
+            enum:
+              - HHKST668300C0
+            default: HHKST668300C0
+            example: HHKST668300C0
+        - in: query
+          name: sht_cd
+          description: 종목코드 (ex, 005930)
+          required: true
+          schema:
+            type: string
+            example: '005930'
+      responses:
+        '200':
+          $ref: '#/components/responses/estimate_perform'
   /uapi/domestic-stock/v1/ksdinfo/dividend:
     get:
       operationId: getKsdDividendInfo
@@ -10808,6 +11259,597 @@ components:
                       description: 종목명10
                       example: ''
                       maxLength: 40
+    balance_sheet:
+      description: 국내주식 대차대조표 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: object
+                properties:
+                  stac_yymm:
+                    type: string
+                    description: 결산 년월
+                    example: 202403
+                    maxLength: 6
+                  cras:
+                    type: string
+                    description: 유동자산
+                    example: 2085443
+                    maxLength: 112
+                  fxas:
+                    type: string
+                    description: 고정자산
+                    example: 2623555
+                    maxLength: 112
+                  total_aset:
+                    type: string
+                    description: 자산총계
+                    example: 4708998
+                    maxLength: 102
+                  flow_lblt:
+                    type: string
+                    description: 유동부채
+                    example: 817704
+                    maxLength: 112
+                  fix_lblt:
+                    type: string
+                    description: 고정부채
+                    example: 172133
+                    maxLength: 112
+                  total_lblt:
+                    type: string
+                    description: 부채총계
+                    example: 989837
+                    maxLength: 102
+                  cpfn:
+                    type: string
+                    description: 자본금
+                    example: 8975
+                    maxLength: 22
+                  cfp_surp:
+                    type: string
+                    description: 자본 잉여금, 출력되지 않는 데이터(99.99로 표시)
+                    example: 99.99
+                    maxLength: 182
+                  prfi_surp:
+                    type: string
+                    description: 이익 잉여금, 출력되지 않는 데이터(99.99로 표시)
+                    example: 99.99
+                    maxLength: 182
+                  total_cptl:
+                    type: string
+                    description: 자본총계
+                    example: 3719161
+                    maxLength: 102
+    income_statement:
+      description: 국내주식 손익계산서 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: object
+                properties:
+                  stac_yymm:
+                    type: string
+                    description: 결산 년월
+                    example: 202403
+                    maxLength: 6
+                  sale_account:
+                    type: string
+                    description: 매출액
+                    example: 719156
+                    maxLength: 18
+                  sale_cost:
+                    type: string
+                    description: 매출 원가
+                    example: 458863
+                    maxLength: 182
+                  sale_totl_prfi:
+                    type: string
+                    description: 매출 총 이익
+                    example: 260293
+                    maxLength: 182
+                  depr_cost:
+                    type: string
+                    description: 감가상각비
+                    example: 99.99
+                    maxLength: 182
+                  sell_mang:
+                    type: string
+                    description: 판매 및 관리비
+                    example: 99.99
+                    maxLength: 182
+                  bsop_prti:
+                    type: string
+                    description: 영업 이익
+                    example: 66060
+                    maxLength: 182
+                  bsop_non_ernn:
+                    type: string
+                    description: 영업 외 수익
+                    example: 99.99
+                    maxLength: 182
+                  bsop_non_expn:
+                    type: string
+                    description: 영업 외 비용
+                    example: 99.99
+                    maxLength: 182
+                  op_prfi:
+                    type: string
+                    description: 경상 이익
+                    example: 7706700
+                    maxLength: 182
+                  spec_prfi:
+                    type: string
+                    description: 특별 이익
+                    example: 99.99
+                    maxLength: 182
+                  spec_loss:
+                    type: string
+                    description: 특별 손실
+                    example: 99.99
+                    maxLength: 182
+                  thtr_ntin:
+                    type: string
+                    description: 당기순이익
+                    example: 67547
+                    maxLength: 102
+    financial_ratio:
+      description: 국내주식 재무비율 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: object
+                properties:
+                  stac_yymm:
+                    type: string
+                    description: 결산 년월
+                    example: 202403
+                    maxLength: 6
+                  grs:
+                    type: string
+                    description: 매출액 증가율
+                    example: 12.82
+                    maxLength: 124
+                  bsop_prfi_inrt:
+                    type: string
+                    description: 영업 이익 증가율
+                    example: 931.9
+                    maxLength: 124
+                  ntin_inrt:
+                    type: string
+                    description: 순이익 증가율
+                    example: 328.98
+                    maxLength: 124
+                  roe_val:
+                    type: string
+                    description: ROE 값
+                    example: 7.4
+                    maxLength: 132
+                  eps:
+                    type: string
+                    description: EPS
+                    example: 975
+                    maxLength: 112
+                  sps:
+                    type: string
+                    description: 주당매출액
+                    example: 42349
+                    maxLength: 18
+                  bps:
+                    type: string
+                    description: BPS
+                    example: 53339
+                    maxLength: 112
+                  rsrv_rate:
+                    type: string
+                    description: 유보 비율
+                    example: 40268.74
+                    maxLength: 84
+                  lblt_rate:
+                    type: string
+                    description: 부채 비율
+                    example: 26.61
+                    maxLength: 84
+    profit_ratio:
+      description: 국내주식 수익성비율 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: object
+                properties:
+                  stac_yymm:
+                    type: string
+                    description: 결산 년월
+                    example: 202403
+                    maxLength: 6
+                  cptl_ntin_rate:
+                    type: string
+                    description: 총자본 순이익율
+                    example: 5.83
+                    maxLength: 92
+                  self_cptl_ntin_inrt:
+                    type: string
+                    description: 자기자본 순이익율
+                    example: 7.4
+                    maxLength: 92
+                  sale_ntin_rate:
+                    type: string
+                    description: 매출액 순이익율
+                    example: 9.39
+                    maxLength: 92
+                  sale_totl_rate:
+                    type: string
+                    description: 매출액 총이익율
+                    example: 36.19
+                    maxLength: 92
+    other_major_ratio:
+      description: 국내주식 기타주요비율 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: object
+                properties:
+                  stac_yymm:
+                    type: string
+                    description: 결산 년월
+                    example: 202403
+                    maxLength: 6
+                  payout_rate:
+                    type: string
+                    description: 배당 성향
+                    example: 0
+                    maxLength: 92
+                  eva:
+                    type: string
+                    description: EVA
+                    example: 0
+                    maxLength: 82
+                  ebitda:
+                    type: string
+                    description: EBITDA
+                    example: 165568
+                    maxLength: 82
+                  ev_ebitda:
+                    type: string
+                    description: EV_EBITDA
+                    example: 0
+                    maxLength: 82
+    stability_ratio:
+      description: 국내주식 안정성비율 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: object
+                properties:
+                  stacc_yymm:
+                    type: string
+                    description: 결산 년월
+                    example: 202403
+                    maxLength: 6
+                  lblt_rate:
+                    type: string
+                    description: 부채 비율
+                    example: 26.61
+                    maxLength: 84
+                  bram_depn:
+                    type: string
+                    description: 차입금 의존도
+                    example: 3.29
+                    maxLength: 92
+                  crnt_rate:
+                    type: string
+                    description: 유동 비율
+                    example: 255.04
+                    maxLength: 84
+                  quck_rate:
+                    type: string
+                    description: 당좌 비율
+                    example: 0
+                    maxLength: 84
+    growth_ratio:
+      description: 국내주식 성장성비율 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: object
+                properties:
+                  stac_yymm:
+                    type: string
+                    description: 결산 년월
+                    example: 202403
+                    maxLength: 6
+                  grs:
+                    type: string
+                    description: 매출액 증가율
+                    example: 12.82
+                    maxLength: 124
+                  bsop_prfi_inrt:
+                    type: string
+                    description: 영업 이익 증가율
+                    example: 931.9
+                    maxLength: 124
+                  equt_inrt:
+                    type: string
+                    description: 자기자본 증가율
+                    example: 3.37
+                    maxLength: 92
+                  totl_aset_inrt:
+                    type: string
+                    description: 총자산 증가율
+                    example: 3.7
+                    maxLength: 92
+    estimate_perform:
+      description: 국내주식 종목추정실적 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output1:
+                type: object
+                properties:
+                  sht_cd:
+                    type: string
+                    description: ELW단축종목코드
+                    example: A005930
+                    maxLength: 9
+                  item_kor_nm:
+                    type: string
+                    description: HTS한글종목명
+                    example: 삼성전자
+                    maxLength: 40
+                  name1:
+                    type: string
+                    description: 작성자1
+                    example: 채민숙
+                    maxLength: 10
+                  name2:
+                    type: string
+                    description: 작성자2
+                    example: 1,000
+                    maxLength: 10
+                  estdate:
+                    type: string
+                    description: 추정일자
+                    example: 20240109
+                    maxLength: 1
+                  rcmd_name:
+                    type: string
+                    description: 의견
+                    example: 매수
+                    maxLength: 82
+                  capital:
+                    type: string
+                    description: 자본금
+                    example: 8975
+                    maxLength: 18
+                  forn_item_lmtrt:
+                    type: string
+                    description: 행사가
+                    example: 0
+                    maxLength: 112
+              output2:
+                type: array
+                description: |
+                  (추정손익계산서-6개 array)<br/>
+                  매출액, 매출액증감율,<br/>
+                  영업이익, 영업이익증감율,<br/>
+                  순이익, 순이익증감율
+                items:
+                  type: object
+                  properties:
+                    data1:
+                      type: string
+                      description: 결산연월(outblock4) 참조
+                      example: 2796048
+                      maxLength: 15
+                    data2:
+                      type: string
+                      description: 결산연월(outblock4) 참조
+                      example: 3022314
+                      maxLength: 15
+                    data3:
+                      type: string
+                      description: 결산연월(outblock4) 참조
+                      example: 2581509
+                      maxLength: 15
+                    data4:
+                      type: string
+                      description: 결산연월(outblock4) 참조
+                      example: 3048945
+                      maxLength: 15
+                    data5:
+                      type: string
+                      description: 결산연월(outblock4) 참조
+                      example: 3295675
+                      maxLength: 15
+              output3:
+                type: array
+                description: |
+                  (투자지표-8개 array)<br/>
+                  EBITDA(십억원), EPS(원),<br/>
+                  EPS 증감율(0.1%), PER(배, 0.1%),<br/>
+                  EV/EBITDA(배, 0.1), ROE(0.1%),<br/>
+                  부채비율(0.1%), 이자보상배율(0.1%)
+                items:
+                  type: object
+                  properties:
+                    data1:
+                      type: string
+                      description: 결산연월(outblock4) 참조
+                      example: 858812
+                      maxLength: 15
+                    data2:
+                      type: string
+                      description: 결산연월(outblock4) 참조
+                      example: 824843
+                      maxLength: 15
+                    data3:
+                      type: string
+                      description: 결산연월(outblock4) 참조
+                      example: 483199
+                      maxLength: 15
+                    data4:
+                      type: string
+                      description: 결산연월(outblock4) 참조
+                      example: 792602
+                      maxLength: 15
+                    data5:
+                      type: string
+                      description: 결산연월(outblock4) 참조
+                      example: 1043367
+                      maxLength: 15
+              output4:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    dt:
+                      type: string
+                      description: 결산년월
+                      example: 2023.12
+                      maxLength: 8
   parameters:
     personal_secret_key:
       in: header

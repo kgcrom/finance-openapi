@@ -1,0 +1,51 @@
+description: 국내주식 안정성비율 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: object
+          properties:
+            stacc_yymm:
+              type: string
+              description: 결산 년월
+              example: 202403
+              maxLength: 6
+            lblt_rate:
+              type: string
+              description: 부채 비율
+              example: 26.61
+              maxLength: 84
+            bram_depn:
+              type: string
+              description: 차입금 의존도
+              example: 3.29
+              maxLength: 92
+            crnt_rate:
+              type: string
+              description: 유동 비율
+              example: 255.04
+              maxLength: 84
+            quck_rate:
+              type: string
+              description: 당좌 비율
+              example: 0.00
+              maxLength: 84

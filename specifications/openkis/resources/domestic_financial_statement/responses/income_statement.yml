@@ -1,0 +1,91 @@
+description: 국내주식 손익계산서 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: object
+          properties:
+            stac_yymm:
+              type: string
+              description: 결산 년월
+              example: 202403
+              maxLength: 6
+            sale_account:
+              type: string
+              description: 매출액
+              example: 719156.00
+              maxLength: 18
+            sale_cost:
+              type: string
+              description: 매출 원가
+              example: 458863.00
+              maxLength: 182
+            sale_totl_prfi:
+              type: string
+              description: 매출 총 이익
+              example: 260293
+              maxLength: 182
+            depr_cost:
+              type: string
+              description: 감가상각비
+              example: 99.99
+              maxLength: 182
+            sell_mang:
+              type: string
+              description: 판매 및 관리비
+              example: 99.99
+              maxLength: 182
+            bsop_prti:
+              type: string
+              description: 영업 이익
+              example: 66060.00
+              maxLength: 182
+            bsop_non_ernn:
+              type: string
+              description: 영업 외 수익
+              example: 99.99
+              maxLength: 182
+            bsop_non_expn:
+              type: string
+              description: 영업 외 비용
+              example: 99.99
+              maxLength: 182
+            op_prfi:
+              type: string
+              description: 경상 이익
+              example: 7706700
+              maxLength: 182
+            spec_prfi:
+              type: string
+              description: 특별 이익
+              example: 99.99
+              maxLength: 182
+            spec_loss:
+              type: string
+              description: 특별 손실
+              example: 99.99
+              maxLength: 182
+            thtr_ntin:
+              type: string
+              description: 당기순이익
+              example: 67547.00
+              maxLength: 102

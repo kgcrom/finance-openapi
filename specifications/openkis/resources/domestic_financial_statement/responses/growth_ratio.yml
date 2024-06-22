@@ -1,0 +1,51 @@
+description: 국내주식 성장성비율 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: object
+          properties:
+            stac_yymm:
+              type: string
+              description: 결산 년월
+              example: 202403
+              maxLength: 6
+            grs:
+              type: string
+              description: 매출액 증가율
+              example: 12.8200
+              maxLength: 124
+            bsop_prfi_inrt:
+              type: string
+              description: 영업 이익 증가율
+              example: 931.9000
+              maxLength: 124
+            equt_inrt:
+              type: string
+              description: 자기자본 증가율
+              example: 3.37
+              maxLength: 92
+            totl_aset_inrt:
+              type: string
+              description: 총자산 증가율
+              example: 3.70
+              maxLength: 92

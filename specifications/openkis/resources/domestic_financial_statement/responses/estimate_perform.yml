@@ -1,0 +1,147 @@
+description: 국내주식 종목추정실적 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output1:
+          type: object
+          properties:
+            sht_cd:
+              type: string
+              description: ELW단축종목코드
+              example: A005930
+              maxLength: 9
+            item_kor_nm:
+              type: string
+              description: HTS한글종목명
+              example: 삼성전자
+              maxLength: 40
+            name1:
+              type: string
+              description: 작성자1
+              example: 채민숙
+              maxLength: 10
+            name2:
+              type: string
+              description: 작성자2
+              example: 1,000
+              maxLength: 10
+            estdate:
+              type: string
+              description: 추정일자
+              example: 20240109
+              maxLength: 1
+            rcmd_name:
+              type: string
+              description: 의견
+              example: 매수
+              maxLength: 82
+            capital:
+              type: string
+              description: 자본금
+              example: 8975.0
+              maxLength: 18
+            forn_item_lmtrt:
+              type: string
+              description: 행사가
+              example: 0.00
+              maxLength: 112
+        output2:
+          type: array
+          description: |
+            (추정손익계산서-6개 array)<br/>
+            매출액, 매출액증감율,<br/>
+            영업이익, 영업이익증감율,<br/>
+            순이익, 순이익증감율
+          items:
+            type: object
+            properties:
+              data1:
+                type: string
+                description: 결산연월(outblock4) 참조
+                example: 2796048.0
+                maxLength: 15
+              data2:
+                type: string
+                description: 결산연월(outblock4) 참조
+                example: 3022314.0
+                maxLength: 15
+              data3:
+                type: string
+                description: 결산연월(outblock4) 참조
+                example: 2581509.0
+                maxLength: 15
+              data4:
+                type: string
+                description: 결산연월(outblock4) 참조
+                example: 3048945.0
+                maxLength: 15
+              data5:
+                type: string
+                description: 결산연월(outblock4) 참조
+                example: 3295675.0
+                maxLength: 15
+        output3:
+          type: array
+          description: |
+            (투자지표-8개 array)<br/>
+            EBITDA(십억원), EPS(원),<br/>
+            EPS 증감율(0.1%), PER(배, 0.1%),<br/>
+            EV/EBITDA(배, 0.1), ROE(0.1%),<br/>
+            부채비율(0.1%), 이자보상배율(0.1%)
+          items:
+            type: object
+            properties:
+              data1:
+                type: string
+                description: 결산연월(outblock4) 참조
+                example: 858812.0
+                maxLength: 15
+              data2:
+                type: string
+                description: 결산연월(outblock4) 참조
+                example: 824843.0
+                maxLength: 15
+              data3:
+                type: string
+                description: 결산연월(outblock4) 참조
+                example: 483199.0
+                maxLength: 15
+              data4:
+                type: string
+                description: 결산연월(outblock4) 참조
+                example: 792602.0
+                maxLength: 15
+              data5:
+                type: string
+                description: 결산연월(outblock4) 참조
+                example: 1043367.0
+                maxLength: 15
+        output4:
+          type: array
+          items:
+            type: object
+            properties:
+              dt:
+                type: string
+                description: 결산년월
+                example: 2023.12
+                maxLength: 8

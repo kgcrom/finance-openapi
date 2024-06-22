@@ -220,7 +220,7 @@ paths:
 
   /uapi/domestic-stock/v1/finance/other-major-ratios:
     get:
-      $ref: resources/domestic_financial_statement/other_major_ratios.yml
+      $ref: resources/domestic_financial_statement/other_major_ratio.yml
 
   /uapi/domestic-stock/v1/finance/stability-ratio:
     get:
@@ -392,7 +392,7 @@ paths:
 
   /uapi/domestic-stock/v1/ranking/finance-ratio:
     get:
-      $ref: resources/domestic_ranking/financial_ratio.yml
+      $ref: resources/domestic_ranking/financial_rank_ratio.yml
 
   /uapi/domestic-stock/v1/ranking/after-hour-balance:
     get:

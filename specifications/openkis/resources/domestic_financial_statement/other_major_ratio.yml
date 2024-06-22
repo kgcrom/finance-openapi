@@ -1,11 +1,11 @@
-operationId: getFinancialIncomeStatement
+operationId: getFinancialOtherMajorRatio
 
-summary: 국내주식 손익계산서
+summary: 국내주식 기타주요비율
 
 description: |
-  국내주식 손익계산서 API입니다.
+  국내주식 기타주요비율 API입니다.
 
-  한국투자 HTS(eFriend Plus) > [0635] 재무분석종합 화면의 하단 '2. 손익계산서' 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
+  한국투자 HTS(eFriend Plus) > [0635] 재무분석종합 화면의 하단 '9. 기타주요비율' 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
 tags:
   - DomesticStockFinancialStatement
@@ -38,13 +38,13 @@ parameters:
       거래ID
 
       모의투자 미지원<br/>
-      FHKST66430200 : 국내주식 손익계산서
+      FHKST66430500 : 국내주식 기타주요비율
     required: true
     schema:
       type: string
-      enum: ["FHKST66430200"]
-      default: FHKST66430200
-      example: FHKST66430200
+      enum: ["FHKST66430500"]
+      default: FHKST66430500
+      example: FHKST66430500
   - in: query
     name: fid_cond_mrkt_div_code
     description: |
@@ -72,4 +72,4 @@ parameters:
 
 responses:
   200:
-    $ref: responses/income_statement.yml
+    $ref: responses/other_major_ratio.yml

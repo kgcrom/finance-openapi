@@ -1,0 +1,81 @@
+description: 국내주식 대차대조표 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: object
+          properties:
+            stac_yymm:
+              type: string
+              description: 결산 년월
+              example: 202403
+              maxLength: 6
+            cras:
+              type: string
+              description: 유동자산
+              example: 2085443.00
+              maxLength: 112
+            fxas:
+              type: string
+              description: 고정자산
+              example: 2623555.00
+              maxLength: 112
+            total_aset:
+              type: string
+              description: 자산총계
+              example: 4708998.00
+              maxLength: 102
+            flow_lblt:
+              type: string
+              description: 유동부채
+              example: 817704.00
+              maxLength: 112
+            fix_lblt:
+              type: string
+              description: 고정부채
+              example: 172133.00
+              maxLength: 112
+            total_lblt:
+              type: string
+              description: 부채총계
+              example: 989837.00
+              maxLength: 102
+            cpfn:
+              type: string
+              description: 자본금
+              example: 8975
+              maxLength: 22
+            cfp_surp:
+              type: string
+              description: 자본 잉여금, 출력되지 않는 데이터(99.99로 표시)
+              example: 99.99
+              maxLength: 182
+            prfi_surp:
+              type: string
+              description: 이익 잉여금, 출력되지 않는 데이터(99.99로 표시)
+              example: 99.99
+              maxLength: 182
+            total_cptl:
+              type: string
+              description: 자본총계
+              example: 3719161.00
+              maxLength: 102
