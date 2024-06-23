@@ -1,0 +1,93 @@
+description: 예탁원정보 (배당일정) 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output1:
+          type: array
+          items:
+            type: object
+            properties:
+              record_date:
+                type: string
+                description: 기준일
+                example: 20231231
+                maxLength: 8
+              sht_cd:
+                type: string
+                description: 종목코드
+                example: 005930
+                maxLength: 9
+              isin_name:
+                type: string
+                description: 종목명
+                example: 삼성전자
+                maxLength: 40
+              divi_kind:
+                type: string
+                description: 배당종류
+                example: 결산
+                maxLength: 8
+              face_val:
+                type: string
+                description: 액면가
+                example: 100
+                maxLength: 9
+              per_sto_divi_amt:
+                type: string
+                description: 현금배당금
+                example: 361
+                maxLength: 12
+              divi_rate:
+                type: string
+                description: 현금배당률(%)
+                example: 361.00
+                maxLength: 6
+              stk_divi_rate:
+                type: string
+                description: 주식배당률(%)
+                example: 0.00
+                maxLength: 15
+              divi_pay_dt:
+                type: string
+                description: 배당금지급일
+                example: 2024/04/19
+                maxLength: 10
+              stk_div_pay_dt:
+                type: string
+                description: 주식배당지급일
+                example: 20220201
+                maxLength: 10
+              odd_pay_dt:
+                type: string
+                description: 단주대금지급일
+                example: ""
+                maxLength: 10
+              stk_kind:
+                type: string
+                description: 주식종류
+                example: 보통
+                maxLength: 10
+              high_divi_gb:
+                type: string
+                description: 고배당종목여부
+                example: ""
+                maxLength: 1

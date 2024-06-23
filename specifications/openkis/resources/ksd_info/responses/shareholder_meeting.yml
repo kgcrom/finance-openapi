@@ -1,0 +1,63 @@
+description: 예탁원정보 (주주총회일정) 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output1:
+          type: array
+          items:
+            type: object
+            properties:
+              record_date:
+                type: string
+                description: 기준일
+                example: 20240531
+                maxLength: 8
+              sht_cd:
+                type: string
+                description: 종목코드
+                example: "001020"
+                maxLength: 9
+              isin_name:
+                type: string
+                description: 종목명
+                example: 페이퍼코리아(주)
+                maxLength: 40
+              gen_meet_dt:
+                type: string
+                description: 주총일자
+                example: 2024/06/28
+                maxLength: 10
+              gen_meet_type:
+                type: string
+                description: 주총사유
+                example: 임시총회
+                maxLength: 8
+              agenda:
+                type: string
+                description: 주총의안
+                example: 이사선임
+                maxLength: 71
+              vote_tot_qty:
+                type: string
+                description: 의결권주식총수
+                example: "   177983313"
+                maxLength: 12

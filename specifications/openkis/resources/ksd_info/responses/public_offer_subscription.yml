@@ -1,0 +1,93 @@
+description: 예탁원정보 (공모주청약일정) 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output1:
+          type: array
+          items:
+            type: object
+            properties:
+              record_date:
+                type: string
+                description: 기준일
+                example: 20240520
+                maxLength: 8
+              sht_cd:
+                type: string
+                description: 종목코드
+                example: 477380
+                maxLength: 9
+              isin_name:
+                type: string
+                description: 종목명
+                example: 미래에셋비전기업인수목적4호
+                maxLength: 40
+              fix_subscr_pri:
+                type: string
+                description: 공모가
+                example: "        2000"
+                maxLength: 12
+              face_value:
+                type: string
+                description: 액면가
+                example: "000000100"
+                maxLength: 9
+              subscr_dt:
+                type: string
+                description: 청약기간
+                example: "2024/05/20 ~ 2024/05/21"
+                maxLength: 23
+              pay_dt:
+                type: string
+                description: 납입일
+                example: 2024/05/23
+                maxLength: 10
+              refund_dt:
+                type: string
+                description: 환불일
+                example: 2024/05/23
+                maxLength: 10
+              list_dt:
+                type: string
+                description: 상장/등록일
+                example: 2024/05/29
+                maxLength: 10
+              lead_mgr:
+                type: string
+                description: 주간사
+                example: 미래에셋증권
+                maxLength: 41
+              pub_bf_cap:
+                type: string
+                description: 공모전자본금
+                example: "      145000"
+                maxLength: 12
+              pub_af_cap:
+                type: string
+                description: 공모후자본금
+                example: "      166250"
+                maxLength: 12
+              assign_stk_qty:
+                type: string
+                description: 당사배정물량
+                example: "           0"
+                maxLength: 12

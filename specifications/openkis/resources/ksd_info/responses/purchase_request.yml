@@ -1,0 +1,73 @@
+description: 예탁원정보 (주식매수청구일정) 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output1:
+          type: array
+          items:
+            type: object
+            properties:
+              record_date:
+                type: string
+                description: 기준일
+                example: 20240531
+                maxLength: 8
+              sht_cd:
+                type: string
+                description: 종목코드
+                example: 083790
+                maxLength: 9
+              isin_name:
+                type: string
+                description: 종목명
+                example: 씨지인바이츠
+                maxLength: 40
+              stk_kind:
+                type: string
+                description: 주식종류
+                example: 보통
+                maxLength: 8
+              opp_opi_rcpt_term:
+                type: string
+                description: 반대의사접수시한
+                example: 020240614
+                maxLength: 9
+              buy_req_rcpt_term:
+                type: string
+                description: 매수청구접수시한
+                example: ""
+                maxLength: 12
+              buy_req_price:
+                type: string
+                description: 매수청구가격
+                example: "000000000000"
+                maxLength: 62
+              buy_amt_pay_dt:
+                type: string
+                description: 매수대금지급일
+                example: ""
+                maxLength: 62
+              get_meet_dt:
+                type: string
+                description: 주총일
+                example: ""
+                maxLength: 10

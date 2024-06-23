@@ -1,0 +1,93 @@
+description: 예탁원정보 (유상증자일정) 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output1:
+          type: array
+          items:
+            type: object
+            properties:
+              record_date:
+                type: string
+                description: 기준일
+                example: 20240430
+                maxLength: 8
+              sht_cd:
+                type: string
+                description: 종목코드
+                example: "190410"
+                maxLength: 9
+              isin_name:
+                type: string
+                description: 종목명
+                example: 엘에스아이앤디
+                maxLength: 40
+              tot_issue_stk_qty:
+                type: string
+                description: 발행주식
+                example: 14770262
+                maxLength: 12
+              issue_stk_qty:
+                type: string
+                description: 발행할주식
+                example: 884213
+                maxLength: 12
+              fix_rate:
+                type: string
+                description: 확정배정율
+                example: 6.29
+                maxLength: 17
+              disc_rate:
+                type: string
+                description: 할인율
+                example: 0.00
+                maxLength: 7
+              fix_price:
+                type: string
+                description: 발행예정가
+                example: 32252
+                maxLength: 8
+              right_dt:
+                type: string
+                description: 권리락일
+                example: 20240429
+                maxLength: 8
+              sub_term_ft:
+                type: string
+                description: 청약기간
+                example: 20240528
+                maxLength: 8
+              sub_term:
+                type: string
+                description: 청약기간
+                example: "2024/05/28 ~ 2024/05/29"
+                maxLength: 23
+              list_date:
+                type: string
+                description: 상장/등록일
+                example: 2024/06/12
+                maxLength: 10
+              stk_kind:
+                type: string
+                description: 주식종류
+                example: "01"
+                maxLength: 2

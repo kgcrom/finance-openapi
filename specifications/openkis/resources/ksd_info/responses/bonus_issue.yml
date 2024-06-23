@@ -1,0 +1,81 @@
+description: 예탁원정보 (무상증자일정) 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output1:
+          type: object
+          properties:
+            record_date:
+              type: string
+              description: 기준일
+              example: 20240522
+              maxLength: 8
+            sht_cd:
+              type: string
+              description: 종목코드
+              example: 199820
+              maxLength: 9
+            isin_name:
+              type: string
+              description: 종목명
+              example: 제일일렉트릭
+              maxLength: 40
+            fix_rate:
+              type: string
+              description: 확정배정율
+              example: 100.00
+              maxLength: 17
+            odd_rec_price:
+              type: string
+              description: 단주기준가
+              example: 0
+              maxLength: 9
+            right_dt:
+              type: string
+              description: 권리락일
+              example: 20240521
+              maxLength: 8
+            odd_pay_dt:
+              type: string
+              description: 단주대금지급일
+              example: ""
+              maxLength: 23
+            list_date:
+              type: string
+              description: 상장/등록일
+              example: 20240611
+              maxLength: 8
+            tot_issue_stk_qty:
+              type: string
+              description: 발행주식
+              example: 11110000
+              maxLength: 12
+            issue_stk_qty:
+              type: string
+              description: 발행할주식
+              example: 11110000
+              maxLength: 12
+            stk_kind:
+              type: string
+              description: 주식종류
+              example: "01"
+              maxLength: 2

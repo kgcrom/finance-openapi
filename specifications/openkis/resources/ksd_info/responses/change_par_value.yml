@@ -1,0 +1,63 @@
+description: 예탁원정보 (액면교체일정) 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output1:
+          type: array
+          items:
+            type: object
+            properties:
+              record_date:
+                type: string
+                description: 기준일
+                example: 20240424
+                maxLength: 8
+              sht_cd:
+                type: string
+                description: 종목코드
+                example: 457190
+                maxLength: 9
+              isin_name:
+                type: string
+                description: 종목명
+                example: 이수스페셜티케미컬
+                maxLength: 40
+              inter_bf_face_amt:
+                type: string
+                description: 변경전액면가
+                example: "000005000"
+                maxLength: 9
+              inter_af_face_amt:
+                type: string
+                description: 변경후액면가
+                example: "000001000"
+                maxLength: 9
+              td_stop_dt:
+                type: string
+                description: 매매거래정지기간
+                example: "2024/04/23 ~ 2024/05/01"
+                maxLength: 23
+              list_dt:
+                type: string
+                description: 상장/등록일
+                example: 2024/05/02
+                maxLength: 10

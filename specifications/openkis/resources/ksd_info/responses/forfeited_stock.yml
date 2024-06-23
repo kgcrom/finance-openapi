@@ -1,0 +1,73 @@
+description: 예탁원정보 (실권주일정) 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output1:
+          type: array
+          items:
+            type: object
+            properties:
+              record_date:
+                type: string
+                description: 기준일
+                example: 20240311
+                maxLength: 8
+              sht_cd:
+                type: string
+                description: 종목코드
+                example: "032800"
+                maxLength: 9
+              isin_name:
+                type: string
+                description: 종목명
+                example: 판타지오
+                maxLength: 40
+              subscr_dt:
+                type: string
+                description: 청약일
+                example: "2024/04/18 ~ 2024/04/19"
+                maxLength: 23
+              subscr_price:
+                type: string
+                description: 공모가
+                example: "000000205"
+                maxLength: 9
+              subscr_stk_qty:
+                type: string
+                description: 공모주식수
+                example: "   112000000"
+                maxLength: 12
+              refund_dt:
+                type: string
+                description: 환불일
+                example: 2024/04/23
+                maxLength: 10
+              list_dt:
+                type: string
+                description: 상장/등록일
+                example: 2024/05/07
+                maxLength: 10
+              lead_mgr:
+                type: string
+                description: 주간사
+                example: 하이투자증권㈜(대표) 인
+                maxLength: 25

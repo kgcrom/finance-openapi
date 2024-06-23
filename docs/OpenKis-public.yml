@@ -3853,11 +3853,105 @@ paths:
 
         ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
         '주식배당지급일'은 배당주식의 주식교부일자를 말합니다. 배당주식의 계좌입고는 배당주식 상장일인데 일반적으로 주권교부일의 익영업일입니다.
-      responses:
-        '200':
-          description: 예탁원정보 (배당일정) 조회 성공
       tags:
         - DomesticKsdInfo
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            HHKDB669102C0 : 예탁원정보 (배당일정)
+          required: true
+          schema:
+            type: string
+            enum:
+              - HHKDB669102C0
+            default: HHKDB669102C0
+            example: HHKDB669102C0
+        - in: query
+          name: cts
+          description: CTS (공백)
+          required: true
+          schema:
+            type: string
+            default: ''
+            example: ''
+        - in: query
+          name: f_dt
+          description: |
+            조회일자From (YYYYMMDD)
+
+            일자 ~
+          required: true
+          schema:
+            type: string
+            example: 20220201
+        - in: query
+          name: t_dt
+          description: |
+            조회일자To (YYYYMMDD)
+
+            ~ 일자
+          required: true
+          schema:
+            type: string
+            example: 20220301
+        - in: query
+          name: sht_cd
+          description: |
+            종목코드
+
+            공백: 전체, 특정종목 조회시 : 종목코드
+          required: true
+          schema:
+            type: string
+            example: '005930'
+        - in: query
+          name: high_gb
+          description: |
+            고배당구분코드
+
+            0:배당전체<br/>
+            1:결산배당<br/>
+            2:중간배당
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+              - '2'
+            example: 0
+        - in: query
+          name: gb1
+          description: |
+            배당구분코드
+
+            0:배당전체<br/>
+            1:결산배당<br/>
+            2:중간배당
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+              - '2'
+            example: 0
+      responses:
+        '200':
+          $ref: '#/components/responses/dividend'
   /uapi/domestic-stock/v1/ksdinfo/purreq:
     get:
       operationId: getKsdPurchaseRequest
@@ -3868,11 +3962,73 @@ paths:
         한국투자 HTS(eFriend Plus) > [0663] 주식매수청구 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
         ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
-      responses:
-        '200':
-          description: 예탁원정보 (주식매수청구일정) 조회 성공
       tags:
         - DomesticKsdInfo
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            HHKDB669103C0 : 예탁원정보 (주식매수청구일정)
+          required: true
+          schema:
+            type: string
+            enum:
+              - HHKDB669103C0
+            default: HHKDB669103C0
+            example: HHKDB669103C0
+        - in: query
+          name: cts
+          description: CTS (공백)
+          required: true
+          schema:
+            type: string
+            default: ''
+            example: ''
+        - in: query
+          name: f_dt
+          description: |
+            조회일자From (YYYYMMDD)
+
+            일자 ~
+          required: true
+          schema:
+            type: string
+            example: 20220201
+        - in: query
+          name: t_dt
+          description: |
+            조회일자To (YYYYMMDD)
+
+            ~ 일자
+          required: true
+          schema:
+            type: string
+            example: 20220301
+        - in: query
+          name: sht_cd
+          description: |
+            종목코드
+
+            공백: 전체, 특정종목 조회시 : 종목코드
+          required: true
+          schema:
+            type: string
+            example: '005930'
+      responses:
+        '200':
+          $ref: '#/components/responses/purchase_request'
   /uapi/domestic-stock/v1/ksdinfo/merger-split:
     get:
       operationId: getKsdMergerAndSplit
@@ -3883,11 +4039,73 @@ paths:
         한국투자 HTS(eFriend Plus) > [0664] 합병/분할 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
         ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
-      responses:
-        '200':
-          description: 예탁원정보 (합병/분할일정) 조회 성공
       tags:
         - DomesticKsdInfo
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            HHKDB669104C0 : 예탁원정보 (합병/분할일정)
+          required: true
+          schema:
+            type: string
+            enum:
+              - HHKDB669104C0
+            default: HHKDB669104C0
+            example: HHKDB669104C0
+        - in: query
+          name: cts
+          description: CTS (공백)
+          required: true
+          schema:
+            type: string
+            default: ''
+            example: ''
+        - in: query
+          name: f_dt
+          description: |
+            조회일자From (YYYYMMDD)
+
+            일자 ~
+          required: true
+          schema:
+            type: string
+            example: 20220201
+        - in: query
+          name: t_dt
+          description: |
+            조회일자To (YYYYMMDD)
+
+            ~ 일자
+          required: true
+          schema:
+            type: string
+            example: 20220301
+        - in: query
+          name: sht_cd
+          description: |
+            종목코드
+
+            공백: 전체, 특정종목 조회시 : 종목코드
+          required: true
+          schema:
+            type: string
+            example: '005930'
+      responses:
+        '200':
+          $ref: '#/components/responses/merger_split'
   /uapi/domestic-stock/v1/ksdinfo/rev-split:
     get:
       operationId: getKsdChangeParValue
@@ -3898,11 +4116,87 @@ paths:
         한국투자 HTS(eFriend Plus) > [0657] 액면교체 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
         ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
-      responses:
-        '200':
-          description: 예탁원정보 (액면교체일정) 조회 성공
       tags:
         - DomesticKsdInfo
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            HHKDB669105C0 : 예탁원정보 (액면교체일정)
+          required: true
+          schema:
+            type: string
+            enum:
+              - HHKDB669105C0
+            default: HHKDB669105C0
+            example: HHKDB669105C0
+        - in: query
+          name: cts
+          description: CTS (공백)
+          required: true
+          schema:
+            type: string
+            default: ''
+            example: ''
+        - in: query
+          name: f_dt
+          description: |
+            조회일자From (YYYYMMDD)
+
+            일자 ~
+          required: true
+          schema:
+            type: string
+            example: 20220201
+        - in: query
+          name: t_dt
+          description: |
+            조회일자To (YYYYMMDD)
+
+            ~ 일자
+          required: true
+          schema:
+            type: string
+            example: 20220301
+        - in: query
+          name: sht_cd
+          description: |
+            종목코드
+
+            공백: 전체, 특정종목 조회시 : 종목코드
+          required: true
+          schema:
+            type: string
+            example: '005930'
+        - in: query
+          name: market_gb
+          description: |
+            시장구분
+
+            0: 전체, 1: 코스피, 2: 코스닥
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+              - '2'
+            example: 0
+      responses:
+        '200':
+          $ref: '#/components/responses/change_par_value'
   /uapi/domestic-stock/v1/ksdinfo/cap-dcrs:
     get:
       operationId: getKsdDecreaseCapital
@@ -3913,11 +4207,73 @@ paths:
         한국투자 HTS(eFriend Plus) > [0665] 자본감소 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
         ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
-      responses:
-        '200':
-          description: 예탁원정보 (자본감소일정) 조회 성공
       tags:
         - DomesticKsdInfo
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            HHKDB669106C0 : 예탁원정보 (자본감소일정)
+          required: true
+          schema:
+            type: string
+            enum:
+              - HHKDB669106C0
+            default: HHKDB669106C0
+            example: HHKDB669106C0
+        - in: query
+          name: cts
+          description: CTS (공백)
+          required: true
+          schema:
+            type: string
+            default: ''
+            example: ''
+        - in: query
+          name: f_dt
+          description: |
+            조회일자From (YYYYMMDD)
+
+            일자 ~
+          required: true
+          schema:
+            type: string
+            example: 20220201
+        - in: query
+          name: t_dt
+          description: |
+            조회일자To (YYYYMMDD)
+
+            ~ 일자
+          required: true
+          schema:
+            type: string
+            example: 20220301
+        - in: query
+          name: sht_cd
+          description: |
+            종목코드
+
+            공백: 전체, 특정종목 조회시 : 종목코드
+          required: true
+          schema:
+            type: string
+            example: '005930'
+      responses:
+        '200':
+          $ref: '#/components/responses/decrease_capital'
   /uapi/domestic-stock/v1/ksdinfo/list-info:
     get:
       operationId: getKsdListInfo
@@ -3928,11 +4284,73 @@ paths:
         한국투자 HTS(eFriend Plus) > [0666] 상장정보 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
         ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
-      responses:
-        '200':
-          description: 예탁원정보 (상장정보일정) 조회 성공
       tags:
         - DomesticKsdInfo
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            HHKDB669107C0 : 예탁원정보 (상장정보일정)
+          required: true
+          schema:
+            type: string
+            enum:
+              - HHKDB669107C0
+            default: HHKDB669107C0
+            example: HHKDB669107C0
+        - in: query
+          name: cts
+          description: CTS (공백)
+          required: true
+          schema:
+            type: string
+            default: ''
+            example: ''
+        - in: query
+          name: f_dt
+          description: |
+            조회일자From (YYYYMMDD)
+
+            일자 ~
+          required: true
+          schema:
+            type: string
+            example: 20220201
+        - in: query
+          name: t_dt
+          description: |
+            조회일자To (YYYYMMDD)
+
+            ~ 일자
+          required: true
+          schema:
+            type: string
+            example: 20220301
+        - in: query
+          name: sht_cd
+          description: |
+            종목코드
+
+            공백: 전체, 특정종목 조회시 : 종목코드
+          required: true
+          schema:
+            type: string
+            example: '005930'
+      responses:
+        '200':
+          $ref: '#/components/responses/list_info'
   /uapi/domestic-stock/v1/ksdinfo/pub-offer:
     get:
       operationId: getKsdPublicOfferSubscription
@@ -3943,11 +4361,73 @@ paths:
         한국투자 HTS(eFriend Plus) > [0667] 공모주청약 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
         ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
-      responses:
-        '200':
-          description: 예탁원정보 (공모주청약일정) 조회 성공
       tags:
         - DomesticKsdInfo
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            HHKDB669108C0 : 예탁원정보 (공모주청약일정)
+          required: true
+          schema:
+            type: string
+            enum:
+              - HHKDB669108C0
+            default: HHKDB669108C0
+            example: HHKDB669108C0
+        - in: query
+          name: cts
+          description: CTS (공백)
+          required: true
+          schema:
+            type: string
+            default: ''
+            example: ''
+        - in: query
+          name: f_dt
+          description: |
+            조회일자From (YYYYMMDD)
+
+            일자 ~
+          required: true
+          schema:
+            type: string
+            example: 20220201
+        - in: query
+          name: t_dt
+          description: |
+            조회일자To (YYYYMMDD)
+
+            ~ 일자
+          required: true
+          schema:
+            type: string
+            example: 20220301
+        - in: query
+          name: sht_cd
+          description: |
+            종목코드
+
+            공백: 전체, 특정종목 조회시 : 종목코드
+          required: true
+          schema:
+            type: string
+            example: '005930'
+      responses:
+        '200':
+          $ref: '#/components/responses/public_offer_subscription'
   /uapi/domestic-stock/v1/ksdinfo/forfeit:
     get:
       operationId: getKsdForfeitedStock
@@ -3958,11 +4438,73 @@ paths:
         한국투자 HTS(eFriend Plus) > [0668] 실권주 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
         ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
-      responses:
-        '200':
-          description: 예탁원정보 (실권주일정) 조회 성공
       tags:
         - DomesticKsdInfo
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            HHKDB669109C0 : 예탁원정보 (실권주일정)
+          required: true
+          schema:
+            type: string
+            enum:
+              - HHKDB669109C0
+            default: HHKDB669109C0
+            example: HHKDB669109C0
+        - in: query
+          name: cts
+          description: CTS (공백)
+          required: true
+          schema:
+            type: string
+            default: ''
+            example: ''
+        - in: query
+          name: f_dt
+          description: |
+            조회일자From (YYYYMMDD)
+
+            일자 ~
+          required: true
+          schema:
+            type: string
+            example: 20220201
+        - in: query
+          name: t_dt
+          description: |
+            조회일자To (YYYYMMDD)
+
+            ~ 일자
+          required: true
+          schema:
+            type: string
+            example: 20220301
+        - in: query
+          name: sht_cd
+          description: |
+            종목코드
+
+            공백: 전체, 특정종목 조회시 : 종목코드
+          required: true
+          schema:
+            type: string
+            example: '005930'
+      responses:
+        '200':
+          $ref: '#/components/responses/forfeited_stock'
   /uapi/domestic-stock/v1/ksdinfo/mand-deposit:
     get:
       operationId: getKsdMandatoryDeposit
@@ -3973,11 +4515,73 @@ paths:
         한국투자 HTS(eFriend Plus) > [0758] 의무예치 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
         ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
-      responses:
-        '200':
-          description: 예탁원정보 (의무예치일정) 조회 성공
       tags:
         - DomesticKsdInfo
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            HHKDB669110C0 : 예탁원정보 (의무예치일정)
+          required: true
+          schema:
+            type: string
+            enum:
+              - HHKDB669110C0
+            default: HHKDB669110C0
+            example: HHKDB669110C0
+        - in: query
+          name: cts
+          description: CTS (공백)
+          required: true
+          schema:
+            type: string
+            default: ''
+            example: ''
+        - in: query
+          name: f_dt
+          description: |
+            조회일자From (YYYYMMDD)
+
+            일자 ~
+          required: true
+          schema:
+            type: string
+            example: 20220201
+        - in: query
+          name: t_dt
+          description: |
+            조회일자To (YYYYMMDD)
+
+            ~ 일자
+          required: true
+          schema:
+            type: string
+            example: 20220301
+        - in: query
+          name: sht_cd
+          description: |
+            종목코드
+
+            공백: 전체, 특정종목 조회시 : 종목코드
+          required: true
+          schema:
+            type: string
+            example: '005930'
+      responses:
+        '200':
+          $ref: '#/components/responses/mandatory_deposit'
   /uapi/domestic-stock/v1/ksdinfo/paidin-capin:
     get:
       operationId: getKsdRightIssue
@@ -3988,11 +4592,86 @@ paths:
         한국투자 HTS(eFriend Plus) > [0655] 유상증자 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
         ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
-      responses:
-        '200':
-          description: 예탁원정보 (유상증자일정) 조회 성공
       tags:
         - DomesticKsdInfo
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            HHKDB669100C0 : 예탁원정보 (유상증자일정)
+          required: true
+          schema:
+            type: string
+            enum:
+              - HHKDB669100C0
+            default: HHKDB669100C0
+            example: HHKDB669100C0
+        - in: query
+          name: cts
+          description: CTS (공백)
+          required: true
+          schema:
+            type: string
+            default: ''
+            example: ''
+        - in: query
+          name: f_dt
+          description: |
+            조회일자From (YYYYMMDD)
+
+            일자 ~
+          required: true
+          schema:
+            type: string
+            example: 20220201
+        - in: query
+          name: t_dt
+          description: |
+            조회일자To (YYYYMMDD)
+
+            ~ 일자
+          required: true
+          schema:
+            type: string
+            example: 20220301
+        - in: query
+          name: sht_cd
+          description: |
+            종목코드
+
+            공백: 전체, 특정종목 조회시 : 종목코드
+          required: true
+          schema:
+            type: string
+            example: '005930'
+        - in: query
+          name: gb1
+          description: |
+            조회구분
+
+            1: 청약일별, 2: 기준일별
+          required: true
+          schema:
+            type: string
+            enum:
+              - '1'
+              - '2'
+            example: 1
+      responses:
+        '200':
+          $ref: '#/components/responses/right_issue'
   /uapi/domestic-stock/v1/ksdinfo/bonus-issue:
     get:
       operationId: getKsdBonusIssue
@@ -4003,11 +4682,73 @@ paths:
         한국투자 HTS(eFriend Plus) > [0656] 무상증자 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
         ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
-      responses:
-        '200':
-          description: 예탁원정보 (무상증자일정) 조회 성공
       tags:
         - DomesticKsdInfo
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            HHKDB669101C0 : 예탁원정보 (무상증자일정)
+          required: true
+          schema:
+            type: string
+            enum:
+              - HHKDB669101C0
+            default: HHKDB669101C0
+            example: HHKDB669101C0
+        - in: query
+          name: cts
+          description: CTS (공백)
+          required: true
+          schema:
+            type: string
+            default: ''
+            example: ''
+        - in: query
+          name: f_dt
+          description: |
+            조회일자From (YYYYMMDD)
+
+            일자 ~
+          required: true
+          schema:
+            type: string
+            example: 20220201
+        - in: query
+          name: t_dt
+          description: |
+            조회일자To (YYYYMMDD)
+
+            ~ 일자
+          required: true
+          schema:
+            type: string
+            example: 20220301
+        - in: query
+          name: sht_cd
+          description: |
+            종목코드
+
+            공백: 전체, 특정종목 조회시 : 종목코드
+          required: true
+          schema:
+            type: string
+            example: '005930'
+      responses:
+        '200':
+          $ref: '#/components/responses/bonus_issue'
   /uapi/domestic-stock/v1/ksdinfo/sharehld-meet:
     get:
       operationId: getKsdShareholderMeeting
@@ -4018,11 +4759,73 @@ paths:
         한국투자 HTS(eFriend Plus) > [0759] 주주총회 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
         ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
-      responses:
-        '200':
-          description: 예탁원정보 (주주총회일정) 조회 성공
       tags:
         - DomesticKsdInfo
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            HHKDB669111C0 : 예탁원정보 (주주총회일정)
+          required: true
+          schema:
+            type: string
+            enum:
+              - HHKDB669111C0
+            default: HHKDB669111C0
+            example: HHKDB669111C0
+        - in: query
+          name: cts
+          description: CTS (공백)
+          required: true
+          schema:
+            type: string
+            default: ''
+            example: ''
+        - in: query
+          name: f_dt
+          description: |
+            조회일자From (YYYYMMDD)
+
+            일자 ~
+          required: true
+          schema:
+            type: string
+            example: 20220201
+        - in: query
+          name: t_dt
+          description: |
+            조회일자To (YYYYMMDD)
+
+            ~ 일자
+          required: true
+          schema:
+            type: string
+            example: 20220301
+        - in: query
+          name: sht_cd
+          description: |
+            종목코드
+
+            공백: 전체, 특정종목 조회시 : 종목코드
+          required: true
+          schema:
+            type: string
+            example: '005930'
+      responses:
+        '200':
+          $ref: '#/components/responses/shareholder_meeting'
   /uapi/domestic-stock/v1/quotations/foreign-institution-total:
     get:
       operationId: getTechnicalForeignInstitutionTotal
@@ -12158,6 +12961,923 @@ components:
                       description: 결산년월
                       example: 2023.12
                       maxLength: 8
+    dividend:
+      description: 예탁원정보 (배당일정) 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output1:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    record_date:
+                      type: string
+                      description: 기준일
+                      example: 20231231
+                      maxLength: 8
+                    sht_cd:
+                      type: string
+                      description: 종목코드
+                      example: 5930
+                      maxLength: 9
+                    isin_name:
+                      type: string
+                      description: 종목명
+                      example: 삼성전자
+                      maxLength: 40
+                    divi_kind:
+                      type: string
+                      description: 배당종류
+                      example: 결산
+                      maxLength: 8
+                    face_val:
+                      type: string
+                      description: 액면가
+                      example: 100
+                      maxLength: 9
+                    per_sto_divi_amt:
+                      type: string
+                      description: 현금배당금
+                      example: 361
+                      maxLength: 12
+                    divi_rate:
+                      type: string
+                      description: 현금배당률(%)
+                      example: 361
+                      maxLength: 6
+                    stk_divi_rate:
+                      type: string
+                      description: 주식배당률(%)
+                      example: 0
+                      maxLength: 15
+                    divi_pay_dt:
+                      type: string
+                      description: 배당금지급일
+                      example: 2024/04/19
+                      maxLength: 10
+                    stk_div_pay_dt:
+                      type: string
+                      description: 주식배당지급일
+                      example: 20220201
+                      maxLength: 10
+                    odd_pay_dt:
+                      type: string
+                      description: 단주대금지급일
+                      example: ''
+                      maxLength: 10
+                    stk_kind:
+                      type: string
+                      description: 주식종류
+                      example: 보통
+                      maxLength: 10
+                    high_divi_gb:
+                      type: string
+                      description: 고배당종목여부
+                      example: ''
+                      maxLength: 1
+    purchase_request:
+      description: 예탁원정보 (주식매수청구일정) 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output1:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    record_date:
+                      type: string
+                      description: 기준일
+                      example: 20240531
+                      maxLength: 8
+                    sht_cd:
+                      type: string
+                      description: 종목코드
+                      example: 83790
+                      maxLength: 9
+                    isin_name:
+                      type: string
+                      description: 종목명
+                      example: 씨지인바이츠
+                      maxLength: 40
+                    stk_kind:
+                      type: string
+                      description: 주식종류
+                      example: 보통
+                      maxLength: 8
+                    opp_opi_rcpt_term:
+                      type: string
+                      description: 반대의사접수시한
+                      example: 20240614
+                      maxLength: 9
+                    buy_req_rcpt_term:
+                      type: string
+                      description: 매수청구접수시한
+                      example: ''
+                      maxLength: 12
+                    buy_req_price:
+                      type: string
+                      description: 매수청구가격
+                      example: '000000000000'
+                      maxLength: 62
+                    buy_amt_pay_dt:
+                      type: string
+                      description: 매수대금지급일
+                      example: ''
+                      maxLength: 62
+                    get_meet_dt:
+                      type: string
+                      description: 주총일
+                      example: ''
+                      maxLength: 10
+    merger_split:
+      description: 예탁원정보 (합병/분할일정) 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output1:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    record_date:
+                      type: string
+                      description: 기준일
+                      example: 20240524
+                      maxLength: 8
+                    sht_cd:
+                      type: string
+                      description: 종목코드
+                      example: 405640
+                      maxLength: 9
+                    opp_cust_cd:
+                      type: string
+                      description: 피합병(피분할)회사코드
+                      example: 405640
+                      maxLength: 5
+                    opp_cust_nm:
+                      type: string
+                      description: 피합병(피분할)회사명
+                      example: 신한제9호기업인수목적
+                      maxLength: 37
+                    cust_cd:
+                      type: string
+                      description: 합병(분할)회사코드
+                      example: 32335
+                      maxLength: 5
+                    cust_nm:
+                      type: string
+                      description: 합병(분할)회사명
+                      example: 다원넥스뷰
+                      maxLength: 37
+                    merge_type:
+                      type: string
+                      description: 합병사유
+                      example: 흡수합병
+                      maxLength: 8
+                    merge_rate:
+                      type: string
+                      description: 비율
+                      example: 0.28
+                      maxLength: 14
+                    td_stop_dt:
+                      type: string
+                      description: 매매거래정지기간
+                      example: 2024/05/23 ~
+                      maxLength: 23
+                    list_dt:
+                      type: string
+                      description: 상장/등록일
+                      example: 20240611
+                      maxLength: 9
+                    odd_amt_pay_dt:
+                      type: string
+                      description: 단주대금지급일
+                      example: 2024/06/18
+                      maxLength: 10
+                    tot_issue_stk_qty:
+                      type: string
+                      description: 발행주식
+                      example: 0
+                      maxLength: 12
+                    issue_stk_qty:
+                      type: string
+                      description: 발행할주식
+                      example: 0
+                      maxLength: 12
+                    seq:
+                      type: string
+                      description: 연번
+                      example: 0
+                      maxLength: 3
+    change_par_value:
+      description: 예탁원정보 (액면교체일정) 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output1:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    record_date:
+                      type: string
+                      description: 기준일
+                      example: 20240424
+                      maxLength: 8
+                    sht_cd:
+                      type: string
+                      description: 종목코드
+                      example: 457190
+                      maxLength: 9
+                    isin_name:
+                      type: string
+                      description: 종목명
+                      example: 이수스페셜티케미컬
+                      maxLength: 40
+                    inter_bf_face_amt:
+                      type: string
+                      description: 변경전액면가
+                      example: '000005000'
+                      maxLength: 9
+                    inter_af_face_amt:
+                      type: string
+                      description: 변경후액면가
+                      example: '000001000'
+                      maxLength: 9
+                    td_stop_dt:
+                      type: string
+                      description: 매매거래정지기간
+                      example: 2024/04/23 ~ 2024/05/01
+                      maxLength: 23
+                    list_dt:
+                      type: string
+                      description: 상장/등록일
+                      example: 2024/05/02
+                      maxLength: 10
+    decrease_capital:
+      description: 예탁원정보 (자본감소일정) 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output1:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    record_date:
+                      type: string
+                      description: 기준일
+                      example: 20240529
+                      maxLength: 8
+                    sht_cd:
+                      type: string
+                      description: 종목코드
+                      example: 46070
+                      maxLength: 9
+                    isin_name:
+                      type: string
+                      description: 종목명
+                      example: 코다코
+                      maxLength: 40
+                    stk_kind:
+                      type: string
+                      description: 주식종류
+                      example: 보통
+                      maxLength: 10
+                    reduce_cap_type:
+                      type: string
+                      description: 감자구분
+                      example: 무상감자
+                      maxLength: 9
+                    reduce_cap_rate:
+                      type: string
+                      description: 감자배정율
+                      example: 0.5
+                      maxLength: 16
+                    comp_way:
+                      type: string
+                      description: 계산방법
+                      example: 곱하기
+                      maxLength: 6
+                    td_stop_dt:
+                      type: string
+                      description: 매매거래정지기간
+                      example: 2024/05/28 ~
+                      maxLength: 23
+                    list_dt:
+                      type: string
+                      description: 상장/등록일
+                      example: ''
+                      maxLength: 10
+    list_info:
+      description: 예탁원정보 (상장정보일정) 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output1:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    list_dt:
+                      type: string
+                      description: 상장/등록일
+                      example: 20240531
+                      maxLength: 10
+                    sht_cd:
+                      type: string
+                      description: 종목코드
+                      example: '003580'
+                      maxLength: 9
+                    isin_name:
+                      type: string
+                      description: 종목명
+                      example: 에이치엘비글로벌
+                      maxLength: 40
+                    stk_kind:
+                      type: string
+                      description: 주식종류
+                      example: 보통
+                      maxLength: 10
+                    issue_type:
+                      type: string
+                      description: 사유
+                      example: 유상증자
+                      maxLength: 21
+                    issue_stk_qty:
+                      type: string
+                      description: 상장주식수
+                      example: '      705219'
+                      maxLength: 12
+                    tot_issue_stk_qty:
+                      type: string
+                      description: 총발행주식수
+                      example: '    47410892'
+                      maxLength: 12
+                    issue_price:
+                      type: string
+                      description: 발행가
+                      example: '     7090'
+                      maxLength: 9
+    public_offer_subscription:
+      description: 예탁원정보 (공모주청약일정) 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output1:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    record_date:
+                      type: string
+                      description: 기준일
+                      example: 20240520
+                      maxLength: 8
+                    sht_cd:
+                      type: string
+                      description: 종목코드
+                      example: 477380
+                      maxLength: 9
+                    isin_name:
+                      type: string
+                      description: 종목명
+                      example: 미래에셋비전기업인수목적4호
+                      maxLength: 40
+                    fix_subscr_pri:
+                      type: string
+                      description: 공모가
+                      example: '        2000'
+                      maxLength: 12
+                    face_value:
+                      type: string
+                      description: 액면가
+                      example: '000000100'
+                      maxLength: 9
+                    subscr_dt:
+                      type: string
+                      description: 청약기간
+                      example: 2024/05/20 ~ 2024/05/21
+                      maxLength: 23
+                    pay_dt:
+                      type: string
+                      description: 납입일
+                      example: 2024/05/23
+                      maxLength: 10
+                    refund_dt:
+                      type: string
+                      description: 환불일
+                      example: 2024/05/23
+                      maxLength: 10
+                    list_dt:
+                      type: string
+                      description: 상장/등록일
+                      example: 2024/05/29
+                      maxLength: 10
+                    lead_mgr:
+                      type: string
+                      description: 주간사
+                      example: 미래에셋증권
+                      maxLength: 41
+                    pub_bf_cap:
+                      type: string
+                      description: 공모전자본금
+                      example: '      145000'
+                      maxLength: 12
+                    pub_af_cap:
+                      type: string
+                      description: 공모후자본금
+                      example: '      166250'
+                      maxLength: 12
+                    assign_stk_qty:
+                      type: string
+                      description: 당사배정물량
+                      example: '           0'
+                      maxLength: 12
+    forfeited_stock:
+      description: 예탁원정보 (실권주일정) 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output1:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    record_date:
+                      type: string
+                      description: 기준일
+                      example: 20240311
+                      maxLength: 8
+                    sht_cd:
+                      type: string
+                      description: 종목코드
+                      example: '032800'
+                      maxLength: 9
+                    isin_name:
+                      type: string
+                      description: 종목명
+                      example: 판타지오
+                      maxLength: 40
+                    subscr_dt:
+                      type: string
+                      description: 청약일
+                      example: 2024/04/18 ~ 2024/04/19
+                      maxLength: 23
+                    subscr_price:
+                      type: string
+                      description: 공모가
+                      example: '000000205'
+                      maxLength: 9
+                    subscr_stk_qty:
+                      type: string
+                      description: 공모주식수
+                      example: '   112000000'
+                      maxLength: 12
+                    refund_dt:
+                      type: string
+                      description: 환불일
+                      example: 2024/04/23
+                      maxLength: 10
+                    list_dt:
+                      type: string
+                      description: 상장/등록일
+                      example: 2024/05/07
+                      maxLength: 10
+                    lead_mgr:
+                      type: string
+                      description: 주간사
+                      example: 하이투자증권㈜(대표) 인
+                      maxLength: 25
+    mandatory_deposit:
+      description: 예탁원정보 (의무예치일정) 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output1:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    sht_cd:
+                      type: string
+                      description: 종목코드
+                      example: '003580'
+                      maxLength: 9
+                    isin_name:
+                      type: string
+                      description: 종목명
+                      example: 에이치엘비글로벌
+                      maxLength: 40
+                    stk_qty:
+                      type: string
+                      description: 주식수
+                      example: '      705219'
+                      maxLength: 12
+                    depo_date:
+                      type: string
+                      description: 예치일
+                      example: 2024/05/31 ~ 2025/05/31
+                      maxLength: 23
+                    depo_reason:
+                      type: string
+                      description: 사유
+                      example: 모집매출
+                      maxLength: 10
+                    tot_issue_qty_per_rate:
+                      type: string
+                      description: 총발행주식수대비비율(%)
+                      example: 148.7
+                      maxLength: 52
+    right_issue:
+      description: 예탁원정보 (유상증자일정) 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output1:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    record_date:
+                      type: string
+                      description: 기준일
+                      example: 20240430
+                      maxLength: 8
+                    sht_cd:
+                      type: string
+                      description: 종목코드
+                      example: '190410'
+                      maxLength: 9
+                    isin_name:
+                      type: string
+                      description: 종목명
+                      example: 엘에스아이앤디
+                      maxLength: 40
+                    tot_issue_stk_qty:
+                      type: string
+                      description: 발행주식
+                      example: 14770262
+                      maxLength: 12
+                    issue_stk_qty:
+                      type: string
+                      description: 발행할주식
+                      example: 884213
+                      maxLength: 12
+                    fix_rate:
+                      type: string
+                      description: 확정배정율
+                      example: 6.29
+                      maxLength: 17
+                    disc_rate:
+                      type: string
+                      description: 할인율
+                      example: 0
+                      maxLength: 7
+                    fix_price:
+                      type: string
+                      description: 발행예정가
+                      example: 32252
+                      maxLength: 8
+                    right_dt:
+                      type: string
+                      description: 권리락일
+                      example: 20240429
+                      maxLength: 8
+                    sub_term_ft:
+                      type: string
+                      description: 청약기간
+                      example: 20240528
+                      maxLength: 8
+                    sub_term:
+                      type: string
+                      description: 청약기간
+                      example: 2024/05/28 ~ 2024/05/29
+                      maxLength: 23
+                    list_date:
+                      type: string
+                      description: 상장/등록일
+                      example: 2024/06/12
+                      maxLength: 10
+                    stk_kind:
+                      type: string
+                      description: 주식종류
+                      example: '01'
+                      maxLength: 2
+    bonus_issue:
+      description: 예탁원정보 (무상증자일정) 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output1:
+                type: object
+                properties:
+                  record_date:
+                    type: string
+                    description: 기준일
+                    example: 20240522
+                    maxLength: 8
+                  sht_cd:
+                    type: string
+                    description: 종목코드
+                    example: 199820
+                    maxLength: 9
+                  isin_name:
+                    type: string
+                    description: 종목명
+                    example: 제일일렉트릭
+                    maxLength: 40
+                  fix_rate:
+                    type: string
+                    description: 확정배정율
+                    example: 100
+                    maxLength: 17
+                  odd_rec_price:
+                    type: string
+                    description: 단주기준가
+                    example: 0
+                    maxLength: 9
+                  right_dt:
+                    type: string
+                    description: 권리락일
+                    example: 20240521
+                    maxLength: 8
+                  odd_pay_dt:
+                    type: string
+                    description: 단주대금지급일
+                    example: ''
+                    maxLength: 23
+                  list_date:
+                    type: string
+                    description: 상장/등록일
+                    example: 20240611
+                    maxLength: 8
+                  tot_issue_stk_qty:
+                    type: string
+                    description: 발행주식
+                    example: 11110000
+                    maxLength: 12
+                  issue_stk_qty:
+                    type: string
+                    description: 발행할주식
+                    example: 11110000
+                    maxLength: 12
+                  stk_kind:
+                    type: string
+                    description: 주식종류
+                    example: '01'
+                    maxLength: 2
+    shareholder_meeting:
+      description: 예탁원정보 (주주총회일정) 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output1:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    record_date:
+                      type: string
+                      description: 기준일
+                      example: 20240531
+                      maxLength: 8
+                    sht_cd:
+                      type: string
+                      description: 종목코드
+                      example: '001020'
+                      maxLength: 9
+                    isin_name:
+                      type: string
+                      description: 종목명
+                      example: 페이퍼코리아(주)
+                      maxLength: 40
+                    gen_meet_dt:
+                      type: string
+                      description: 주총일자
+                      example: 2024/06/28
+                      maxLength: 10
+                    gen_meet_type:
+                      type: string
+                      description: 주총사유
+                      example: 임시총회
+                      maxLength: 8
+                    agenda:
+                      type: string
+                      description: 주총의안
+                      example: 이사선임
+                      maxLength: 71
+                    vote_tot_qty:
+                      type: string
+                      description: 의결권주식총수
+                      example: '   177983313'
+                      maxLength: 12
   parameters:
     personal_secret_key:
       in: header

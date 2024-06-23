@@ -1,0 +1,98 @@
+description: 예탁원정보 (합병/분할일정) 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output1:
+          type: array
+          items:
+            type: object
+            properties:
+              record_date:
+                type: string
+                description: 기준일
+                example: 20240524
+                maxLength: 8
+              sht_cd:
+                type: string
+                description: 종목코드
+                example: 405640
+                maxLength: 9
+              opp_cust_cd:
+                type: string
+                description: 피합병(피분할)회사코드
+                example: 405640
+                maxLength: 5
+              opp_cust_nm:
+                type: string
+                description: 피합병(피분할)회사명
+                example: 신한제9호기업인수목적
+                maxLength: 37
+              cust_cd:
+                type: string
+                description: 합병(분할)회사코드
+                example: 32335
+                maxLength: 5
+              cust_nm:
+                type: string
+                description: 합병(분할)회사명
+                example: 다원넥스뷰
+                maxLength: 37
+              merge_type:
+                type: string
+                description: 합병사유
+                example: 흡수합병
+                maxLength: 8
+              merge_rate:
+                type: string
+                description: 비율
+                example: 0.28
+                maxLength: 14
+              td_stop_dt:
+                type: string
+                description: 매매거래정지기간
+                example: 2024/05/23 ~
+                maxLength: 23
+              list_dt:
+                type: string
+                description: 상장/등록일
+                example: 20240611
+                maxLength: 9
+              odd_amt_pay_dt:
+                type: string
+                description: 단주대금지급일
+                example: 2024/06/18
+                maxLength: 10
+              tot_issue_stk_qty:
+                type: string
+                description: 발행주식
+                example: 0
+                maxLength: 12
+              issue_stk_qty:
+                type: string
+                description: 발행할주식
+                example: 0
+                maxLength: 12
+              seq:
+                type: string
+                description: 연번
+                example: 0
+                maxLength: 3

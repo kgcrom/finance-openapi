@@ -1,0 +1,68 @@
+description: 예탁원정보 (상장정보일정) 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output1:
+          type: array
+          items:
+            type: object
+            properties:
+              list_dt:
+                type: string
+                description: 상장/등록일
+                example: 20240531
+                maxLength: 10
+              sht_cd:
+                type: string
+                description: 종목코드
+                example: "003580"
+                maxLength: 9
+              isin_name:
+                type: string
+                description: 종목명
+                example: 에이치엘비글로벌
+                maxLength: 40
+              stk_kind:
+                type: string
+                description: 주식종류
+                example: 보통
+                maxLength: 10
+              issue_type:
+                type: string
+                description: 사유
+                example: 유상증자
+                maxLength: 21
+              issue_stk_qty:
+                type: string
+                description: 상장주식수
+                example: "      705219"
+                maxLength: 12
+              tot_issue_stk_qty:
+                type: string
+                description: 총발행주식수
+                example: "    47410892"
+                maxLength: 12
+              issue_price:
+                type: string
+                description: 발행가
+                example: "     7090"
+                maxLength: 9

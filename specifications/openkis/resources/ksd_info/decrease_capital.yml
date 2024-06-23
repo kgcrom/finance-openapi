@@ -9,9 +9,71 @@ description: |
 
   ※ 예탁원에서 제공한 자료이므로 정보용으로만 사용하시기 바랍니다.
 
-responses:
-  200:
-    description: 예탁원정보 (자본감소일정) 조회 성공
-
 tags:
   - DomesticKsdInfo
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/personal_secret_key
+  - $ref: ../../shared/parameters.yml#/tr_cont
+  - $ref: ../../shared/parameters.yml#/customer_type
+  - $ref: ../../shared/parameters.yml#/sequence_no
+  - $ref: ../../shared/parameters.yml#/mac_address
+  - $ref: ../../shared/parameters.yml#/phone_number
+  - $ref: ../../shared/parameters.yml#/ip_address
+  - $ref: ../../shared/parameters.yml#/hashkey
+  - $ref: ../../shared/parameters.yml#/gt_uid
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      모의투자 미지원<br/>
+      HHKDB669106C0 : 예탁원정보 (자본감소일정)
+    required: true
+    schema:
+      type: string
+      enum: ["HHKDB669106C0"]
+      default: HHKDB669106C0
+      example: HHKDB669106C0
+  - in: query
+    name: cts
+    description: CTS (공백)
+    required: true
+    schema:
+      type: string
+      default: ""
+      example: ""
+  - in: query
+    name: f_dt
+    description: |
+      조회일자From (YYYYMMDD)
+
+      일자 ~
+    required: true
+    schema:
+      type: string
+      example: 20220201
+  - in: query
+    name: t_dt
+    description: |
+      조회일자To (YYYYMMDD)
+
+      ~ 일자
+    required: true
+    schema:
+      type: string
+      example: 20220301
+  - in: query
+    name: sht_cd
+    description: |
+      종목코드
+
+      공백: 전체, 특정종목 조회시 : 종목코드
+    required: true
+    schema:
+      type: string
+      example: "005930"
+
+responses:
+  200:
+    $ref: responses/decrease_capital.yml
