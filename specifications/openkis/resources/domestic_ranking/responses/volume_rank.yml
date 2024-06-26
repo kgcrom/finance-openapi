@@ -1,0 +1,130 @@
+description: 국내주식 거래량순위 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: array
+          items:
+            type: object
+            properties:
+              hts_kor_isnm:
+                type: string
+                description: HTS 한글 종목명
+                example: 삼성전자
+                maxLength: 40
+              mksc_shrn_iscd:
+                type: string
+                description: 유가증권 단축 종목코드
+                example: "005930"
+                maxLength: 9
+              data_rank:
+                type: string
+                description: 데이터 순위
+                example: 1
+                maxLength: 10
+              stck_prpr:
+                type: string
+                description: 주식 현재가
+                example: 65100
+                maxLength: 10
+              prdy_vrss_sign:
+                type: string
+                description: |
+                  전일 대비 부호
+
+                  1 : 상한<br/>
+                  2 : 상승<br/>
+                  3 : 보합<br/>
+                  4 : 하한<br/>
+                  5 : 하락
+                enum: ["1", "2", "3", "4", "5"]
+                example: 5
+              prdy_vrss:
+                type: string
+                description: 전일 대비
+                example: -300
+                maxLength: 10
+              prdy_ctrt:
+                type: string
+                description: 전일 대비율
+                example: -0.46
+                maxLength: 82
+              acml_vol:
+                type: string
+                description: 누적 거래량
+                example: 8958147
+                maxLength: 18
+              prdy_vol:
+                type: string
+                description: 전일 거래량
+                example: 12334657
+                maxLength: 18
+              lstn_stcn:
+                type: string
+                description: 상장 주수
+                example: 5969782550
+                maxLength: 18
+              avrg_vol:
+                type: string
+                description: 평균 거래량
+                example: 8958147
+                maxLength: 18
+              n_befr_clpr_vrss_prpr_rate:
+                type: string
+                description: N일전종가대비현재가대비율
+                example: -0.46
+                maxLength: 82
+              vol_inrt:
+                type: string
+                description: 거래량증가율
+                example: 72.63
+                maxLength: 84
+              vol_tnrt:
+                type: string
+                description: 거래량 회전율
+                example: 0.15
+                maxLength: 82
+              nday_vol_tnrt:
+                type: string
+                description: N일 거래량 회전율
+                example: 0.15
+                maxLength: 8
+              avrg_tr_pbmn:
+                type: string
+                description: 평균 거래 대금
+                example: 584861890300
+                maxLength: 18
+              tr_pbmn_tnrt:
+                type: string
+                description: 거래대금회전율
+                example: 0.15
+                maxLength: 82
+              nday_tr_pbmn_tnrt:
+                type: string
+                description: N일 거래대금 회전율
+                example: 0.15
+                maxLength: 8
+              acml_tr_pbmn:
+                type: string
+                description: 누적 거래 대금
+                example: 584861890300
+                maxLength: 18

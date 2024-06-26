@@ -13,9 +13,155 @@ description: |
   HTS [0110]에서 여러가지 조건을 설정할 수 있는데, 그 중 거래량 순위(ex. 0봉전 거래량 상위순 100종목) 에 대해서도 설정해서 종목을 검색할 수 있습니다.<br/>
   자세한 사용 방법은 공지사항 - [조건검색 필독] 조건검색 API 이용안내 참고 부탁드립니다.
 
-responses:
-  200:
-    description: 국내주식 거래량순위 조회 성공
-
 tags:
   - DomesticRanking
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/personal_secret_key
+  - $ref: ../../shared/parameters.yml#/tr_cont
+  - $ref: ../../shared/parameters.yml#/customer_type
+  - $ref: ../../shared/parameters.yml#/sequence_no
+  - $ref: ../../shared/parameters.yml#/mac_address
+  - $ref: ../../shared/parameters.yml#/phone_number
+  - $ref: ../../shared/parameters.yml#/ip_address
+  - $ref: ../../shared/parameters.yml#/hashkey
+  - $ref: ../../shared/parameters.yml#/gt_uid
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      [실전투자/모의투자]<br/>
+      FHPST01710000 : 국내주식 거래량 순위
+    required: true
+    schema:
+      type: string
+      enum: ["FHPST01710000"]
+      default: FHPST01710000
+      example: FHPST01710000
+  - in: query
+    name: fid_cond_mrkt_div_code
+    description: 조건 시장 분류 코드
+    required: true
+    schema:
+      type: string
+      enum: ["J"]
+      default: J
+      example: J
+  - in: query
+    name: fid_cond_scr_div_code
+    description: |
+      조건 화면 분류 코드
+
+      Unique key(20171)
+    required: true
+    schema:
+      type: string
+      enum: ["20171"]
+      default: 20171
+      example: 20171
+  - in: query
+    name: fid_input_iscd
+    description: |
+      입력 종목코드
+
+      0000(전체), 기타(업종코드)
+    required: true
+    schema:
+      type: string
+      example: "005930"
+  - in: query
+    name: fid_div_cls_code
+    description: |
+      분류 구분 코드
+
+      0(전체), 1(보통주), 2(우선주)
+    required: true
+    schema:
+      type: string
+      enum: ["0", "1", "2"]
+      example: 0
+  - in: query
+    name: fid_blng_cls_code
+    description: |
+      소속 구분 코드
+
+      0 : 평균거래량<br/>
+      1 : 거래증가율<br/>
+      2 : 평균거래회전율<br/>
+      3 : 거래금액순<br/>
+      4 : 평균거래금액회전율
+    required: true
+    schema:
+      type: string
+      enum: ["0", "1", "2", "3", "4"]
+      example: 0
+  - in: query
+    name: fid_trgt_cls_code
+    description: |
+      대상 구분 코드
+
+      1 or 0 9자리<br/>
+      (차례대로 증거금 30% 40% 50% 60% 100% 신용보증금 30% 40% 50% 60%)
+    required: true
+    schema:
+      type: string
+      example: "111111111"
+  - in: query
+    name: fid_trgt_exls_cls_code
+    description: |
+      대상 제외 구분 코드
+
+      1 or 0 10자리<br/>
+      (차례대로 투자위험/경고/주의, 관리종목, 정리매매, 불성실공시, 우선주, 거래정지, ETF, ETN, 신용주문불가, SPAC)
+    required: true
+    schema:
+      type: string
+      example: "0000000000"
+  - in: query
+    name: fid_input_price_1
+    description: |
+      입력 가격1
+
+      가격 ~
+      전체 가격 대상 조회 시 FID_INPUT_PRICE_1, FID_INPUT_PRICE_2 모두 ""(공란) 입력
+    required: true
+    schema:
+      type: string
+      example: "100"
+  - in: query
+    name: fid_input_price_2
+    description: |
+      입력 가격2
+
+      ~ 가격
+      전체 가격 대상 조회 시 FID_INPUT_PRICE_1, FID_INPUT_PRICE_2 모두 ""(공란) 입력
+    required: true
+    schema:
+      type: string
+      example: "1000000"
+  - in: query
+    name: fid_vol_cnt
+    description: |
+      거래량 수
+
+      거래량 ~
+      전체 거래량 대상 조회 시 fid_vol_cnt ""(공란) 입력
+    required: true
+    schema:
+      type: string
+      example: "100000"
+  - in: query
+    name: fid_input_date_1
+    description: |
+      입력 날짜1
+
+      ""(공란) 입력
+    required: true
+    schema:
+      type: string
+      example: ""
+
+responses:
+  200:
+    $ref: responses/volume_rank.yml

@@ -394,10 +394,6 @@ paths:
     get:
       $ref: resources/domestic_ranking/financial_rank_ratio.yml
 
-  /uapi/domestic-stock/v1/ranking/after-hour-balance:
-    get:
-      $ref: resources/domestic_ranking/after_hour_balance.yml
-
   /uapi/domestic-stock/v1/ranking/prefer-disparate-ratio:
     get:
       $ref: resources/domestic_ranking/prefer_disparate_ratio.yml
@@ -449,6 +445,10 @@ paths:
   /uapi/domestic-stock/v1/ranking/dividend-rate:
     get:
       $ref: resources/domestic_ranking/dividend_rate.yml
+
+  /uapi/domestic-stock/v1/ranking/after-hour-balance:
+    get:
+      $ref: resources/domestic_ranking/overtime_balance.yml
 
   /uapi/domestic-stock/v1/ranking/overtime-fluctuation:
     get:

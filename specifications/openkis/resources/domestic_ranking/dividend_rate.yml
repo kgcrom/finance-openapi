@@ -7,9 +7,126 @@ description: |
 
   한국투자 HTS(eFriend Plus) > [0188] 배당률 상위 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
-responses:
-  200:
-    description: 국내주식 배당률 상위 조회 성공
-
 tags:
   - DomesticRanking
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/personal_secret_key
+  - $ref: ../../shared/parameters.yml#/tr_cont
+  - $ref: ../../shared/parameters.yml#/customer_type
+  - $ref: ../../shared/parameters.yml#/sequence_no
+  - $ref: ../../shared/parameters.yml#/mac_address
+  - $ref: ../../shared/parameters.yml#/phone_number
+  - $ref: ../../shared/parameters.yml#/ip_address
+  - $ref: ../../shared/parameters.yml#/hashkey
+  - $ref: ../../shared/parameters.yml#/gt_uid
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      모의투자 미지원<br/>
+      HHKDB13470100 : 국내주식 배당률 순위
+    required: true
+    schema:
+      type: string
+      enum: ["HHKDB13470100"]
+      default: HHKDB13470100
+      example: HHKDB13470100
+  - in: query
+    name: fid_cond_mrkt_div_code
+    description: |
+      조건 시장 분류 코드
+
+      시장구분코드 (주식 J)
+    required: true
+    schema:
+      type: string
+      enum: ["J"]
+      default: J
+      example: J
+  - in: query
+    name: cts_area
+    description: CTS_AREA (공백)
+    required: true
+    schema:
+      type: string
+      default: ""
+      example: ""
+  - in: query
+    name: gb1
+    description: |
+      KOSPI
+
+      0:전체, 1:코스피, 2: 코스피200, 3: 코스닥,
+    required: true
+    schema:
+      type: string
+      enum: ["0", "1", "2", "3"]
+      example: 0
+  - in: query
+    name: upjong
+    description: |
+      업종구분
+
+      코스피(0001:종합, 0002:대형주.…0027:제조업 ),<br/>
+      코스닥(1001:종합, …. 1041:IT부품<br/>
+      코스피200 (2001:KOSPI200, 2007:KOSPI100, 2008:KOSPI50)
+    required: true
+    schema:
+      type: string
+      maxLength: 4
+      example: "0001"
+  - in: query
+    name: gb2
+    description: |
+      종목선택
+
+      0:전체, 6:보통주, 7:우선주
+    required: true
+    schema:
+      type: string
+      enum: ["0", "6", "7"]
+      example: 0
+  - in: query
+    name: gb3
+    description: |
+      배당구분
+
+      1:주식배당, 2: 현금배당
+    required: true
+    schema:
+      type: string
+      enum: ["1", "2"]
+      example: 1
+  - in: query
+    name: gb4
+    description: |
+      결산/중간배당
+
+      0:전체, 1:결산배당, 2:중간배당
+    required: true
+    schema:
+      type: string
+      enum: ["0", "1", "2"]
+      example: 0
+  - in: query
+    name: f_dt
+    description: 기준일 From
+    required: true
+    schema:
+      type: string
+      example: 20240501
+      maxLength: 8
+  - in: query
+    name: t_dt
+    description: 기준일 To
+    required: true
+    schema:
+      type: string
+      example: 20240531
+      maxLength: 8
+
+responses:
+  200:
+    $ref: responses/dividend_rate.yml

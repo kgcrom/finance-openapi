@@ -1,0 +1,173 @@
+description: 국내주식 시간외등락률 순위 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output1:
+          type: object
+          properties:
+            ovtm_untp_uplm_issu_cnt:
+              type: string
+              description: 시간외 단일가 상한 종목 수
+              example: 7
+              maxLength: 7
+            ovtm_untp_ascn_issu_cnt:
+              type: string
+              description: 시간외 단일가 상승 종목 수
+              example: 7
+              maxLength: 7
+            ovtm_untp_stnr_issu_cnt:
+              type: string
+              description: 시간외 단일가 보합 종목 수
+              example: 7
+              maxLength: 7
+            ovtm_untp_lslm_issu_cnt:
+              type: string
+              description: 시간외 단일가 하한 종목 수
+              example: 7
+              maxLength: 7
+            ovtm_untp_down_issu_cnt:
+              type: string
+              description: 시간외 단일가 하락 종목 수
+              example: 7
+              maxLength: 7
+            ovtm_untp_acml_vol:
+              type: string
+              description: 시간외 단일가 누적 거래량
+              example: 19000
+              maxLength: 19
+            ovtm_untp_acml_tr_pbmn:
+              type: string
+              description: 시간외 단일가 누적 거래대금
+              example: 19000
+              maxLength: 19
+            ovtm_untp_exch_vol:
+              type: string
+              description: 시간외 단일가 거래소 거래량
+              example: 18000
+              maxLength: 18
+            ovtm_untp_exch_tr_pbmn:
+              type: string
+              description: 시간외 단일가 거래소 거래대금
+              example: 18000
+              maxLength: 18
+            ovtm_untp_kosdaq_vol:
+              type: string
+              description: 시간외 단일가 KOSDAQ 거래량
+              example: 18000
+              maxLength: 18
+            ovtm_untp_kosdaq_tr_pbmn:
+              type: string
+              description: 시간외 단일가 KOSDAQ 거래대금
+              example: 18000
+              maxLength: 18
+        output2:
+          type: array
+          items:
+            type: object
+            properties:
+              mksc_shrn_iscd:
+                type: string
+                description: 유가증권 단축 종목코드
+                example: "025950"
+                maxLength: 9
+              hts_kor_isnm:
+                type: string
+                description: HTS 한글 종목명
+                example: 동신건설
+                maxLength: 40
+              ovtm_untp_prpr:
+                type: string
+                description: 시간외 단일가 현재가
+                example: 21000
+                maxLength: 10
+              ovtm_untp_prdy_vrss:
+                type: string
+                description: 시간외 단일가 전일 대비
+                example: 1890
+                maxLength: 10
+              ovtm_untp_prdy_vrss_sign:
+                type: string
+                description: |
+                  시간외 단일가 전일 대비 부호
+
+                  1 : 상한
+                  2 : 상승
+                  3 : 보합
+                  4 : 하한
+                  5 : 하락
+                enum: ["1", "2", "3", "4", "5"]
+                example: 1
+              ovtm_untp_prdy_ctrt:
+                type: string
+                description: 시간외 단일가 전일 대비율
+                example: 9.89
+                maxLength: 82
+              ovtm_untp_askp1:
+                type: string
+                description: 시간외 단일가 매도호가1
+                example: 0
+                maxLength: 10
+              ovtm_untp_seln_rsqn:
+                type: string
+                description: 시간외 단일가 매도 잔량
+                example: 0
+                maxLength: 12
+              ovtm_untp_bidp1:
+                type: string
+                description: 시간외 단일가 매수호가1
+                example: 21000
+                maxLength: 10
+              ovtm_untp_shnu_rsqn:
+                type: string
+                description: 시간외 단일가 매수 잔량
+                example: 27744
+                maxLength: 12
+              ovtm_untp_vol:
+                type: string
+                description: 시간외 단일가 거래량
+                example: 46834
+                maxLength: 18
+              ovtm_vrss_acml_vol_rlim:
+                type: string
+                description: 시간외 대비 누적 거래량 비중
+                example: 12.37
+                maxLength: 52
+              stck_prpr:
+                type: string
+                description: 주식 현재가
+                example: 182115021
+                maxLength: 10
+              acml_vol:
+                type: string
+                description: 누적 거래량
+                example: 378572
+                maxLength: 18
+              bidp:
+                type: string
+                description: 매수호가
+                example: 21150
+                maxLength: 10
+              askp:
+                type: string
+                description: 매도호가
+                example: 21250
+                maxLength: 10
