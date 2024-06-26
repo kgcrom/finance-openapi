@@ -1,0 +1,90 @@
+description: 국내주식 체결강도 순위 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: array
+          items:
+            type: object
+            properties:
+              stck_shrn_iscd:
+                type: string
+                description: 주식 단축 종목코드
+                example: Q700009
+                maxLength: 9
+              data_rank:
+                type: string
+                description: 데이터 순위
+                example: 14
+                maxLength: 10
+              hts_kor_isnm:
+                type: string
+                description: HTS 한글 종목명
+                example: 하나 레버리지 구리 선물 ETN(H)
+                maxLength: 40
+              stck_prpr:
+                type: string
+                description: 주식 현재가
+                example: 15195
+                maxLength: 10
+              prdy_vrss:
+                type: string
+                description: 전일 대비
+                example: 50
+                maxLength: 10
+              prdy_vrss_sign:
+                type: string
+                description: |
+                  전일 대비 부호
+
+                  1 : 상한<br/>
+                  2 : 상승<br/>
+                  3 : 보합<br/>
+                  4 : 하락<br/>
+                  5 : 하한
+                enum: ["1", "2", "3", "4", "5"]
+                example: 2
+              prdy_ctrt:
+                type: string
+                description: 전일 대비율
+                example: 0.33
+                maxLength: 10
+              acml_vol:
+                type: string
+                description: 누적 거래량
+                example: 302
+                maxLength: 18
+              tday_rltv:
+                type: string
+                description: 당일 체결강도
+                example: 99.99
+                maxLength: 112
+              seln_cnqn_smtn:
+                type: string
+                description: 매도 체결량 합계
+                example: 0
+                maxLength: 18
+              shnu_cnqn_smtn:
+                type: string
+                description: 매수2 체결량 합계
+                example: 302
+                maxLength: 18

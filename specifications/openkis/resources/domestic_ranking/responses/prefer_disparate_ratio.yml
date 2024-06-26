@@ -1,0 +1,129 @@
+description: 국내주식 우선주/괴리율 상위 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: array
+          items:
+            type: object
+            properties:
+              mksc_shrn_iscd:
+                type: string
+                description: 유가증권 단축 종목코드
+                example: "336370"
+                maxLength: 9
+              data_rank:
+                type: string
+                description: 데이터 순위
+                example: 1
+                maxLength: 10
+              hts_kor_isnm:
+                type: string
+                description: HTS 한글 종목명
+                example: "솔루스첨단소재"
+                maxLength: 40
+              stck_prpr:
+                type: string
+                description: 주식 현재가
+                example: 13610
+                maxLength: 10
+              prdy_vrss:
+                type: string
+                description: 전일 대비
+                example: 210
+                maxLength: 10
+              prdy_vrss_sign:
+                type: string
+                description: |
+                  전일 대비 부호
+
+                  1 : 상한<br/>
+                  2 : 상승<br/>
+                  3 : 보합<br/>
+                  4 : 하한<br/>
+                  5 : 하락
+                enum: ["1", "2", "3", "4", "5"]
+                example: 2
+                maxLength: 10
+              acml_vol:
+                type: string
+                description: 누적 거래량
+                example: 108604
+                maxLength: 10
+              prst_iscd:
+                type: string
+                description: 우선주 종목코드
+                example: "A33637K"
+                maxLength: 10
+              prst_kor_isnm:
+                type: string
+                description: 우선주 한글 종목명
+                example: "솔루스첨단소재우"
+                maxLength: 10
+              prst_prpr:
+                type: string
+                description: 우선주 현재가
+                example: 2890
+                maxLength: 10
+              prst_prdy_vrss:
+                type: string
+                description: 우선주 전일대비
+                example: 30
+                maxLength: 10
+              prst_prdy_vrss_sign:
+                type: string
+                description: |
+                  우선주 전일 대비 부호
+
+                  1 : 상한<br/>
+                  2 : 상승<br/>
+                  3 : 보합<br/>
+                  4 : 하한<br/>
+                  5 : 하락
+                enum: ["1", "2", "3", "4", "5"]
+                example: 2
+                maxLength: 10
+              prst_acml_vol:
+                type: string
+                description: 우선주 누적 거래량
+                example: 8203
+                maxLength: 40
+              diff_prpr:
+                type: string
+                description: 차이 현재가
+                example: 10720
+                maxLength: 10
+              dprt:
+                type: string
+                description: 괴리율
+                example: 78.77
+                maxLength: 10
+              prdy_ctrt:
+                type: string
+                description: 전일 대비율
+                example: 1.57
+                maxLength: 82
+              prst_prdy_ctrt:
+                type: string
+                description: 우선주 전일 대비율
+                example: 1.05
+                maxLength: 82

@@ -1,0 +1,115 @@
+description: 국내주식 신고/신저근접종목 상위 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: array
+          items:
+            type: object
+            properties:
+              hts_kor_isnm:
+                type: string
+                description: HTS 한글 종목명
+                example: 선도전기
+                maxLength: 40
+              mksc_shrn_iscd:
+                type: string
+                description: 유가증권 단축 종목코드
+                example: "007610"
+                maxLength: 9
+              stck_prpr:
+                type: string
+                description: 주식 현재가
+                example: 3000
+                maxLength: 10
+              prdy_vrss_sign:
+                type: string
+                description: |
+                  전일 대비 부호
+
+                  1 : 상한<br/>
+                  2 : 상승<br/>
+                  3 : 보합<br/>
+                  4 : 하한<br/>
+                  5 : 하락
+                enum: ["1", "2", "3", "4", "5"]
+                example: 0
+              prdy_vrss:
+                type: string
+                description: 전일 대비
+                example: 197
+                maxLength: 10
+              prdy_ctrt:
+                type: string
+                description: 전일 대비율
+                example: 0.00
+                maxLength: 82
+              askp:
+                type: string
+                description: 매도호가
+                example: 0
+                maxLength: 10
+              askp_rsqn1:
+                type: string
+                description: 매도호가 잔량1
+                example: 0
+                maxLength: 12
+              bidp:
+                type: string
+                description: 매수호가
+                example: 0
+                maxLength: 10
+              bidp_rsqn1:
+                type: string
+                description: 매수호가 잔량1
+                example: 0
+                maxLength: 12
+              acml_vol:
+                type: string
+                description: 누적 거래량
+                example: 0
+                maxLength: 18
+              new_hgpr:
+                type: string
+                description: 신 최고가
+                example: 3000
+                maxLength: 10
+              hprc_near_rate:
+                type: string
+                description: 고가 근접 비율
+                example: 0.00
+                maxLength: 84
+              new_lwpr:
+                type: string
+                description: 신 최저가
+                example: 3000
+                maxLength: 10
+              lwpr_near_rate:
+                type: string
+                description: 저가 근접 비율
+                example: 0.00
+                maxLength: 84
+              stck_sdpr:
+                type: string
+                description: 주식 기준가
+                example: 3000
+                maxLength: 10

@@ -1,0 +1,125 @@
+description: 국내주식 수익률/자산지표 순위 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: array
+          items:
+            type: object
+            properties:
+              data_rank:
+                type: string
+                description: 데이터 순위
+                example: 1
+                maxLength: 10
+              hts_kor_isnm:
+                type: string
+                description: HTS 한글 종목명
+                example: 삼성전자
+                maxLength: 40
+              prdy_vrss_sign:
+                type: string
+                description: |
+                  전일 대비 부호
+
+                  1 : 상한<br/>
+                  2 : 상승<br/>
+                  3 : 보합<br/>
+                  4 : 하한<br/>
+                  5 : 하락
+                example: 2
+                maxLength: 1
+              mksc_shrn_iscd:
+                type: string
+                description: 유가증권 단축 종목코드
+                example: "005930"
+                maxLength: 9
+              stck_prpr:
+                type: string
+                description: 주식 현재가
+                example: 72800
+                maxLength: 10
+              prdy_vrss:
+                type: string
+                description: 전일 대비
+                example: 500
+                maxLength: 10
+              prdy_ctrt:
+                type: string
+                description: 전일 대비율
+                example: 0.69
+                maxLength: 82
+              acml_vol:
+                type: string
+                description: 누적 거래량
+                example: 3682788
+                maxLength: 18
+              sale_totl_prfi:
+                type: string
+                description: 매출 총 이익
+                example: "177383.00"
+                maxLength: 182
+              bsop_prti:
+                type: string
+                description: 영업 이익
+                example: "6402.00"
+                maxLength: 182
+              op_prfi:
+                type: string
+                description: 경상 이익
+                example: "18264.00"
+                maxLength: 182
+              thtr_ntin:
+                type: string
+                description: 당기순이익
+                example: "15746.00"
+                maxLength: 102
+              total_aset:
+                type: string
+                description: 자산총계
+                example: "4540918.00"
+                maxLength: 102
+              total_lblt:
+                type: string
+                description: 부채총계
+                example: "942924.00"
+                maxLength: 102
+              total_cptl:
+                type: string
+                description: 자본총계
+                example: "3597994.00"
+                maxLength: 102
+              stac_month:
+                type: string
+                description: 결산 월
+                example: 12
+                maxLength: 2
+              stac_month_cls_code:
+                type: string
+                description: 결산 월 구분 코드
+                example: 0
+                maxLength: 2
+              iqry_csnu:
+                type: string
+                description: 조회 건수
+                example: 2468
+                maxLength: 10

@@ -1,11 +1,11 @@
-operationId: getRankingVolumePower
+operationId: getRankingOvertimeBalance
 
-summary: 국내주식 체결강도 순위
+summary: 국내주식 시간외잔량 순위
 
 description: |
-  국내주식 체결강도 상위 API입니다.
+  국내주식 시간외잔량 순위 API입니다.
 
-  한국투자 HTS(eFriend Plus) > [0168] 체결강도 상위 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
+  한국투자 HTS(eFriend Plus) > [0176] 시간외잔량 상위 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
   최대 30건 확인 가능하며, 다음 조회가 불가합니다.
 
   ※ 30건 이상의 목록 조회가 필요한 경우, 대안으로 종목조건검색 API를 이용해서 원하는 종목 100개까지 검색할 수 있는 기능을 제공하고 있습니다.<br/>
@@ -31,13 +31,13 @@ parameters:
       거래ID
 
       모의투자 미지원<br/>
-      FHPST01680000 : 국내주식 체결강도 순위
+      FHPST01760000 : 국내주식 시간외잔량 순위
     required: true
     schema:
       type: string
-      enum: ["FHPST01680000"]
-      default: FHPST01680000
-      example: FHPST01680000
+      enum: ["FHPST01760000"]
+      default: FHPST01760000
+      example: FHPST01760000
   - in: query
     name: fid_cond_mrkt_div_code
     description: |
@@ -55,13 +55,36 @@ parameters:
     description: |
       조건 화면 분류 코드
 
-      Unique key(20168)
+      Unique key(20176)
     required: true
     schema:
       type: string
-      enum: ["20168"]
-      default: 20168
-      example: 20168
+      enum: ["20176"]
+      default: 20176
+      example: 20176
+  - in: query
+    name: fid_rank_sort_cls_code
+    description: |
+      순위 정렬 구분 코드
+
+      1: 장전 시간외, 2: 장후 시간외, 3:매도잔량, 4:매수잔량
+    required: true
+    schema:
+      type: string
+      enum: ["1", "2", "3", "4"]
+      example: 1
+  - in: query
+    name: fid_div_cls_code
+    description: |
+      분류 구분 코드
+
+      0 : 전체
+    required: true
+    schema:
+      type: string
+      enum: ["0"]
+      default: 0
+      example: 0
   - in: query
     name: fid_input_iscd
     description: |
@@ -72,61 +95,7 @@ parameters:
     schema:
       type: string
       enum: ["0000", "0001", "1001", "2001"]
-      default: 0000
-      example: 0000
-  - in: query
-    name: fid_div_cls_code
-    description: |
-      분류 구분 코드
-
-      0: 전체, 1: 보통주 2: 우선주
-    required: true
-    schema:
-      type: string
-      enum: ["0", "1", "2"]
-      default: 0
-      example: 0
-  - in: query
-    name: fid_input_price_1
-    description: |
-      입력 가격1
-
-      입력값 없을때 전체 (가격 ~)
-    required: true
-    schema:
-      type: string
-      example: 10000
-  - in: query
-    name: fid_input_price_2
-    description: |
-      입력 가격2
-
-      입력값 없을때 전체 (~ 가격)
-    required: true
-    schema:
-      type: string
-      example: 20000
-  - in: query
-    name: fid_vol_cnt
-    description: |
-      거래량 수
-
-      입력값 없을때 전체 (거래량 ~)
-    required: true
-    schema:
-      type: string
-      example: 100000
-  - in: query
-    name: fid_trgt_cls_code
-    description: |
-      대상 구분 코드
-
-      0 : 전체
-    required: true
-    schema:
-      type: string
-      default: 0
-      example: 0
+      example: "0001"
   - in: query
     name: fid_trgt_exls_cls_code
     description: |
@@ -136,9 +105,52 @@ parameters:
     required: true
     schema:
       type: string
+      enum: ["0"]
       default: 0
       example: 0
+  - in: query
+    name: fid_trgt_cls_code
+    description: |
+      대상 구분 코드
+
+      0 : 전체
+    required: true
+    schema:
+      type: string
+      enum: ["0"]
+      default: 0
+      example: 0
+  - in: query
+    name: fid_vol_cnt
+    description: |
+      거래량 수
+
+      입력값 없을때 전체 (거래량 ~)
+    required: true
+    schema:
+      type: string
+      example: 1000
+  - in: query
+    name: fid_input_price_1
+    description: |
+      입력 가격1
+
+      입력값 없을때 전체 (가격 ~)
+    required: true
+    schema:
+      type: string
+      example: 1000
+  - in: query
+    name: fid_input_price_2
+    description: |
+      입력 가격2
+
+      입력값 없을때 전체 (~ 가격)
+    required: true
+    schema:
+      type: string
+      example: 2000
 
 responses:
   200:
-    $ref: responses/volume_power.yml
+    $ref: responses/overtime_balance.yml

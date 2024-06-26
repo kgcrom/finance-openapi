@@ -88,7 +88,7 @@ parameters:
     description: |
       FID 조건 화면 분류 코드
 
-      Unique key( 20214 )
+      Unique key(20214)
     required: true
     schema:
       type: string

@@ -1,0 +1,63 @@
+description: 국내주식 배당률 상위 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: array
+          items:
+            type: object
+            properties:
+              rank:
+                type: string
+                description: 순위
+                example: 1
+                maxLength: 4
+              sht_cd:
+                type: string
+                description: 종목코드
+                example: "089600"
+                maxLength: 9
+              isin_name:
+                type: string
+                description: 종목명
+                example: 나스미디어
+                maxLength: 40
+              record_date:
+                type: string
+                description: 기준일
+                example: 20211231
+                maxLength: 8
+              per_sto_divi_amt:
+                type: string
+                description: 현금/주식배당금
+                example: 0
+                maxLength: 12
+              divi_rate:
+                type: string
+                description: 현금/주식배당률(%)
+                example: 0.00
+                maxLength: 62
+              divi_kind:
+                type: string
+                description: 배당종류
+                example: 결산
+                maxLength: 8
