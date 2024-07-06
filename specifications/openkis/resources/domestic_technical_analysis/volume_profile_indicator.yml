@@ -7,9 +7,71 @@ description: |
 
   한국투자 HTS(eFriend Plus) > [0113] 당일가격대별 매물대 화면의 데이터 중 일부를 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
-responses:
-  200:
-    description: 국내주식 매물대/거래비중 조회 성공
-
 tags:
   - DomesticTechnicalAnalysis
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/personal_secret_key
+  - $ref: ../../shared/parameters.yml#/tr_cont
+  - $ref: ../../shared/parameters.yml#/customer_type
+  - $ref: ../../shared/parameters.yml#/sequence_no
+  - $ref: ../../shared/parameters.yml#/mac_address
+  - $ref: ../../shared/parameters.yml#/phone_number
+  - $ref: ../../shared/parameters.yml#/ip_address
+  - $ref: ../../shared/parameters.yml#/hashkey
+  - $ref: ../../shared/parameters.yml#/gt_uid
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      모의투자 미지원<br/>
+      FHPST01130000 : 국내주식 매물대/거래비중
+    required: true
+    schema:
+      type: string
+      enum: ["FHPST01130000"]
+      default: FHPST01130000
+      example: FHPST01130000
+  - in: query
+    name: fid_cond_mrkt_div_code
+    description: 시장분류코드 (주식 J)
+    required: true
+    schema:
+      type: string
+      enum: ["J"]
+      default: J
+      example: J
+  - in: query
+    name: fid_cond_scr_div_code
+    description: |
+      조건화면분류코드
+
+      20113(Unique key)
+    required: true
+    schema:
+      type: string
+      enum: ["20113"]
+      default: 20113
+      example: 20113
+  - in: query
+    name: fid_input_hour_1
+    description: 입력시간
+    required: true
+    schema:
+      type: string
+      default: ""
+      example: ""
+      maxLength: 10
+  - in: query
+    name: fid_input_iscd
+    description: 종목코드 (주식단축종목코드)
+    required: true
+    schema:
+      type: string
+      example: "005930"
+      maxLength: 12
+
+responses:
+  200:
+    $ref: responses/volume_profile_indicator.yml

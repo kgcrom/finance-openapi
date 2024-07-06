@@ -7,9 +7,103 @@ description: |
 
   한국투자 HTS(eFriend Plus) > [0403] 시장별 시간동향 의 상단 표 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
-responses:
-  200:
-    description: 시장별 투자자매매동향 조회 성공
-
 tags:
   - DomesticTechnicalAnalysis
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/personal_secret_key
+  - $ref: ../../shared/parameters.yml#/tr_cont
+  - $ref: ../../shared/parameters.yml#/customer_type
+  - $ref: ../../shared/parameters.yml#/sequence_no
+  - $ref: ../../shared/parameters.yml#/mac_address
+  - $ref: ../../shared/parameters.yml#/phone_number
+  - $ref: ../../shared/parameters.yml#/ip_address
+  - $ref: ../../shared/parameters.yml#/hashkey
+  - $ref: ../../shared/parameters.yml#/gt_uid
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      모의투자 미지원<br/>
+      FHPTJ04030000 : 시장별 투자자매매동향(시세)
+    required: true
+    schema:
+      type: string
+      enum: ["FHPTJ04030000"]
+      default: FHPTJ04030000
+      example: FHPTJ04030000
+  - in: query
+    name: fid_input_iscd
+    description: |
+      KSP: 코스피<br/>
+      KSQ: 코스닥<br/>
+      K2I: 선물,콜옵션,풋옵션<br/>
+      999: 주식선물<br/>
+      ETF: ETF<br/>
+      ELW: ELW<br/>
+      ETN: ETN<br/>
+      MKI: 미니<br/>
+      WKM: 위클리월<br/>
+      WKI: 위클리목<br/>
+      KQI: 코스닥150
+    required: true
+    schema:
+      type: string
+      enum: ["KSP", "KSQ", "K2I", "999", "ETF", "ELW", "ETN", "MKI", "WKM", "WKI", "KQI"]
+      example: WKI
+      maxLength: 12
+  - in: query
+    name: fid_input_iscd_2
+    description: |
+      업종구분	
+
+      - fid_input_iscd: KSP(코스피) 혹은 KSQ(코스닥)인 경우<br/>
+        코스피(0001_종합, .…0027_제조업 )<br/>
+        코스닥(1001_종합, …. 1041_IT부품)<br/>
+        ...<br/>
+        포탈 (FAQ : 종목정보 다운로드(국내) - 업종코드 참조)
+
+      - fid_input_iscd가 K2I인 경우<br/>
+        F001(선물)<br/>
+        OC01(콜옵션)<br/>
+        OP01(풋옵션)
+
+      - fid_input_iscd가 999인 경우<br/>
+        S001(주식선물)
+
+      - fid_input_iscd가 ETF인 경우<br/>
+        T000(ETF)
+
+      - fid_input_iscd가 ELW인 경우<br/>
+        W000(ELW)
+
+      - fid_input_iscd가 ETN인 경우<br/>
+        E199(ETN)
+
+      - fid_input_iscd가 MKI인 경우<br/>
+        F004(미니선물)<br/>
+        OC02(미니콜옵션)<br/>
+        OP02(미니풋옵션)
+
+      - fid_input_iscd가 WKM인 경우<br/>
+        OC05(위클리콜(월))<br/>
+        OP05(위클리풋(월))
+
+      - fid_input_iscd가 WKI인 경우<br/>
+        OC04(위클리콜(목))<br/>
+        OP04(위클리풋(목))
+
+      - fid_input_iscd가 KQI인 경우<br/>
+        F002(코스닥150선물)<br/>
+        OC03(코스닥150콜옵션)<br/>
+        OP03(코스닥150풋옵션)
+    required: true
+    schema:
+      type: string
+      example: "0001"
+      maxLength: 8
+
+responses:
+  200:
+    $ref: responses/investor_time_by_market.yml

@@ -1,0 +1,120 @@
+description: 국내 증시자금 종합 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: array
+          items:
+            type: object
+            properties:
+              bsop_date:
+                type: string
+                description: 영업일자
+                example: 20210802
+                maxLength: 8
+              bstp_nmix_prpr:
+                type: string
+                description: 업종지수현재가
+                example: 2692.06
+                maxLength: 112
+              bstp_nmix_prdy_vrss:
+                type: string
+                description: 업종지수전일대비
+                example: 4.62
+                maxLength: 112
+              prdy_vrss_sign:
+                type: string
+                description: |
+                  전일대비부호
+
+                  1 : 상한<br/>
+                  2 : 상승<br/>
+                  3 : 보합<br/>
+                  4 : 하한<br/>
+                  5 : 하락
+                enum: ["1", "2", "3", "4", "5"]
+                example: 2
+              prdy_ctrt:
+                type: string
+                description: 전일대비율
+                example: 100.17
+                maxLength: 82
+              hts_avls:
+                type: string
+                description: HTS시가총액
+                example: 2193843858
+                maxLength: 18
+              cust_dpmn_amt:
+                type: string
+                description: 고객예탁금금액
+                example: 572306
+                maxLength: 18
+              cust_dpmn_amt_prdy_vrss:
+                type: string
+                description: 고객예탁금금액전일대비
+                example: 4435
+                maxLength: 18
+              amt_tnrt:
+                type: string
+                description: 금액회전율
+                example: 33.87
+                maxLength: 84
+              uncl_amt:
+                type: string
+                description: 미수금액
+                example: 9289
+                maxLength: 18
+              crdt_loan_rmnd:
+                type: string
+                description: 신용융자잔고
+                example: 191730
+                maxLength: 18
+              futs_tfam_amt:
+                type: string
+                description: 선물예수금금액
+                example: 112724
+                maxLength: 18
+              sttp_amt:
+                type: string
+                description: 주식형금액
+                example: 1112330
+                maxLength: 18
+              mxtp_amt:
+                type: string
+                description: 혼합형금액
+                example: 264052
+                maxLength: 18
+              bntp_amt:
+                type: string
+                description: 채권형금액
+                example: 1497053
+                maxLength: 18
+              mmf_amt:
+                type: string
+                description: MMF금액
+                example: 1971372
+                maxLength: 18
+              secu_lend_amt:
+                type: string
+                description: 담보대출잔고금액
+                example: 199663
+                maxLength: 18

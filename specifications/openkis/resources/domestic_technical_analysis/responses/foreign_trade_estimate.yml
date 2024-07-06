@@ -1,0 +1,78 @@
+description: 국내주식 외국계 매매종목 가집계 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: array
+          items:
+            type: object
+            properties:
+              stck_shrn_iscd:
+                type: string
+                description: 주식단축종목코드
+                example: "005930"
+                maxLength: 9
+              hts_kor_isnm:
+                type: string
+                description: HTS한글종목명
+                example: 삼성전자
+                maxLength: 40
+              glob_ntsl_qty:
+                type: string
+                description: 외국계순매도수량
+                example: 3870530
+                maxLength: 12
+              stck_prpr:
+                type: string
+                description: 주식현재가
+                example: 81300
+                maxLength: 10
+              prdy_vrss:
+                type: string
+                description: 전일대비
+                example: 3700
+                maxLength: 10
+              prdy_vrss_sign:
+                type: string
+                description: 전일대비부호
+                example: "2"
+                maxLength: 1
+              prdy_ctrt:
+                type: string
+                description: 전일대비율
+                example: 4.77
+                maxLength: 8
+              acml_vol:
+                type: string
+                description: 누적거래량
+                example: 24892595
+                maxLength: 18
+              glob_total_seln_qty:
+                type: string
+                description: 외국계총매도수량
+                example: 547879
+                maxLength: 18
+              glob_total_shnu_qty:
+                type: string
+                description: 외국계총매수2수량
+                example: 4418409
+                maxLength: 18

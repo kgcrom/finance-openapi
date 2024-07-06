@@ -7,9 +7,132 @@ description: |
 
   한국투자 HTS(eFriend Plus) > [0917] 실시간 상하한가 포착 화면 의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
-responses:
-  200:
-    description: 국내주식 상하한가 포착 조회 성공
-
 tags:
   - DomesticTechnicalAnalysis
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/personal_secret_key
+  - $ref: ../../shared/parameters.yml#/tr_cont
+  - $ref: ../../shared/parameters.yml#/customer_type
+  - $ref: ../../shared/parameters.yml#/sequence_no
+  - $ref: ../../shared/parameters.yml#/mac_address
+  - $ref: ../../shared/parameters.yml#/phone_number
+  - $ref: ../../shared/parameters.yml#/ip_address
+  - $ref: ../../shared/parameters.yml#/hashkey
+  - $ref: ../../shared/parameters.yml#/gt_uid
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      모의투자 미지원<br/>
+      FHKST130000C0 : 국내주식 상하한가 포착
+    required: true
+    schema:
+      type: string
+      enum: ["FHKST130000C0"]
+      default: FHKST130000C0
+      example: FHKST130000C0
+  - in: query
+    name: fid_cond_mrkt_div_code
+    description: 조건시장분류코드
+    required: true
+    schema:
+      type: string
+      enum: ["J"]
+      default: J
+      example: J
+  - in: query
+    name: fid_cond_scr_div_code
+    description: |
+      조건화면분류코드
+
+      11300(Unique key)
+    required: true
+    schema:
+      type: string
+      enum: ["11300"]
+      default: 11300
+      example: 11300
+  - in: query
+    name: fid_prc_cls_code
+    description: |
+      상하한가 구분코드
+
+      0(상한가),1(하한가)
+    required: true
+    schema:
+      type: string
+      enum: ["0", "1"]
+      example: 0
+  - in: query
+    name: fid_div_cls_code
+    description: |
+      분류구분코드
+
+      0(상하한가종목)<br/>
+      1(15%상하한가 근접)<br/>
+      2(20%상하한가 근접)<br/>
+      3(25%상하한가 근접)<br/>
+      5(10%상하한가 근접)<br/>
+      6(8%상하한가 근접)
+    required: true
+    schema:
+      type: string
+      enum: ["0", "1", "2", "3", "5", "6"]
+      example: 0
+  - in: query
+    name: fid_input_iscd
+    description: |
+      입력종목코드
+
+      전체(0000), 코스피(0001), 코스닥(1001)
+    required: true
+    schema:
+      type: string
+      enum: ["0000", "0001", "1001"]
+      example: "0000"
+  - in: query
+    name: fid_trgt_cls_code
+    description: 대상구분코드
+    required: true
+    schema:
+      type: string
+      default: ""
+      example: ""
+  - in: query
+    name: fid_trgt_exls_cls_code
+    description: 대상제외구분코드
+    required: true
+    schema:
+      type: string
+      default: ""
+      example: ""
+  - in: query
+    name: fid_input_price_1
+    description: 입력가격1
+    required: true
+    schema:
+      type: string
+      default: ""
+      example: ""
+  - in: query
+    name: fid_input_price_2
+    description: 입력가격2
+    required: true
+    schema:
+      type: string
+      default: ""
+      example: ""
+  - in: query
+    name: fid_vol_cnt
+    description: 거래량수
+    required: true
+    schema:
+      type: string
+      default: ""
+      example: ""
+
+responses:
+  200:
+    $ref: responses/capture_up_low_price.yml

@@ -1,0 +1,90 @@
+description: 종목별 일별 대차거래추이 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output1:
+          type: array
+          items:
+            type: object
+            properties:
+              bsop_date:
+                type: string
+                description: 일자
+                example: 20240501
+                maxLength: 8
+              stck_prpr:
+                type: string
+                description: 주식 종가
+                example: 2692.06
+                maxLength: 10
+              prdy_vrss_sign:
+                type: string
+                description: |
+                  전일 대비 부호
+
+                  1 : 상한<br/>
+                  2 : 상승<br/>
+                  3 : 보합<br/>
+                  4 : 하한<br/>
+                  5 : 하락
+                enum: ["1", "2", "3", "4", "5"]
+                example: 2
+              prdy_vrss:
+                type: string
+                description: 전일 대비
+                example: 4.62
+                maxLength: 10
+              prdy_ctrt:
+                type: string
+                description: 전일 대비율
+                example: 0.17
+                maxLength: 8
+              acml_vol:
+                type: string
+                description: 누적 거래량
+                example: 460083500
+                maxLength: 18
+              new_stcn:
+                type: string
+                description: 당일 증가 주수 (체결)
+                example: 14379227
+                maxLength: 16
+              rdmp_stcn:
+                type: string
+                description: 당일 감소 주수 (상환)
+                example: 13993603
+                maxLength: 16
+              prdy_rmnd_vrss:
+                type: string
+                description: 대차거래 증감
+                example: 385624
+                maxLength: 16
+              rmnd_stcn:
+                type: string
+                description: 당일 잔고 주수
+                example: 947521840
+                maxLength: 16
+              rmnd_amt:
+                type: string
+                description: 당일 잔고 금액
+                example: 47504735
+                maxLength: 20

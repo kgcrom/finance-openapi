@@ -4,9 +4,66 @@ summary: 국내주식 프로그램매매 종합현황(일별)
 
 description: 국내주식 프로그램매매 종합현황(일별) API입니다.
 
-responses:
-  200:
-    description: 국내주식 프로그램매매 종합현황(일별) 조회 성공
-
 tags:
   - DomesticTechnicalAnalysis
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/personal_secret_key
+  - $ref: ../../shared/parameters.yml#/tr_cont
+  - $ref: ../../shared/parameters.yml#/customer_type
+  - $ref: ../../shared/parameters.yml#/sequence_no
+  - $ref: ../../shared/parameters.yml#/mac_address
+  - $ref: ../../shared/parameters.yml#/phone_number
+  - $ref: ../../shared/parameters.yml#/ip_address
+  - $ref: ../../shared/parameters.yml#/hashkey
+  - $ref: ../../shared/parameters.yml#/gt_uid
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      모의투자 미지원<br/>
+      FHPPG04600000 : 프로그램매매 종합현황(일별)
+    required: true
+    schema:
+      type: string
+      enum: ["FHPPG04600000"]
+      default: FHPPG04600000
+      example: FHPPG04600000
+  - in: query
+    name: fid_mrkt_cls_code
+    description: |
+      시장 구분 코드
+
+      K:코스피, Q:코스닥
+    required: true
+    schema:
+      type: string
+      enum: ["K", "Q"]
+      example: K
+  - in: query
+    name: fid_input_date_1
+    description: |
+      조회 일자 ~
+
+      YYYYMMDD
+    required: true
+    schema:
+      type: string
+      example: 20240101
+      maxLength: 10
+  - in: query
+    name: fid_input_date_2
+    description: |
+      ~ 조회 일자
+
+      YYYYMMDD
+    required: true
+    schema:
+      type: string
+      example: 20240101
+      maxLength: 10
+
+responses:
+  200:
+    $ref: responses/program_trade_daily.yml

@@ -1,0 +1,128 @@
+description: 국내주식 프로그램매매 투자자매매동향 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: array
+          items:
+            type: object
+            properties:
+              invr_cls_code:
+                type: string
+                description: 투자자코드
+                example: 7100
+                maxLength: 4
+              invr_cls_name:
+                type: string
+                description: 투자자 구분 명
+                example: 기 타
+                maxLength: 20
+              arbt_seln_qty:
+                type: string
+                description: 차익매도수량
+                example: 0
+                maxLength: 18
+              arbt_shnu_qty:
+                type: string
+                description: 차익매수수량
+                example: 0
+                maxLength: 18
+              arbt_ntby_qty:
+                type: string
+                description: 차익순매수수량
+                example: 0
+                maxLength: 12
+              arbt_seln_amt:
+                type: string
+                description: 차익매도대금
+                example: 0
+                maxLength: 18
+              arbt_shnu_amt:
+                type: string
+                description: 차익매수대금
+                example: 0
+                maxLength: 18
+              arbt_ntby_amt:
+                type: string
+                description: 차익순매수대금
+                example: 0
+                maxLength: 12
+              nabt_seln_qty:
+                type: string
+                description: 비차익매도수량
+                example: 289
+                maxLength: 18
+              nabt_shnu_qty:
+                type: string
+                description: 비차익매수수량
+                example: 242
+                maxLength: 18
+              nabt_ntby_qty:
+                type: string
+                description: 비차익순매수수량
+                example: -47
+                maxLength: 12
+              nabt_seln_amt:
+                type: string
+                description: 비차익매도대금
+                example: 7151
+                maxLength: 18
+              nabt_shnu_amt:
+                type: string
+                description: 비차익매수대금
+                example: 4006
+                maxLength: 18
+              nabt_ntby_amt:
+                type: string
+                description: 비차익순매수대금
+                example: -3145
+                maxLength: 12
+              all_seln_qty:
+                type: string
+                description: 전체매도수량
+                example: 289
+                maxLength: 18
+              all_shnu_qty:
+                type: string
+                description: 전체매수수량
+                example: 242
+                maxLength: 18
+              all_ntby_qty:
+                type: string
+                description: 전체순매수수량
+                example: -47
+                maxLength: 12
+              all_seln_amt:
+                type: string
+                description: 전체매도대금
+                example: 7151
+                maxLength: 18
+              all_shnu_amt:
+                type: string
+                description: 전체매수대금
+                example: 4006
+                maxLength: 18
+              all_ntby_amt:
+                type: string
+                description: 전체순매수대금
+                example: -3145
+                maxLength: 12

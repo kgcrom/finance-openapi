@@ -4835,52 +4835,111 @@ paths:
 
         증권사 직원이 장중에 집계/입력한 자료를 단순 누계한 수치로서,<br/>
         입력시간은 외국인 09:30, 11:20, 13:20, 14:30 / 기관종합 10:00, 11:20, 13:20, 14:30 이며, 사정에 따라 변동될 수 있습니다.
-      responses:
-        '200':
-          description: 국내기관_외국인 매매종목가집계 조회 성공
       tags:
         - DomesticTechnicalAnalysis
-  /uapi/domestic-stock/v1/quotations/psearch-title:
-    get:
-      operationId: getTechnicalPersonalSearch
-      summary: 종목조건검색 목록조회
-      description: |
-        HTS(efriend Plus) [0110] 조건검색에서 등록 및 서버저장한 나의 조건 목록을 확인할 수 있는 API입니다.<br/>
-        종목조건검색 목록조회 API(/uapi/domestic-stock/v1/quotations/psearch-title)의 output인 'seq'을 종목조건검색조회 API(/uapi/domestic-stock/v1/quotations/psearch-result)의 input으로 사용하시면 됩니다.
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
 
-        ※ 시스템 안정성을 위해 API로 제공되는 조건검색 결과의 경우 조건당 100건으로 제한을 둔 점 양해 부탁드립니다.
+            모의투자 미지원<br/>
+            FHPTJ04400000 : 국내기관 외국인매매종목가집계
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHPTJ04400000
+            default: FHPTJ04400000
+            example: FHPTJ04400000
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: 시장 분류 코드
+          required: true
+          schema:
+            type: string
+            enum:
+              - V
+            default: V
+            example: V
+        - in: query
+          name: fid_cond_scr_div_code
+          description: |
+            조건 화면 분류 코드
 
-        ※ [0110] 화면의 '대상변경' 설정사항은 HTS [0110] 사용자 조건검색 화면에만 적용됨에 유의 부탁드립니다.
+            Unique key(16449)
+          required: true
+          schema:
+            type: string
+            enum:
+              - '16449'
+            default: 16449
+            example: 16449
+        - in: query
+          name: fid_input_iscd
+          description: |
+            입력 종목코드
 
-        ※ '조회가 계속 됩니다. (다음을 누르십시오.)' 오류 발생 시 해결방법<br/>
-        → HTS(efriend Plus) [0110] 조건검색 화면에서 조건을 등록하신 후, 왼쪽 하단의 "사용자조건 서버저장" 클릭하셔서 등록한 조건들을 서버로 보낸 후 다시 API 호출 시도 부탁드립니다.
+            0000:전체, 0001:코스피, 1001:코스닥...포탈<br/>
+            (FAQ : 종목정보 다운로드(국내) - 업종코드 참조)
+          required: true
+          schema:
+            type: string
+            example: '0000'
+            maxLength: 12
+        - in: query
+          name: fid_div_cls_code
+          description: |
+            분류 구분 코드
+
+            0: 수량정렬, 1: 금액정렬
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+            example: 0
+        - in: query
+          name: fid_rank_sort_cls_code
+          description: |
+            순위 정렬 구분 코드
+
+            0: 순매수상위, 1: 순매도상위
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+            example: 0
+        - in: query
+          name: fid_etc_cls_code
+          description: |
+            기타 구분 정렬
+
+            0:전체 1:외국인 2:기관계 3:기타
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+              - '2'
+              - '3'
+            example: 0
       responses:
         '200':
-          description: 종목조건검색 목록조회 성공
-      tags:
-        - DomesticTechnicalAnalysis
-  /uapi/domestic-stock/v1/quotations/psearch-result:
-    get:
-      operationId: getTechnicalPersonalSearchDetail
-      summary: 종목조건검색 조회
-      description: |
-        HTS(efriend Plus) [0110] 조건검색에서 등록 및 서버저장한 나의 조건 목록을 확인할 수 있는 API입니다.<br/>
-        종목조건검색 목록조회 API(/uapi/domestic-stock/v1/quotations/psearch-title)의 output인 'seq'을 종목조건검색조회 API(/uapi/domestic-stock/v1/quotations/psearch-result)의 input으로 사용하시면 됩니다.
-
-        ※ 시스템 안정성을 위해 API로 제공되는 조건검색 결과의 경우 조건당 100건으로 제한을 둔 점 양해 부탁드립니다.
-
-        ※ [0110] 화면의 '대상변경' 설정사항은 HTS [0110] 사용자 조건검색 화면에만 적용됨에 유의 부탁드립니다.
-
-        ※ '조회가 계속 됩니다. (다음을 누르십시오.)' 오류 발생 시 해결방법<br/>
-        → HTS(efriend Plus) [0110] 조건검색 화면에서 조건을 등록하신 후, 왼쪽 하단의 "사용자조건 서버저장" 클릭하셔서 등록한 조건들을 서버로 보낸 후 다시 API 호출 시도 부탁드립니다.
-
-        ※ {"rt_cd":"1","msg_cd":"MCA05918","msg1":"종목코드 오류입니다."} 메시지 발생 이유<br/>
-        → 조건검색 결과 검색된 종목이 0개인 경우 위 응답값을 수신하게 됩니다.
-      responses:
-        '200':
-          description: 종목조건검색 조회 성공
-      tags:
-        - DomesticTechnicalAnalysis
+          $ref: '#/components/responses/foreign_institution_total'
   /uapi/domestic-stock/v1/quotations/program-trade-by-stock:
     get:
       operationId: getTechnicalProgramTradeByStock
@@ -4889,11 +4948,43 @@ paths:
         국내주식 종목별 프로그램매매추이(체결) API입니다.
 
         한국투자 HTS(eFriend Plus) > [0465] 종목별 프로그램 매매추이 화면(혹은 한국투자 MTS > 국내 현재가 > 기타수급 > 프로그램) 의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-      responses:
-        '200':
-          description: 종목별 프로그램매매추이(체결) 조회 성공
       tags:
         - DomesticTechnicalAnalysis
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHPPG04650100 : 종목별 프로그램매매추이(체결)
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHPPG04650100
+            default: FHPPG04650100
+            example: FHPPG04650100
+        - in: query
+          name: fid_input_iscd
+          description: 종목코드
+          required: true
+          schema:
+            type: string
+            example: '005930'
+            maxLength: 12
+      responses:
+        '200':
+          $ref: '#/components/responses/program_trade_by_stock'
   /uapi/domestic-stock/v1/quotations/investor-trend-estimate:
     get:
       operationId: getTechnicalInvestorTrendEstimate
@@ -4905,11 +4996,43 @@ paths:
 
         증권사 직원이 장중에 집계/입력한 자료를 단순 누계한 수치로서,
         입력시간은 외국인 09:30, 11:20, 13:20, 14:30 / 기관종합 10:00, 11:20, 13:20, 14:30 이며, 사정에 따라 변동될 수 있습니다.
-      responses:
-        '200':
-          description: 종목별 외인기관 추정가집계 조회 성공
       tags:
         - DomesticTechnicalAnalysis
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            HHPTJ04160200 : 종목별 외인기관 추정가집계
+          required: true
+          schema:
+            type: string
+            enum:
+              - HHPTJ04160200
+            default: HHPTJ04160200
+            example: HHPTJ04160200
+        - in: query
+          name: mksc_shrn_iscd
+          description: 종목코드
+          required: true
+          schema:
+            type: string
+            example: '005930'
+            maxLength: 12
+      responses:
+        '200':
+          $ref: '#/components/responses/investor_trend_estimate'
   /uapi/domestic-stock/v1/quotations/inquire-daily-trade-volume:
     get:
       operationId: getTechnicalTradeDailyVolume
@@ -4917,11 +5040,79 @@ paths:
       description: |
         종목별일별매수매도체결량 API입니다. 실전계좌의 경우, 한 번의 호출에 최대 100건까지 확인 가능합니다.<br/>
         국내주식 종목의 일별 매수체결량, 매도체결량 데이터를 확인할 수 있습니다.
-      responses:
-        '200':
-          description: 종목별일별매수매도체결량 조회 성공
       tags:
         - DomesticTechnicalAnalysis
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHKST03010800 : 종목별 일별매수매도 체결량
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHKST03010800
+            default: FHKST03010800
+            example: FHKST03010800
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: FID 조건 시장 분류 코드
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+            default: J
+            example: J
+        - in: query
+          name: fid_input_iscd
+          description: FID 입력 종목코드
+          required: true
+          schema:
+            type: string
+            example: '005930'
+            maxLength: 12
+        - in: query
+          name: fid_input_date_1
+          description: FID 입력 날짜1 (from ~)
+          required: true
+          schema:
+            type: string
+            example: 20240601
+            maxLength: 10
+        - in: query
+          name: fid_input_date_2
+          description: FID 입력 날짜2 (~ to)
+          required: true
+          schema:
+            type: string
+            example: 20240630
+            maxLength: 10
+        - in: query
+          name: fid_period_div_code
+          description: FID 기간 분류 코드
+          required: true
+          schema:
+            type: string
+            enum:
+              - D
+            default: D
+            example: D
+      responses:
+        '200':
+          $ref: '#/components/responses/trade_daily_volume'
   /uapi/domestic-stock/v1/quotations/inquire-investor-time-by-market:
     get:
       operationId: getTechnicalInvestorTrendByMarket
@@ -4930,11 +5121,74 @@ paths:
         시장별 투자자매매동향(시세성) API입니다.
 
         한국투자 HTS(eFriend Plus) > [0403] 시장별 시간동향 의 상단 표 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-      responses:
-        '200':
-          description: 시장별 투자자매매동향 조회 성공
       tags:
         - DomesticTechnicalAnalysis
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHPTJ04030000 : 시장별 투자자매매동향(시세)
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHPTJ04030000
+            default: FHPTJ04030000
+            example: FHPTJ04030000
+        - in: query
+          name: fid_input_iscd
+          description: |
+            KSP: 코스피<br/>
+            KSQ: 코스닥<br/>
+            K2I: 선물,콜옵션,풋옵션<br/>
+            999: 주식선물<br/>
+            ETF: ETF<br/>
+            ELW: ELW<br/>
+            ETN: ETN<br/>
+            MKI: 미니<br/>
+            WKM: 위클리월<br/>
+            WKI: 위클리목<br/>
+            KQI: 코스닥150
+          required: true
+          schema:
+            type: string
+            enum:
+              - KSP
+              - KSQ
+              - K2I
+              - '999'
+              - ETF
+              - ELW
+              - ETN
+              - MKI
+              - WKM
+              - WKI
+              - KQI
+            example: WKI
+            maxLength: 12
+        - in: query
+          name: fid_input_iscd_2
+          description: "업종구분\t\n\n- fid_input_iscd: KSP(코스피) 혹은 KSQ(코스닥)인 경우<br/>\n  코스피(0001_종합, .…0027_제조업 )<br/>\n  코스닥(1001_종합, …. 1041_IT부품)<br/>\n  ...<br/>\n  포탈 (FAQ : 종목정보 다운로드(국내) - 업종코드 참조)\n\n- fid_input_iscd가 K2I인 경우<br/>\n  F001(선물)<br/>\n  OC01(콜옵션)<br/>\n  OP01(풋옵션)\n\n- fid_input_iscd가 999인 경우<br/>\n  S001(주식선물)\n\n- fid_input_iscd가 ETF인 경우<br/>\n  T000(ETF)\n\n- fid_input_iscd가 ELW인 경우<br/>\n  W000(ELW)\n\n- fid_input_iscd가 ETN인 경우<br/>\n  E199(ETN)\n\n- fid_input_iscd가 MKI인 경우<br/>\n  F004(미니선물)<br/>\n  OC02(미니콜옵션)<br/>\n  OP02(미니풋옵션)\n\n- fid_input_iscd가 WKM인 경우<br/>\n  OC05(위클리콜(월))<br/>\n  OP05(위클리풋(월))\n\n- fid_input_iscd가 WKI인 경우<br/>\n  OC04(위클리콜(목))<br/>\n  OP04(위클리풋(목))\n\n- fid_input_iscd가 KQI인 경우<br/>\n  F002(코스닥150선물)<br/>\n  OC03(코스닥150콜옵션)<br/>\n  OP03(코스닥150풋옵션)\n"
+          required: true
+          schema:
+            type: string
+            example: '0001'
+            maxLength: 8
+      responses:
+        '200':
+          $ref: '#/components/responses/investor_time_by_market'
   /uapi/domestic-stock/v1/quotations/daily-credit-balance:
     get:
       operationId: getTechnicalCreditBalanceDaily
@@ -4945,11 +5199,83 @@ paths:
         한 번의 호출에 최대 30건 확인 가능하며, fid_input_date_1 을 입력하여 다음 조회가 가능합니다.
 
         ※ 상환수량은 "매도상환수량+현금상환수량"의 합계 수치입니다.
-      responses:
-        '200':
-          description: 국내주식 신용잔고 일별추이 조회 성공
       tags:
         - DomesticTechnicalAnalysis
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHPST04760000 : 국내주식 신용잔고 일별추이
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHPST04760000
+            default: FHPST04760000
+            example: FHPST04760000
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            시장 분류 코드
+
+            시장구분코드 (주식 J)
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+            default: J
+            example: J
+        - in: query
+          name: fid_cond_scr_div_code
+          description: |
+            화면 분류 코드
+
+            Unique key(20476)
+          required: true
+          schema:
+            type: string
+            enum:
+              - '20476'
+            default: 20476
+            example: 20476
+        - in: query
+          name: fid_input_iscd
+          description: |
+            종목코드
+
+            종목코드 (ex 005930)
+          required: true
+          schema:
+            type: string
+            example: '005930'
+            maxLength: 12
+        - in: query
+          name: fid_input_date_1
+          description: |
+            결제일자
+
+            결제일자 (ex 20240313)
+          required: true
+          schema:
+            type: string
+            example: 20240313
+            maxLength: 10
+      responses:
+        '200':
+          $ref: '#/components/responses/credit_balance_daily'
   /uapi/domestic-stock/v1/quotations/exp-price-trend:
     get:
       operationId: getTechnicalExpectedConclusionTrend
@@ -4958,31 +5284,206 @@ paths:
         국내주식 예상체결가 추이 API입니다.<br/>
         한국투자 HTS(eFriend Plus) > [0184] 예상체결지수 추이 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.<br/>
         최대 30건 확인 가능하며, 다음 조회가 불가합니다.
-      responses:
-        '200':
-          description: 국내주식 예상체결가 추이 조회 성공
       tags:
         - DomesticTechnicalAnalysis
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHPST01810000 : 국내주식 예상체결가 추이
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHPST01810000
+            default: FHPST01810000
+            example: FHPST01810000
+        - in: query
+          name: fid_mkop_cls_code
+          description: |
+            장운영 구분 코드
+
+            0:전체, 4:체결량 0 제외
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '4'
+            example: 0
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            조건 시장 분류 코드
+
+            시장구분코드 (주식 J)
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+            default: J
+            example: J
+        - in: query
+          name: fid_input_iscd
+          description: 종목코드
+          required: true
+          schema:
+            type: string
+            example: '005930'
+            maxLength: 5
+      responses:
+        '200':
+          $ref: '#/components/responses/expected_conclusion_trend'
   /uapi/domestic-stock/v1/quotations/daily-short-sale:
     get:
       operationId: getTechnicalShortSaleDaily
       summary: 국내주식 공매도 일별추이
       description: 국내주식 공매도 일별추이 API입니다.
-      responses:
-        '200':
-          description: 국내주식 공매도 일별추이 조회 성공
       tags:
         - DomesticTechnicalAnalysis
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHPST04830000 : 국내주식 공매도 일별추이
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHPST04830000
+            default: FHPST04830000
+            example: FHPST04830000
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: 조건 시장 분류 코드
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+            default: J
+            example: J
+        - in: query
+          name: fid_input_iscd
+          description: 입력 종목코드
+          required: true
+          schema:
+            type: string
+            example: '005930'
+            maxLength: 12
+        - in: query
+          name: fid_input_date_1
+          description: 입력 날짜1
+          required: true
+          schema:
+            type: string
+            example: 20240101
+            maxLength: 10
+        - in: query
+          name: fid_input_date_2
+          description: 입력 날짜2
+          required: true
+          schema:
+            type: string
+            example: 20240201
+            maxLength: 10
+      responses:
+        '200':
+          $ref: '#/components/responses/short_sale_daily'
   /uapi/domestic-stock/v1/quotations/comp-program-trade-daily:
     get:
       operationId: getTechnicalProgramTradeDaily
       summary: 국내주식 프로그램매매 종합현황(일별)
       description: 국내주식 프로그램매매 종합현황(일별) API입니다.
-      responses:
-        '200':
-          description: 국내주식 프로그램매매 종합현황(일별) 조회 성공
       tags:
         - DomesticTechnicalAnalysis
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHPPG04600000 : 프로그램매매 종합현황(일별)
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHPPG04600000
+            default: FHPPG04600000
+            example: FHPPG04600000
+        - in: query
+          name: fid_mrkt_cls_code
+          description: |
+            시장 구분 코드
+
+            K:코스피, Q:코스닥
+          required: true
+          schema:
+            type: string
+            enum:
+              - K
+              - Q
+            example: K
+        - in: query
+          name: fid_input_date_1
+          description: |
+            조회 일자 ~
+
+            YYYYMMDD
+          required: true
+          schema:
+            type: string
+            example: 20240101
+            maxLength: 10
+        - in: query
+          name: fid_input_date_2
+          description: |
+            ~ 조회 일자
+
+            YYYYMMDD
+          required: true
+          schema:
+            type: string
+            example: 20240101
+            maxLength: 10
+      responses:
+        '200':
+          $ref: '#/components/responses/program_trade_daily'
   /uapi/domestic-stock/v1/ranking/overtime-exp-trans-fluct:
     get:
       operationId: getTechnicalOverTimeExpFluctuationRate
@@ -4992,11 +5493,217 @@ paths:
 
         한국투자 HTS(eFriend Plus) > [0236] 시간외 예상체결등락률 화면의 기능을 API로 개발한 사항으로,<br/>
         해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-      responses:
-        '200':
-          description: 국내ㅈ주식 시간외 예상체결 등락률 조회 성공
       tags:
         - DomesticTechnicalAnalysis
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHKST11860000 : 국내주식 시간외 예상체결 등락률
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHKST11860000
+            default: FHKST11860000
+            example: FHKST11860000
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: 시장 분류 코드
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+            default: J
+            example: J
+        - in: query
+          name: fid_cond_scr_div_code
+          description: |
+            조건 화면 분류 코드
+
+            Unique key(11186)
+          required: true
+          schema:
+            type: string
+            enum:
+              - '11186'
+            default: 11186
+            example: 11186
+        - in: query
+          name: fid_input_iscd
+          description: |
+            입력 종목코드
+
+            0000(전체), 0001(코스피), 1001(코스닥)
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0000'
+              - '0001'
+              - '1001'
+            example: 0
+        - in: query
+          name: fid_rank_sort_cls_code
+          description: |
+            순위 정렬 구분 코드
+
+            0(상승률), 1(상승폭), 2(보합), 3(하락률), 4(하락폭)
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+              - '2'
+              - '3'
+              - '4'
+            example: 0
+        - in: query
+          name: fid_div_cls_code
+          description: |
+            분류 구분 코드
+
+            0(전체), 1(관리종목), 2(투자주의), 3(투자경고), 4(투자위험예고), 5(투자위험), 6(보통주), 7(우선주)
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+              - '2'
+              - '3'
+              - '4'
+              - '5'
+              - '6'
+              - '7'
+            example: 0
+        - in: query
+          name: fid_input_price_1
+          description: |
+            입력 가격1 (가격 ~)
+          required: true
+          schema:
+            type: string
+            example: 1000
+            maxLength: 12
+        - in: query
+          name: fid_input_price_2
+          description: 입력 가격2 (공백)
+          required: true
+          schema:
+            type: string
+            default: ''
+            example: ''
+            maxLength: 12
+        - in: query
+          name: fid_input_vol_1
+          description: |
+            입력 거래량 (거래량 ~)
+          required: true
+          schema:
+            type: string
+            example: 100000
+      responses:
+        '200':
+          $ref: '#/components/responses/overtime_expected_trans_fluct'
+  /uapi/domestic-stock/v1/quotations/daily-loan-trans:
+    get:
+      operationId: getTechnicalDailyLoanTrans
+      summary: 종목별 일별 대차거래추이
+      description: |
+        종목별 일별 대차거래추이 API입니다.<br/>
+        한 번의 조회에 최대 100건까지 조회 가능하며, start_date, end_date 를 수정하여 다음 조회가 가능합니다.
+      tags:
+        - DomesticTechnicalAnalysis
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            HHPST074500C0 : 종목별 일별 대차거래추이
+          required: true
+          schema:
+            type: string
+            enum:
+              - HHPST074500C0
+            default: HHPST074500C0
+            example: HHPST074500C0
+        - in: query
+          name: mrkt_div_cls_code
+          description: |
+            조회구분
+
+            1(코스피), 2(코스닥), 3(종목)
+          required: true
+          schema:
+            type: string
+            enum:
+              - '1'
+              - '2'
+              - '3'
+            example: '1'
+        - in: query
+          name: mksc_shrn_iscd
+          description: 종목코드
+          required: true
+          schema:
+            type: string
+            example: '005930'
+            maxLength: 9
+        - in: query
+          name: start_date
+          description: |
+            조회시작일시 (조회기간 ~)
+          required: true
+          schema:
+            type: string
+            example: 20240501
+            maxLength: 8
+        - in: query
+          name: end_date
+          description: |
+            조회종료일시 (~ 조회기간)
+          required: true
+          schema:
+            type: string
+            example: 20240601
+            maxLength: 8
+        - in: query
+          name: cts
+          description: 이전조회KEY 공백
+          required: true
+          schema:
+            type: string
+            default: ''
+            example: ''
+      responses:
+        '200':
+          $ref: '#/components/responses/daily_loan_trans'
   /uapi/domestic-stock/v1/quotations/comp-program-trade-today:
     get:
       operationId: getTechnicalProgramTradeToday
@@ -5007,11 +5714,57 @@ paths:
 
         ※ 장시간(09:00~15:30) 동안의 최근 30분간의 데이터 확인이 가능하며, 다음조회가 불가합니다.<br/>
         ※ 장시간(09:00~15:30) 이후에는 bsop_hour 에 153000 ~ 170000 까지의 시간데이터가 출력되지만 데이터는 모두 동일한 장마감 데이터인 점 유의 부탁드립니다.
-      responses:
-        '200':
-          description: 프로그램매매 종합현황(시간) 조회 성공
       tags:
         - DomesticTechnicalAnalysis
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHPPG04600100 : 프로그램매매 종합현황(시간)
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHPPG04600100
+            default: FHPPG04600100
+            example: FHPPG04600100
+        - in: query
+          name: fid_mrkt_cls_code
+          description: |
+            시장 구분 코드
+
+            K: 코스피, Q: 코스닥
+          required: true
+          schema:
+            type: string
+            enum:
+              - K
+              - Q
+            example: K
+        - in: query
+          name: fid_sctn_cls_code
+          description: 구간 구분 코드
+          required: true
+          schema:
+            type: string
+            default: ''
+            example: ''
+            maxLength: 2
+      responses:
+        '200':
+          $ref: '#/components/responses/program_trade_today'
   /uapi/domestic-stock/v1/quotations/frgnmem-trade-estimate:
     get:
       operationId: getTechnicalForeignTradeEstimate
@@ -5020,11 +5773,101 @@ paths:
         외국계 매매종목 가집계 API입니다.
 
         한국투자 HTS(eFriend Plus) > [0430] 외국계 매매종목 가집계 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-      responses:
-        '200':
-          description: 국내주식 외국계 매매종목 가집계 조회 성공
       tags:
         - DomesticTechnicalAnalysis
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHKST644100C0 : 외국계 매매종목 가집계
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHKST644100C0
+            default: FHKST644100C0
+            example: FHKST644100C0
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            조건시장분류코드
+
+            시장구분코드 (J)
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+            default: J
+            example: J
+        - in: query
+          name: fid_cond_scr_div_code
+          description: |
+            조건화면분류코드
+
+            Uniquekey (16441)
+          required: true
+          schema:
+            type: string
+            enum:
+              - '16441'
+            default: 16441
+            example: 16441
+        - in: query
+          name: fid_input_iscd
+          description: |
+            입력종목코드
+
+            0000(전체), 1001(코스피), 2001(코스닥)
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0000'
+              - '1001'
+              - '2001'
+            example: 0
+        - in: query
+          name: fid_rank_sort_cls_code
+          description: |
+            순위정렬구분코드
+
+            0(금액순), 1(수량순)
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+            example: 0
+        - in: query
+          name: fid_rank_sort_cls_code_2
+          description: |
+            순위정렬구분코드2
+
+            0(매수순), 1(매도순)
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+            example: 0
+      responses:
+        '200':
+          $ref: '#/components/responses/foreign_trade_estimate'
   /uapi/domestic-stock/v1/quotations/frgnmem-pchs-trend:
     get:
       operationId: getTechnicalForeignPurchaseTrend
@@ -5033,11 +5876,58 @@ paths:
         종목별 외국계 순매수추이 API입니다.
 
         한국투자 HTS(eFriend Plus) > [0433] 종목별 외국계 순매수추이 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-      responses:
-        '200':
-          description: 국내주식 종목별 외국계 순매수추이 조회 성공
       tags:
         - DomesticTechnicalAnalysis
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHKST644400C0 : 종목별 외국계 순매수추이
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHKST644400C0
+            default: FHKST644400C0
+            example: FHKST644400C0
+        - in: query
+          name: fid_input_iscd
+          description: |
+            조건시장분류코드
+
+            종목코드 ex: 005930
+          required: true
+          schema:
+            type: string
+            example: '005930'
+            maxLength: 9
+        - in: query
+          name: fid_input_iscd_2
+          description: |
+            조건화면분류코드
+
+            외국계 전체(99999)
+          required: true
+          schema:
+            type: string
+            default: 99999
+            example: 99999
+            maxLength: 5
+      responses:
+        '200':
+          $ref: '#/components/responses/foreign_purchase_trend'
   /uapi/domestic-stock/v1/quotations/tradprt-byamt:
     get:
       operationId: getTechnicalTradeByAmount
@@ -5046,11 +5936,72 @@ paths:
         국내주식 체결금액별 매매비중 API입니다.
 
         한국투자 HTS(eFriend Plus) > [0135] 체결금액별 매매비중 화면의 "상단 표" 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-      responses:
-        '200':
-          description: 국내주식 체결금액별 매매비중 조회 성공
       tags:
         - DomesticTechnicalAnalysis
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHKST111900C0 : 국내주식 체결금액별 매매비중
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHKST111900C0
+            default: FHKST111900C0
+            example: FHKST111900C0
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            조건시장분류코드
+
+            시장구분(J)
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+            default: J
+            example: J
+        - in: query
+          name: fid_cond_scr_div_code
+          description: |
+            조건화면분류코드
+
+            Uniquekey(11119)
+          required: true
+          schema:
+            type: string
+            enum:
+              - '11119'
+            default: 11119
+            example: 11119
+        - in: query
+          name: fid_input_iscd
+          description: |
+            입력종목코드
+
+            종목코드(ex)(005930 (삼성전자))
+          required: true
+          schema:
+            type: string
+            example: '005930'
+            maxLength: 12
+      responses:
+        '200':
+          $ref: '#/components/responses/trade_part_by_amount'
   /uapi/domestic-stock/v1/quotations/mktfunds:
     get:
       operationId: getTechnicalMarketFund
@@ -5062,11 +6013,42 @@ paths:
 
         ※ 해당자료는 금융투자협회의 자료를 제공하고 있으며, 오류와 지연이 발생할 수 있습니다.<br/>
         ※ 위 정보에 의한 투자판단의 최종책임은 정보이용자에게 있으며, 당사와 한국금융투자협회는 어떠한 법적인 책임도 지지 않사오니 투자에 참고로만 이용하시기 바랍니다.
-      responses:
-        '200':
-          description: 국내 증시자금 종합 조회 성공
       tags:
         - DomesticTechnicalAnalysis
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHKST111900C0 : 국내 증시자금 종합
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHKST111900C0
+            default: FHKST111900C0
+            example: FHKST111900C0
+        - in: query
+          name: fid_input_date_1
+          description: 입력날짜
+          required: true
+          schema:
+            type: string
+            example: 20240601
+      responses:
+        '200':
+          $ref: '#/components/responses/market_fund'
   /uapi/domestic-stock/v1/quotations/inquire-investor-daily-by-market:
     get:
       operationId: getTechnicalInvestorTrendByMarketDaily
@@ -5075,11 +6057,79 @@ paths:
         시장별 투자자매매동향(일별) API입니다.
 
         한국투자 HTS(eFriend Plus) > [0404] 시장별 일별동향 의 상단 표 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-      responses:
-        '200':
-          description: 국내주식 시장별 투자자매매동향(일별) 조회 성공
       tags:
         - DomesticTechnicalAnalysis
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHPTJ04040000 : 시장별 투자자매매동향(일별)
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHPTJ04040000
+            default: FHPTJ04040000
+            example: FHPTJ04040000
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: |
+            조건 시장 분류 코드
+
+            시장구분코드 (업종 U)
+          required: true
+          schema:
+            type: string
+            enum:
+              - U
+            default: U
+            example: U
+        - in: query
+          name: fid_input_iscd
+          description: |
+            업종 분류코드
+
+            0000:전체, 0001:코스피, 1001:코스닥, 2001:코스피200.. 등<br/>
+            포탈 (FAQ : 종목정보 다운로드(국내) - 업종코드 참조)
+          required: true
+          schema:
+            type: string
+            example: '005930'
+        - in: query
+          name: fid_input_date_1
+          description: 입력 날짜1
+          required: true
+          schema:
+            type: string
+            example: 20240517
+        - in: query
+          name: fid_input_iscd_1
+          description: |
+            입력 종목코드
+
+            코스피(KSP), 코스닥(KSQ)
+          required: true
+          schema:
+            type: string
+            enum:
+              - KSP
+              - KSQ
+            example: KSP
+      responses:
+        '200':
+          $ref: '#/components/responses/investor_trend_by_market_daily'
   /uapi/domestic-stock/v1/quotations/program-trade-by-stock-daily:
     get:
       operationId: getTechnicalProgramTradeByStockDaily
@@ -5088,11 +6138,61 @@ paths:
         국내주식 종목별 프로그램매매추이(일별) API입니다.
 
         한국투자 HTS(eFriend Plus) > [0465] 종목별 프로그램 매매추이 화면(혹은 한국투자 MTS > 국내 현재가 > 기타수급 > 프로그램) 의 "일자별" 클릭 시 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-      responses:
-        '200':
-          description: 국내주식 종목별 프로그램매매추이(일별) 조회 성공
       tags:
         - DomesticTechnicalAnalysis
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHPPG04650200 : 종목별 프로그램매매추이(일별)
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHPPG04650200
+            default: FHPPG04650200
+            example: FHPPG04650200
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: 시장구분코드 (주식J)
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+            default: J
+            example: J
+        - in: query
+          name: fid_input_iscd
+          description: 종목코드
+          required: true
+          schema:
+            type: string
+            maxLength: 12
+            example: '005930'
+        - in: query
+          name: fid_input_date_1
+          description: 기준일 ex) 20240308
+          required: true
+          schema:
+            type: string
+            maxLength: 10
+            example: '20240517'
+      responses:
+        '200':
+          $ref: '#/components/responses/program_trade_by_stock_daily'
   /uapi/domestic-stock/v1/quotations/investor-program-trade-today:
     get:
       operationId: getTechnicalProgramTrendByInvestorToday
@@ -5101,11 +6201,49 @@ paths:
         프로그램매매 투자자매매동향(당일) API입니다.
 
         한국투자 HTS(eFriend Plus) > [0466] 프로그램매매 투자자별 동향 화면 의 "당일동향" 표의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-      responses:
-        '200':
-          description: 국내주식 프로그램매매 투자자매매동향 조회 성공
       tags:
         - DomesticTechnicalAnalysis
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            HHPPG046600C0 : 프로그램매매 투자자매매동향(당일)
+          required: true
+          schema:
+            type: string
+            enum:
+              - HHPPG046600C0
+            default: HHPPG046600C0
+            example: HHPPG046600C0
+        - in: query
+          name: mrkt_div_cls_code
+          description: |
+            시장구분코드
+
+            1 : 코스피<br/>
+            4 : 코스닥
+          required: true
+          schema:
+            type: string
+            enum:
+              - '1'
+              - '4'
+            example: '1'
+      responses:
+        '200':
+          $ref: '#/components/responses/investor_program_trade_today'
   /uapi/domestic-stock/v1/quotations/capture-uplowprice:
     get:
       operationId: getTechnicalCaptureUpLowPrice
@@ -5114,11 +6252,147 @@ paths:
         국내주식 상하한가 포착 API입니다.
 
         한국투자 HTS(eFriend Plus) > [0917] 실시간 상하한가 포착 화면 의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-      responses:
-        '200':
-          description: 국내주식 상하한가 포착 조회 성공
       tags:
         - DomesticTechnicalAnalysis
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHKST130000C0 : 국내주식 상하한가 포착
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHKST130000C0
+            default: FHKST130000C0
+            example: FHKST130000C0
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: 조건시장분류코드
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+            default: J
+            example: J
+        - in: query
+          name: fid_cond_scr_div_code
+          description: |
+            조건화면분류코드
+
+            11300(Unique key)
+          required: true
+          schema:
+            type: string
+            enum:
+              - '11300'
+            default: 11300
+            example: 11300
+        - in: query
+          name: fid_prc_cls_code
+          description: |
+            상하한가 구분코드
+
+            0(상한가),1(하한가)
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+            example: 0
+        - in: query
+          name: fid_div_cls_code
+          description: |
+            분류구분코드
+
+            0(상하한가종목)<br/>
+            1(15%상하한가 근접)<br/>
+            2(20%상하한가 근접)<br/>
+            3(25%상하한가 근접)<br/>
+            5(10%상하한가 근접)<br/>
+            6(8%상하한가 근접)
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+              - '2'
+              - '3'
+              - '5'
+              - '6'
+            example: 0
+        - in: query
+          name: fid_input_iscd
+          description: |
+            입력종목코드
+
+            전체(0000), 코스피(0001), 코스닥(1001)
+          required: true
+          schema:
+            type: string
+            enum:
+              - '0000'
+              - '0001'
+              - '1001'
+            example: '0000'
+        - in: query
+          name: fid_trgt_cls_code
+          description: 대상구분코드
+          required: true
+          schema:
+            type: string
+            default: ''
+            example: ''
+        - in: query
+          name: fid_trgt_exls_cls_code
+          description: 대상제외구분코드
+          required: true
+          schema:
+            type: string
+            default: ''
+            example: ''
+        - in: query
+          name: fid_input_price_1
+          description: 입력가격1
+          required: true
+          schema:
+            type: string
+            default: ''
+            example: ''
+        - in: query
+          name: fid_input_price_2
+          description: 입력가격2
+          required: true
+          schema:
+            type: string
+            default: ''
+            example: ''
+        - in: query
+          name: fid_vol_cnt
+          description: 거래량수
+          required: true
+          schema:
+            type: string
+            default: ''
+            example: ''
+      responses:
+        '200':
+          $ref: '#/components/responses/capture_up_low_price'
   /uapi/domestic-stock/v1/quotations/pbar-tratio:
     get:
       operationId: getTechnicalVolumeProfileIndicator
@@ -5127,11 +6401,75 @@ paths:
         국내주식 매물대/거래비중 API입니다.
 
         한국투자 HTS(eFriend Plus) > [0113] 당일가격대별 매물대 화면의 데이터 중 일부를 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-      responses:
-        '200':
-          description: 국내주식 매물대/거래비중 조회 성공
       tags:
         - DomesticTechnicalAnalysis
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHPST01130000 : 국내주식 매물대/거래비중
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHPST01130000
+            default: FHPST01130000
+            example: FHPST01130000
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: 시장분류코드 (주식 J)
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+            default: J
+            example: J
+        - in: query
+          name: fid_cond_scr_div_code
+          description: |
+            조건화면분류코드
+
+            20113(Unique key)
+          required: true
+          schema:
+            type: string
+            enum:
+              - '20113'
+            default: 20113
+            example: 20113
+        - in: query
+          name: fid_input_hour_1
+          description: 입력시간
+          required: true
+          schema:
+            type: string
+            default: ''
+            example: ''
+            maxLength: 10
+        - in: query
+          name: fid_input_iscd
+          description: 종목코드 (주식단축종목코드)
+          required: true
+          schema:
+            type: string
+            example: '005930'
+            maxLength: 12
+      responses:
+        '200':
+          $ref: '#/components/responses/volume_profile_indicator'
   /uapi/domestic-stock/v1/quotations/inquire-member-daily:
     get:
       operationId: getTechnicalMemberTrendDaily
@@ -5140,11 +6478,86 @@ paths:
         주식현재가 회원사 종목매매동향 API입니다.
 
         한국투자 HTS(eFriend Plus) > [0454] 증권사 종목매매동향 화면을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
-      responses:
-        '200':
-          description: 국내주식 현재가 회원사 종목매매동향 조회 성공
       tags:
         - DomesticTechnicalAnalysis
+      parameters:
+        - $ref: '#/components/parameters/personal_secret_key'
+        - $ref: '#/components/parameters/tr_cont'
+        - $ref: '#/components/parameters/customer_type'
+        - $ref: '#/components/parameters/sequence_no'
+        - $ref: '#/components/parameters/mac_address'
+        - $ref: '#/components/parameters/phone_number'
+        - $ref: '#/components/parameters/ip_address'
+        - $ref: '#/components/parameters/hashkey'
+        - $ref: '#/components/parameters/gt_uid'
+        - in: header
+          name: tr_id
+          description: |
+            거래ID
+
+            모의투자 미지원<br/>
+            FHPST04540000 : 주식현재가 회원사 종목매매동향
+          required: true
+          schema:
+            type: string
+            enum:
+              - FHPST04540000
+            default: FHPST04540000
+            example: FHPST04540000
+        - in: query
+          name: fid_cond_mrkt_div_code
+          description: 조건시장분류코드 (주식J)
+          required: true
+          schema:
+            type: string
+            enum:
+              - J
+            default: J
+            example: J
+        - in: query
+          name: fid_input_iscd
+          description: 주식종목코드입력
+          required: true
+          schema:
+            type: string
+            maxLength: 12
+            example: '005930'
+        - in: query
+          name: fid_input_iscd_2
+          description: 회원사코드 (kis developers 포탈 사이트 포럼-> FAQ -> 종목정보 다운로드(국내) > 회원사 참조)
+          required: true
+          schema:
+            type: string
+            maxLength: 8
+            example: '00003'
+        - in: query
+          name: fid_input_date_1
+          description: 날짜 ~
+          required: true
+          schema:
+            type: string
+            example: 20240501
+            maxLength: 10
+        - in: query
+          name: fid_input_date_2
+          description: ~ 날짜
+          required: true
+          schema:
+            type: string
+            example: 20240601
+            maxLength: 10
+        - in: query
+          name: fid_sctn_cls_code
+          description: 구간구분코드 (공백)
+          required: true
+          schema:
+            type: string
+            default: ''
+            example: ''
+            maxLength: 2
+      responses:
+        '200':
+          $ref: '#/components/responses/member_trend_daily'
   /uapi/domestic-stock/v1/quotations/volume-rank:
     get:
       operationId: getRankingVolume
@@ -17174,6 +18587,3300 @@ components:
                       description: 의결권주식총수
                       example: '   177983313'
                       maxLength: 12
+    foreign_institution_total:
+      description: 국내기관_외국인 매매종목가집계 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    hts_kor_isnm:
+                      type: string
+                      description: HTS 한글 종목명
+                      example: KR모터스
+                      maxLength: 40
+                    mksc_shrn_iscd:
+                      type: string
+                      description: 유가증권 단축 종목코드
+                      example: '005930'
+                      maxLength: 9
+                    ntby_qty:
+                      type: string
+                      description: 순매수 수량
+                      example: 100000
+                      maxLength: 18
+                    stck_prpr:
+                      type: string
+                      description: 주식 현재가
+                      example: 1821
+                      maxLength: 10
+                    prdy_vrss_sign:
+                      type: string
+                      description: |
+                        전일 대비 부호
+
+                        1 : 상한<br/>
+                        2 : 상승<br/>
+                        3 : 보합<br/>
+                        4 : 하한<br/>
+                        5 : 하락
+                      enum:
+                        - '1'
+                        - '2'
+                        - '3'
+                        - '4'
+                        - '5'
+                      example: 1
+                    prdy_vrss:
+                      type: string
+                      description: 전일 대비
+                      example: 197
+                      maxLength: 10
+                    prdy_ctrt:
+                      type: string
+                      description: 전일 대비율
+                      example: 0.1
+                      maxLength: 8
+                    acml_vol:
+                      type: string
+                      description: 누적 거래량
+                      example: 100000
+                      maxLength: 18
+                    frgn_ntby_qty:
+                      type: string
+                      description: 외국인 순매수 수량
+                      example: 100000
+                      maxLength: 12
+                    orgn_ntby_qty:
+                      type: string
+                      description: 기관계 순매수 수량
+                      example: 100000
+                      maxLength: 18
+                    ivtr_ntby_qty:
+                      type: string
+                      description: 투자신탁 순매수 수량
+                      example: 100000
+                      maxLength: 12
+                    bank_ntby_qty:
+                      type: string
+                      description: 은행 순매수 수량
+                      example: 100000
+                      maxLength: 12
+                    insu_ntby_qty:
+                      type: string
+                      description: 보험 순매수 수량
+                      example: 100000
+                      maxLength: 12
+                    mrbn_ntby_qty:
+                      type: string
+                      description: 종금 순매수 수량
+                      example: 100000
+                      maxLength: 12
+                    fund_ntby_qty:
+                      type: string
+                      description: 기금 순매수 수량
+                      example: 100000
+                      maxLength: 12
+                    etc_orgt_ntby_vol:
+                      type: string
+                      description: 기타 단체 순매수 거래량
+                      example: 100000
+                      maxLength: 18
+                    etc_corp_ntby_vol:
+                      type: string
+                      description: 기타 법인 순매수 거래량
+                      example: 100000
+                      maxLength: 18
+                    frgn_ntby_tr_pbmn:
+                      type: string
+                      description: |
+                        외국인 순매수 거래 대금
+
+                        (단위 : 백만원, 수량*현재가)
+                      example: 100000
+                      maxLength: 18
+                    orgn_ntby_tr_pbmn:
+                      type: string
+                      description: 기관계 순매수 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    ivtr_ntby_tr_pbmn:
+                      type: string
+                      description: 투자신탁 순매수 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    bank_ntby_tr_pbmn:
+                      type: string
+                      description: 은행 순매수 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    insu_ntby_tr_pbmn:
+                      type: string
+                      description: 보험 순매수 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    mrbn_ntby_tr_pbmn:
+                      type: string
+                      description: 종금 순매수 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    fund_ntby_tr_pbmn:
+                      type: string
+                      description: 기금 순매수 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    etc_orgt_ntby_tr_pbmn:
+                      type: string
+                      description: 기타 단체 순매수 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    etc_corp_ntby_tr_pbmn:
+                      type: string
+                      description: 기타 법인 순매수 거래 대금
+                      example: 100000
+                      maxLength: 18
+    program_trade_by_stock:
+      description: 종목별 프로그램매매추이(체결) 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output1:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    bsop_hour:
+                      type: string
+                      description: 영업 시간
+                      example: '090000'
+                      maxLength: 6
+                    stck_prpr:
+                      type: string
+                      description: 주식 현재가
+                      example: 1821
+                      maxLength: 10
+                    prdy_vrss:
+                      type: string
+                      description: 전일 대비
+                      example: 21
+                      maxLength: 10
+                    prdy_vrss_sign:
+                      type: string
+                      description: |
+                        전일 대비 부호
+
+                        1 : 상한<br/>
+                        2 : 상승<br/>
+                        3 : 보합<br/>
+                        4 : 하한<br/>
+                        5 : 하락
+                      enum:
+                        - '1'
+                        - '2'
+                        - '3'
+                        - '4'
+                        - '5'
+                      example: 1
+                    prdy_ctrt:
+                      type: string
+                      description: 전일 대비율
+                      example: 1.2
+                      maxLength: 82
+                    acml_vol:
+                      type: string
+                      description: 누적 거래량
+                      example: 100000
+                      maxLength: 18
+                    whol_smtn_seln_vol:
+                      type: string
+                      description: 전체 합계 매도 거래량
+                      example: 100000
+                      maxLength: 18
+                    whol_smtn_shnu_vol:
+                      type: string
+                      description: 전체 합계 매수2 거래량
+                      example: 100000
+                      maxLength: 18
+                    whol_smtn_ntby_qty:
+                      type: string
+                      description: 전체 합계 순매수 수량
+                      example: 100000
+                      maxLength: 18
+                    whol_smtn_seln_tr_pbmn:
+                      type: string
+                      description: 전체 합계 매도 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    whol_smtn_shnu_tr_pbmn:
+                      type: string
+                      description: 전체 합계 매수2 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    whol_smtn_ntby_tr_pbmn:
+                      type: string
+                      description: 전체 합계 순매수 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    whol_ntby_vol_icdc:
+                      type: string
+                      description: 전체 순매수 거래량 증감
+                      example: 100000
+                      maxLength: 10
+                    whol_ntby_tr_pbmn_icdc:
+                      type: string
+                      description: 전체 순매수 거래 대금 증감
+                      example: 100000
+                      maxLength: 10
+    investor_trend_estimate:
+      description: 종목별 외인기관 추정가집계 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output2:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    bsop_hour:
+                      type: string
+                      description: |
+                        영업 시간
+
+                        1: 09시 30분 입력<br/>
+                        2: 10시 00분 입력<br/>
+                        3: 11시 20분 입력<br/>
+                        4: 13시 20분 입력<br/>
+                        5: 14시 30분 입력
+                      enum:
+                        - '1'
+                        - '2'
+                        - '3'
+                        - '4'
+                        - '5'
+                      example: 5
+                      maxLength: 6
+                    frgn_fake_ntby_qty:
+                      type: string
+                      description: 외국인수량(가집계)
+                      example: '00000000000093000'
+                      maxLength: 18
+                    orgn_fake_ntby_qty:
+                      type: string
+                      description: 기관수량(가집계)
+                      example: '000000000000130000'
+                      maxLength: 18
+                    sum_fake_ntby_qty:
+                      type: string
+                      description: 합산수량(가집계)
+                      example: '000000000000037000'
+                      maxLength: 18
+    trade_daily_volume:
+      description: 종목별일별매수매도체결량 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output1:
+                type: object
+                properties:
+                  shnu_cnqn_smtn:
+                    type: string
+                    description: 매수 체결량 합계
+                    example: 4520816
+                    maxLength: 18
+                  seln_cnqn_smtn:
+                    type: string
+                    description: 매도 체결량 합계
+                    example: 5285722
+                    maxLength: 18
+              output2:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    stck_bsop_date:
+                      type: string
+                      description: 주식 영업 일자
+                      example: 20240601
+                      maxLength: 8
+                    total_seln_qty:
+                      type: string
+                      description: 총 매도 수량
+                      example: 5285722
+                      maxLength: 18
+                    total_shnu_qty:
+                      type: string
+                      description: 총 매수 수량
+                      example: 4520816
+                      maxLength: 18
+    investor_time_by_market:
+      description: 시장별 투자자매매동향 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    frgn_seln_vol:
+                      type: string
+                      description: 외국인 매도 거래량
+                      example: 75588
+                      maxLength: 18
+                    frgn_shnu_vol:
+                      type: string
+                      description: 외국인 매수2 거래량
+                      example: 70298
+                      maxLength: 18
+                    frgn_ntby_qty:
+                      type: string
+                      description: 외국인 순매수 수량
+                      example: -5290
+                      maxLength: 12
+                    frgn_seln_tr_pbmn:
+                      type: string
+                      description: 외국인 매도 거래 대금
+                      example: 2818983
+                      maxLength: 18
+                    frgn_shnu_tr_pbmn:
+                      type: string
+                      description: 외국인 매수2 거래 대금
+                      example: 2967639
+                      maxLength: 18
+                    frgn_ntby_tr_pbmn:
+                      type: string
+                      description: 외국인 순매수 거래 대금
+                      example: 148656
+                      maxLength: 18
+                    prsn_seln_vol:
+                      type: string
+                      description: 개인 매도 거래량
+                      example: 294375
+                      maxLength: 18
+                    prsn_shnu_vol:
+                      type: string
+                      description: 개인 매수2 거래량
+                      example: 300449
+                      maxLength: 18
+                    prsn_ntby_qty:
+                      type: string
+                      description: 개인 순매수 수량
+                      example: 6074
+                      maxLength: 12
+                    prsn_seln_tr_pbmn:
+                      type: string
+                      description: 개인 매도 거래 대금
+                      example: 5131230
+                      maxLength: 18
+                    prsn_shnu_tr_pbmn:
+                      type: string
+                      description: 개인 매수2 거래 대금
+                      example: 5020361
+                      maxLength: 18
+                    prsn_ntby_tr_pbmn:
+                      type: string
+                      description: 개인 순매수 거래 대금
+                      example: -110869
+                      maxLength: 18
+                    orgn_seln_vol:
+                      type: string
+                      description: 기관계 매도 거래량
+                      example: 36911
+                      maxLength: 18
+                    orgn_shnu_vol:
+                      type: string
+                      description: 기관계 매수2 거래량
+                      example: 37631
+                      maxLength: 18
+                    orgn_ntby_qty:
+                      type: string
+                      description: 기관계 순매수 수량
+                      example: 720
+                      maxLength: 18
+                    orgn_seln_tr_pbmn:
+                      type: string
+                      description: 기관계 매도 거래 대금
+                      example: 2110371
+                      maxLength: 18
+                    orgn_shnu_tr_pbmn:
+                      type: string
+                      description: 기관계 매수2 거래 대금
+                      example: 2054839
+                      maxLength: 18
+                    orgn_ntby_tr_pbmn:
+                      type: string
+                      description: 기관계 순매수 거래 대금
+                      example: -55532
+                      maxLength: 18
+                    scrt_seln_vol:
+                      type: string
+                      description: 증권 매도 거래량
+                      example: 8493
+                      maxLength: 18
+                    scrt_shnu_vol:
+                      type: string
+                      description: 증권 매수2 거래량
+                      example: 12126
+                      maxLength: 18
+                    scrt_ntby_qty:
+                      type: string
+                      description: 증권 순매수 수량
+                      example: 3633
+                      maxLength: 12
+                    scrt_seln_tr_pbmn:
+                      type: string
+                      description: 증권 매도 거래 대금
+                      example: 384357
+                      maxLength: 18
+                    scrt_shnu_tr_pbmn:
+                      type: string
+                      description: 증권 매수2 거래 대금
+                      example: 472598
+                      maxLength: 18
+                    scrt_ntby_tr_pbmn:
+                      type: string
+                      description: 증권 순매수 거래 대금
+                      example: 88241
+                      maxLength: 18
+                    ivtr_seln_vol:
+                      type: string
+                      description: 투자신탁 매도 거래량
+                      example: 4086
+                      maxLength: 18
+                    ivtr_shnu_vol:
+                      type: string
+                      description: 투자신탁 매수2 거래량
+                      example: 3964
+                      maxLength: 18
+                    ivtr_ntby_qty:
+                      type: string
+                      description: 투자신탁 순매수 수량
+                      example: -122
+                      maxLength: 12
+                    ivtr_seln_tr_pbmn:
+                      type: string
+                      description: 투자신탁 매도 거래 대금
+                      example: 177374
+                      maxLength: 18
+                    ivtr_shnu_tr_pbmn:
+                      type: string
+                      description: 투자신탁 매수2 거래 대금
+                      example: 165434
+                      maxLength: 18
+                    ivtr_ntby_tr_pbmn:
+                      type: string
+                      description: 투자신탁 순매수 거래 대금
+                      example: -11940
+                      maxLength: 18
+                    pe_fund_seln_tr_pbmn:
+                      type: string
+                      description: 사모 펀드 매도 거래 대금
+                      example: 213413
+                      maxLength: 18
+                    pe_fund_seln_vol:
+                      type: string
+                      description: 사모 펀드 매도 거래량
+                      example: 4833
+                      maxLength: 18
+                    pe_fund_ntby_vol:
+                      type: string
+                      description: 사모 펀드 순매수 거래량
+                      example: -1804
+                      maxLength: 18
+                    pe_fund_shnu_tr_pbmn:
+                      type: string
+                      description: 사모 펀드 매수2 거래 대금
+                      example: 115551
+                      maxLength: 18
+                    pe_fund_shnu_vol:
+                      type: string
+                      description: 사모 펀드 매수2 거래량
+                      example: 3029
+                      maxLength: 18
+                    pe_fund_ntby_tr_pbmn:
+                      type: string
+                      description: 사모 펀드 순매수 거래 대금
+                      example: -97861
+                      maxLength: 18
+                    bank_seln_vol:
+                      type: string
+                      description: 은행 매도 거래량
+                      example: 245
+                      maxLength: 18
+                    bank_shnu_vol:
+                      type: string
+                      description: 은행 매수2 거래량
+                      example: 51
+                      maxLength: 18
+                    bank_ntby_qty:
+                      type: string
+                      description: 은행 순매수 수량
+                      example: -193
+                      maxLength: 12
+                    bank_seln_tr_pbmn:
+                      type: string
+                      description: 은행 매도 거래 대금
+                      example: 13382
+                      maxLength: 18
+                    bank_shnu_tr_pbmn:
+                      type: string
+                      description: 은행 매수2 거래 대금
+                      example: 2873
+                      maxLength: 18
+                    bank_ntby_tr_pbmn:
+                      type: string
+                      description: 은행 순매수 거래 대금
+                      example: -10509
+                      maxLength: 18
+                    insu_seln_vol:
+                      type: string
+                      description: 보험 매도 거래량
+                      example: 1653
+                      maxLength: 18
+                    insu_shnu_vol:
+                      type: string
+                      description: 보험 매수2 거래량
+                      example: 1050
+                      maxLength: 18
+                    insu_ntby_qty:
+                      type: string
+                      description: 보험 순매수 수량
+                      example: -603
+                      maxLength: 12
+                    insu_seln_tr_pbmn:
+                      type: string
+                      description: 보험 매도 거래 대금
+                      example: 79782
+                      maxLength: 18
+                    insu_shnu_tr_pbmn:
+                      type: string
+                      description: 보험 매수2 거래 대금
+                      example: 50378
+                      maxLength: 18
+                    insu_ntby_tr_pbmn:
+                      type: string
+                      description: 보험 순매수 거래 대금
+                      example: -29404
+                      maxLength: 18
+                    mrbn_seln_vol:
+                      type: string
+                      description: 종금 매도 거래량
+                      example: 230
+                      maxLength: 18
+                    mrbn_shnu_vol:
+                      type: string
+                      description: 종금 매수2 거래량
+                      example: 310
+                      maxLength: 18
+                    mrbn_ntby_qty:
+                      type: string
+                      description: 종금 순매수 수량
+                      example: 80
+                      maxLength: 12
+                    mrbn_seln_tr_pbmn:
+                      type: string
+                      description: 종금 매도 거래 대금
+                      example: 10393
+                      maxLength: 18
+                    mrbn_shnu_tr_pbmn:
+                      type: string
+                      description: 종금 매수2 거래 대금
+                      example: 11896
+                      maxLength: 18
+                    mrbn_ntby_tr_pbmn:
+                      type: string
+                      description: 종금 순매수 거래 대금
+                      example: 1502
+                      maxLength: 18
+                    fund_seln_vol:
+                      type: string
+                      description: 기금 매도 거래량
+                      example: 17372
+                      maxLength: 18
+                    fund_shnu_vol:
+                      type: string
+                      description: 기금 매수2 거래량
+                      example: 17101
+                      maxLength: 18
+                    fund_ntby_qty:
+                      type: string
+                      description: 기금 순매수 수량
+                      example: -271
+                      maxLength: 12
+                    fund_seln_tr_pbmn:
+                      type: string
+                      description: 기금 매도 거래 대금
+                      example: 1231671
+                      maxLength: 18
+                    fund_shnu_tr_pbmn:
+                      type: string
+                      description: 기금 매수2 거래 대금
+                      example: 1236109
+                      maxLength: 18
+                    fund_ntby_tr_pbmn:
+                      type: string
+                      description: 기금 순매수 거래 대금
+                      example: 4439
+                      maxLength: 18
+                    etc_orgt_seln_vol:
+                      type: string
+                      description: 기타 단체 매도 거래량
+                      example: 0
+                      maxLength: 18
+                    etc_orgt_shnu_vol:
+                      type: string
+                      description: 기타 단체 매수2 거래량
+                      example: 0
+                      maxLength: 18
+                    etc_orgt_ntby_vol:
+                      type: string
+                      description: 기타 단체 순매수 거래량
+                      example: 0
+                      maxLength: 18
+                    etc_orgt_seln_tr_pbmn:
+                      type: string
+                      description: 기타 단체 매도 거래 대금
+                      example: 0
+                      maxLength: 18
+                    etc_orgt_shnu_tr_pbmn:
+                      type: string
+                      description: 기타 단체 매수2 거래 대금
+                      example: 0
+                      maxLength: 18
+                    etc_orgt_ntby_tr_pbmn:
+                      type: string
+                      description: 기타 단체 순매수 거래 대금
+                      example: 0
+                      maxLength: 18
+                    etc_corp_seln_vol:
+                      type: string
+                      description: 기타 법인 매도 거래량
+                      example: 5061
+                      maxLength: 18
+                    etc_corp_shnu_vol:
+                      type: string
+                      description: 기타 법인 매수2 거래량
+                      example: 3558
+                      maxLength: 18
+                    etc_corp_ntby_vol:
+                      type: string
+                      description: 기타 법인 순매수 거래량
+                      example: -1503
+                      maxLength: 18
+                    etc_corp_seln_tr_pbmn:
+                      type: string
+                      description: 기타 법인 매도 거래 대금
+                      example: 95856
+                      maxLength: 18
+                    etc_corp_shnu_tr_pbmn:
+                      type: string
+                      description: 기타 법인 매수2 거래 대금
+                      example: 113601
+                      maxLength: 18
+                    etc_corp_ntby_tr_pbmn:
+                      type: string
+                      description: 기타 법인 순매수 거래 대금
+                      example: 17745
+                      maxLength: 18
+    credit_balance_daily:
+      description: 국내주식 신용잔고 일별추이 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    deal_date:
+                      type: string
+                      description: 매매 일자
+                      example: 20240315
+                      maxLength: 8
+                    stck_prpr:
+                      type: string
+                      description: 주식 현재가
+                      example: 74100
+                      maxLength: 10
+                    prdy_vrss_sign:
+                      type: string
+                      description: |
+                        전일 대비 부호
+
+                        1 : 상한<br/>
+                        2 : 상승<br/>
+                        3 : 보합<br/>
+                        4 : 하한<br/>
+                        5 : 하락
+                      enum:
+                        - '1'
+                        - '2'
+                        - '3'
+                        - '4'
+                        - '5'
+                      example: 2
+                    prdy_vrss:
+                      type: string
+                      description: 전일 대비
+                      example: 800
+                      maxLength: 10
+                    prdy_ctrt:
+                      type: string
+                      description: 전일 대비율
+                      example: 1.09
+                      maxLength: 82
+                    acml_vol:
+                      type: string
+                      description: 누적 거래량
+                      example: 15243134
+                      maxLength: 18
+                    stlm_date:
+                      type: string
+                      description: 결제 일자
+                      example: 20240315
+                      maxLength: 8
+                    whol_loan_new_stcn:
+                      type: string
+                      description: |
+                        전체 융자 신규 주수 (단위: 주)
+                      example: 253817
+                      maxLength: 18
+                    whol_loan_rdmp_stcn:
+                      type: string
+                      description: |
+                        전체 융자 상환 주수 (단위: 주)
+                      example: 603451
+                      maxLength: 18
+                    whol_loan_rmnd_stcn:
+                      type: string
+                      description: |
+                        전체 융자 잔고 주수 (단위: 주)
+                      example: 7155720
+                      maxLength: 18
+                    whol_loan_new_amt:
+                      type: string
+                      description: |
+                        전체 융자 신규 금액 (단위: 만원)
+                      example: 253817
+                      maxLength: 18
+                    whol_loan_rdmp_amt:
+                      type: string
+                      description: |
+                        전체 융자 상환 금액 (단위: 만원)
+                      example: 3982732
+                      maxLength: 18
+                    whol_loan_rmnd_amt:
+                      type: string
+                      description: |
+                        전체 융자 잔고 금액 (단위: 만원)
+                      example: 47321639
+                      maxLength: 18
+                    whol_loan_rmnd_rate:
+                      type: string
+                      description: |
+                        전체 융자 잔고 비율 (단위: %)
+                      example: 0.16
+                      maxLength: 84
+                    whol_loan_gvrt:
+                      type: string
+                      description: |
+                        전체 융자 공여율 (단위: %)
+                      example: 1.65
+                      maxLength: 82
+                    whol_stln_new_stcn:
+                      type: string
+                      description: |
+                        전체 대주 신규 주수 (단위: 주)
+                      example: 0
+                      maxLength: 18
+                    whol_stln_rdmp_stcn:
+                      type: string
+                      description: |
+                        전체 대주 상환 주수 (단위: 주)
+                      example: 0
+                      maxLength: 18
+                    whol_stln_rmnd_stcn:
+                      type: string
+                      description: |
+                        전체 대주 잔고 주수 (단위: 주)
+                      example: 5865
+                      maxLength: 18
+                    whol_stln_new_amt:
+                      type: string
+                      description: |
+                        전체 대주 신규 금액 (단위: 만원)
+                      example: 0
+                      maxLength: 18
+                    whol_stln_rdmp_amt:
+                      type: string
+                      description: |
+                        전체 대주 상환 금액 (단위: 만원)
+                      example: 0
+                      maxLength: 18
+                    whol_stln_rmnd_amt:
+                      type: string
+                      description: |
+                        전체 대주 잔고 금액 (단위: 만원)
+                      example: 36432
+                      maxLength: 18
+                    whol_stln_rmnd_rate:
+                      type: string
+                      description: |
+                        전체 대주 잔고 비율 (단위: %)
+                      example: 0
+                      maxLength: 84
+                    whol_stln_gvrt:
+                      type: string
+                      description: |
+                        전체 대주 공여율 (단위: %)
+                      example: 0
+                      maxLength: 82
+                    stck_oprc:
+                      type: string
+                      description: 주식 시가2
+                      example: 73700
+                      maxLength: 10
+                    stck_hgpr:
+                      type: string
+                      description: 주식 최고가
+                      example: 74100
+                      maxLength: 10
+                    stck_lwpr:
+                      type: string
+                      description: 주식 최저가
+                      example: 73500
+                      maxLength: 10
+    expected_conclusion_trend:
+      description: 국내주식 예상체결가 추이 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output1:
+                type: object
+                properties:
+                  rprs_mrkt_kor_name:
+                    type: string
+                    description: 대표 시장 한글 명
+                    example: KOSPI200
+                    maxLength: 40
+                  antc_cnpr:
+                    type: string
+                    description: 예상 체결가
+                    example: 72600
+                    maxLength: 10
+                  antc_cntg_vrss_sign:
+                    type: string
+                    description: |
+                      예상 체결 대비 부호
+
+                      1 : 상한<br/>
+                      2 : 상승<br/>
+                      3 : 보합<br/>
+                      4 : 하한<br/>
+                      5 : 하락
+                    enum:
+                      - '1'
+                      - '2'
+                      - '3'
+                      - '4'
+                      - '5'
+                    example: 2
+                  antc_cntg_vrss:
+                    type: string
+                    description: 예상 체결 대비
+                    example: 300
+                    maxLength: 10
+                  antc_cntg_prdy_ctrt:
+                    type: string
+                    description: 예상 체결 전일 대비율
+                    example: 0.41
+                    maxLength: 82
+                  antc_vol:
+                    type: string
+                    description: 예상 거래량
+                    example: 420303
+                    maxLength: 18
+                  antc_tr_pbmn:
+                    type: string
+                    description: 예상 거래대금
+                    example: 30513997800
+                    maxLength: 19
+              output2:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    stck_bsop_date:
+                      type: string
+                      description: 주식 영업 일자
+                      example: 20240318
+                      maxLength: 8
+                    stck_cntg_hour:
+                      type: string
+                      description: 주식 체결 시간
+                      example: '090023'
+                      maxLength: 6
+                    stck_prpr:
+                      type: string
+                      description: 주식 현재가
+                      example: 72600
+                      maxLength: 10
+                    prdy_vrss_sign:
+                      type: string
+                      description: |
+                        전일 대비 부호
+
+                        1 : 상한<br/>
+                        2 : 상승<br/>
+                        3 : 보합<br/>
+                        4 : 하한<br/>
+                        5 : 하락
+                      enum:
+                        - '1'
+                        - '2'
+                        - '3'
+                        - '4'
+                        - '5'
+                      example: 2
+                    prdy_vrss:
+                      type: string
+                      description: 전일 대비
+                      example: 300
+                      maxLength: 10
+                    prdy_ctrt:
+                      type: string
+                      description: 전일 대비율
+                      example: 0.41
+                      maxLength: 82
+                    acml_vol:
+                      type: string
+                      description: 누적 거래량
+                      example: 420303
+                      maxLength: 18
+    short_sale_daily:
+      description: 국내주식 공매도 일별추이 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output1:
+                type: object
+                properties:
+                  stck_prpr:
+                    type: string
+                    description: 주식 현재가
+                    example: 74100
+                    maxLength: 10
+                  prdy_vrss:
+                    type: string
+                    description: 전일 대비
+                    example: 800
+                    maxLength: 10
+                  prdy_vrss_sign:
+                    type: string
+                    description: |
+                      전일 대비 부호
+
+                      1 : 상한<br/>
+                      2 : 상승<br/>
+                      3 : 보합<br/>
+                      4 : 하한<br/>
+                      5 : 하락
+                    enum:
+                      - '1'
+                      - '2'
+                      - '3'
+                      - '4'
+                      - '5'
+                    example: 2
+                  prdy_ctrt:
+                    type: string
+                    description: 전일 대비율
+                    example: 1.09
+                    maxLength: 82
+                  acml_vol:
+                    type: string
+                    description: 누적 거래량
+                    example: 100000
+                    maxLength: 18
+                  prdy_vol:
+                    type: string
+                    description: 전일 거래량
+                    example: 100000
+                    maxLength: 18
+              output2:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    stck_bsop_date:
+                      type: string
+                      description: 주식 영업 일자
+                      example: 20240101
+                      maxLength: 8
+                    stck_clpr:
+                      type: string
+                      description: 주식 종가
+                      example: 74100
+                      maxLength: 10
+                    prdy_vrss:
+                      type: string
+                      description: 전일 대비
+                      example: 800
+                      maxLength: 10
+                    prdy_vrss_sign:
+                      type: string
+                      description: |
+                        전일 대비 부호
+
+                        1 : 상한<br/>
+                        2 : 상승<br/>
+                        3 : 보합<br/>
+                        4 : 하한<br/>
+                        5 : 하락
+                      enum:
+                        - '1'
+                        - '2'
+                        - '3'
+                        - '4'
+                        - '5'
+                      example: 2
+                    prdy_ctrt:
+                      type: string
+                      description: 전일 대비율
+                      example: 1.09
+                      maxLength: 82
+                    acml_vol:
+                      type: string
+                      description: 누적 거래량
+                      example: 100000
+                      maxLength: 18
+                    stnd_vol_smtn:
+                      type: string
+                      description: 기준 거래량 합계
+                      example: 100000
+                      maxLength: 18
+                    ssts_cntg_qty:
+                      type: string
+                      description: 공매도 체결 수량
+                      example: 100000
+                      maxLength: 12
+                    ssts_vol_rlim:
+                      type: string
+                      description: 공매도 거래량 비중
+                      example: 1.09
+                      maxLength: 82
+                    acml_ssts_cntg_qty:
+                      type: string
+                      description: 누적 공매도 체결 수량
+                      example: 100000
+                      maxLength: 13
+                    acml_ssts_cntg_qty_rlim:
+                      type: string
+                      description: 누적 공매도 체결 수량 비중
+                      example: 1.09
+                      maxLength: 82
+                    acml_tr_pbmn:
+                      type: string
+                      description: 누적 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    stnd_tr_pbmn_smtn:
+                      type: string
+                      description: 기준 거래대금 합계
+                      example: 100000
+                      maxLength: 18
+                    ssts_tr_pbmn:
+                      type: string
+                      description: 공매도 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    ssts_tr_pbmn_rlim:
+                      type: string
+                      description: 공매도 거래대금 비중
+                      example: 1.09
+                      maxLength: 82
+                    acml_ssts_tr_pbmn:
+                      type: string
+                      description: 누적 공매도 거래 대금
+                      example: 100000
+                      maxLength: 19
+                    acml_ssts_tr_pbmn_rlim:
+                      type: string
+                      description: 누적 공매도 거래 대금 비중
+                      example: 1.09
+                      maxLength: 82
+                    stck_oprc:
+                      type: string
+                      description: 주식 시가
+                      example: 74100
+                      maxLength: 10
+                    stck_hgpr:
+                      type: string
+                      description: 주식 최고가
+                      example: 74100
+                      maxLength: 10
+                    stck_lwpr:
+                      type: string
+                      description: 주식 최저가
+                      example: 74100
+                      maxLength: 10
+                    avrg_prc:
+                      type: string
+                      description: 평균가격
+                      example: 74100
+                      maxLength: 11
+    program_trade_daily:
+      description: 국내주식 프로그램매매 종합현황(일별) 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    stck_bsop_date:
+                      type: string
+                      description: 주식 영업 일자
+                      example: 20240315
+                      maxLength: 8
+                    arbt_entm_seln_vol:
+                      type: string
+                      description: 차익 위탁 매도 거래량
+                      example: 100000
+                      maxLength: 18
+                    arbt_entm_seln_vol_rate:
+                      type: string
+                      description: 차익 위탁 매도 거래량 비율
+                      example: 0.41
+                      maxLength: 82
+                    arbt_entm_seln_tr_pbmn:
+                      type: string
+                      description: 차익 위탁 매도 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    arbt_entm_seln_tr_pbmn_rate:
+                      type: string
+                      description: 차익 위탁 매도 거래 대금 비율
+                      example: 0.41
+                      maxLength: 82
+                    arbt_onsl_seln_tr_pbmn:
+                      type: string
+                      description: 차익 자기 매도 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    arbt_onsl_seln_tr_pbmn_rate:
+                      type: string
+                      description: 차익 자기 매도 거래 대금 비율
+                      example: 0.41
+                      maxLength: 82
+                    arbt_onsl_seln_vol:
+                      type: string
+                      description: 차익 자기 매도 거래량
+                      example: 100000
+                      maxLength: 18
+                    arbt_onsl_seln_vol_rate:
+                      type: string
+                      description: 차익 자기 매도 거래량 비율
+                      example: 0.41
+                      maxLength: 82
+                    arbt_smtn_seln_vol:
+                      type: string
+                      description: 차익 합계 매도 거래량
+                      example: 100000
+                      maxLength: 18
+                    arbt_smtm_seln_vol_rate:
+                      type: string
+                      description: 차익 합계 매도 거래량 비율
+                      example: 0.41
+                      maxLength: 72
+                    arbt_smtn_seln_tr_pbmn:
+                      type: string
+                      description: 차익 합계 매도 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    arbt_smtm_seln_tr_pbmn_rate:
+                      type: string
+                      description: 차익 합계 매도 거래대금 비율
+                      example: 0.41
+                      maxLength: 72
+                    nabt_entm_seln_vol:
+                      type: string
+                      description: 비차익 위탁 매도 거래량
+                      example: 100000
+                      maxLength: 18
+                    nabt_entm_seln_tr_pbmn:
+                      type: string
+                      description: 비차익 위탁 매도 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    nabt_entm_seln_vol_rate:
+                      type: string
+                      description: 비차익 위탁 매도 거래량 비율
+                      example: 0.41
+                      maxLength: 82
+                    nabt_entm_seln_tr_pbmn_rate:
+                      type: string
+                      description: 비차익 위탁 매도 거래 대금 비
+                      example: 0.41
+                      maxLength: 82
+                    nabt_onsl_seln_vol:
+                      type: string
+                      description: 비차익 자기 매도 거래량
+                      example: 100000
+                      maxLength: 18
+                    nabt_onsl_seln_vol_rate:
+                      type: string
+                      description: 비차익 자기 매도 거래량 비율
+                      example: 0.41
+                      maxLength: 82
+                    nabt_onsl_seln_tr_pbmn:
+                      type: string
+                      description: 비차익 자기 매도 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    nabt_onsl_seln_tr_pbmn_rate:
+                      type: string
+                      description: 비차익 자기 매도 거래 대금 비
+                      example: 0.41
+                      maxLength: 82
+                    nabt_smtn_seln_vol:
+                      type: string
+                      description: 비차익 합계 매도 거래량
+                      example: 100000
+                      maxLength: 18
+                    nabt_smtm_seln_vol_rate:
+                      type: string
+                      description: 비차익 합계 매도 거래량 비율
+                      example: 0.41
+                      maxLength: 72
+                    nabt_smtn_seln_tr_pbmn:
+                      type: string
+                      description: 비차익 합계 매도 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    nabt_smtm_seln_tr_pbmn_rate:
+                      type: string
+                      description: 비차익 합계 매도 거래대금 비율
+                      example: 0.41
+                      maxLength: 72
+                    whol_entm_seln_vol:
+                      type: string
+                      description: 전체 위탁 매도 거래량
+                      example: 100000
+                      maxLength: 18
+                    whol_entm_seln_tr_pbmn:
+                      type: string
+                      description: 전체 위탁 매도 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    whol_entm_seln_vol_rate:
+                      type: string
+                      description: 전체 위탁 매도 거래량 비율
+                      example: 0.41
+                      maxLength: 82
+                    whol_entm_seln_tr_pbmn_rate:
+                      type: string
+                      description: 전체 위탁 매도 거래 대금 비율
+                      example: 0.41
+                      maxLength: 82
+                    whol_onsl_seln_vol:
+                      type: string
+                      description: 전체 자기 매도 거래량
+                      example: 100000
+                      maxLength: 18
+                    whol_onsl_seln_vol_rate:
+                      type: string
+                      description: 전체 자기 매도 거래량 비율
+                      example: 0.41
+                      maxLength: 82
+                    whol_onsl_seln_tr_pbmn:
+                      type: string
+                      description: 전체 자기 매도 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    whol_onsl_seln_tr_pbmn_rate:
+                      type: string
+                      description: 전체 자기 매도 거래 대금 비율
+                      example: 0.41
+                      maxLength: 82
+                    whol_smtn_seln_vol:
+                      type: string
+                      description: 전체 합계 매도 거래량
+                      example: 100000
+                      maxLength: 18
+                    whol_seln_vol_rate:
+                      type: string
+                      description: 전체 매도 거래량 비율
+                      example: 0.41
+                      maxLength: 72
+                    whol_smtn_seln_tr_pbmn:
+                      type: string
+                      description: 전체 합계 매도 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    whol_seln_tr_pbmn_rate:
+                      type: string
+                      description: 전체 매도 거래대금 비율
+                      example: 0.41
+                      maxLength: 72
+                    arbt_entm_shnu_vol:
+                      type: string
+                      description: 차익 위탁 매수2 거래량
+                      example: 100000
+                      maxLength: 18
+                    arbt_entm_shnu_vol_rate:
+                      type: string
+                      description: 차익 위탁 매수 거래량 비율
+                      example: 0.41
+                      maxLength: 82
+                    arbt_entm_shnu_tr_pbmn:
+                      type: string
+                      description: 차익 위탁 매수2 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    arbt_entm_shnu_tr_pbmn_rate:
+                      type: string
+                      description: 차익 위탁 매수 거래 대금 비율
+                      example: 0.41
+                      maxLength: 82
+                    arbt_onsl_shnu_vol:
+                      type: string
+                      description: 차익 자기 매수2 거래량
+                      example: 100000
+                      maxLength: 18
+                    arbt_onsl_shnu_vol_rate:
+                      type: string
+                      description: 차익 자기 매수 거래량 비율
+                      example: 0.41
+                      maxLength: 82
+                    arbt_onsl_shnu_tr_pbmn:
+                      type: string
+                      description: 차익 자기 매수2 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    arbt_onsl_shnu_tr_pbmn_rate:
+                      type: string
+                      description: 차익 자기 매수 거래 대금 비율
+                      example: 0.41
+                      maxLength: 82
+                    arbt_smtn_shnu_vol:
+                      type: string
+                      description: 차익 합계 매수2 거래량
+                      example: 100000
+                      maxLength: 18
+                    arbt_smtm_shun_vol_rate:
+                      type: string
+                      description: 차익 합계 매수 거래량 비율
+                      example: 0.41
+                      maxLength: 72
+                    arbt_smtn_shnu_tr_pbmn:
+                      type: string
+                      description: 차익 합계 매수2 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    arbt_smtm_shun_tr_pbmn_rate:
+                      type: string
+                      description: 차익 합계 매수 거래대금 비율
+                      example: 0.41
+                      maxLength: 72
+                    nabt_entm_shnu_vol:
+                      type: string
+                      description: 비차익 위탁 매수2 거래량
+                      example: 100000
+                      maxLength: 18
+                    nabt_entm_shnu_vol_rate:
+                      type: string
+                      description: 비차익 위탁 매수 거래량 비율
+                      example: 0.41
+                      maxLength: 82
+                    nabt_entm_shnu_tr_pbmn:
+                      type: string
+                      description: 비차익 위탁 매수2 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    nabt_entm_shnu_tr_pbmn_rate:
+                      type: string
+                      description: 비차익 위탁 매수 거래 대금 비
+                      example: 0.41
+                      maxLength: 82
+                    nabt_onsl_shnu_vol:
+                      type: string
+                      description: 비차익 자기 매수2 거래량
+                      example: 100000
+                      maxLength: 18
+                    nabt_onsl_shnu_vol_rate:
+                      type: string
+                      description: 비차익 자기 매수 거래량 비율
+                      example: 0.41
+                      maxLength: 82
+                    nabt_onsl_shnu_tr_pbmn:
+                      type: string
+                      description: 비차익 자기 매수2 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    nabt_onsl_shnu_tr_pbmn_rate:
+                      type: string
+                      description: 비차익 자기 매수 거래 대금
+                      example: 0.41
+                      maxLength: 82
+                    nabt_smtn_shnu_vol:
+                      type: string
+                      description: 비차익 합계 매수2 거래량
+                      example: 100000
+                      maxLength: 18
+                    nabt_smtm_shun_vol_rate:
+                      type: string
+                      description: 비차익 합계 매수 거래량 비율
+                      example: 0.41
+                      maxLength: 72
+                    nabt_smtn_shnu_tr_pbmn:
+                      type: string
+                      description: 비차익 합계 매수2 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    nabt_smtm_shun_tr_pbmn_rate:
+                      type: string
+                      description: 비차익 합계 매수 거래대금 비
+                      example: 0.41
+                      maxLength: 72
+                    whol_entm_shnu_vol:
+                      type: string
+                      description: 전체 위탁 매수2 거래량
+                      example: 100000
+                      maxLength: 18
+                    whol_entm_shnu_vol_rate:
+                      type: string
+                      description: 전체 위탁 매수 거래량 비율
+                      example: 0.41
+                      maxLength: 82
+                    whol_entm_shnu_tr_pbmn:
+                      type: string
+                      description: 전체 위탁 매수2 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    whol_entm_shnu_tr_pbmn_rate:
+                      type: string
+                      description: 전체 위탁 매수 거래 대금 비율
+                      example: 0.41
+                      maxLength: 82
+                    whol_onsl_shnu_vol:
+                      type: string
+                      description: 전체 자기 매수2 거래량
+                      example: 100000
+                      maxLength: 18
+                    whol_onsl_shnu_tr_pbmn:
+                      type: string
+                      description: 전체 자기 매수2 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    whol_onsl_shnu_tr_pbmn_rate:
+                      type: string
+                      description: 전체 자기 매수 거래 대금 비율
+                      example: 0.41
+                      maxLength: 82
+                    whol_smtn_shnu_vol:
+                      type: string
+                      description: 전체 합계 매수2 거래량
+                      example: 100000
+                      maxLength: 18
+                    whol_shun_vol_rate:
+                      type: string
+                      description: 전체 매수 거래량 비율
+                      example: 0.41
+                      maxLength: 72
+                    whol_smtn_shnu_tr_pbmn:
+                      type: string
+                      description: 전체 합계 매수2 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    whol_shun_tr_pbmn_rate:
+                      type: string
+                      description: 전체 매수 거래대금 비율
+                      example: 0.41
+                      maxLength: 72
+                    arbt_entm_ntby_qty:
+                      type: string
+                      description: 차익 위탁 순매수 수량
+                      example: 100000
+                      maxLength: 18
+                    arbt_entm_ntby_qty_rate:
+                      type: string
+                      description: 차익 위탁 순매수 수량 비율
+                      example: 0.41
+                      maxLength: 82
+                    arbt_entm_ntby_tr_pbmn:
+                      type: string
+                      description: 차익 위탁 순매수 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    arbt_entm_ntby_tr_pbmn_rate:
+                      type: string
+                      description: 차익 위탁 순매수 거래 대금 비
+                      example: 0.41
+                      maxLength: 82
+                    arbt_onsl_ntby_qty:
+                      type: string
+                      description: 차익 자기 순매수 수량
+                      example: 100000
+                      maxLength: 18
+                    arbt_onsl_ntby_qty_rate:
+                      type: string
+                      description: 차익 자기 순매수 수량 비율
+                      example: 0.41
+                      maxLength: 82
+                    arbt_onsl_ntby_tr_pbmn:
+                      type: string
+                      description: 차익 자기 순매수 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    arbt_onsl_ntby_tr_pbmn_rate:
+                      type: string
+                      description: 차익 자기 순매수 거래 대금 비
+                      example: 0.41
+                      maxLength: 82
+                    arbt_smtn_ntby_qty:
+                      type: string
+                      description: 차익 합계 순매수 수량
+                      example: 100000
+                      maxLength: 18
+                    arbt_smtm_ntby_qty_rate:
+                      type: string
+                      description: 차익 합계 순매수 수량 비율
+                      example: 0.41
+                      maxLength: 72
+                    arbt_smtn_ntby_tr_pbmn:
+                      type: string
+                      description: 차익 합계 순매수 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    arbt_smtm_ntby_tr_pbmn_rate:
+                      type: string
+                      description: 차익 합계 순매수 거래대금 비율
+                      example: 0.41
+                      maxLength: 72
+                    nabt_entm_ntby_qty:
+                      type: string
+                      description: 비차익 위탁 순매수 수량
+                      example: 100000
+                      maxLength: 18
+                    nabt_entm_ntby_qty_rate:
+                      type: string
+                      description: 비차익 위탁 순매수 수량 비율
+                      example: 0.41
+                      maxLength: 82
+                    nabt_entm_ntby_tr_pbmn:
+                      type: string
+                      description: 비차익 위탁 순매수 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    nabt_entm_ntby_tr_pbmn_rate:
+                      type: string
+                      description: 비차익 위탁 순매수 거래 대금
+                      example: 0.41
+                      maxLength: 82
+                    nabt_onsl_ntby_qty:
+                      type: string
+                      description: 비차익 자기 순매수 수량
+                      example: 100000
+                      maxLength: 18
+                    nabt_onsl_ntby_qty_rate:
+                      type: string
+                      description: 비차익 자기 순매수 수량 비율
+                      example: 0.41
+                      maxLength: 82
+                    nabt_onsl_ntby_tr_pbmn:
+                      type: string
+                      description: 비차익 자기 순매수 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    nabt_onsl_ntby_tr_pbmn_rate:
+                      type: string
+                      description: 비차익 자기 순매수 거래 대금
+                      example: 0.41
+                      maxLength: 82
+                    nabt_smtn_ntby_qty:
+                      type: string
+                      description: 비차익 합계 순매수 수량
+                      example: 100000
+                      maxLength: 18
+                    nabt_smtm_ntby_qty_rate:
+                      type: string
+                      description: 비차익 합계 순매수 수량 비율
+                      example: 0.41
+                      maxLength: 72
+                    nabt_smtn_ntby_tr_pbmn:
+                      type: string
+                      description: 비차익 합계 순매수 거래 대금
+                      example: 100000
+                      maxLength: 18
+                    nabt_smtm_ntby_tr_pbmn_rate:
+                      type: string
+                      description: 비차익 합계 순매수 거래대금 비
+                      example: 0.41
+                      maxLength: 72
+                    whol_entm_ntby_qty:
+                      type: string
+                      description: 전체 위탁 순매수 수량
+                      example: 100000
+                      maxLength: 18
+                    whol_entm_ntby_qty_rate:
+                      type: string
+                      description: 전체 위탁 순매수 수량 비율
+                      example: 0.41
+                      maxLength: 82
+                    whol_entm_ntby_tr_pbmn:
+                      type: string
+                      description: 전체 위탁 순매수 거래 대금
+                      example: 100000
+                      maxLength: 18
+    overtime_expected_trans_fluct:
+      description: 국내ㅈ주식 시간외 예상체결 등락률 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    data_rank:
+                      type: string
+                      description: 데이터 순위
+                      example: 1
+                    iscd_stat_cls_code:
+                      description: |
+                        종목상태구분코드
+
+                        00 : 그외<br/>
+                        51 : 관리종목<br/>
+                        52 : 투자위험<br/>
+                        53 : 투자경고<br/>
+                        54 : 투자주의<br/>
+                        55 : 신용가능<br/>
+                        57 : 증거금 100%<br/>
+                        58 : 거래정지<br/>
+                        59 : 단기과열
+                      type: string
+                      enum:
+                        - '00'
+                        - '51'
+                        - '52'
+                        - '53'
+                        - '54'
+                        - '55'
+                        - '57'
+                        - '58'
+                        - '59'
+                      example: 57
+                    stck_shrn_iscd:
+                      type: string
+                      description: 주식 단축 종목코드
+                      example: '025820'
+                      maxLength: 9
+                    hts_kor_isnm:
+                      type: string
+                      description: HTS 한글 종목명
+                      example: 이구산업
+                      maxLength: 40
+                    ovtm_untp_antc_cnpr:
+                      type: string
+                      description: 시간외 단일가 예상 체결가
+                      example: 6270
+                      maxLength: 10
+                    ovtm_untp_antc_cntg_vrss:
+                      type: string
+                      description: 시간외 단일가 예상 체결 대비
+                      example: 570
+                      maxLength: 10
+                    ovtm_untp_antc_cntg_vrsssign:
+                      type: string
+                      description: |
+                        시간외 단일가 예상 체결 대비 부호
+
+                        1 : 상한<br/>
+                        2 : 상승<br/>
+                        3 : 보합<br/>
+                        4 : 하한<br/>
+                        5 : 하락
+                      enum:
+                        - '1'
+                        - '2'
+                        - '3'
+                        - '4'
+                        - '5'
+                      example: 1
+                    ovtm_untp_antc_cntg_ctrt:
+                      type: string
+                      description: 시간외 단일가 예상 체결 대비율
+                      example: 10
+                      maxLength: 8
+                    ovtm_untp_askp_rsqn1:
+                      type: string
+                      description: 시간외 단일가 매도호가 잔량1
+                      example: 231200
+                      maxLength: 12
+                    ovtm_untp_bidp_rsqn1:
+                      type: string
+                      description: 시간외 단일가 매수호가 잔량1
+                      example: 394
+                      maxLength: 12
+                    ovtm_untp_antc_cnqn:
+                      type: string
+                      description: 시간외 단일가 예상 체결량
+                      example: 253267
+                      maxLength: 18
+                    itmt_vol:
+                      type: string
+                      description: 장중 거래량
+                      example: 14355442
+                      maxLength: 18
+                    stck_prpr:
+                      type: string
+                      description: 주식 현재가
+                      example: 5700
+                      maxLength: 10
+    daily_loan_trans:
+      description: 종목별 일별 대차거래추이 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output1:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    bsop_date:
+                      type: string
+                      description: 일자
+                      example: 20240501
+                      maxLength: 8
+                    stck_prpr:
+                      type: string
+                      description: 주식 종가
+                      example: 2692.06
+                      maxLength: 10
+                    prdy_vrss_sign:
+                      type: string
+                      description: |
+                        전일 대비 부호
+
+                        1 : 상한<br/>
+                        2 : 상승<br/>
+                        3 : 보합<br/>
+                        4 : 하한<br/>
+                        5 : 하락
+                      enum:
+                        - '1'
+                        - '2'
+                        - '3'
+                        - '4'
+                        - '5'
+                      example: 2
+                    prdy_vrss:
+                      type: string
+                      description: 전일 대비
+                      example: 4.62
+                      maxLength: 10
+                    prdy_ctrt:
+                      type: string
+                      description: 전일 대비율
+                      example: 0.17
+                      maxLength: 8
+                    acml_vol:
+                      type: string
+                      description: 누적 거래량
+                      example: 460083500
+                      maxLength: 18
+                    new_stcn:
+                      type: string
+                      description: 당일 증가 주수 (체결)
+                      example: 14379227
+                      maxLength: 16
+                    rdmp_stcn:
+                      type: string
+                      description: 당일 감소 주수 (상환)
+                      example: 13993603
+                      maxLength: 16
+                    prdy_rmnd_vrss:
+                      type: string
+                      description: 대차거래 증감
+                      example: 385624
+                      maxLength: 16
+                    rmnd_stcn:
+                      type: string
+                      description: 당일 잔고 주수
+                      example: 947521840
+                      maxLength: 16
+                    rmnd_amt:
+                      type: string
+                      description: 당일 잔고 금액
+                      example: 47504735
+                      maxLength: 20
+    program_trade_today:
+      description: 프로그램매매 종합현황(시간) 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    bsop_hour:
+                      type: string
+                      description: 영업 시간
+                      example: 170000
+                      maxLength: 6
+                    arbt_smtn_seln_tr_pbmn:
+                      type: string
+                      description: 차익 합계 매도 거래 대금
+                      example: 63370
+                      maxLength: 18
+                    arbt_smtm_seln_tr_pbmn_rate:
+                      type: string
+                      description: 차익 합계 매도 거래대금 비율
+                      example: 0.58
+                      maxLength: 72
+                    arbt_smtn_shnu_tr_pbmn:
+                      type: string
+                      description: 차익 합계 매수2 거래 대금
+                      example: 340275
+                      maxLength: 18
+                    arbt_smtm_shun_tr_pbmn_rate:
+                      type: string
+                      description: 차익합계매수거래대금비율
+                      example: 3.11
+                      maxLength: 72
+                    nabt_smtn_seln_tr_pbmn:
+                      type: string
+                      description: 비차익 합계 매도 거래 대금
+                      example: 2122439
+                      maxLength: 18
+                    nabt_smtm_seln_tr_pbmn_rate:
+                      type: string
+                      description: 비차익 합계 매도 거래대금 비율
+                      example: 19.4
+                      maxLength: 72
+                    nabt_smtn_shnu_tr_pbmn:
+                      type: string
+                      description: 비차익 합계 매수2 거래 대금
+                      example: 2981823
+                      maxLength: 18
+                    nabt_smtm_shun_tr_pbmn_rate:
+                      type: string
+                      description: 비차익합계매수거래대금비율
+                      example: 27.25
+                      maxLength: 72
+                    arbt_smtn_ntby_tr_pbmn:
+                      type: string
+                      description: 차익 합계 순매수 거래 대금
+                      example: 276905
+                      maxLength: 18
+                    arbt_smtm_ntby_tr_pbmn_rate:
+                      type: string
+                      description: 차익 합계 순매수 거래대금 비율
+                      example: 2.53
+                      maxLength: 72
+                    nabt_smtn_ntby_tr_pbmn:
+                      type: string
+                      description: 비차익 합계 순매수 거래 대금
+                      example: 859384
+                      maxLength: 18
+                    nabt_smtm_ntby_tr_pbmn_rate:
+                      type: string
+                      description: 비차익 합계 순매수 거래대금 비
+                      example: 7.85
+                      maxLength: 72
+                    whol_smtn_ntby_tr_pbmn:
+                      type: string
+                      description: 전체 합계 순매수 거래 대금
+                      example: 1136289
+                      maxLength: 18
+                    whol_ntby_tr_pbmn_rate:
+                      type: string
+                      description: 전체 순매수 거래대금 비율
+                      example: 10.39
+                      maxLength: 72
+    foreign_trade_estimate:
+      description: 국내주식 외국계 매매종목 가집계 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    stck_shrn_iscd:
+                      type: string
+                      description: 주식단축종목코드
+                      example: '005930'
+                      maxLength: 9
+                    hts_kor_isnm:
+                      type: string
+                      description: HTS한글종목명
+                      example: 삼성전자
+                      maxLength: 40
+                    glob_ntsl_qty:
+                      type: string
+                      description: 외국계순매도수량
+                      example: 3870530
+                      maxLength: 12
+                    stck_prpr:
+                      type: string
+                      description: 주식현재가
+                      example: 81300
+                      maxLength: 10
+                    prdy_vrss:
+                      type: string
+                      description: 전일대비
+                      example: 3700
+                      maxLength: 10
+                    prdy_vrss_sign:
+                      type: string
+                      description: 전일대비부호
+                      example: '2'
+                      maxLength: 1
+                    prdy_ctrt:
+                      type: string
+                      description: 전일대비율
+                      example: 4.77
+                      maxLength: 8
+                    acml_vol:
+                      type: string
+                      description: 누적거래량
+                      example: 24892595
+                      maxLength: 18
+                    glob_total_seln_qty:
+                      type: string
+                      description: 외국계총매도수량
+                      example: 547879
+                      maxLength: 18
+                    glob_total_shnu_qty:
+                      type: string
+                      description: 외국계총매수2수량
+                      example: 4418409
+                      maxLength: 18
+    foreign_purchase_trend:
+      description: 국내주식 종목별 외국계 순매수추이 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    bsop_hour:
+                      type: string
+                      description: 영업시간
+                      example: 153106
+                      maxLength: 6
+                    stck_prpr:
+                      type: string
+                      description: 주식현재가
+                      example: 81300
+                      maxLength: 10
+                    prdy_vrss:
+                      type: string
+                      description: 전일대비
+                      example: 3700
+                      maxLength: 10
+                    prdy_vrss_sign:
+                      type: string
+                      description: |
+                        전일대비부호
+
+                        1 : 상승<br>
+                        2 : 상한<br>
+                        3 : 보합<br>
+                        4 : 하한<br>
+                        5 : 하락
+                      enum:
+                        - '1'
+                        - '2'
+                        - '3'
+                        - '4'
+                        - '5'
+                      example: 2
+                    prdy_ctrt:
+                      type: string
+                      description: 전일대비율
+                      example: 4.77
+                      maxLength: 82
+                    acml_vol:
+                      type: string
+                      description: 누적거래량
+                      example: 24771461
+                      maxLength: 18
+                    frgn_seln_vol:
+                      type: string
+                      description: 외국인매도거래량
+                      example: 547879
+                      maxLength: 18
+                    frgn_shnu_vol:
+                      type: string
+                      description: 외국인매수2거래량
+                      example: 4418409
+                      maxLength: 18
+                    glob_ntby_qty:
+                      type: string
+                      description: 외국계순매수수량
+                      example: 3870530
+                      maxLength: 12
+                    frgn_ntby_qty_icdc:
+                      type: string
+                      description: 외국인순매수수량증감
+                      example: 194396
+                      maxLength: 10
+    trade_part_by_amount:
+      description: 국내주식 체결금액별 매매비중 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    prpr_name:
+                      type: string
+                      description: 가격명
+                      example: 3백 이하
+                      maxLength: 40
+                    smtn_avrg_prpr:
+                      type: string
+                      description: 합계 평균가격
+                      example: 78315
+                      maxLength: 10
+                    acml_vol:
+                      type: string
+                      description: 합계 거래량
+                      example: 291426
+                      maxLength: 18
+                    whol_ntby_qty_rate:
+                      type: string
+                      description: 합계 순매수비율
+                      example: 0.37
+                      maxLength: 72
+                    ntby_cntg_csnu:
+                      type: string
+                      description: 합계 순매수건수
+                      example: 13297
+                      maxLength: 10
+                    seln_cnqn_smtn:
+                      type: string
+                      description: 매도 거래량
+                      example: 126451
+                      maxLength: 18
+                    whol_seln_vol_rate:
+                      type: string
+                      description: 매도 거래량비율
+                      example: 1.21
+                      maxLength: 72
+                    seln_cntg_csnu:
+                      type: string
+                      description: 매도 건수
+                      example: 16084
+                      maxLength: 10
+                    shnu_cnqn_smtn:
+                      type: string
+                      description: 매수 거래량
+                      example: 164975
+                      maxLength: 18
+                    whol_shun_vol_rate:
+                      type: string
+                      description: 매수 거래량비율
+                      example: 1.58
+                      maxLength: 72
+                    shnu_cntg_csnu:
+                      type: string
+                      description: 매수 건수
+                      example: 29381
+                      maxLength: 10
+    market_fund:
+      description: 국내 증시자금 종합 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    bsop_date:
+                      type: string
+                      description: 영업일자
+                      example: 20210802
+                      maxLength: 8
+                    bstp_nmix_prpr:
+                      type: string
+                      description: 업종지수현재가
+                      example: 2692.06
+                      maxLength: 112
+                    bstp_nmix_prdy_vrss:
+                      type: string
+                      description: 업종지수전일대비
+                      example: 4.62
+                      maxLength: 112
+                    prdy_vrss_sign:
+                      type: string
+                      description: |
+                        전일대비부호
+
+                        1 : 상한<br/>
+                        2 : 상승<br/>
+                        3 : 보합<br/>
+                        4 : 하한<br/>
+                        5 : 하락
+                      enum:
+                        - '1'
+                        - '2'
+                        - '3'
+                        - '4'
+                        - '5'
+                      example: 2
+                    prdy_ctrt:
+                      type: string
+                      description: 전일대비율
+                      example: 100.17
+                      maxLength: 82
+                    hts_avls:
+                      type: string
+                      description: HTS시가총액
+                      example: 2193843858
+                      maxLength: 18
+                    cust_dpmn_amt:
+                      type: string
+                      description: 고객예탁금금액
+                      example: 572306
+                      maxLength: 18
+                    cust_dpmn_amt_prdy_vrss:
+                      type: string
+                      description: 고객예탁금금액전일대비
+                      example: 4435
+                      maxLength: 18
+                    amt_tnrt:
+                      type: string
+                      description: 금액회전율
+                      example: 33.87
+                      maxLength: 84
+                    uncl_amt:
+                      type: string
+                      description: 미수금액
+                      example: 9289
+                      maxLength: 18
+                    crdt_loan_rmnd:
+                      type: string
+                      description: 신용융자잔고
+                      example: 191730
+                      maxLength: 18
+                    futs_tfam_amt:
+                      type: string
+                      description: 선물예수금금액
+                      example: 112724
+                      maxLength: 18
+                    sttp_amt:
+                      type: string
+                      description: 주식형금액
+                      example: 1112330
+                      maxLength: 18
+                    mxtp_amt:
+                      type: string
+                      description: 혼합형금액
+                      example: 264052
+                      maxLength: 18
+                    bntp_amt:
+                      type: string
+                      description: 채권형금액
+                      example: 1497053
+                      maxLength: 18
+                    mmf_amt:
+                      type: string
+                      description: MMF금액
+                      example: 1971372
+                      maxLength: 18
+                    secu_lend_amt:
+                      type: string
+                      description: 담보대출잔고금액
+                      example: 199663
+                      maxLength: 18
+    investor_trend_by_market_daily:
+      description: 국내주식 시장별 투자자매매동향(일별) 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    stck_bsop_date:
+                      type: string
+                      description: 주식 영업 일자
+                      example: 20240517
+                      maxLength: 8
+                    bstp_nmix_prpr:
+                      type: string
+                      description: 업종 지수 현재가
+                      example: 2724.62
+                      maxLength: 112
+                    bstp_nmix_prdy_vrss:
+                      type: string
+                      description: 업종 지수 전일 대비
+                      example: -28.38
+                      maxLength: 112
+                    prdy_vrss_sign:
+                      type: string
+                      description: |
+                        전일 대비 부호
+
+                        1 : 상한<br/>
+                        2 : 상승<br/>
+                        3 : 보합<br/>
+                        4 : 하한<br/>
+                        5 : 하락
+                      enum:
+                        - '1'
+                        - '2'
+                        - '3'
+                        - '4'
+                        - '5'
+                      example: 5
+                    bstp_nmix_prdy_ctrt:
+                      type: string
+                      description: 업종 지수 전일 대비율
+                      example: -1.03
+                      maxLength: 82
+                    bstp_nmix_oprc:
+                      type: string
+                      description: 업종 지수 시가2
+                      example: 2751.47
+                      maxLength: 112
+                    bstp_nmix_hgpr:
+                      type: string
+                      description: 업종 지수 최고가
+                      example: 2752.17
+                      maxLength: 112
+                    bstp_nmix_lwpr:
+                      type: string
+                      description: 업종 지수 최저가
+                      example: 2724.62
+                      maxLength: 112
+                    stck_prdy_clpr:
+                      type: string
+                      description: 주식 전일 종가
+                      example: 2753
+                      maxLength: 10
+                    frgn_ntby_qty:
+                      type: string
+                      description: 외국인 순매수 수량
+                      example: -18565
+                      maxLength: 12
+                    frgn_reg_ntby_qty:
+                      type: string
+                      description: 외국인 등록 순매수 수량
+                      example: -18009
+                      maxLength: 18
+                    frgn_nreg_ntby_qty:
+                      type: string
+                      description: 외국인 비등록 순매수 수량
+                      example: -557
+                      maxLength: 18
+                    prsn_ntby_qty:
+                      type: string
+                      description: 개인 순매수 수량
+                      example: 22524
+                      maxLength: 12
+                    orgn_ntby_qty:
+                      type: string
+                      description: 기관계 순매수 수량
+                      example: -4738
+                      maxLength: 18
+                    scrt_ntby_qty:
+                      type: string
+                      description: 증권 순매수 수량
+                      example: -1148
+                      maxLength: 12
+                    ivtr_ntby_qty:
+                      type: string
+                      description: 투자신탁 순매수 수량
+                      example: -609
+                      maxLength: 12
+                    pe_fund_ntby_vol:
+                      type: string
+                      description: 사모 펀드 순매수 거래량
+                      example: -431
+                      maxLength: 18
+                    bank_ntby_qty:
+                      type: string
+                      description: 은행 순매수 수량
+                      example: 103
+                      maxLength: 12
+                    insu_ntby_qty:
+                      type: string
+                      description: 보험 순매수 수량
+                      example: -156
+                      maxLength: 12
+                    mrbn_ntby_qty:
+                      type: string
+                      description: 종금 순매수 수량
+                      example: -175
+                      maxLength: 12
+                    fund_ntby_qty:
+                      type: string
+                      description: 기금 순매수 수량
+                      example: -2322
+                      maxLength: 12
+                    etc_ntby_qty:
+                      type: string
+                      description: 기타 순매수 수량
+                      example: 779
+                      maxLength: 12
+                    etc_orgt_ntby_vol:
+                      type: string
+                      description: 기타 단체 순매수 거래량
+                      example: 0
+                      maxLength: 18
+                    etc_corp_ntby_vol:
+                      type: string
+                      description: 기타 법인 순매수 거래량
+                      example: 779
+                      maxLength: 18
+                    frgn_ntby_tr_pbmn:
+                      type: string
+                      description: 외국인 순매수 거래 대금
+                      example: -597490
+                      maxLength: 18
+                    frgn_reg_ntby_pbmn:
+                      type: string
+                      description: 외국인 등록 순매수 대금
+                      example: -597676
+                      maxLength: 18
+                    frgn_nreg_ntby_pbmn:
+                      type: string
+                      description: 외국인 비등록 순매수 대금
+                      example: 186
+                      maxLength: 18
+                    prsn_ntby_tr_pbmn:
+                      type: string
+                      description: 개인 순매수 거래 대금
+                      example: 720787
+                      maxLength: 18
+                    orgn_ntby_tr_pbmn:
+                      type: string
+                      description: 기관계 순매수 거래 대금
+                      example: -150685
+                      maxLength: 18
+                    scrt_ntby_tr_pbmn:
+                      type: string
+                      description: 증권 순매수 거래 대금
+                      example: -18893
+                      maxLength: 18
+                    ivtr_ntby_tr_pbmn:
+                      type: string
+                      description: 투자신탁 순매수 거래 대금
+                      example: -7246
+                      maxLength: 18
+                    pe_fund_ntby_tr_pbmn:
+                      type: string
+                      description: 사모 펀드 순매수 거래 대금
+                      example: -25668
+                      maxLength: 18
+                    bank_ntby_tr_pbmn:
+                      type: string
+                      description: 은행 순매수 거래 대금
+                      example: 3326
+                      maxLength: 18
+                    insu_ntby_tr_pbmn:
+                      type: string
+                      description: 보험 순매수 거래 대금
+                      example: -13791
+                      maxLength: 18
+                    mrbn_ntby_tr_pbmn:
+                      type: string
+                      description: 종금 순매수 거래 대금
+                      example: -2742
+                      maxLength: 18
+                    fund_ntby_tr_pbmn:
+                      type: string
+                      description: 기금 순매수 거래 대금
+                      example: -85671
+                      maxLength: 18
+                    etc_ntby_tr_pbmn:
+                      type: string
+                      description: 기타 순매수 거래 대금
+                      example: 27388
+                      maxLength: 18
+                    etc_orgt_ntby_tr_pbmn:
+                      type: string
+                      description: 기타 단체 순매수 거래 대금
+                      example: 0
+                      maxLength: 18
+                    etc_corp_ntby_tr_pbmn:
+                      type: string
+                      description: 기타 법인 순매수 거래 대금
+                      example: 27388
+                      maxLength: 18
+    program_trade_by_stock_daily:
+      description: 국내주식 종목별 프로그램매매추이(일별) 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    stck_bsop_date:
+                      type: string
+                      description: 주식 영업 일자
+                      example: 20240517
+                      maxLength: 8
+                    stck_clpr:
+                      type: string
+                      description: 주식 종가
+                      example: 77400
+                      maxLength: 10
+                    prdy_vrss:
+                      type: string
+                      description: 전일 대비
+                      example: -800
+                      maxLength: 10
+                    prdy_vrss_sign:
+                      type: string
+                      description: |
+                        전일 대비 부호
+
+                        1 : 상한<br/>
+                        2 : 상승<br/>
+                        3 : 보합<br/>
+                        4 : 하한<br/>
+                        5 : 하락
+                      enum:
+                        - '1'
+                        - '2'
+                        - '3'
+                        - '4'
+                        - '5'
+                      example: 5
+                    prdy_ctrt:
+                      type: string
+                      description: 전일 대비율
+                      example: -1.02
+                      maxLength: 82
+                    acml_vol:
+                      type: string
+                      description: 누적 거래량
+                      example: 15698949
+                      maxLength: 18
+                    acml_tr_pbmn:
+                      type: string
+                      description: 누적 거래 대금
+                      example: 1220563293000
+                      maxLength: 18
+                    whol_smtn_seln_vol:
+                      type: string
+                      description: 전체 합계 매도 거래량
+                      example: 6910299
+                      maxLength: 18
+                    whol_smtn_shnu_vol:
+                      type: string
+                      description: 전체 합계 매수2 거래량
+                      example: 3468820
+                      maxLength: 18
+                    whol_smtn_ntby_qty:
+                      type: string
+                      description: 전체 합계 순매수 수량
+                      example: -3441479
+                      maxLength: 18
+                    whol_smtn_seln_tr_pbmn:
+                      type: string
+                      description: 전체 합계 매도 거래 대금
+                      example: 536935491000
+                      maxLength: 18
+                    whol_smtn_shnu_tr_pbmn:
+                      type: string
+                      description: 전체 합계 매수2 거래 대금
+                      example: 270120727200
+                      maxLength: 18
+                    whol_smtn_ntby_tr_pbmn:
+                      type: string
+                      description: 전체 합계 순매수 거래 대금
+                      example: -266814763800
+                      maxLength: 18
+                    whol_ntby_vol_icdc:
+                      type: string
+                      description: 전체 순매수 거래량 증감
+                      example: -3989127
+                      maxLength: 10
+                    whol_ntby_tr_pbmn_icdc2:
+                      type: string
+                      description: 전체 순매수 거래 대금 증감2
+                      example: -311124223700
+                      maxLength: 18
+    investor_program_trade_today:
+      description: 국내주식 프로그램매매 투자자매매동향 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    invr_cls_code:
+                      type: string
+                      description: 투자자코드
+                      example: 7100
+                      maxLength: 4
+                    invr_cls_name:
+                      type: string
+                      description: 투자자 구분 명
+                      example: 기 타
+                      maxLength: 20
+                    arbt_seln_qty:
+                      type: string
+                      description: 차익매도수량
+                      example: 0
+                      maxLength: 18
+                    arbt_shnu_qty:
+                      type: string
+                      description: 차익매수수량
+                      example: 0
+                      maxLength: 18
+                    arbt_ntby_qty:
+                      type: string
+                      description: 차익순매수수량
+                      example: 0
+                      maxLength: 12
+                    arbt_seln_amt:
+                      type: string
+                      description: 차익매도대금
+                      example: 0
+                      maxLength: 18
+                    arbt_shnu_amt:
+                      type: string
+                      description: 차익매수대금
+                      example: 0
+                      maxLength: 18
+                    arbt_ntby_amt:
+                      type: string
+                      description: 차익순매수대금
+                      example: 0
+                      maxLength: 12
+                    nabt_seln_qty:
+                      type: string
+                      description: 비차익매도수량
+                      example: 289
+                      maxLength: 18
+                    nabt_shnu_qty:
+                      type: string
+                      description: 비차익매수수량
+                      example: 242
+                      maxLength: 18
+                    nabt_ntby_qty:
+                      type: string
+                      description: 비차익순매수수량
+                      example: -47
+                      maxLength: 12
+                    nabt_seln_amt:
+                      type: string
+                      description: 비차익매도대금
+                      example: 7151
+                      maxLength: 18
+                    nabt_shnu_amt:
+                      type: string
+                      description: 비차익매수대금
+                      example: 4006
+                      maxLength: 18
+                    nabt_ntby_amt:
+                      type: string
+                      description: 비차익순매수대금
+                      example: -3145
+                      maxLength: 12
+                    all_seln_qty:
+                      type: string
+                      description: 전체매도수량
+                      example: 289
+                      maxLength: 18
+                    all_shnu_qty:
+                      type: string
+                      description: 전체매수수량
+                      example: 242
+                      maxLength: 18
+                    all_ntby_qty:
+                      type: string
+                      description: 전체순매수수량
+                      example: -47
+                      maxLength: 12
+                    all_seln_amt:
+                      type: string
+                      description: 전체매도대금
+                      example: 7151
+                      maxLength: 18
+                    all_shnu_amt:
+                      type: string
+                      description: 전체매수대금
+                      example: 4006
+                      maxLength: 18
+                    all_ntby_amt:
+                      type: string
+                      description: 전체순매수대금
+                      example: -3145
+                      maxLength: 12
+    capture_up_low_price:
+      description: 국내주식 상하한가 포착 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    mksc_shrn_iscd:
+                      type: string
+                      description: 유가증권단축종목코드
+                      example: '012800'
+                      maxLength: 9
+                    hts_kor_isnm:
+                      type: string
+                      description: HTS한글종목명
+                      example: 대창
+                      maxLength: 40
+                    stck_prpr:
+                      type: string
+                      description: 주식현재가
+                      example: 2080
+                      maxLength: 10
+                    prdy_vrss_sign:
+                      type: string
+                      description: |
+                        전일대비부호
+
+                        1 : 상한<br/>
+                        2 : 상승<br/>
+                        3 : 보합<br/>
+                        4 : 하한<br/>
+                        5 : 하락
+                      enum:
+                        - '1'
+                        - '2'
+                        - '3'
+                        - '4'
+                        - '5'
+                      example: 1
+                    prdy_vrss:
+                      type: string
+                      description: 전일대비
+                      example: 478
+                      maxLength: 10
+                    prdy_ctrt:
+                      type: string
+                      description: 전일대비율
+                      example: 29.84
+                      maxLength: 82
+                    acml_vol:
+                      type: string
+                      description: 누적거래량
+                      example: 39937550
+                      maxLength: 18
+                    total_askp_rsqn:
+                      type: string
+                      description: 총매도호가잔량
+                      example: 0
+                      maxLength: 12
+                    total_bidp_rsqn:
+                      type: string
+                      description: 총매수호가잔량
+                      example: 2648946
+                      maxLength: 12
+                    askp_rsqn1:
+                      type: string
+                      description: 매도호가잔량1
+                      example: 0
+                      maxLength: 12
+                    bidp_rsqn1:
+                      type: string
+                      description: 매수호가잔량1
+                      example: 2299811
+                      maxLength: 12
+                    prdy_vol:
+                      type: string
+                      description: 전일거래량
+                      example: 4003121
+                      maxLength: 18
+                    seln_cnqn:
+                      type: string
+                      description: 매도체결량
+                      example: 2
+                      maxLength: 18
+                    shnu_cnqn:
+                      type: string
+                      description: 매수2체결량
+                      example: 0
+                      maxLength: 18
+                    stck_llam:
+                      type: string
+                      description: 주식하한가
+                      example: 1122
+                      maxLength: 10
+                    stck_mxpr:
+                      type: string
+                      description: 주식상한가
+                      example: 2080
+                      maxLength: 10
+                    prdy_vrss_vol_rate:
+                      type: string
+                      description: 전일대비거래량비율
+                      example: 997.66
+                      maxLength: 84
+    volume_profile_indicator:
+      description: 국내주식 매물대/거래비중 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output1:
+                type: object
+                properties:
+                  rprs_mrkt_kor_name:
+                    type: string
+                    description: 대표시장한글명
+                    example: KOSDAQ
+                    maxLength: 40
+                  stck_shrn_iscd:
+                    type: string
+                    description: 주식단축종목코드
+                    example: 136480
+                    maxLength: 9
+                  hts_kor_isnm:
+                    type: string
+                    description: HTS한글종목명
+                    example: 하림
+                    maxLength: 40
+                  stck_prpr:
+                    type: string
+                    description: 주식현재가
+                    example: 3240
+                    maxLength: 10
+                  prdy_vrss_sign:
+                    type: string
+                    description: |
+                      전일대비부호
+
+                      1 : 상한<br/>
+                      2 : 상승<br/>
+                      3 : 보합<br/>
+                      4 : 하한<br/>
+                      5 : 하락
+                    enum:
+                      - '1'
+                      - '2'
+                      - '3'
+                      - '4'
+                      - '5'
+                    example: 5
+                  prdy_vrss:
+                    type: string
+                    description: 전일대비
+                    example: -65
+                    maxLength: 10
+                  prdy_ctrt:
+                    type: string
+                    description: 전일대비율
+                    example: -1.97
+                    maxLength: 82
+                  acml_vol:
+                    type: string
+                    description: 누적거래량
+                    example: 847563
+                    maxLength: 18
+                  prdy_vol:
+                    type: string
+                    description: 전일거래량
+                    example: 974060
+                    maxLength: 18
+                  wghn_avrg_stck_prc:
+                    type: string
+                    description: 가중평균주식가격
+                    example: 3256.34
+                    maxLength: 192
+                  lstn_stcn:
+                    type: string
+                    description: 상장주수
+                    example: 106209702
+                    maxLength: 18
+              output2:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    data_rank:
+                      type: string
+                      description: 데이터순위
+                      example: 1
+                      maxLength: 10
+                    stck_prpr:
+                      type: string
+                      description: 주식현재가
+                      example: 3255
+                      maxLength: 10
+                    cntg_vol:
+                      type: string
+                      description: 체결거래량
+                      example: 124515
+                      maxLength: 18
+                    acml_vol_rlim:
+                      type: string
+                      description: 누적거래량비중
+                      example: 14.69
+                      maxLength: 72
+    member_trend_daily:
+      description: 국내주식 현재가 회원사 종목매매동향 조회 성공
+      headers:
+        content-type:
+          $ref: '#/components/headers/content-type'
+        tr_id:
+          $ref: '#/components/headers/tr_id'
+        tr_cont:
+          $ref: '#/components/headers/tr_cont'
+        gt_uid:
+          $ref: '#/components/headers/gt_uid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rt_cd:
+                $ref: '#/components/schemas/rt_cd'
+              msg_cd:
+                $ref: '#/components/schemas/msg_cd'
+              msg1:
+                $ref: '#/components/schemas/msg1'
+              output:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    stck_bsop_date:
+                      type: string
+                      description: 주식영업일자
+                      example: 20240501
+                      maxLength: 8
+                    total_seln_qty:
+                      type: string
+                      description: 총매도수량
+                      example: 55432
+                      maxLength: 18
+                    total_shnu_qty:
+                      type: string
+                      description: 총매수2수량
+                      example: 81112
+                      maxLength: 18
+                    ntby_qty:
+                      type: string
+                      description: 순매수수량
+                      example: 25680
+                      maxLength: 18
+                    stck_prpr:
+                      type: string
+                      description: 주식현재가
+                      example: 3240
+                      maxLength: 10
+                    prdy_vrss:
+                      type: string
+                      description: 전일대비
+                      example: -65
+                      maxLength: 10
+                    prdy_vrss_sign:
+                      type: string
+                      description: |
+                        전일대비부호
+
+                        1 : 상승<br>
+                        2 : 상한<br>
+                        3 : 보합<br>
+                        4 : 하한<br>
+                        5 : 하락
+                      enum:
+                        - '1'
+                        - '2'
+                        - '3'
+                        - '4'
+                        - '5'
+                      example: 5
+                    prdy_ctrt:
+                      type: string
+                      description: 전일대비율
+                      example: -1.97
+                      maxLength: 82
+                    acml_vol:
+                      type: string
+                      description: 누적거래량
+                      example: 862835
+                      maxLength: 18
     volume_rank:
       description: 국내주식 거래량순위 조회 성공
       headers:
@@ -18272,8 +22979,8 @@ components:
                         1 : 상한<br/>
                         2 : 상승<br/>
                         3 : 보합<br/>
-                        4 : 하락<br/>
-                        5 : 하한
+                        4 : 하한<br/>
+                        5 : 하락
                       enum:
                         - '1'
                         - '2'
@@ -18411,8 +23118,8 @@ components:
                         1 : 상한<br/>
                         2 : 상승<br/>
                         3 : 보합<br/>
-                        4 : 하락<br/>
-                        5 : 하한
+                        4 : 하한<br/>
+                        5 : 하락
                       enum:
                         - '1'
                         - '2'

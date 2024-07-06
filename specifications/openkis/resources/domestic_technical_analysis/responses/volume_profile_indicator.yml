@@ -1,0 +1,113 @@
+description: 국내주식 매물대/거래비중 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output1:
+          type: object
+          properties:
+            rprs_mrkt_kor_name:
+              type: string
+              description: 대표시장한글명
+              example: KOSDAQ
+              maxLength: 40
+            stck_shrn_iscd:
+              type: string
+              description: 주식단축종목코드
+              example: 136480
+              maxLength: 9
+            hts_kor_isnm:
+              type: string
+              description: HTS한글종목명
+              example: 하림
+              maxLength: 40
+            stck_prpr:
+              type: string
+              description: 주식현재가
+              example: 3240
+              maxLength: 10
+            prdy_vrss_sign:
+              type: string
+              description: |
+                전일대비부호
+
+                1 : 상한<br/>
+                2 : 상승<br/>
+                3 : 보합<br/>
+                4 : 하한<br/>
+                5 : 하락
+              enum: ["1", "2", "3", "4", "5"]
+              example: 5
+            prdy_vrss:
+              type: string
+              description: 전일대비
+              example: -65
+              maxLength: 10
+            prdy_ctrt:
+              type: string
+              description: 전일대비율
+              example: -1.97
+              maxLength: 82
+            acml_vol:
+              type: string
+              description: 누적거래량
+              example: 847563
+              maxLength: 18
+            prdy_vol:
+              type: string
+              description: 전일거래량
+              example: 974060
+              maxLength: 18
+            wghn_avrg_stck_prc:
+              type: string
+              description: 가중평균주식가격
+              example: 3256.34
+              maxLength: 192
+            lstn_stcn:
+              type: string
+              description: 상장주수
+              example: 106209702
+              maxLength: 18
+        output2:
+          type: array
+          items:
+            type: object
+            properties:
+              data_rank:
+                type: string
+                description: 데이터순위
+                example: 1
+                maxLength: 10
+              stck_prpr:
+                type: string
+                description: 주식현재가
+                example: 3255
+                maxLength: 10
+              cntg_vol:
+                type: string
+                description: 체결거래량
+                example: 124515
+                maxLength: 18
+              acml_vol_rlim:
+                type: string
+                description: 누적거래량비중
+                example: 14.69
+                maxLength: 72

@@ -286,14 +286,6 @@ paths:
     get:
       $ref: resources/domestic_technical_analysis/foreign_institution_total.yml
 
-  /uapi/domestic-stock/v1/quotations/psearch-title:
-    get:
-      $ref: resources/domestic_technical_analysis/personal_search_list.yml
-
-  /uapi/domestic-stock/v1/quotations/psearch-result:
-    get:
-      $ref: resources/domestic_technical_analysis/personal_search_detail.yml
-
   /uapi/domestic-stock/v1/quotations/program-trade-by-stock:
     get:
       $ref: resources/domestic_technical_analysis/program_trade_by_stock.yml
@@ -329,6 +321,10 @@ paths:
   /uapi/domestic-stock/v1/ranking/overtime-exp-trans-fluct:
     get:
       $ref: resources/domestic_technical_analysis/overtime_expected_trans_fluct.yml
+
+  /uapi/domestic-stock/v1/quotations/daily-loan-trans:
+    get:
+      $ref: resources/domestic_technical_analysis/daily_loan_trans.yml
 
   /uapi/domestic-stock/v1/quotations/comp-program-trade-today:
     get:

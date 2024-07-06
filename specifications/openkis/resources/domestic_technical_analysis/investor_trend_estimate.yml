@@ -10,9 +10,41 @@ description: |
   증권사 직원이 장중에 집계/입력한 자료를 단순 누계한 수치로서,
   입력시간은 외국인 09:30, 11:20, 13:20, 14:30 / 기관종합 10:00, 11:20, 13:20, 14:30 이며, 사정에 따라 변동될 수 있습니다.
 
-responses:
-  200:
-    description: 종목별 외인기관 추정가집계 조회 성공
-
 tags:
   - DomesticTechnicalAnalysis
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/personal_secret_key
+  - $ref: ../../shared/parameters.yml#/tr_cont
+  - $ref: ../../shared/parameters.yml#/customer_type
+  - $ref: ../../shared/parameters.yml#/sequence_no
+  - $ref: ../../shared/parameters.yml#/mac_address
+  - $ref: ../../shared/parameters.yml#/phone_number
+  - $ref: ../../shared/parameters.yml#/ip_address
+  - $ref: ../../shared/parameters.yml#/hashkey
+  - $ref: ../../shared/parameters.yml#/gt_uid
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      모의투자 미지원<br/>
+      HHPTJ04160200 : 종목별 외인기관 추정가집계
+    required: true
+    schema:
+      type: string
+      enum: ["HHPTJ04160200"]
+      default: HHPTJ04160200
+      example: HHPTJ04160200
+  - in: query
+    name: mksc_shrn_iscd
+    description: 종목코드
+    required: true
+    schema:
+      type: string
+      example: "005930"
+      maxLength: 12
+
+responses:
+  200:
+    $ref: responses/investor_trend_estimate.yml

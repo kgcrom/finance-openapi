@@ -10,9 +10,40 @@ description: |
   ※ 해당자료는 금융투자협회의 자료를 제공하고 있으며, 오류와 지연이 발생할 수 있습니다.<br/>
   ※ 위 정보에 의한 투자판단의 최종책임은 정보이용자에게 있으며, 당사와 한국금융투자협회는 어떠한 법적인 책임도 지지 않사오니 투자에 참고로만 이용하시기 바랍니다.
 
-responses:
-  200:
-    description: 국내 증시자금 종합 조회 성공
-
 tags:
   - DomesticTechnicalAnalysis
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/personal_secret_key
+  - $ref: ../../shared/parameters.yml#/tr_cont
+  - $ref: ../../shared/parameters.yml#/customer_type
+  - $ref: ../../shared/parameters.yml#/sequence_no
+  - $ref: ../../shared/parameters.yml#/mac_address
+  - $ref: ../../shared/parameters.yml#/phone_number
+  - $ref: ../../shared/parameters.yml#/ip_address
+  - $ref: ../../shared/parameters.yml#/hashkey
+  - $ref: ../../shared/parameters.yml#/gt_uid
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      모의투자 미지원<br/>
+      FHKST111900C0 : 국내 증시자금 종합
+    required: true
+    schema:
+      type: string
+      enum: ["FHKST111900C0"]
+      default: FHKST111900C0
+      example: FHKST111900C0
+  - in: query
+    name: fid_input_date_1
+    description: 입력날짜
+    required: true
+    schema:
+      type: string
+      example: 20240601
+
+responses:
+  200:
+    $ref: responses/market_fund.yml

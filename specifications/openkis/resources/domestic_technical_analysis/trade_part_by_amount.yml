@@ -7,9 +7,68 @@ description: |
 
   한국투자 HTS(eFriend Plus) > [0135] 체결금액별 매매비중 화면의 "상단 표" 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
-responses:
-  200:
-    description: 국내주식 체결금액별 매매비중 조회 성공
-
 tags:
   - DomesticTechnicalAnalysis
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/personal_secret_key
+  - $ref: ../../shared/parameters.yml#/tr_cont
+  - $ref: ../../shared/parameters.yml#/customer_type
+  - $ref: ../../shared/parameters.yml#/sequence_no
+  - $ref: ../../shared/parameters.yml#/mac_address
+  - $ref: ../../shared/parameters.yml#/phone_number
+  - $ref: ../../shared/parameters.yml#/ip_address
+  - $ref: ../../shared/parameters.yml#/hashkey
+  - $ref: ../../shared/parameters.yml#/gt_uid
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      모의투자 미지원<br/>
+      FHKST111900C0 : 국내주식 체결금액별 매매비중
+    required: true
+    schema:
+      type: string
+      enum: ["FHKST111900C0"]
+      default: FHKST111900C0
+      example: FHKST111900C0
+  - in: query
+    name: fid_cond_mrkt_div_code
+    description: |
+      조건시장분류코드
+
+      시장구분(J)
+    required: true
+    schema:
+      type: string
+      enum: ["J"]
+      default: J
+      example: J
+  - in: query
+    name: fid_cond_scr_div_code
+    description: |
+      조건화면분류코드
+
+      Uniquekey(11119)
+    required: true
+    schema:
+      type: string
+      enum: ["11119"]
+      default: 11119
+      example: 11119
+  - in: query
+    name: fid_input_iscd
+    description: |
+      입력종목코드
+
+      종목코드(ex)(005930 (삼성전자))
+    required: true
+    schema:
+      type: string
+      example: "005930"
+      maxLength: 12
+
+responses:
+  200:
+    $ref: responses/trade_part_by_amount.yml

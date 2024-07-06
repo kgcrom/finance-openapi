@@ -1,0 +1,230 @@
+description: 국내주식 시장별 투자자매매동향(일별) 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: array
+          items:
+            type: object
+            properties:
+              stck_bsop_date:
+                type: string
+                description: 주식 영업 일자
+                example: 20240517
+                maxLength: 8
+              bstp_nmix_prpr:
+                type: string
+                description: 업종 지수 현재가
+                example: 2724.62
+                maxLength: 112
+              bstp_nmix_prdy_vrss:
+                type: string
+                description: 업종 지수 전일 대비
+                example: -28.38
+                maxLength: 112
+              prdy_vrss_sign:
+                type: string
+                description: |
+                  전일 대비 부호
+
+                  1 : 상한<br/>
+                  2 : 상승<br/>
+                  3 : 보합<br/>
+                  4 : 하한<br/>
+                  5 : 하락
+                enum: ["1", "2", "3", "4", "5"]
+                example: 5
+              bstp_nmix_prdy_ctrt:
+                type: string
+                description: 업종 지수 전일 대비율
+                example: -1.03
+                maxLength: 82
+              bstp_nmix_oprc:
+                type: string
+                description: 업종 지수 시가2
+                example: 2751.47
+                maxLength: 112
+              bstp_nmix_hgpr:
+                type: string
+                description: 업종 지수 최고가
+                example: 2752.17
+                maxLength: 112
+              bstp_nmix_lwpr:
+                type: string
+                description: 업종 지수 최저가
+                example: 2724.62
+                maxLength: 112
+              stck_prdy_clpr:
+                type: string
+                description: 주식 전일 종가
+                example: 2753.00
+                maxLength: 10
+              frgn_ntby_qty:
+                type: string
+                description: 외국인 순매수 수량
+                example: -18565
+                maxLength: 12
+              frgn_reg_ntby_qty:
+                type: string
+                description: 외국인 등록 순매수 수량
+                example: -18009
+                maxLength: 18
+              frgn_nreg_ntby_qty:
+                type: string
+                description: 외국인 비등록 순매수 수량
+                example: -557
+                maxLength: 18
+              prsn_ntby_qty:
+                type: string
+                description: 개인 순매수 수량
+                example: 22524
+                maxLength: 12
+              orgn_ntby_qty:
+                type: string
+                description: 기관계 순매수 수량
+                example: -4738
+                maxLength: 18
+              scrt_ntby_qty:
+                type: string
+                description: 증권 순매수 수량
+                example: -1148
+                maxLength: 12
+              ivtr_ntby_qty:
+                type: string
+                description: 투자신탁 순매수 수량
+                example: -609
+                maxLength: 12
+              pe_fund_ntby_vol:
+                type: string
+                description: 사모 펀드 순매수 거래량
+                example: -431
+                maxLength: 18
+              bank_ntby_qty:
+                type: string
+                description: 은행 순매수 수량
+                example: 103
+                maxLength: 12
+              insu_ntby_qty:
+                type: string
+                description: 보험 순매수 수량
+                example: -156
+                maxLength: 12
+              mrbn_ntby_qty:
+                type: string
+                description: 종금 순매수 수량
+                example: -175
+                maxLength: 12
+              fund_ntby_qty:
+                type: string
+                description: 기금 순매수 수량
+                example: -2322
+                maxLength: 12
+              etc_ntby_qty:
+                type: string
+                description: 기타 순매수 수량
+                example: 779
+                maxLength: 12
+              etc_orgt_ntby_vol:
+                type: string
+                description: 기타 단체 순매수 거래량
+                example: 0
+                maxLength: 18
+              etc_corp_ntby_vol:
+                type: string
+                description: 기타 법인 순매수 거래량
+                example: 779
+                maxLength: 18
+              frgn_ntby_tr_pbmn:
+                type: string
+                description: 외국인 순매수 거래 대금
+                example: -597490
+                maxLength: 18
+              frgn_reg_ntby_pbmn:
+                type: string
+                description: 외국인 등록 순매수 대금
+                example: -597676
+                maxLength: 18
+              frgn_nreg_ntby_pbmn:
+                type: string
+                description: 외국인 비등록 순매수 대금
+                example: 186
+                maxLength: 18
+              prsn_ntby_tr_pbmn:
+                type: string
+                description: 개인 순매수 거래 대금
+                example: 720787
+                maxLength: 18
+              orgn_ntby_tr_pbmn:
+                type: string
+                description: 기관계 순매수 거래 대금
+                example: -150685
+                maxLength: 18
+              scrt_ntby_tr_pbmn:
+                type: string
+                description: 증권 순매수 거래 대금
+                example: -18893
+                maxLength: 18
+              ivtr_ntby_tr_pbmn:
+                type: string
+                description: 투자신탁 순매수 거래 대금
+                example: -7246
+                maxLength: 18
+              pe_fund_ntby_tr_pbmn:
+                type: string
+                description: 사모 펀드 순매수 거래 대금
+                example: -25668
+                maxLength: 18
+              bank_ntby_tr_pbmn:
+                type: string
+                description: 은행 순매수 거래 대금
+                example: 3326
+                maxLength: 18
+              insu_ntby_tr_pbmn:
+                type: string
+                description: 보험 순매수 거래 대금
+                example: -13791
+                maxLength: 18
+              mrbn_ntby_tr_pbmn:
+                type: string
+                description: 종금 순매수 거래 대금
+                example: -2742
+                maxLength: 18
+              fund_ntby_tr_pbmn:
+                type: string
+                description: 기금 순매수 거래 대금
+                example: -85671
+                maxLength: 18
+              etc_ntby_tr_pbmn:
+                type: string
+                description: 기타 순매수 거래 대금
+                example: 27388
+                maxLength: 18
+              etc_orgt_ntby_tr_pbmn:
+                type: string
+                description: 기타 단체 순매수 거래 대금
+                example: 0
+                maxLength: 18
+              etc_corp_ntby_tr_pbmn:
+                type: string
+                description: 기타 법인 순매수 거래 대금
+                example: 27388
+                maxLength: 18

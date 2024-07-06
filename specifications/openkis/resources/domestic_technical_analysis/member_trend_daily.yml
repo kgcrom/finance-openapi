@@ -7,9 +7,83 @@ description: |
 
   한국투자 HTS(eFriend Plus) > [0454] 증권사 종목매매동향 화면을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
-responses:
-  200:
-    description: 국내주식 현재가 회원사 종목매매동향 조회 성공
-
 tags:
   - DomesticTechnicalAnalysis
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/personal_secret_key
+  - $ref: ../../shared/parameters.yml#/tr_cont
+  - $ref: ../../shared/parameters.yml#/customer_type
+  - $ref: ../../shared/parameters.yml#/sequence_no
+  - $ref: ../../shared/parameters.yml#/mac_address
+  - $ref: ../../shared/parameters.yml#/phone_number
+  - $ref: ../../shared/parameters.yml#/ip_address
+  - $ref: ../../shared/parameters.yml#/hashkey
+  - $ref: ../../shared/parameters.yml#/gt_uid
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      모의투자 미지원<br/>
+      FHPST04540000 : 주식현재가 회원사 종목매매동향
+    required: true
+    schema:
+      type: string
+      enum: ["FHPST04540000"]
+      default: FHPST04540000
+      example: FHPST04540000
+  - in: query
+    name: fid_cond_mrkt_div_code
+    description: 조건시장분류코드 (주식J)
+    required: true
+    schema:
+      type: string
+      enum: ["J"]
+      default: J
+      example: J
+  - in: query
+    name: fid_input_iscd
+    description: 주식종목코드입력
+    required: true
+    schema:
+      type: string
+      maxLength: 12
+      example: "005930"
+  - in: query
+    name: fid_input_iscd_2
+    description: 회원사코드 (kis developers 포탈 사이트 포럼-> FAQ -> 종목정보 다운로드(국내) > 회원사 참조)
+    required: true
+    schema:
+      type: string
+      maxLength: 8
+      example: "00003"
+  - in: query
+    name: fid_input_date_1
+    description: 날짜 ~
+    required: true
+    schema:
+      type: string
+      example: 20240501
+      maxLength: 10
+  - in: query
+    name: fid_input_date_2
+    description: ~ 날짜
+    required: true
+    schema:
+      type: string
+      example: 20240601
+      maxLength: 10
+  - in: query
+    name: fid_sctn_cls_code
+    description: 구간구분코드 (공백)
+    required: true
+    schema:
+      type: string
+      default: ""
+      example: ""
+      maxLength: 2
+
+responses:
+  200:
+    $ref: responses/member_trend_daily.yml

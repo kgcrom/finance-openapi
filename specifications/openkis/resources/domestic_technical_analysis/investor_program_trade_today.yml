@@ -7,9 +7,45 @@ description: |
 
   한국투자 HTS(eFriend Plus) > [0466] 프로그램매매 투자자별 동향 화면 의 "당일동향" 표의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
-responses:
-  200:
-    description: 국내주식 프로그램매매 투자자매매동향 조회 성공
-
 tags:
   - DomesticTechnicalAnalysis
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/personal_secret_key
+  - $ref: ../../shared/parameters.yml#/tr_cont
+  - $ref: ../../shared/parameters.yml#/customer_type
+  - $ref: ../../shared/parameters.yml#/sequence_no
+  - $ref: ../../shared/parameters.yml#/mac_address
+  - $ref: ../../shared/parameters.yml#/phone_number
+  - $ref: ../../shared/parameters.yml#/ip_address
+  - $ref: ../../shared/parameters.yml#/hashkey
+  - $ref: ../../shared/parameters.yml#/gt_uid
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      모의투자 미지원<br/>
+      HHPPG046600C0 : 프로그램매매 투자자매매동향(당일)
+    required: true
+    schema:
+      type: string
+      enum: ["HHPPG046600C0"]
+      default: HHPPG046600C0
+      example: HHPPG046600C0
+  - in: query
+    name: mrkt_div_cls_code
+    description: |
+      시장구분코드
+
+      1 : 코스피<br/>
+      4 : 코스닥
+    required: true
+    schema:
+      type: string
+      enum: ["1", "4"]
+      example: "1"
+
+responses:
+  200:
+    $ref: responses/investor_program_trade_today.yml

@@ -6,9 +6,75 @@ description: |
   종목별일별매수매도체결량 API입니다. 실전계좌의 경우, 한 번의 호출에 최대 100건까지 확인 가능합니다.<br/>
   국내주식 종목의 일별 매수체결량, 매도체결량 데이터를 확인할 수 있습니다.
 
-responses:
-  200:
-    description: 종목별일별매수매도체결량 조회 성공
-
 tags:
   - DomesticTechnicalAnalysis
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/personal_secret_key
+  - $ref: ../../shared/parameters.yml#/tr_cont
+  - $ref: ../../shared/parameters.yml#/customer_type
+  - $ref: ../../shared/parameters.yml#/sequence_no
+  - $ref: ../../shared/parameters.yml#/mac_address
+  - $ref: ../../shared/parameters.yml#/phone_number
+  - $ref: ../../shared/parameters.yml#/ip_address
+  - $ref: ../../shared/parameters.yml#/hashkey
+  - $ref: ../../shared/parameters.yml#/gt_uid
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      모의투자 미지원<br/>
+      FHKST03010800 : 종목별 일별매수매도 체결량
+    required: true
+    schema:
+      type: string
+      enum: ["FHKST03010800"]
+      default: FHKST03010800
+      example: FHKST03010800
+  - in: query
+    name: fid_cond_mrkt_div_code
+    description: FID 조건 시장 분류 코드
+    required: true
+    schema:
+      type: string
+      enum: ["J"]
+      default: J
+      example: J
+  - in: query
+    name: fid_input_iscd
+    description: FID 입력 종목코드
+    required: true
+    schema:
+      type: string
+      example: "005930"
+      maxLength: 12
+  - in: query
+    name: fid_input_date_1
+    description: FID 입력 날짜1 (from ~)
+    required: true
+    schema:
+      type: string
+      example: 20240601
+      maxLength: 10
+  - in: query
+    name: fid_input_date_2
+    description: FID 입력 날짜2 (~ to)
+    required: true
+    schema:
+      type: string
+      example: 20240630
+      maxLength: 10
+  - in: query
+    name: fid_period_div_code
+    description: FID 기간 분류 코드
+    required: true
+    schema:
+      type: string
+      enum: ["D"]
+      default: D
+      example: D
+
+responses:
+  200:
+    $ref: responses/trade_daily_volume.yml

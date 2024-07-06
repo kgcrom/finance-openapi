@@ -1,0 +1,388 @@
+description: 시장별 투자자매매동향 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: array
+          items:
+            type: object
+            properties:
+              frgn_seln_vol:
+                type: string
+                description: 외국인 매도 거래량
+                example: 75588
+                maxLength: 18
+              frgn_shnu_vol:
+                type: string
+                description: 외국인 매수2 거래량
+                example: 70298
+                maxLength: 18
+              frgn_ntby_qty:
+                type: string
+                description: 외국인 순매수 수량
+                example: -5290
+                maxLength: 12
+              frgn_seln_tr_pbmn:
+                type: string
+                description: 외국인 매도 거래 대금
+                example: 2818983
+                maxLength: 18
+              frgn_shnu_tr_pbmn:
+                type: string
+                description: 외국인 매수2 거래 대금
+                example: 2967639
+                maxLength: 18
+              frgn_ntby_tr_pbmn:
+                type: string
+                description: 외국인 순매수 거래 대금
+                example: 148656
+                maxLength: 18
+              prsn_seln_vol:
+                type: string
+                description: 개인 매도 거래량
+                example: 294375
+                maxLength: 18
+              prsn_shnu_vol:
+                type: string
+                description: 개인 매수2 거래량
+                example: 300449
+                maxLength: 18
+              prsn_ntby_qty:
+                type: string
+                description: 개인 순매수 수량
+                example: 6074
+                maxLength: 12
+              prsn_seln_tr_pbmn:
+                type: string
+                description: 개인 매도 거래 대금
+                example: 5131230
+                maxLength: 18
+              prsn_shnu_tr_pbmn:
+                type: string
+                description: 개인 매수2 거래 대금
+                example: 5020361
+                maxLength: 18
+              prsn_ntby_tr_pbmn:
+                type: string
+                description: 개인 순매수 거래 대금
+                example: -110869
+                maxLength: 18
+              orgn_seln_vol:
+                type: string
+                description: 기관계 매도 거래량
+                example: 36911
+                maxLength: 18
+              orgn_shnu_vol:
+                type: string
+                description: 기관계 매수2 거래량
+                example: 37631
+                maxLength: 18
+              orgn_ntby_qty:
+                type: string
+                description: 기관계 순매수 수량
+                example: 720
+                maxLength: 18
+              orgn_seln_tr_pbmn:
+                type: string
+                description: 기관계 매도 거래 대금
+                example: 2110371
+                maxLength: 18
+              orgn_shnu_tr_pbmn:
+                type: string
+                description: 기관계 매수2 거래 대금
+                example: 2054839
+                maxLength: 18
+              orgn_ntby_tr_pbmn:
+                type: string
+                description: 기관계 순매수 거래 대금
+                example: -55532
+                maxLength: 18
+              scrt_seln_vol:
+                type: string
+                description: 증권 매도 거래량
+                example: 8493
+                maxLength: 18
+              scrt_shnu_vol:
+                type: string
+                description: 증권 매수2 거래량
+                example: 12126
+                maxLength: 18
+              scrt_ntby_qty:
+                type: string
+                description: 증권 순매수 수량
+                example: 3633
+                maxLength: 12
+              scrt_seln_tr_pbmn:
+                type: string
+                description: 증권 매도 거래 대금
+                example: 384357
+                maxLength: 18
+              scrt_shnu_tr_pbmn:
+                type: string
+                description: 증권 매수2 거래 대금
+                example: 472598
+                maxLength: 18
+              scrt_ntby_tr_pbmn:
+                type: string
+                description: 증권 순매수 거래 대금
+                example: 88241
+                maxLength: 18
+              ivtr_seln_vol:
+                type: string
+                description: 투자신탁 매도 거래량
+                example: 4086
+                maxLength: 18
+              ivtr_shnu_vol:
+                type: string
+                description: 투자신탁 매수2 거래량
+                example: 3964
+                maxLength: 18
+              ivtr_ntby_qty:
+                type: string
+                description: 투자신탁 순매수 수량
+                example: -122
+                maxLength: 12
+              ivtr_seln_tr_pbmn:
+                type: string
+                description: 투자신탁 매도 거래 대금
+                example: 177374
+                maxLength: 18
+              ivtr_shnu_tr_pbmn:
+                type: string
+                description: 투자신탁 매수2 거래 대금
+                example: 165434
+                maxLength: 18
+              ivtr_ntby_tr_pbmn:
+                type: string
+                description: 투자신탁 순매수 거래 대금
+                example: -11940
+                maxLength: 18
+              pe_fund_seln_tr_pbmn:
+                type: string
+                description: 사모 펀드 매도 거래 대금
+                example: 213413
+                maxLength: 18
+              pe_fund_seln_vol:
+                type: string
+                description: 사모 펀드 매도 거래량
+                example: 4833
+                maxLength: 18
+              pe_fund_ntby_vol:
+                type: string
+                description: 사모 펀드 순매수 거래량
+                example: -1804
+                maxLength: 18
+              pe_fund_shnu_tr_pbmn:
+                type: string
+                description: 사모 펀드 매수2 거래 대금
+                example: 115551
+                maxLength: 18
+              pe_fund_shnu_vol:
+                type: string
+                description: 사모 펀드 매수2 거래량
+                example: 3029
+                maxLength: 18
+              pe_fund_ntby_tr_pbmn:
+                type: string
+                description: 사모 펀드 순매수 거래 대금
+                example: -97861
+                maxLength: 18
+              bank_seln_vol:
+                type: string
+                description: 은행 매도 거래량
+                example: 245
+                maxLength: 18
+              bank_shnu_vol:
+                type: string
+                description: 은행 매수2 거래량
+                example: 51
+                maxLength: 18
+              bank_ntby_qty:
+                type: string
+                description: 은행 순매수 수량
+                example: -193
+                maxLength: 12
+              bank_seln_tr_pbmn:
+                type: string
+                description: 은행 매도 거래 대금
+                example: 13382
+                maxLength: 18
+              bank_shnu_tr_pbmn:
+                type: string
+                description: 은행 매수2 거래 대금
+                example: 2873
+                maxLength: 18
+              bank_ntby_tr_pbmn:
+                type: string
+                description: 은행 순매수 거래 대금
+                example: -10509
+                maxLength: 18
+              insu_seln_vol:
+                type: string
+                description: 보험 매도 거래량
+                example: 1653
+                maxLength: 18
+              insu_shnu_vol:
+                type: string
+                description: 보험 매수2 거래량
+                example: 1050
+                maxLength: 18
+              insu_ntby_qty:
+                type: string
+                description: 보험 순매수 수량
+                example: -603
+                maxLength: 12
+              insu_seln_tr_pbmn:
+                type: string
+                description: 보험 매도 거래 대금
+                example: 79782
+                maxLength: 18
+              insu_shnu_tr_pbmn:
+                type: string
+                description: 보험 매수2 거래 대금
+                example: 50378
+                maxLength: 18
+              insu_ntby_tr_pbmn:
+                type: string
+                description: 보험 순매수 거래 대금
+                example: -29404
+                maxLength: 18
+              mrbn_seln_vol:
+                type: string
+                description: 종금 매도 거래량
+                example: 230
+                maxLength: 18
+              mrbn_shnu_vol:
+                type: string
+                description: 종금 매수2 거래량
+                example: 310
+                maxLength: 18
+              mrbn_ntby_qty:
+                type: string
+                description: 종금 순매수 수량
+                example: 80
+                maxLength: 12
+              mrbn_seln_tr_pbmn:
+                type: string
+                description: 종금 매도 거래 대금
+                example: 10393
+                maxLength: 18
+              mrbn_shnu_tr_pbmn:
+                type: string
+                description: 종금 매수2 거래 대금
+                example: 11896
+                maxLength: 18
+              mrbn_ntby_tr_pbmn:
+                type: string
+                description: 종금 순매수 거래 대금
+                example: 1502
+                maxLength: 18
+              fund_seln_vol:
+                type: string
+                description: 기금 매도 거래량
+                example: 17372
+                maxLength: 18
+              fund_shnu_vol:
+                type: string
+                description: 기금 매수2 거래량
+                example: 17101
+                maxLength: 18
+              fund_ntby_qty:
+                type: string
+                description: 기금 순매수 수량
+                example: -271
+                maxLength: 12
+              fund_seln_tr_pbmn:
+                type: string
+                description: 기금 매도 거래 대금
+                example: 1231671
+                maxLength: 18
+              fund_shnu_tr_pbmn:
+                type: string
+                description: 기금 매수2 거래 대금
+                example: 1236109
+                maxLength: 18
+              fund_ntby_tr_pbmn:
+                type: string
+                description: 기금 순매수 거래 대금
+                example: 4439
+                maxLength: 18
+              etc_orgt_seln_vol:
+                type: string
+                description: 기타 단체 매도 거래량
+                example: 0
+                maxLength: 18
+              etc_orgt_shnu_vol:
+                type: string
+                description: 기타 단체 매수2 거래량
+                example: 0
+                maxLength: 18
+              etc_orgt_ntby_vol:
+                type: string
+                description: 기타 단체 순매수 거래량
+                example: 0
+                maxLength: 18
+              etc_orgt_seln_tr_pbmn:
+                type: string
+                description: 기타 단체 매도 거래 대금
+                example: 0
+                maxLength: 18
+              etc_orgt_shnu_tr_pbmn:
+                type: string
+                description: 기타 단체 매수2 거래 대금
+                example: 0
+                maxLength: 18
+              etc_orgt_ntby_tr_pbmn:
+                type: string
+                description: 기타 단체 순매수 거래 대금
+                example: 0
+                maxLength: 18
+              etc_corp_seln_vol:
+                type: string
+                description: 기타 법인 매도 거래량
+                example: 5061
+                maxLength: 18
+              etc_corp_shnu_vol:
+                type: string
+                description: 기타 법인 매수2 거래량
+                example: 3558
+                maxLength: 18
+              etc_corp_ntby_vol:
+                type: string
+                description: 기타 법인 순매수 거래량
+                example: -1503
+                maxLength: 18
+              etc_corp_seln_tr_pbmn:
+                type: string
+                description: 기타 법인 매도 거래 대금
+                example: 95856
+                maxLength: 18
+              etc_corp_shnu_tr_pbmn:
+                type: string
+                description: 기타 법인 매수2 거래 대금
+                example: 113601
+                maxLength: 18
+              etc_corp_ntby_tr_pbmn:
+                type: string
+                description: 기타 법인 순매수 거래 대금
+                example: 17745
+                maxLength: 18

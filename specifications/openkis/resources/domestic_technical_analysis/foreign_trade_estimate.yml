@@ -7,9 +7,90 @@ description: |
 
   한국투자 HTS(eFriend Plus) > [0430] 외국계 매매종목 가집계 화면의 기능을 API로 개발한 사항으로, 해당 화면을 참고하시면 기능을 이해하기 쉽습니다.
 
-responses:
-  200:
-    description: 국내주식 외국계 매매종목 가집계 조회 성공
-
 tags:
   - DomesticTechnicalAnalysis
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/personal_secret_key
+  - $ref: ../../shared/parameters.yml#/tr_cont
+  - $ref: ../../shared/parameters.yml#/customer_type
+  - $ref: ../../shared/parameters.yml#/sequence_no
+  - $ref: ../../shared/parameters.yml#/mac_address
+  - $ref: ../../shared/parameters.yml#/phone_number
+  - $ref: ../../shared/parameters.yml#/ip_address
+  - $ref: ../../shared/parameters.yml#/hashkey
+  - $ref: ../../shared/parameters.yml#/gt_uid
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      모의투자 미지원<br/>
+      FHKST644100C0 : 외국계 매매종목 가집계
+    required: true
+    schema:
+      type: string
+      enum: ["FHKST644100C0"]
+      default: FHKST644100C0
+      example: FHKST644100C0
+  - in: query
+    name: fid_cond_mrkt_div_code
+    description: |
+      조건시장분류코드
+
+      시장구분코드 (J)
+    required: true
+    schema:
+      type: string
+      enum: ["J"]
+      default: J
+      example: J
+  - in: query
+    name: fid_cond_scr_div_code
+    description: |
+      조건화면분류코드
+
+      Uniquekey (16441)
+    required: true
+    schema:
+      type: string
+      enum: ["16441"]
+      default: 16441
+      example: 16441
+  - in: query
+    name: fid_input_iscd
+    description: |
+      입력종목코드
+
+      0000(전체), 1001(코스피), 2001(코스닥)
+    required: true
+    schema:
+      type: string
+      enum: ["0000", "1001", "2001"]
+      example: 0000
+  - in: query
+    name: fid_rank_sort_cls_code
+    description: |
+      순위정렬구분코드
+
+      0(금액순), 1(수량순)
+    required: true
+    schema:
+      type: string
+      enum: ["0", "1"]
+      example: 0
+  - in: query
+    name: fid_rank_sort_cls_code_2
+    description: |
+      순위정렬구분코드2
+
+      0(매수순), 1(매도순)
+    required: true
+    schema:
+      type: string
+      enum: ["0", "1"]
+      example: 0
+
+responses:
+  200:
+    $ref: responses/foreign_trade_estimate.yml

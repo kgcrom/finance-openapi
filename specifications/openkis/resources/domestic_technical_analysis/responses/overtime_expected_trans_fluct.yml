@@ -1,0 +1,110 @@
+description: 국내ㅈ주식 시간외 예상체결 등락률 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: array
+          items:
+            type: object
+            properties:
+              data_rank:
+                type: string
+                description: 데이터 순위
+                example: 1
+              iscd_stat_cls_code:
+                description: |
+                  종목상태구분코드
+
+                  00 : 그외<br/>
+                  51 : 관리종목<br/>
+                  52 : 투자위험<br/>
+                  53 : 투자경고<br/>
+                  54 : 투자주의<br/>
+                  55 : 신용가능<br/>
+                  57 : 증거금 100%<br/>
+                  58 : 거래정지<br/>
+                  59 : 단기과열
+                type: string
+                enum: ["00", "51", "52", "53", "54", "55", "57", "58", "59"]
+                example: 57
+              stck_shrn_iscd:
+                type: string
+                description: 주식 단축 종목코드
+                example: "025820"
+                maxLength: 9
+              hts_kor_isnm:
+                type: string
+                description: HTS 한글 종목명
+                example: 이구산업
+                maxLength: 40
+              ovtm_untp_antc_cnpr:
+                type: string
+                description: 시간외 단일가 예상 체결가
+                example: 6270
+                maxLength: 10
+              ovtm_untp_antc_cntg_vrss:
+                type: string
+                description: 시간외 단일가 예상 체결 대비
+                example: 570
+                maxLength: 10
+              ovtm_untp_antc_cntg_vrsssign:
+                type: string
+                description: |
+                  시간외 단일가 예상 체결 대비 부호
+
+                  1 : 상한<br/>
+                  2 : 상승<br/>
+                  3 : 보합<br/>
+                  4 : 하한<br/>
+                  5 : 하락
+                enum: ["1", "2", "3", "4", "5"]
+                example: 1
+              ovtm_untp_antc_cntg_ctrt:
+                type: string
+                description: 시간외 단일가 예상 체결 대비율
+                example: 10.00
+                maxLength: 8
+              ovtm_untp_askp_rsqn1:
+                type: string
+                description: 시간외 단일가 매도호가 잔량1
+                example: 231200
+                maxLength: 12
+              ovtm_untp_bidp_rsqn1:
+                type: string
+                description: 시간외 단일가 매수호가 잔량1
+                example: 394
+                maxLength: 12
+              ovtm_untp_antc_cnqn:
+                type: string
+                description: 시간외 단일가 예상 체결량
+                example: 253267
+                maxLength: 18
+              itmt_vol:
+                type: string
+                description: 장중 거래량
+                example: 14355442
+                maxLength: 18
+              stck_prpr:
+                type: string
+                description: 주식 현재가
+                example: 5700
+                maxLength: 10

@@ -1,0 +1,83 @@
+operationId: getTechnicalDailyLoanTrans
+
+summary: 종목별 일별 대차거래추이
+
+description: |
+  종목별 일별 대차거래추이 API입니다.<br/>
+  한 번의 조회에 최대 100건까지 조회 가능하며, start_date, end_date 를 수정하여 다음 조회가 가능합니다.
+
+tags:
+  - DomesticTechnicalAnalysis
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/personal_secret_key
+  - $ref: ../../shared/parameters.yml#/tr_cont
+  - $ref: ../../shared/parameters.yml#/customer_type
+  - $ref: ../../shared/parameters.yml#/sequence_no
+  - $ref: ../../shared/parameters.yml#/mac_address
+  - $ref: ../../shared/parameters.yml#/phone_number
+  - $ref: ../../shared/parameters.yml#/ip_address
+  - $ref: ../../shared/parameters.yml#/hashkey
+  - $ref: ../../shared/parameters.yml#/gt_uid
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      모의투자 미지원<br/>
+      HHPST074500C0 : 종목별 일별 대차거래추이
+    required: true
+    schema:
+      type: string
+      enum: ["HHPST074500C0"]
+      default: HHPST074500C0
+      example: HHPST074500C0
+  - in: query
+    name: mrkt_div_cls_code
+    description: |
+      조회구분
+
+      1(코스피), 2(코스닥), 3(종목)
+    required: true
+    schema:
+      type: string
+      enum: ["1", "2", "3"]
+      example: "1"
+  - in: query
+    name: mksc_shrn_iscd
+    description: 종목코드
+    required: true
+    schema:
+      type: string
+      example: "005930"
+      maxLength: 9
+  - in: query
+    name: start_date
+    description: |
+      조회시작일시 (조회기간 ~)
+    required: true
+    schema:
+      type: string
+      example: 20240501
+      maxLength: 8
+  - in: query
+    name: end_date
+    description: |
+      조회종료일시 (~ 조회기간)
+    required: true
+    schema:
+      type: string
+      example: 20240601
+      maxLength: 8
+  - in: query
+    name: cts
+    description: 이전조회KEY 공백
+    required: true
+    schema:
+      type: string
+      default: ""
+      example: ""
+
+responses:
+  200:
+    $ref: responses/daily_loan_trans.yml

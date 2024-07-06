@@ -1,0 +1,120 @@
+description: 국내주식 상하한가 포착 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: array
+          items:
+            type: object
+            properties:
+              mksc_shrn_iscd:
+                type: string
+                description: 유가증권단축종목코드
+                example: "012800"
+                maxLength: 9
+              hts_kor_isnm:
+                type: string
+                description: HTS한글종목명
+                example: 대창
+                maxLength: 40
+              stck_prpr:
+                type: string
+                description: 주식현재가
+                example: 2080
+                maxLength: 10
+              prdy_vrss_sign:
+                type: string
+                description: |
+                  전일대비부호
+
+                  1 : 상한<br/>
+                  2 : 상승<br/>
+                  3 : 보합<br/>
+                  4 : 하한<br/>
+                  5 : 하락
+                enum: ["1", "2", "3", "4", "5"]
+                example: 1
+              prdy_vrss:
+                type: string
+                description: 전일대비
+                example: 478
+                maxLength: 10
+              prdy_ctrt:
+                type: string
+                description: 전일대비율
+                example: 29.84
+                maxLength: 82
+              acml_vol:
+                type: string
+                description: 누적거래량
+                example: 39937550
+                maxLength: 18
+              total_askp_rsqn:
+                type: string
+                description: 총매도호가잔량
+                example: 0
+                maxLength: 12
+              total_bidp_rsqn:
+                type: string
+                description: 총매수호가잔량
+                example: 2648946
+                maxLength: 12
+              askp_rsqn1:
+                type: string
+                description: 매도호가잔량1
+                example: 0
+                maxLength: 12
+              bidp_rsqn1:
+                type: string
+                description: 매수호가잔량1
+                example: 2299811
+                maxLength: 12
+              prdy_vol:
+                type: string
+                description: 전일거래량
+                example: 4003121
+                maxLength: 18
+              seln_cnqn:
+                type: string
+                description: 매도체결량
+                example: 2
+                maxLength: 18
+              shnu_cnqn:
+                type: string
+                description: 매수2체결량
+                example: 0
+                maxLength: 18
+              stck_llam:
+                type: string
+                description: 주식하한가
+                example: 1122
+                maxLength: 10
+              stck_mxpr:
+                type: string
+                description: 주식상한가
+                example: 2080
+                maxLength: 10
+              prdy_vrss_vol_rate:
+                type: string
+                description: 전일대비거래량비율
+                example: 997.66
+                maxLength: 84

@@ -1,0 +1,523 @@
+description: 국내주식 프로그램매매 종합현황(일별) 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: array
+          items:
+            type: object
+            properties:
+              stck_bsop_date:
+                type: string
+                description: 주식 영업 일자
+                example: 20240315
+                maxLength: 8
+              arbt_entm_seln_vol:
+                type: string
+                description: 차익 위탁 매도 거래량
+                example: 100000
+                maxLength: 18
+              arbt_entm_seln_vol_rate:
+                type: string
+                description: 차익 위탁 매도 거래량 비율
+                example: 0.41
+                maxLength: 82
+              arbt_entm_seln_tr_pbmn:
+                type: string
+                description: 차익 위탁 매도 거래 대금
+                example: 100000
+                maxLength: 18
+              arbt_entm_seln_tr_pbmn_rate:
+                type: string
+                description: 차익 위탁 매도 거래 대금 비율
+                example: 0.41
+                maxLength: 82
+              arbt_onsl_seln_tr_pbmn:
+                type: string
+                description: 차익 자기 매도 거래 대금
+                example: 100000
+                maxLength: 18
+              arbt_onsl_seln_tr_pbmn_rate:
+                type: string
+                description: 차익 자기 매도 거래 대금 비율
+                example: 0.41
+                maxLength: 82
+              arbt_onsl_seln_vol:
+                type: string
+                description: 차익 자기 매도 거래량
+                example: 100000
+                maxLength: 18
+              arbt_onsl_seln_vol_rate:
+                type: string
+                description: 차익 자기 매도 거래량 비율
+                example: 0.41
+                maxLength: 82
+              arbt_smtn_seln_vol:
+                type: string
+                description: 차익 합계 매도 거래량
+                example: 100000
+                maxLength: 18
+              arbt_smtm_seln_vol_rate:
+                type: string
+                description: 차익 합계 매도 거래량 비율
+                example: 0.41
+                maxLength: 72
+              arbt_smtn_seln_tr_pbmn:
+                type: string
+                description: 차익 합계 매도 거래 대금
+                example: 100000
+                maxLength: 18
+              arbt_smtm_seln_tr_pbmn_rate:
+                type: string
+                description: 차익 합계 매도 거래대금 비율
+                example: 0.41
+                maxLength: 72
+              nabt_entm_seln_vol:
+                type: string
+                description: 비차익 위탁 매도 거래량
+                example: 100000
+                maxLength: 18
+              nabt_entm_seln_tr_pbmn:
+                type: string
+                description: 비차익 위탁 매도 거래 대금
+                example: 100000
+                maxLength: 18
+              nabt_entm_seln_vol_rate:
+                type: string
+                description: 비차익 위탁 매도 거래량 비율
+                example: 0.41
+                maxLength: 82
+              nabt_entm_seln_tr_pbmn_rate:
+                type: string
+                description: 비차익 위탁 매도 거래 대금 비
+                example: 0.41
+                maxLength: 82
+              nabt_onsl_seln_vol:
+                type: string
+                description: 비차익 자기 매도 거래량
+                example: 100000
+                maxLength: 18
+              nabt_onsl_seln_vol_rate:
+                type: string
+                description: 비차익 자기 매도 거래량 비율
+                example: 0.41
+                maxLength: 82
+              nabt_onsl_seln_tr_pbmn:
+                type: string
+                description: 비차익 자기 매도 거래 대금
+                example: 100000
+                maxLength: 18
+              nabt_onsl_seln_tr_pbmn_rate:
+                type: string
+                description: 비차익 자기 매도 거래 대금 비
+                example: 0.41
+                maxLength: 82
+              nabt_smtn_seln_vol:
+                type: string
+                description: 비차익 합계 매도 거래량
+                example: 100000
+                maxLength: 18
+              nabt_smtm_seln_vol_rate:
+                type: string
+                description: 비차익 합계 매도 거래량 비율
+                example: 0.41
+                maxLength: 72
+              nabt_smtn_seln_tr_pbmn:
+                type: string
+                description: 비차익 합계 매도 거래 대금
+                example: 100000
+                maxLength: 18
+              nabt_smtm_seln_tr_pbmn_rate:
+                type: string
+                description: 비차익 합계 매도 거래대금 비율
+                example: 0.41
+                maxLength: 72
+              whol_entm_seln_vol:
+                type: string
+                description: 전체 위탁 매도 거래량
+                example: 100000
+                maxLength: 18
+              whol_entm_seln_tr_pbmn:
+                type: string
+                description: 전체 위탁 매도 거래 대금
+                example: 100000
+                maxLength: 18
+              whol_entm_seln_vol_rate:
+                type: string
+                description: 전체 위탁 매도 거래량 비율
+                example: 0.41
+                maxLength: 82
+              whol_entm_seln_tr_pbmn_rate:
+                type: string
+                description: 전체 위탁 매도 거래 대금 비율
+                example: 0.41
+                maxLength: 82
+              whol_onsl_seln_vol:
+                type: string
+                description: 전체 자기 매도 거래량
+                example: 100000
+                maxLength: 18
+              whol_onsl_seln_vol_rate:
+                type: string
+                description: 전체 자기 매도 거래량 비율
+                example: 0.41
+                maxLength: 82
+              whol_onsl_seln_tr_pbmn:
+                type: string
+                description: 전체 자기 매도 거래 대금
+                example: 100000
+                maxLength: 18
+              whol_onsl_seln_tr_pbmn_rate:
+                type: string
+                description: 전체 자기 매도 거래 대금 비율
+                example: 0.41
+                maxLength: 82
+              whol_smtn_seln_vol:
+                type: string
+                description: 전체 합계 매도 거래량
+                example: 100000
+                maxLength: 18
+              whol_seln_vol_rate:
+                type: string
+                description: 전체 매도 거래량 비율
+                example: 0.41
+                maxLength: 72
+              whol_smtn_seln_tr_pbmn:
+                type: string
+                description: 전체 합계 매도 거래 대금
+                example: 100000
+                maxLength: 18
+              whol_seln_tr_pbmn_rate:
+                type: string
+                description: 전체 매도 거래대금 비율
+                example: 0.41
+                maxLength: 72
+              arbt_entm_shnu_vol:
+                type: string
+                description: 차익 위탁 매수2 거래량
+                example: 100000
+                maxLength: 18
+              arbt_entm_shnu_vol_rate:
+                type: string
+                description: 차익 위탁 매수 거래량 비율
+                example: 0.41
+                maxLength: 82
+              arbt_entm_shnu_tr_pbmn:
+                type: string
+                description: 차익 위탁 매수2 거래 대금
+                example: 100000
+                maxLength: 18
+              arbt_entm_shnu_tr_pbmn_rate:
+                type: string
+                description: 차익 위탁 매수 거래 대금 비율
+                example: 0.41
+                maxLength: 82
+              arbt_onsl_shnu_vol:
+                type: string
+                description: 차익 자기 매수2 거래량
+                example: 100000
+                maxLength: 18
+              arbt_onsl_shnu_vol_rate:
+                type: string
+                description: 차익 자기 매수 거래량 비율
+                example: 0.41
+                maxLength: 82
+              arbt_onsl_shnu_tr_pbmn:
+                type: string
+                description: 차익 자기 매수2 거래 대금
+                example: 100000
+                maxLength: 18
+              arbt_onsl_shnu_tr_pbmn_rate:
+                type: string
+                description: 차익 자기 매수 거래 대금 비율
+                example: 0.41
+                maxLength: 82
+              arbt_smtn_shnu_vol:
+                type: string
+                description: 차익 합계 매수2 거래량
+                example: 100000
+                maxLength: 18
+              arbt_smtm_shun_vol_rate:
+                type: string
+                description: 차익 합계 매수 거래량 비율
+                example: 0.41
+                maxLength: 72
+              arbt_smtn_shnu_tr_pbmn:
+                type: string
+                description: 차익 합계 매수2 거래 대금
+                example: 100000
+                maxLength: 18
+              arbt_smtm_shun_tr_pbmn_rate:
+                type: string
+                description: 차익 합계 매수 거래대금 비율
+                example: 0.41
+                maxLength: 72
+              nabt_entm_shnu_vol:
+                type: string
+                description: 비차익 위탁 매수2 거래량
+                example: 100000
+                maxLength: 18
+              nabt_entm_shnu_vol_rate:
+                type: string
+                description: 비차익 위탁 매수 거래량 비율
+                example: 0.41
+                maxLength: 82
+              nabt_entm_shnu_tr_pbmn:
+                type: string
+                description: 비차익 위탁 매수2 거래 대금
+                example: 100000
+                maxLength: 18
+              nabt_entm_shnu_tr_pbmn_rate:
+                type: string
+                description: 비차익 위탁 매수 거래 대금 비
+                example: 0.41
+                maxLength: 82
+              nabt_onsl_shnu_vol:
+                type: string
+                description: 비차익 자기 매수2 거래량
+                example: 100000
+                maxLength: 18
+              nabt_onsl_shnu_vol_rate:
+                type: string
+                description: 비차익 자기 매수 거래량 비율
+                example: 0.41
+                maxLength: 82
+              nabt_onsl_shnu_tr_pbmn:
+                type: string
+                description: 비차익 자기 매수2 거래 대금
+                example: 100000
+                maxLength: 18
+              nabt_onsl_shnu_tr_pbmn_rate:
+                type: string
+                description: 비차익 자기 매수 거래 대금
+                example: 0.41
+                maxLength: 82
+              nabt_smtn_shnu_vol:
+                type: string
+                description: 비차익 합계 매수2 거래량
+                example: 100000
+                maxLength: 18
+              nabt_smtm_shun_vol_rate:
+                type: string
+                description: 비차익 합계 매수 거래량 비율
+                example: 0.41
+                maxLength: 72
+              nabt_smtn_shnu_tr_pbmn:
+                type: string
+                description: 비차익 합계 매수2 거래 대금
+                example: 100000
+                maxLength: 18
+              nabt_smtm_shun_tr_pbmn_rate:
+                type: string
+                description: 비차익 합계 매수 거래대금 비
+                example: 0.41
+                maxLength: 72
+              whol_entm_shnu_vol:
+                type: string
+                description: 전체 위탁 매수2 거래량
+                example: 100000
+                maxLength: 18
+              whol_entm_shnu_vol_rate:
+                type: string
+                description: 전체 위탁 매수 거래량 비율
+                example: 0.41
+                maxLength: 82
+              whol_entm_shnu_tr_pbmn:
+                type: string
+                description: 전체 위탁 매수2 거래 대금
+                example: 100000
+                maxLength: 18
+              whol_entm_shnu_tr_pbmn_rate:
+                type: string
+                description: 전체 위탁 매수 거래 대금 비율
+                example: 0.41
+                maxLength: 82
+              whol_onsl_shnu_vol:
+                type: string
+                description: 전체 자기 매수2 거래량
+                example: 100000
+                maxLength: 18
+              whol_onsl_shnu_tr_pbmn:
+                type: string
+                description: 전체 자기 매수2 거래 대금
+                example: 100000
+                maxLength: 18
+              whol_onsl_shnu_tr_pbmn_rate:
+                type: string
+                description: 전체 자기 매수 거래 대금 비율
+                example: 0.41
+                maxLength: 82
+              whol_smtn_shnu_vol:
+                type: string
+                description: 전체 합계 매수2 거래량
+                example: 100000
+                maxLength: 18
+              whol_shun_vol_rate:
+                type: string
+                description: 전체 매수 거래량 비율
+                example: 0.41
+                maxLength: 72
+              whol_smtn_shnu_tr_pbmn:
+                type: string
+                description: 전체 합계 매수2 거래 대금
+                example: 100000
+                maxLength: 18
+              whol_shun_tr_pbmn_rate:
+                type: string
+                description: 전체 매수 거래대금 비율
+                example: 0.41
+                maxLength: 72
+              arbt_entm_ntby_qty:
+                type: string
+                description: 차익 위탁 순매수 수량
+                example: 100000
+                maxLength: 18
+              arbt_entm_ntby_qty_rate:
+                type: string
+                description: 차익 위탁 순매수 수량 비율
+                example: 0.41
+                maxLength: 82
+              arbt_entm_ntby_tr_pbmn:
+                type: string
+                description: 차익 위탁 순매수 거래 대금
+                example: 100000
+                maxLength: 18
+              arbt_entm_ntby_tr_pbmn_rate:
+                type: string
+                description: 차익 위탁 순매수 거래 대금 비
+                example: 0.41
+                maxLength: 82
+              arbt_onsl_ntby_qty:
+                type: string
+                description: 차익 자기 순매수 수량
+                example: 100000
+                maxLength: 18
+              arbt_onsl_ntby_qty_rate:
+                type: string
+                description: 차익 자기 순매수 수량 비율
+                example: 0.41
+                maxLength: 82
+              arbt_onsl_ntby_tr_pbmn:
+                type: string
+                description: 차익 자기 순매수 거래 대금
+                example: 100000
+                maxLength: 18
+              arbt_onsl_ntby_tr_pbmn_rate:
+                type: string
+                description: 차익 자기 순매수 거래 대금 비
+                example: 0.41
+                maxLength: 82
+              arbt_smtn_ntby_qty:
+                type: string
+                description: 차익 합계 순매수 수량
+                example: 100000
+                maxLength: 18
+              arbt_smtm_ntby_qty_rate:
+                type: string
+                description: 차익 합계 순매수 수량 비율
+                example: 0.41
+                maxLength: 72
+              arbt_smtn_ntby_tr_pbmn:
+                type: string
+                description: 차익 합계 순매수 거래 대금
+                example: 100000
+                maxLength: 18
+              arbt_smtm_ntby_tr_pbmn_rate:
+                type: string
+                description: 차익 합계 순매수 거래대금 비율
+                example: 0.41
+                maxLength: 72
+              nabt_entm_ntby_qty:
+                type: string
+                description: 비차익 위탁 순매수 수량
+                example: 100000
+                maxLength: 18
+              nabt_entm_ntby_qty_rate:
+                type: string
+                description: 비차익 위탁 순매수 수량 비율
+                example: 0.41
+                maxLength: 82
+              nabt_entm_ntby_tr_pbmn:
+                type: string
+                description: 비차익 위탁 순매수 거래 대금
+                example: 100000
+                maxLength: 18
+              nabt_entm_ntby_tr_pbmn_rate:
+                type: string
+                description: 비차익 위탁 순매수 거래 대금
+                example: 0.41
+                maxLength: 82
+              nabt_onsl_ntby_qty:
+                type: string
+                description: 비차익 자기 순매수 수량
+                example: 100000
+                maxLength: 18
+              nabt_onsl_ntby_qty_rate:
+                type: string
+                description: 비차익 자기 순매수 수량 비율
+                example: 0.41
+                maxLength: 82
+              nabt_onsl_ntby_tr_pbmn:
+                type: string
+                description: 비차익 자기 순매수 거래 대금
+                example: 100000
+                maxLength: 18
+              nabt_onsl_ntby_tr_pbmn_rate:
+                type: string
+                description: 비차익 자기 순매수 거래 대금
+                example: 0.41
+                maxLength: 82
+              nabt_smtn_ntby_qty:
+                type: string
+                description: 비차익 합계 순매수 수량
+                example: 100000
+                maxLength: 18
+              nabt_smtm_ntby_qty_rate:
+                type: string
+                description: 비차익 합계 순매수 수량 비율
+                example: 0.41
+                maxLength: 72
+              nabt_smtn_ntby_tr_pbmn:
+                type: string
+                description: 비차익 합계 순매수 거래 대금
+                example: 100000
+                maxLength: 18
+              nabt_smtm_ntby_tr_pbmn_rate:
+                type: string
+                description: 비차익 합계 순매수 거래대금 비
+                example: 0.41
+                maxLength: 72
+              whol_entm_ntby_qty:
+                type: string
+                description: 전체 위탁 순매수 수량
+                example: 100000
+                maxLength: 18
+              whol_entm_ntby_qty_rate:
+                type: string
+                description: 전체 위탁 순매수 수량 비율
+                example: 0.41
+                maxLength: 82
+              whol_entm_ntby_tr_pbmn:
+                type: string
+                description: 전체 위탁 순매수 거래 대금
+                example: 100000
+                maxLength: 18

@@ -114,7 +114,7 @@ parameters:
       enum: ["0"]
       default: 0
       example: 0
-  - in: query``
+  - in: query
     name: fid_trgt_cls_code
     description: |
       FID 대상 구분 코드

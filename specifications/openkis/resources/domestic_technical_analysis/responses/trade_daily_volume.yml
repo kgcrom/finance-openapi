@@ -1,0 +1,56 @@
+description: 종목별일별매수매도체결량 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output1:
+          type: object
+          properties:
+            shnu_cnqn_smtn:
+              type: string
+              description: 매수 체결량 합계
+              example: 4520816
+              maxLength: 18
+            seln_cnqn_smtn:
+              type: string
+              description: 매도 체결량 합계
+              example: 5285722
+              maxLength: 18
+        output2:
+          type: array
+          items:
+            type: object
+            properties:
+              stck_bsop_date:
+                type: string
+                description: 주식 영업 일자
+                example: 20240601
+                maxLength: 8
+              total_seln_qty:
+                type: string
+                description: 총 매도 수량
+                example: 5285722
+                maxLength: 18
+              total_shnu_qty:
+                type: string
+                description: 총 매수 수량
+                example: 4520816
+                maxLength: 18

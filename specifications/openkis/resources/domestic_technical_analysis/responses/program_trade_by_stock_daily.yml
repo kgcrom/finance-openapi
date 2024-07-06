@@ -1,0 +1,110 @@
+description: 국내주식 종목별 프로그램매매추이(일별) 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: array
+          items:
+            type: object
+            properties:
+              stck_bsop_date:
+                type: string
+                description: 주식 영업 일자
+                example: 20240517
+                maxLength: 8
+              stck_clpr:
+                type: string
+                description: 주식 종가
+                example: 77400
+                maxLength: 10
+              prdy_vrss:
+                type: string
+                description: 전일 대비
+                example: -800
+                maxLength: 10
+              prdy_vrss_sign:
+                type: string
+                description: |
+                  전일 대비 부호
+
+                  1 : 상한<br/>
+                  2 : 상승<br/>
+                  3 : 보합<br/>
+                  4 : 하한<br/>
+                  5 : 하락
+                enum: ["1", "2", "3", "4", "5"]
+                example: 5
+              prdy_ctrt:
+                type: string
+                description: 전일 대비율
+                example: -1.02
+                maxLength: 82
+              acml_vol:
+                type: string
+                description: 누적 거래량
+                example: 15698949
+                maxLength: 18
+              acml_tr_pbmn:
+                type: string
+                description: 누적 거래 대금
+                example: 1220563293000
+                maxLength: 18
+              whol_smtn_seln_vol:
+                type: string
+                description: 전체 합계 매도 거래량
+                example: 6910299
+                maxLength: 18
+              whol_smtn_shnu_vol:
+                type: string
+                description: 전체 합계 매수2 거래량
+                example: 3468820
+                maxLength: 18
+              whol_smtn_ntby_qty:
+                type: string
+                description: 전체 합계 순매수 수량
+                example: -3441479
+                maxLength: 18
+              whol_smtn_seln_tr_pbmn:
+                type: string
+                description: 전체 합계 매도 거래 대금
+                example: 536935491000
+                maxLength: 18
+              whol_smtn_shnu_tr_pbmn:
+                type: string
+                description: 전체 합계 매수2 거래 대금
+                example: 270120727200
+                maxLength: 18
+              whol_smtn_ntby_tr_pbmn:
+                type: string
+                description: 전체 합계 순매수 거래 대금
+                example: -266814763800
+                maxLength: 18
+              whol_ntby_vol_icdc:
+                type: string
+                description: 전체 순매수 거래량 증감
+                example: -3989127
+                maxLength: 10
+              whol_ntby_tr_pbmn_icdc2:
+                type: string
+                description: 전체 순매수 거래 대금 증감2
+                example: -311124223700
+                maxLength: 18

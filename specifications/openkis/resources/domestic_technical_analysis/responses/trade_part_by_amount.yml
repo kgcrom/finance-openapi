@@ -1,0 +1,83 @@
+description: 국내주식 체결금액별 매매비중 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output:
+          type: array
+          items:
+            type: object
+            properties:
+              prpr_name:
+                type: string
+                description: 가격명
+                example: 3백 이하
+                maxLength: 40
+              smtn_avrg_prpr:
+                type: string
+                description: 합계 평균가격
+                example: 78315
+                maxLength: 10
+              acml_vol:
+                type: string
+                description: 합계 거래량
+                example: 291426
+                maxLength: 18
+              whol_ntby_qty_rate:
+                type: string
+                description: 합계 순매수비율
+                example: 0.37
+                maxLength: 72
+              ntby_cntg_csnu:
+                type: string
+                description: 합계 순매수건수
+                example: 13297
+                maxLength: 10
+              seln_cnqn_smtn:
+                type: string
+                description: 매도 거래량
+                example: 126451
+                maxLength: 18
+              whol_seln_vol_rate:
+                type: string
+                description: 매도 거래량비율
+                example: 1.21
+                maxLength: 72
+              seln_cntg_csnu:
+                type: string
+                description: 매도 건수
+                example: 16084
+                maxLength: 10
+              shnu_cnqn_smtn:
+                type: string
+                description: 매수 거래량
+                example: 164975
+                maxLength: 18
+              whol_shun_vol_rate:
+                type: string
+                description: 매수 거래량비율
+                example: 1.58
+                maxLength: 72
+              shnu_cntg_csnu:
+                type: string
+                description: 매수 건수
+                example: 29381
+                maxLength: 10

@@ -8,9 +8,99 @@ description: |
   증권사 직원이 장중에 집계/입력한 자료를 단순 누계한 수치로서,<br/>
   입력시간은 외국인 09:30, 11:20, 13:20, 14:30 / 기관종합 10:00, 11:20, 13:20, 14:30 이며, 사정에 따라 변동될 수 있습니다.
 
-responses:
-  200:
-    description: 국내기관_외국인 매매종목가집계 조회 성공
-
 tags:
   - DomesticTechnicalAnalysis
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/personal_secret_key
+  - $ref: ../../shared/parameters.yml#/tr_cont
+  - $ref: ../../shared/parameters.yml#/customer_type
+  - $ref: ../../shared/parameters.yml#/sequence_no
+  - $ref: ../../shared/parameters.yml#/mac_address
+  - $ref: ../../shared/parameters.yml#/phone_number
+  - $ref: ../../shared/parameters.yml#/ip_address
+  - $ref: ../../shared/parameters.yml#/hashkey
+  - $ref: ../../shared/parameters.yml#/gt_uid
+  - in: header
+    name: tr_id
+    description: |
+      거래ID
+
+      모의투자 미지원<br/>
+      FHPTJ04400000 : 국내기관 외국인매매종목가집계
+    required: true
+    schema:
+      type: string
+      enum: ["FHPTJ04400000"]
+      default: FHPTJ04400000
+      example: FHPTJ04400000
+  - in: query
+    name: fid_cond_mrkt_div_code
+    description: 시장 분류 코드
+    required: true
+    schema:
+      type: string
+      enum: ["V"]
+      default: V
+      example: V
+  - in: query
+    name: fid_cond_scr_div_code
+    description: |
+      조건 화면 분류 코드
+
+      Unique key(16449)
+    required: true
+    schema:
+      type: string
+      enum: ["16449"]
+      default: 16449
+      example: 16449
+  - in: query
+    name: fid_input_iscd
+    description: |
+      입력 종목코드
+
+      0000:전체, 0001:코스피, 1001:코스닥...포탈<br/>
+      (FAQ : 종목정보 다운로드(국내) - 업종코드 참조)
+    required: true
+    schema:
+      type: string
+      example: "0000"
+      maxLength: 12
+  - in: query
+    name: fid_div_cls_code
+    description: |
+      분류 구분 코드
+
+      0: 수량정렬, 1: 금액정렬
+    required: true
+    schema:
+      type: string
+      enum: ["0", "1"]
+      example: 0
+  - in: query
+    name: fid_rank_sort_cls_code
+    description: |
+      순위 정렬 구분 코드
+
+      0: 순매수상위, 1: 순매도상위
+    required: true
+    schema:
+      type: string
+      enum: ["0", "1"]
+      example: 0
+  - in: query
+    name: fid_etc_cls_code
+    description: |
+      기타 구분 정렬
+
+      0:전체 1:외국인 2:기관계 3:기타
+    required: true
+    schema:
+      type: string
+      enum: ["0", "1", "2", "3"]
+      example: 0
+
+responses:
+  200:
+    $ref: responses/foreign_institution_total.yml

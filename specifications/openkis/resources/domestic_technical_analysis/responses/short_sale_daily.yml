@@ -1,0 +1,180 @@
+description: 국내주식 공매도 일별추이 조회 성공
+
+headers:
+  content-type:
+    $ref: ../../../shared/response_headers.yml#/content-type
+  tr_id:
+    $ref: ../../../shared/response_headers.yml#/tr_id
+  tr_cont:
+    $ref: ../../../shared/response_headers.yml#/tr_cont
+  gt_uid:
+    $ref: ../../../shared/response_headers.yml#/gt_uid
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        rt_cd:
+          $ref: ../../../shared/response_body.yml#/rt_cd
+        msg_cd:
+          $ref: ../../../shared/response_body.yml#/msg_cd
+        msg1:
+          $ref: ../../../shared/response_body.yml#/msg1
+        output1:
+          type: object
+          properties:
+            stck_prpr:
+              type: string
+              description: 주식 현재가
+              example: 74100
+              maxLength: 10
+            prdy_vrss:
+              type: string
+              description: 전일 대비
+              example: 800
+              maxLength: 10
+            prdy_vrss_sign:
+              type: string
+              description: |
+                전일 대비 부호
+
+                1 : 상한<br/>
+                2 : 상승<br/>
+                3 : 보합<br/>
+                4 : 하한<br/>
+                5 : 하락
+              enum: ["1", "2", "3", "4", "5"]
+              example: 2
+            prdy_ctrt:
+              type: string
+              description: 전일 대비율
+              example: 1.09
+              maxLength: 82
+            acml_vol:
+              type: string
+              description: 누적 거래량
+              example: 100000
+              maxLength: 18
+            prdy_vol:
+              type: string
+              description: 전일 거래량
+              example: 100000
+              maxLength: 18
+        output2:
+          type: array
+          items:
+            type: object
+            properties:
+              stck_bsop_date:
+                type: string
+                description: 주식 영업 일자
+                example: 20240101
+                maxLength: 8
+              stck_clpr:
+                type: string
+                description: 주식 종가
+                example: 74100
+                maxLength: 10
+              prdy_vrss:
+                type: string
+                description: 전일 대비
+                example: 800
+                maxLength: 10
+              prdy_vrss_sign:
+                type: string
+                description: |
+                  전일 대비 부호
+
+                  1 : 상한<br/>
+                  2 : 상승<br/>
+                  3 : 보합<br/>
+                  4 : 하한<br/>
+                  5 : 하락
+                enum: ["1", "2", "3", "4", "5"]
+                example: 2
+              prdy_ctrt:
+                type: string
+                description: 전일 대비율
+                example: 1.09
+                maxLength: 82
+              acml_vol:
+                type: string
+                description: 누적 거래량
+                example: 100000
+                maxLength: 18
+              stnd_vol_smtn:
+                type: string
+                description: 기준 거래량 합계
+                example: 100000
+                maxLength: 18
+              ssts_cntg_qty:
+                type: string
+                description: 공매도 체결 수량
+                example: 100000
+                maxLength: 12
+              ssts_vol_rlim:
+                type: string
+                description: 공매도 거래량 비중
+                example: 1.09
+                maxLength: 82
+              acml_ssts_cntg_qty:
+                type: string
+                description: 누적 공매도 체결 수량
+                example: 100000
+                maxLength: 13
+              acml_ssts_cntg_qty_rlim:
+                type: string
+                description: 누적 공매도 체결 수량 비중
+                example: 1.09
+                maxLength: 82
+              acml_tr_pbmn:
+                type: string
+                description: 누적 거래 대금
+                example: 100000
+                maxLength: 18
+              stnd_tr_pbmn_smtn:
+                type: string
+                description: 기준 거래대금 합계
+                example: 100000
+                maxLength: 18
+              ssts_tr_pbmn:
+                type: string
+                description: 공매도 거래 대금
+                example: 100000
+                maxLength: 18
+              ssts_tr_pbmn_rlim:
+                type: string
+                description: 공매도 거래대금 비중
+                example: 1.09
+                maxLength: 82
+              acml_ssts_tr_pbmn:
+                type: string
+                description: 누적 공매도 거래 대금
+                example: 100000
+                maxLength: 19
+              acml_ssts_tr_pbmn_rlim:
+                type: string
+                description: 누적 공매도 거래 대금 비중
+                example: 1.09
+                maxLength: 82
+              stck_oprc:
+                type: string
+                description: 주식 시가
+                example: 74100
+                maxLength: 10
+              stck_hgpr:
+                type: string
+                description: 주식 최고가
+                example: 74100
+                maxLength: 10
+              stck_lwpr:
+                type: string
+                description: 주식 최저가
+                example: 74100
+                maxLength: 10
+              avrg_prc:
+                type: string
+                description: 평균가격
+                example: 74100
+                maxLength: 11
