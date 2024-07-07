@@ -1,0 +1,26 @@
+operationId: getCorporateCompany
+
+summary: 기업개황
+
+description: |
+  DART에 등록되어있는 기업의 개황정보를 제공합니다.
+
+tags:
+  - CorporateDisclosure
+
+parameters:
+  - in: query
+    name: corp_code
+    description: |
+      고유번호
+
+      공시대상회사의 고유번호(8자리)
+    required: true
+    schema:
+      type: string
+      example: "00258999"
+      maxLength: 8
+
+responses:
+  200:
+    $ref: responses/company.yml

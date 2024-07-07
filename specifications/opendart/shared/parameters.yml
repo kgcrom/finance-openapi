@@ -1,0 +1,73 @@
+crtfc_key:
+  in: query
+  name: crtfc_key
+  description: 발급받은 DART OpenAPI 인증키(40자리)
+  required: true
+  schema:
+    type: string
+    example: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+corp_code:
+  name: corp_code
+  in: query
+  description: 공시대상회사의 고유번호(8자리)
+  required: true
+  schema:
+    type: string
+    example: "005930"
+    maxLength: 8
+
+bsns_year:
+  name: bsns_year
+  in: query
+  description: 사업연도(4자리) ※ 2015년 이후 부터 정보제공
+  required: true
+  schema:
+    type: string
+    example: "2019"
+    maxLength: 4
+
+reprt_code:
+  name: reprt_code
+  in: query
+  description: |
+    보고서 코드
+
+    - 11011 : 사업보고서<br/>
+    - 11012 : 반기보고서<br/>
+    - 11013 : 1분기보고서<br/>
+    - 11014 : 3분기보고서
+  required: true
+  schema:
+    type: string
+    example: "11011"
+    maxLength: 5
+
+bgn_de:
+  name: bgn_de
+  in: query
+  description: |
+    시작일
+
+    검색시작 접수일자(YYYYMMDD)<br/>
+    1) 기본값 : 종료일(end_de)<br/>
+    2) 고유번호(corp_code)가 없는 경우 검색기간은 3개월로 제한
+  required: true
+  schema:
+    type: string
+    example: "20240601"
+    maxLength: 8
+
+end_de:
+  name: end_de
+  in: query
+  description: |
+    종료일
+
+    검색종료 접수일자(YYYYMMDD)
+    1) 기본값 : 당일
+  required: true
+  schema:
+    type: string
+    example: "20240601"
+    maxLength: 8

@@ -1,0 +1,54 @@
+openapi: 3.0.3
+info:
+  title: 국내 전자공시 시스템 DART(Data Analysis, Retrieval and Transfer System)
+  description: 국내 상장기업의 전자공시 정보를 제공하는 API 서비스입니다.
+  version: 1.0.0
+  license:
+    name: MIT License
+    url: https://opensource.org/licenses/MIT
+  contact:
+    name: 강한구
+    email: kgcrom@hotmail.com
+servers:
+  - url: https://opendart.fss.or.kr
+    description: DART server
+
+tags:
+  - name: CorporateDisclosure
+    description: 공시정보
+  - name: RegularDisclosureKey
+    description: 정기보고서 주요정보
+  - name: RegularDisclosureFinancialStatement
+    description: 정기보고서 재무정보
+  - name: ShareDisclosure
+    description: 지분공시 종합정보
+  - name: IrregularDisclosureKey
+    description: 주요사항보고서 주요정보
+
+paths:
+  /api/list.json:
+    get:
+      $ref: resources/corporate/list.yml
+
+  /api/company.json:
+    get:
+      $ref: resources/corporate/company.yml
+
+  /api/document.xml:
+    get:
+      $ref: resources/corporate/document.yml
+
+  /api/corpCode.xml:
+    get:
+      $ref: resources/corporate/corp_code.yml
+
+components:
+  securitySchemes:
+    authKey:
+      type: apiKey
+      in: header
+      name: crtfc_key
+      description: |
+        DART OpenAPI 인증키
+
+        redoc lint, autorest에서 인증은 필수여서 추가함

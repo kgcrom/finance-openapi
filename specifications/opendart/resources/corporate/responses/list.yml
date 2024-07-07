@@ -1,0 +1,110 @@
+description: 공시검색 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            page_no:
+              type: integer
+              description: 페이지 번호
+              example: 1
+            page_count:
+              type: integer
+              description: 페이지 별 건수
+              example: 10
+            total_count:
+              type: integer
+              description: 총 건수
+              example: 100
+            total_page:
+              type: integer
+              description: 총 페이지 수
+              example: 10
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  corp_cls:
+                    type: string
+                    description: |
+                      법인구분
+
+                      - Y : 유가증권시장<br/>
+                      - K : 코스닥<br/>
+                      - N : 코넥스<br/>
+                      - E : 기타<br/>
+                    example: "Y"
+                  corp_name:
+                    type: string
+                    description: |
+                      종목명(법인명)<br/>
+                      공시대상회사의 종목명(상장사) 또는 법인명(기타법인)
+                    example: "삼성전자"
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "005930"
+                    maxLength: 8
+                  stock_code:
+                    type: string
+                    description: 상장회사의 종목코드(6자리)
+                    example: "005930"
+                    maxLength: 6
+                  report_nm:
+                    type: string
+                    description: |
+                      보고서명
+
+                      공시구분+보고서명+기타정보<br/>
+                      [기재정정] : 본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임<br/>
+                      [첨부정정] : 본 보고서명으로 이미 제출된 보고서의 첨부내용이 변경되어 제출된 것임<br/>
+                      [첨부추가] : 본 보고서명으로 이미 제출된 보고서의 첨부서류가 추가되어 제출된 것임<br/>
+                      [변경등록] : 본 보고서명으로 이미 제출된 보고서의 유동화계획이 변경되어 제출된 것임<br/>
+                      [연장결정] : 본 보고서명으로 이미 제출된 보고서의 신탁계약이 연장되어 제출된 것임<br/>
+                      [발행조건확정] : 본 보고서명으로 이미 제출된 보고서의 유가증권 발행조건이 확정되어 제출된 것임<br/>
+                      [정정명령부과] : 본 보고서에 대하여 금융감독원이 정정명령을 부과한 것임<br/>
+                      [정정제출요구] : 본 보고서에 대하여 금융감독원이 정정제출요구을 부과한 것임
+                    example: "[기재정정]단일판매ㆍ공급계약체결"
+                  rcept_no:
+                    type: string
+                    description: |
+                      접수번호(14자리)
+
+                      ※ 공시뷰어 연결에 이용예시<br/>
+                      - PC용 : https://dart.fss.or.kr/dsaf001/main.do?rcpNo=접수번호
+                    example: "20220401000001"
+                  flr_nm:
+                    type: string
+                    description: 공시 제출인명
+                    example: "홍길동"
+                  rcept_dt:
+                    type: string
+                    description: 공시 접수일자(YYYYMMDD)
+                    example: "20220401"
+                  rm:
+                    type: string
+                    description: |
+                      비고
+
+                      조합된 문자로 각각은 아래와 같은 의미가 있음<br/>
+                      - 유 : 본 공시사항은 한국거래소 유가증권시장본부 소관임<br/>
+                      - 코 : 본 공시사항은 한국거래소 코스닥시장본부 소관임<br/>
+                      - 채 : 본 문서는 한국거래소 채권상장법인 공시사항임<br/>
+                      - 넥 : 본 문서는 한국거래소 코넥스시장 소관임<br/>
+                      - 공 : 본 공시사항은 공정거래위원회 소관임<br/>
+                      - 연 : 본 보고서는 연결부분을 포함한 것임<br/>
+                      - 정 : 본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람<br/>
+                      - 철 : 본 보고서는 철회(간주)되었으니 관련 철회신고서(철회간주안내)를 참고하시기 바람
+                    example: "유"
+                    maxLength: 1

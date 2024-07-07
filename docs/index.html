@@ -5,10 +5,7 @@
     <!-- needed for adaptive design -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
 
     <!--
     ReDoc doesn't change outer page styles
@@ -81,14 +78,10 @@
     <div class="header">
       <label class="logo">OpenAPI used by finance-clue project</label>
       <div class="header-right">
-        <a
-          id="gh-link"
-          href="https://github.com/kgcrom/finance-openapi"
-          target="_blank"
-          >Github</a
-        >
+        <a id="gh-link" href="https://github.com/kgcrom/finance-openapi" target="_blank">Github</a>
         <a id="spec-link" href="?s=kis" target="_self">KIS</a>
         <a id="spec-link" href="?s=krx" target="_self">KRX</a>
+        <a id="spec-link" href="?s=dart" target="_self">DART</a>
       </div>
     </div>
 
@@ -110,6 +103,8 @@
             return "OpenKis-public.yml";
           case "krx":
             return "OpenKrx-public.yml";
+          case "dart":
+            return "OpenDart-public.yml";
           default:
             return "OpenKis-public.yml";
         }

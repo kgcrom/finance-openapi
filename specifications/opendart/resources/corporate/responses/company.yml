@@ -1,0 +1,79 @@
+description: 기업개황 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        status:
+          $ref: ../../../shared/response_body.yml#/status
+        message:
+          type: string
+          description: 에러 및 정보 메시지
+          example: 정상
+        corp_name:
+          type: string
+          description: 정식명칭
+          example: 삼성전자(주)
+        corp_name_eng:
+          type: string
+          description: 영문명칭
+          example: Samsung Electronics Co., Ltd.
+        stock_name:
+          type: string
+          description: 종목명(상장사) 또는 약식명칭(기타법인)
+          example: 삼성전자
+        stock_code:
+          type: string
+          description: 상장회사인 경우 주식의 종목코드
+          example: "005930"
+          maxLength: 6
+        ceo_nm:
+          type: string
+          description: 대표자명
+          example: 한종희
+        corp_cls:
+          type: string
+          description: 법인구분
+          enum: ["Y", "N"]
+          example: "Y"
+        jurir_no:
+          type: string
+          description: 법인등록번호
+          example: "1301110006246"
+        bizr_no:
+          type: string
+          description: 사업자등록번호
+          example: "1248100998"
+        adres:
+          type: string
+          description: 주소
+          example: "경기도 수원시 영통구  삼성로 129 (매탄동)"
+        hm_url:
+          type: string
+          description: 홈페이지
+          example: "www.samsung.com/sec"
+        ir_url:
+          type: string
+          description: IR홈페이지
+          example: ""
+        phn_no:
+          type: string
+          description: 전화번호
+          example: "02-2255-0114"
+        fax_no:
+          type: string
+          description: 팩스번호
+          example: "031-200-7538"
+        induty_code:
+          type: string
+          description: 업종코드
+          example: "264"
+        est_dt:
+          type: string
+          description: 설립일(YYYYMMDD)
+          example: "19690113"
+        acc_mt:
+          type: string
+          description: 결산월(MM)
+          example: "12"

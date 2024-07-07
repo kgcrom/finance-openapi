@@ -1,0 +1,28 @@
+operationId: getCorporateDocument
+
+summary: 공시서류원본파일
+
+description: |
+  공시보고서 원본파일을 제공합니다.
+
+tags:
+  - CorporateDisclosure
+
+parameters:
+  - in: query
+    name: rcept_no
+    description: 접수번호
+    required: true
+    schema:
+      type: string
+      example: "20240516001421"
+      maxLength: 14
+
+responses:
+  200:
+    description: 공시서류원본파일 조회 성공
+    content:
+      application/zip:
+        schema:
+          type: string
+          format: binary
