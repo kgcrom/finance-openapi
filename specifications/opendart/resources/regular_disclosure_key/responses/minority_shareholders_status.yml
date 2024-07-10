@@ -1,0 +1,62 @@
+description: 소액ㅈ주주 현황 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    $ref: ../../../shared/response_body.yml#/corp_cls
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00126380"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사명
+                    example: "삼성전자"
+                  se:
+                    type: string
+                    description: 구분
+                    example: 소액주주
+                  shrholdr_co:
+                    type: string
+                    description: 주주수
+                    example: "9,999,999,999"
+                  shrholdr_tot_co:
+                    type: string
+                    description: 전체 주주수
+                    example: "9,999,999,999"
+                  shrholdr_rate:
+                    type: string
+                    description: 주주 비율
+                    example: "0.00"
+                  hold_stock_co:
+                    type: string
+                    description: 보유 주식수
+                    example: "9,999,999,999"
+                  stock_tot_co:
+                    type: string
+                    description: 총발행 주식수
+                    example: "9,999,999,999"
+                  hold_stock_rate:
+                    type: string
+                    description: 보유 주식 비율
+                    example: "0.00"

@@ -1,0 +1,74 @@
+description: 단기사채 미상환 잔액 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    $ref: ../../../shared/response_body.yml#/corp_cls
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00126380"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사명
+                    example: "삼성전자"
+                  remndr_exprtn1:
+                    type: string
+                    description: 잔여만기
+                    example: "미상환잔액"
+                  remndr_exprtn2:
+                    type: string
+                    description: 잔여만기
+                    example: "공모"
+                  de10_below:
+                    type: string
+                    description: 10일 이하
+                    example: "9,999,999,999"
+                  de10_excess_de30_below:
+                    type: string
+                    description: 10일초과 30일이하
+                    example: "9,999,999,999"
+                  de30_excess_de90_below:
+                    type: string
+                    description: 30일초과 90일이하
+                    example: "9,999,999,999"
+                  de90_excess_de180_below:
+                    type: string
+                    description: 90일초과 180일이하
+                    example: "9,999,999,999"
+                  de180_excess_yy1_below:
+                    type: string
+                    description: 180일초과 1년이하
+                    example: "9,999,999,999"
+                  sm:
+                    type: string
+                    description: 합계
+                    example: "9,999,999,999"
+                  isu_lmt:
+                    type: string
+                    description: 발행 한도
+                    example: "9,999,999,999"
+                  remndr_lmt:
+                    type: string
+                    description: 잔여 한도
+                    example: "9,999,999,999"

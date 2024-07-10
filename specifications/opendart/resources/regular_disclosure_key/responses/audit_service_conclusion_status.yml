@@ -1,0 +1,88 @@
+description: 감사용역체결현황 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    $ref: ../../../shared/response_body.yml#/corp_cls
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00126380"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사명
+                    example: "삼성전자"
+                  bsns_year:
+                    type: string
+                    description: 사업연도(당기, 전기, 전전기)
+                    example: "2020"
+                  adtor:
+                    type: string
+                    description: 감사인
+                    example: "유한회계법인 삼일회계법인"
+                  cn:
+                    type: string
+                    description: 내용
+                    example: "-"
+                  mendng:
+                    type: string
+                    description: |
+                      보수
+
+                      ① 2020년 7월 5일까지 사용됨
+                    example: "-"
+                  tot_reqre_time:
+                    type: string
+                    description: |
+                      총소요시간
+
+                      ① 2020년 7월 5일까지 사용됨
+                    example: "-"
+                  adt_cntrct_dtls_mendng:
+                    type: string
+                    description: |
+                      감사계약내역(보수)
+
+                      ② 2020년 7월 6일부터 추가됨
+                    example: "-"
+                  adt_cntrct_dtls_time:
+                    type: string
+                    description: |
+                      감사계약내역(시간)
+
+                      ② 2020년 7월 6일부터 추가됨
+                    example: "-"
+                  real_exc_dtls_mendng:
+                    type: string
+                    description: |
+                      실제수행내역(보수)
+
+                      ② 2020년 7월 6일부터 추가됨
+                    example: "-"
+                  real_exc_dtls_time:
+                    type: string
+                    description: |
+                      실제수행내역(시간)
+
+                      ② 2020년 7월 6일부터 추가됨
+                    example: "-"

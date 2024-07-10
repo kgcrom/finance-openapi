@@ -1,0 +1,50 @@
+description: 이사ㆍ감사의 개인별 보수 현황 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    $ref: ../../../shared/response_body.yml#/corp_cls
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00126380"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사명
+                    example: "삼성전자"
+                  nm:
+                    type: string
+                    description: 이름
+                    example: "홍길동"
+                  ofcps:
+                    type: string
+                    description: 직위
+                    example: "이사, 대표이사 등"
+                  mendng_totamt:
+                    type: string
+                    description: 보수 총액
+                    example: "9,999,999,999"
+                  mendng_totamt_ct_incls_mendng:
+                    type: string
+                    description: 보수 총액 비 포함 보수
+                    example: "9,999,999,999"

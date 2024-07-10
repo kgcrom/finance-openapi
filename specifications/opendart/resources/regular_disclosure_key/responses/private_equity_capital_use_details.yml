@@ -1,0 +1,98 @@
+description: 사모자금의 사용내역 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    $ref: ../../../shared/response_body.yml#/corp_cls
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00126380"
+                    maxLength: 8
+                  se_nm:
+                    type: string
+                    description: 구분
+                    example: "-"
+                  tm:
+                    type: string
+                    description: |
+                      회차
+
+                      ③ 2019년 12월 9일부터 추가됨
+                    example: "-"
+                  pay_de:
+                    type: string
+                    description: 납입일
+                    example: "-"
+                  pay_amount:
+                    type: string
+                    description: |
+                      납입금액
+
+                      ① 2018년 1월 18일까지 사용됨
+                    example: "-"
+                  cptal_use_plan:
+                    type: string
+                    description: |
+                      자금사용 계획
+
+                      ① 2018년 1월 18일까지 사용됨
+                    example: "-"
+                  real_cptal_use_sttus:
+                    type: string
+                    description: |
+                      실제 자금사용 현황
+
+                      ① 2018년 1월 18일까지 사용됨
+                    example: "-"
+                  mtrpt_cptal_use_plan_useprps:
+                    type: string
+                    description: |
+                      주요사항보고서의 자금사용 계획(사용용도)
+
+                      ② 2018년 1월 19일부터 추가됨
+                    example: "-"
+                  mtrpt_cptal_use_plan_prcure_amount:
+                    type: string
+                    description: |
+                      주요사항보고서의 자금사용 계획(조달금액)
+
+                      ② 2018년 1월 19일부터 추가됨
+                    example: "-"
+                  real_cptal_use_dtls_cn:
+                    type: string
+                    description: |
+                      실제 자금사용 내역(내용)
+
+                      ② 2018년 1월 19일부터 추가됨
+                    example: "-"
+                  real_cptal_use_dtls_amount:
+                    type: string
+                    description: |
+                      실제 자금사용 내역(금액)
+
+                      ② 2018년 1월 19일부터 추가됨
+                    example: "-"
+                  dffrnc_occrrnc_resn:
+                    type: string
+                    description: 차이발생 사유 등
+                    example: "-"

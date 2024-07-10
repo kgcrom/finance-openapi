@@ -1,0 +1,74 @@
+description: 채무증권 발행실적 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    $ref: ../../../shared/response_body.yml#/corp_cls
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00126380"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사명
+                    example: "삼성전자"
+                  isu_cmpny:
+                    type: string
+                    description: 발행회사
+                    example: "삼성전자"
+                  scrits_knd_nm:
+                    type: string
+                    description: 증권종류
+                    example: "회사채"
+                  isu_mth_nm:
+                    type: string
+                    description: 발행방법
+                    example: "공모"
+                  isu_de:
+                    type: string
+                    description: 발행일자
+                    example: "1997.10.02"
+                  facvalu_totamt:
+                    type: string
+                    description: 권면(전자등록)총액
+                    example: "111,810,000,000"
+                  intrt:
+                    type: string
+                    description: 이자율
+                    example: "7.7"
+                  evl_grad_instt:
+                    type: string
+                    description: 평가등급(평가기관)
+                    example: "AA-(S&P),\nAa3(Moody's)"
+                  mtd:
+                    type: string
+                    description: 만기일
+                    example: "2027.10.01"
+                  repy_at:
+                    type: string
+                    description: 상환여부
+                    example: "일부상환"
+                  mngt_cmpny:
+                    type: string
+                    description: 주관회사
+                    example: "골드만삭스 외"

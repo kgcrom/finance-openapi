@@ -42,6 +42,114 @@ paths:
     get:
       $ref: resources/corporate/corp_code.yml
 
+  /api/cndlCaplScritsNrdmpBlce.json:
+    get:
+      $ref: resources/regular_disclosure_key/conditional_capital_not_reimbursed_balance.yml
+
+  /api/cprndNrdmpBlce.json:
+    get:
+      $ref: resources/regular_disclosure_key/corporate_bond_not_reimbursed_balance.yml
+
+  /api/srtpdPsndbtNrdmpBlce.json:
+    get:
+      $ref: resources/regular_disclosure_key/short_term_bond_not_reimbursed_balance.yml
+
+  /api/entrprsBilScritsNrdmpBlce.json:
+    get:
+      $ref: resources/regular_disclosure_key/enterprises_bill_not_reimbursed_balance.yml
+
+  /api/detScritsIsuAcmslt.json:
+    get:
+      $ref: resources/regular_disclosure_key/debt_securities_issue_accomplishment.yml
+
+  /api/prvsrpCptalUseDtls.json:
+    get:
+      $ref: resources/regular_disclosure_key/private_equity_capital_use_details.yml
+
+  /api/pssrpCptalUseDtls.json:
+    get:
+      $ref: resources/regular_disclosure_key/public_equity_capital_use_details.yml
+
+  /api/drctrAdtAllMendngSttusGmtsckConfmAmount.json:
+    get:
+      $ref: resources/regular_disclosure_key/director_audit_all_mending_status_shareholders_general_meeting_confirm_amount.yml
+
+  /api/drctrAdtAllMendngSttusMendngPymntamtTyCl.json:
+    get:
+      $ref: resources/regular_disclosure_key/director_audit_all_mending_status_mending_payment_amount_type_classification.yml
+
+  /api/stockTotqySttus.json:
+    get:
+      $ref: resources/regular_disclosure_key/stock_total_quantity_status.yml
+
+  /api/accnutAdtorNmNdAdtOpinion.json:
+    get:
+      $ref: resources/regular_disclosure_key/account_auditor_name_and_opinion.yml
+
+  /api/adtServcCnclsSttus.json:
+    get:
+      $ref: resources/regular_disclosure_key/audit_service_conclusion_status.yml
+
+  /api/accnutAdtorNonAdtServcCnclsSttus.json:
+    get:
+      $ref: resources/regular_disclosure_key/account_auditor_non_audit_service_conclusion_status.yml
+
+  /api/outcmpnyDrctrNdChangeSttus.json:
+    get:
+      $ref: resources/regular_disclosure_key/outside_director_change_status.yml
+
+  /api/newCaplScritsNrdmpBlce.json:
+    get:
+      $ref: resources/regular_disclosure_key/new_capital_securities_not_reimbursed_balance.yml
+
+  /api/irdsSttus.json:
+    get:
+      $ref: resources/regular_disclosure_key/increase_decrease_status.yml
+
+  /api/alotMatter.json:
+    get:
+      $ref: resources/regular_disclosure_key/allocation_matter.yml
+
+  /api/tesstkAcqsDspsSttus.json:
+    get:
+      $ref: resources/regular_disclosure_key/treasury_shares_acquisition_disposal_status.yml
+
+  /api/hyslrSttus.json:
+    get:
+      $ref: resources/regular_disclosure_key/largest_shareholder_status.yml
+
+  /api/hyslrChgSttus.json:
+    get:
+      $ref: resources/regular_disclosure_key/largest_shareholder_change_status.yml
+
+  /api/mrhlSttus.json:
+    get:
+      $ref: resources/regular_disclosure_key/minority_shareholders_status.yml
+
+  /api/exctvSttus.json:
+    get:
+      $ref: resources/regular_disclosure_key/executive_status.yml
+
+  /api/empSttus.json:
+    get:
+      $ref: resources/regular_disclosure_key/employee_status.yml
+
+  /api/hmvAuditIndvdlBySttus.json:
+    get:
+      $ref: resources/regular_disclosure_key/director_auditor_individual_mending.yml
+
+  /api/hmvAuditAllSttus.json:
+    get:
+      $ref: resources/regular_disclosure_key/director_audit_all_mending.yml
+
+  /api/indvdlByPay.json:
+    get:
+      $ref: resources/regular_disclosure_key/individual_by_pay.yml
+
+  /api/otrCprInvstmntSttus.json:
+    get:
+      $ref: resources/regular_disclosure_key/outer_corporate_investment_status.yml
+
 components:
   securitySchemes:
     authKey:

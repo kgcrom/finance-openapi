@@ -14,7 +14,7 @@ corp_code:
   required: true
   schema:
     type: string
-    example: "005930"
+    example: "00126380"
     maxLength: 8
 
 bsns_year:

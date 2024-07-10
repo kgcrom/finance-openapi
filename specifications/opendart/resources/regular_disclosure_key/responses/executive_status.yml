@@ -1,0 +1,78 @@
+description: 임원 현황 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    $ref: ../../../shared/response_body.yml#/corp_cls
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00126380"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사명
+                    example: "삼성전자"
+                  nm:
+                    type: string
+                    description: 성명
+                    example: "홍길동"
+                  sexdstn:
+                    type: string
+                    description: 성별
+                    example: "남"
+                  birth_ym:
+                    type: string
+                    description: 출생 년월 (YYYY년 MM월)
+                    example: "1955년 06월"
+                  ofcps:
+                    type: string
+                    description: 직위
+                    example: "사내이사"
+                  rgist_exctv_at:
+                    type: string
+                    description: 등기 임원 여부
+                    example: "등기임원"
+                  fte_at:
+                    type: string
+                    description: 상근 여부
+                    example: "상근"
+                  chrg_job:
+                    type: string
+                    description: 담당 업무
+                    example: "이사회 의장"
+                  main_career:
+                    type: string
+                    description: 주요 경력
+                    example: "ㆍ경북대 경제학 학사ㆍ(전) 삼성전자 경영지원실장"
+                  mxmm_shrholdr_relate:
+                    type: string
+                    description: 최대 주주 관계
+                    example: "발행회사 임원"
+                  hffc_pd:
+                    type: string
+                    description: 재직 기간
+                    example: "66개월"
+                  tenure_end_on:
+                    type: string
+                    description: 임기 만료 일
+                    example: "2021년 03월 22일"

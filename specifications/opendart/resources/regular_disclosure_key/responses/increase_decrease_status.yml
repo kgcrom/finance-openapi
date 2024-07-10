@@ -1,0 +1,58 @@
+description: 증자(감자) 현황 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    $ref: ../../../shared/response_body.yml#/corp_cls
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00126380"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사명
+                    example: "삼성전자"
+                  isu_dcrs_de:
+                    type: string
+                    description: 주식발행 감소일자
+                    example: "-"
+                  isu_dcrs_stle:
+                    type: string
+                    description: 발행 감소 형태
+                    example: "-"
+                  isu_dcrs_stock_knd:
+                    type: string
+                    description: 발행 감소 주식 종류
+                    example: "-"
+                  isu_dcrs_qy:
+                    type: string
+                    description: 발행 감소 수량
+                    example: "-"
+                  isu_dcrs_mstvdv_fval_amount:
+                    type: string
+                    description: 발행 감소 주당 액면 가액
+                    example: "-"
+                  isu_dcrs_mstvdv_amount:
+                    type: string
+                    description: 발행 감소 주당 가액
+                    example: "-"

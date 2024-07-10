@@ -1,0 +1,17 @@
+operationId: getRegularKeyLargestShareholderStatus
+
+summary: 최대주주 현황
+
+description: 정기보고서(사업, 분기, 반기보고서) 내에 최대주주 현황을 제공합니다.
+
+tags:
+  - RegularDisclosureKey
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/corp_code
+  - $ref: ../../shared/parameters.yml#/bsns_year
+  - $ref: ../../shared/parameters.yml#/reprt_code
+
+responses:
+  "200":
+    $ref: responses/largest_shareholder_status.yml

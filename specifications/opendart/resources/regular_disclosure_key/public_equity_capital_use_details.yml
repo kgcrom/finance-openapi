@@ -1,0 +1,17 @@
+operationId: getRegularKeyPublicEquityCapitalUseDetails
+
+summary: 공모자금의 사용내역
+
+description: 정기보고서(사업, 분기, 반기보고서) 내에 공모자금의 사용내역을 제공합니다.
+
+tags:
+  - RegularDisclosureKey
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/corp_code
+  - $ref: ../../shared/parameters.yml#/bsns_year
+  - $ref: ../../shared/parameters.yml#/reprt_code
+
+responses:
+  "200":
+    $ref: responses/public_equity_capital_use_details.yml

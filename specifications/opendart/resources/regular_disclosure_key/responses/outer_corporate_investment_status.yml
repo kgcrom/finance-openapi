@@ -1,0 +1,94 @@
+description: 타법인 출자현황 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    $ref: ../../../shared/response_body.yml#/corp_cls
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00126380"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사명
+                    example: "삼성전자"
+                  inv_prm:
+                    type: string
+                    description: 법인명
+                    example: "삼성전자"
+                  frst_acqs_de:
+                    type: string
+                    description: 최초 취득 일자
+                    example: "20190401"
+                  invstmnt_purps:
+                    type: string
+                    description: 출자 목적
+                    example: "자회사 등"
+                  frst_acqs_amount:
+                    type: string
+                    description: 최초 취득 금액
+                    example: "9,999,999,999"
+                  bsis_blce_qy:
+                    type: string
+                    description: 기초 잔액 수량
+                    example: "9,999,999,999"
+                  bsis_blce_qota_rt:
+                    type: string
+                    description: 기초 잔액 지분 율
+                    example: "0.00"
+                  bsis_blce_acntbk_amount:
+                    type: string
+                    description: 기초 잔액 장부 가액
+                    example: "9,999,999,999"
+                  incrs_dcrs_acqs_dsps_qy:
+                    type: string
+                    description: 증가 감소 취득 처분 수량
+                    example: "9,999,999,999"
+                  incrs_dcrs_acqs_dsps_amount:
+                    type: string
+                    description: 증가 감소 취득 처분 금액
+                    example: "9,999,999,999"
+                  incrs_dcrs_evl_lstmn:
+                    type: string
+                    description: 증가 감소 평가 손액
+                    example: "9,999,999,999"
+                  trmend_blce_qy:
+                    type: string
+                    description: 기말 잔액 수량
+                    example: "9,999,999,999"
+                  trmend_blce_qota_rt:
+                    type: string
+                    description: 기말 잔액 지분 율
+                    example: "0.00"
+                  trmend_blce_acntbk_amount:
+                    type: string
+                    description: 기말 잔액 장부 가액
+                    example: "9,999,999,999"
+                  recent_bsns_year_fnnr_sttus_tot_assets:
+                    type: string
+                    description: 최근 사업 연도 재무 현황 총 자산
+                    example: "9,999,999,999"
+                  recent_bsns_year_fnnr_sttus_thstrm_ntpf:
+                    type: string
+                    description: 최근 사업 연도 재무 현황 당기 순이익
+                    example: "9,999,999,999"

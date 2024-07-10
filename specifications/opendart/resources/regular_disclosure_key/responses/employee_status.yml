@@ -1,0 +1,90 @@
+description: 직원 현황 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    $ref: ../../../shared/response_body.yml#/corp_cls
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00126380"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사명
+                    example: "삼성전자"
+                  fo_bbm:
+                    type: string
+                    description: 사업부문
+                    example: "CE"
+                  sexdstn:
+                    type: string
+                    description: 성별
+                    example: "남"
+                  reform_bfe_emp_co_rgllbr:
+                    type: string
+                    description: 개정 전 직원 수 정규직
+                    example: "-"
+                  reform_bfe_emp_co_cnttk:
+                    type: string
+                    description: 개정 전 직원 수 계약직
+                    example: "-"
+                  reform_bfe_emp_co_etc:
+                    type: string
+                    description: 개정 전 직원 수 기타
+                    example: "-"
+                  rgllbr_co:
+                    type: string
+                    description: 정규직 수
+                    example: "10,119"
+                  rgllbr_abacpt_labrr_co:
+                    type: string
+                    description: 정규직 단시간 근로자 수
+                    example: "-"
+                  cnttk_co:
+                    type: string
+                    description: 계약직 수
+                    example: "68"
+                  cnttk_abacpt_labrr_co:
+                    type: string
+                    description: 계약직 단시간 근로자 수
+                    example: "-"
+                  sm:
+                    type: string
+                    description: 합계
+                    example: "10,187"
+                  avrg_cnwk_sdytrn:
+                    type: string
+                    description: 평균 근속 연수
+                    example: "14.7"
+                  fyer_salary_totamt:
+                    type: string
+                    description: 연간 급여 총액
+                    example: "-"
+                  jan_salary_am:
+                    type: string
+                    description: 1인평균 급여 액
+                    example: "-"
+                  rm:
+                    type: string
+                    description: 비고
+                    example: "-"

@@ -1,0 +1,50 @@
+description: 정기보고서(사업, 분기, 반기보고서) 내에 개인별 보수지급 금액(5억이상 상위5인)을 제공합니다.
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    $ref: ../../..//shared/response_body.yml#/corp_cls
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00126380"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사명
+                    example: "삼성전자"
+                  nm:
+                    type: string
+                    description: 이름
+                    example: "권오현"
+                  ofcps:
+                    type: string
+                    description: 직위
+                    example: "회 장"
+                  mendng_totamt:
+                    type: string
+                    description: 보수 총액
+                    example: "7,034,000,000"
+                  mendng_totamt_ct_incls_mendng:
+                    type: string
+                    description: 보수 총액 비 포함 보수
+                    example: "3,000,000,000"

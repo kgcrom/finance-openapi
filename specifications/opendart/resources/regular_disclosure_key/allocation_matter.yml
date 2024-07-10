@@ -1,0 +1,17 @@
+operationId: getRegularKeyAllocationMatter
+
+summary: 배당에 관한 사항
+
+description: 정기보고서(사업, 분기, 반기보고서) 내에 배당에 관한 사항을 제공합니다.
+
+tags:
+  - RegularDisclosureKey
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/corp_code
+  - $ref: ../../shared/parameters.yml#/bsns_year
+  - $ref: ../../shared/parameters.yml#/reprt_code
+
+responses:
+  "200":
+    $ref: responses/allocation_matter.yml

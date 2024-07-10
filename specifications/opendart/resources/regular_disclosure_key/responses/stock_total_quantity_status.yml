@@ -1,0 +1,78 @@
+description: 주식의 총수 현황 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    $ref: ../../../shared/response_body.yml#/corp_cls
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00126380"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사명
+                    example: "삼성전자"
+                  se:
+                    type: string
+                    description: 구분(보통주, 우선주, 합계, 비고)
+                    example: "보통주"
+                  isu_stock_totqy:
+                    type: string
+                    description: Ⅰ. 발행할 주식의 총수
+                    example: "20,000,000,000"
+                  now_to_isu_stock_totqy:
+                    type: string
+                    description: Ⅱ. 현재까지 발행한 주식의 총수
+                    example: "7,780,466,850"
+                  now_to_dcrs_stock_totqy:
+                    type: string
+                    description: Ⅲ. 현재까지 감소한 주식의 총수
+                    example: "1,810,684,300"
+                  redc:
+                    type: string
+                    description: Ⅲ. 현재까지 감소한 주식의 총수(1. 감자)
+                    example: "-"
+                  profit_incnr:
+                    type: string
+                    description: Ⅲ. 현재까지 감소한 주식의 총수(2. 이익소각)
+                    example: "1,810,684,300"
+                  rdmstk_repy:
+                    type: string
+                    description: Ⅲ. 현재까지 감소한 주식의 총수(3. 상환주식의 상환)
+                    example: "-"
+                  etc:
+                    type: string
+                    description: Ⅲ. 현재까지 감소한 주식의 총수(4. 기타)
+                    example: "-"
+                  istc_totqy:
+                    type: string
+                    description: Ⅳ. 발행주식의 총수 (Ⅱ-Ⅲ)
+                    example: "5,969,782,550"
+                  tesstk_co:
+                    type: string
+                    description: Ⅴ. 자기주식수
+                    example: "-"
+                  distb_stock_co:
+                    type: string
+                    description: Ⅵ. 유통주식수 (Ⅳ-Ⅴ)
+                    example: "5,969,782,550"
