@@ -1,0 +1,70 @@
+description: 대량보유 상황보고 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  rcept_dt:
+                    type: string
+                    description: 접수일자
+                    example: "20210331"
+                    maxLength: 8
+                  corp_cls:
+                    $ref: ../../../shared/response_body.yml#/corp_cls
+                  corp_name:
+                    type: string
+                    description: 공시대상회사명
+                    example: "삼성전자"
+                  report_tp:
+                    type: string
+                    description: 보고구분
+                    example: "일반"
+                  repror:
+                    type: string
+                    description: 대표보고자
+                    example: "삼성물산"
+                  stkqy:
+                    type: string
+                    description: 보유주식등의 수
+                    example: "9,999,999,999"
+                  stkqy_irds:
+                    type: string
+                    description: 보유주식등의 증감
+                    example: "9,999,999,999"
+                  stkrt:
+                    type: string
+                    description: 보유비율
+                    example: "20.79"
+                  stkrt_irds:
+                    type: string
+                    description: 보유비율 증감
+                    example: "0.3"
+                  ctr_stkqy:
+                    type: string
+                    description: 주요체결 주식등의 수
+                    example: "9,999,999,999"
+                  ctr_stkrt:
+                    type: string
+                    description: 주요체결 보유비율
+                    example: "20.79"
+                  report_resn:
+                    type: string
+                    description: 보고사유
+                    example: "보유주식 변동"

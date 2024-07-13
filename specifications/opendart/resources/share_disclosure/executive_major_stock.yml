@@ -1,0 +1,15 @@
+operationId: getShareExecutiveMajorStock
+
+summary: 임원ㆍ주요주주 소유보고
+
+description: 임원ㆍ주요주주특정증권등 소유상황보고서 내에 임원ㆍ주요주주 소유보고 정보를 제공합니다.
+
+tags:
+  - ShareDisclosure
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/corp_code
+
+responses:
+  "200":
+    $ref: responses/executive_major_stock.yml

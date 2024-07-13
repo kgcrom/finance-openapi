@@ -150,6 +150,14 @@ paths:
     get:
       $ref: resources/regular_disclosure_key/outer_corporate_investment_status.yml
 
+  /api/majorstock.json:
+    get:
+      $ref: resources/share_disclosure/largest_shareholder_stock.yml
+
+  /api/elestock.json:
+    get:
+      $ref: resources/share_disclosure/executive_major_stock.yml
+
 components:
   securitySchemes:
     authKey:
