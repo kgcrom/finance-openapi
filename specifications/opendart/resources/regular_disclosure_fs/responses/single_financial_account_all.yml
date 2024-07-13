@@ -1,0 +1,123 @@
+description: 단일회사 전체 재무제표 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  reprt_code:
+                    $ref: ../../../shared/response_body.yml#/reprt_code
+                  bsns_year:
+                    type: string
+                    description: 사업연도
+                    example: "2019"
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00126380"
+                    maxLength: 8
+                  sj_div:
+                    type: string
+                    description: |
+                      재무제표구분
+
+                      - BS : 재무상태표<br/>
+                      - IS : 손익계산서<br/>
+                      - CIS : 포괄손익계산서<br/>
+                      - CF : 현금흐름표<br/>
+                      - SCE : 자본변동표
+                    enum: ["BS", "IS", "CIS", "CF", "SCE"]
+                    example: "BS"
+                  sj_nm:
+                    type: string
+                    description: 재무제표명
+                    example: "재무상태표"
+                  account_id:
+                    type: string
+                    description: |
+                      XBRL 표준계정ID
+
+                      ※ 표준계정ID가 아닐경우 ""-표준계정코드 미사용-""
+                    example: "ifrs_Equity"
+                  account_nm:
+                    type: string
+                    description: 계정명칭
+                    example: "자본총계"
+                  account_detail:
+                    type: string
+                    description: |
+                      계정 상세명칭 예시
+
+                      - 자본 [member]|지배기업 소유주지분<br/>
+                      - 자본 [member]|지배기업 소유주지분|기타포괄손익누계액
+                    example: "계정 상세명칭 예시"
+                  thstrm_nm:
+                    type: string
+                    description: 당기명
+                    example: "제 13 기"
+                  thstrm_amount:
+                    type: string
+                    description: 당기금액
+                    example: "9,999,999,999"
+                  thstrm_add_amount:
+                    type: string
+                    description: 당기누적금액
+                    example: "9,999,999,999"
+                  frmtrm_nm:
+                    type: string
+                    description: 전기명
+                    example: "제 12 기말"
+                  frmtrm_amount:
+                    type: string
+                    description: 전기금액
+                    example: "9,999,999,999"
+                  frmtrm_q_nm:
+                    type: string
+                    description: 전기명(분/반기)
+                    example: "제 18 기 반기"
+                  frmtrm_q_amount:
+                    type: string
+                    description: 전기금액(분/반기)
+                    example: "9,999,999,999"
+                  frmtrm_add_amount:
+                    type: string
+                    description: 전기누적금액
+                    example: "9,999,999,999"
+                  bfefrmtrm_nm:
+                    type: string
+                    description: |
+                      전전기명
+
+                      ※ 사업보고서의 경우에만 출력
+                    example: "제 11 기말"
+                  bfefrmtrm_amount:
+                    type: string
+                    description: |
+                      전전기금액
+
+                      ※ 사업보고서의 경우에만 출력
+                    example: "9,999,999,999"
+                  ord:
+                    type: string
+                    description: 계정과목 정렬순서
+                    example: "1"
+                  currency:
+                    type: string
+                    description: 통화 단위
+                    example: "KRW"

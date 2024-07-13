@@ -1,0 +1,72 @@
+description: XBRL택사노미재무제표양식 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  sj_div:
+                    description: |
+                      재무제표구분
+
+                      - BS : 재무상태표<br/>
+                      - IS : 손익계산서<br/>
+                      - CIS : 포괄손익계산서<br/>
+                      - CF : 현금흐름표<br/>
+                      - SCE : 자본변동표
+                    type: string
+                    enum: ["BS", "IS", "CIS", "CF", "SCE"]
+                    example: "BS"
+                  account_id:
+                    type: string
+                    description: 계정ID
+                    example: "ifrs_StatementOfFinancialPositionAbstract"
+                  account_nm:
+                    type: string
+                    description: 계정명
+                    example: "StatementOfFinancialPositionAbstract"
+                  bsns_de:
+                    type: string
+                    description: 기준일
+                    example: "20201231"
+                  label_kor:
+                    type: string
+                    description: 한글 출력명
+                    example: "재무상태표 요약"
+                  label_eng:
+                    type: string
+                    description: 영문 출력명
+                    example: "Statement of Financial Position Abstract"
+                  data_tp:
+                    type: string
+                    description: |
+                      데이터 유형
+
+                      - text block : 제목<br/>
+                      - Text : Text<br/>
+                      - yyyy-mm-dd : Date<br/>
+                      - X : Monetary Value<br/>
+                      - (X): Monetary Value(Negative)<br/>
+                      - X.XX : Decimalized Value<br/>
+                      - Shares : Number of shares (주식 수)<br/>
+                      - For each : 공시된 항목이 전후로 반복적으로 공시될 경우 사용<br/>
+                      - 공란 : 입력 필요 없음
+                    example: "X"
+                  ifrf_ref:
+                    type: string
+                    description: IFRS Reference
+                    example: "K-IFRS 1001 문단 60"

@@ -1,4 +1,4 @@
-operationId: getCorporateCode
+operationId: downloadCorporateCode
 
 summary: 고유번호
 
@@ -10,7 +10,7 @@ tags:
 
 responses:
   200:
-    description: 고유번호 조회 성공
+    description: 고유번호 다운로드 성공
     content:
       application/zip:
         schema:

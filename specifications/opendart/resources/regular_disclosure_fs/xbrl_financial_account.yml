@@ -1,0 +1,27 @@
+operationId: downloadXbrlFinancialAccount
+
+summary: 재무제표 원본파일(XBRL)
+
+description: |
+  상장법인(유가증권, 코스닥) 및 주요 비상장법인(사업보고서 제출대상 & IFRS 적용)이<br/>
+  제출한 정기보고서 내에 XBRL재무제표의 원본파일(XBRL)을 제공합니다.
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/reprt_code
+  - in: query
+    name: rcept_no
+    required: true
+    schema:
+      type: string
+      description: 접수번호
+      example: "20200330004590"
+      maxLength: 14
+
+responses:
+  200:
+    description: XBRL 다운로드 성공
+    content:
+      application/zip:
+        schema:
+          type: string
+          format: binary

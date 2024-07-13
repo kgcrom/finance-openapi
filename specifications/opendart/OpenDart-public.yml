@@ -150,6 +150,34 @@ paths:
     get:
       $ref: resources/regular_disclosure_key/outer_corporate_investment_status.yml
 
+  /api/fnlttSinglAcnt.json:
+    get:
+      $ref: resources/regular_disclosure_fs/single_financial_account.yml
+
+  /api/fnlttMultiAcnt.json:
+    get:
+      $ref: resources/regular_disclosure_fs/multi_financial_account.yml
+
+  /api/fnlttXbrl.xml:
+    get:
+      $ref: resources/regular_disclosure_fs/xbrl_financial_account.yml
+
+  /api/fnlttSinglAcntAll.json:
+    get:
+      $ref: resources/regular_disclosure_fs/single_financial_account_all.yml
+
+  /api/xbrlTaxonomy.json:
+    get:
+      $ref: resources/regular_disclosure_fs/xbrl_taxonomy.yml
+
+  /api/fnlttSinglIndx.json:
+    get:
+      $ref: resources/regular_disclosure_fs/single_financial_index.yml
+
+  /api/fnlttCmpnyIndx.json:
+    get:
+      $ref: resources/regular_disclosure_fs/multi_financial_index.yml
+
   /api/majorstock.json:
     get:
       $ref: resources/share_disclosure/largest_shareholder_stock.yml

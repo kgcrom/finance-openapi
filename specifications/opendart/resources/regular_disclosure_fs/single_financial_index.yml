@@ -1,0 +1,33 @@
+operationId: getSingleFinancialIndex
+
+summary: 단일회사 주요 재무지표
+
+description: |
+  상장법인(유가증권, 코스닥) 및 주요 비상장법인(사업보고서 제출대상 & IFRS 적용)이<br/>
+  제출한 정기보고서 내에 XBRL재무제표의 주요 재무지표를 제공합니다.
+
+tags:
+  - RegularDisclosureFinancialStatement
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/corp_code
+  - $ref: ../../shared/parameters.yml#/bsns_year
+  - $ref: ../../shared/parameters.yml#/reprt_code
+  - in: query
+    name: idx_cl_code
+    description: |
+      지표구분코드
+
+      - M210000 : 수익성지표<br/>
+      - M220000 : 안정성지표<br/>
+      - M230000 : 성장성지표<br/>
+      - M240000 : 활동성지표
+    required: true
+    schema:
+      type: string
+      enum: ["M210000", "M220000", "M230000", "M240000"]
+      example: "M210000"
+
+responses:
+  "200":
+    $ref: responses/single_financial_index.yml

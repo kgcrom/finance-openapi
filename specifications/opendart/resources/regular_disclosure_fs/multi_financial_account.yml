@@ -1,0 +1,19 @@
+operationId: getMultiFinancialAccount
+
+summary: 다중회사 주요계정
+
+description: |
+  상장법인(유가증권, 코스닥) 및 주요 비상장법인(사업보고서 제출대상 & IFRS 적용)이 제출한 정기보고서 내에<br/>
+  XBRL재무제표의 주요계정과목(재무상태표, 손익계산서)을 제공합니다. (대상법인 복수조회 복수조회 가능)
+
+tags:
+  - RegularDisclosureFinancialStatement
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/corp_code
+  - $ref: ../../shared/parameters.yml#/bsns_year
+  - $ref: ../../shared/parameters.yml#/reprt_code
+
+responses:
+  "200":
+    $ref: responses/multi_financial_account.yml

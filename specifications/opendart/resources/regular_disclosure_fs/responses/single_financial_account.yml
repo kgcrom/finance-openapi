@@ -1,0 +1,120 @@
+description: 단일회사 주요계정 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  bsns_year:
+                    type: string
+                    description: 사업연도
+                    example: "2019"
+                  stock_code:
+                    type: string
+                    description: 종목코드
+                    example: "005930"
+                    maxLength: 6
+                  reprt_code:
+                    $ref: ../../../shared/response_body.yml#/reprt_code
+                  account_nm:
+                    type: string
+                    description: 계정명
+                    example: "자본총계"
+                  fs_div:
+                    type: string
+                    description: |
+                      개별/연결구분
+
+                      OFS:재무제표, CFS:연결재무제표
+                    enum: ["OFS", "CFS"]
+                    example: "CFS"
+                  fs_nm:
+                    type: string
+                    description: |
+                      개별/연결명
+
+                      연결재무제표 또는 재무제표 출력
+                    example: "연결재무제표"
+                  sj_div:
+                    type: string
+                    description: |
+                      재무제표구분
+
+                      BS:재무상태표, IS:손익계산서
+                    enum: ["BS", "IS"]
+                    example: "BS"
+                  sj_nm:
+                    type: string
+                    description: |
+                      재무제표명
+
+                      재무상태표 또는 손익계산서 출력
+                    example: "재무상태표"
+                  thstrm_nm:
+                    type: string
+                    description: 당기명
+                    example: "제 50 기"
+                  thstrm_dt:
+                    type: string
+                    description: 당기일자
+                    example: "2018.12.31 현재"
+                  thstrm_amount:
+                    type: string
+                    description: 당기금액
+                    example: "174,697,424,000,000"
+                  thstrm_add_amount:
+                    type: string
+                    description: 당기누적금액
+                    example: "174,697,424,000,000"
+                  frmtrm_nm:
+                    type: string
+                    description: 전기명
+                    example: "제 49 기"
+                  frmtrm_dt:
+                    type: string
+                    description: 전기일자
+                    example: "2017.12.31 현재"
+                  frmtrm_amount:
+                    type: string
+                    description: 전기금액
+                    example: "146,982,464,000,000"
+                  frmtrm_add_amount:
+                    type: string
+                    description: 전기누적금액
+                    example: "146,982,464,000,000"
+                  bfefrmtrm_nm:
+                    type: string
+                    description: 전전기명
+                    example: "제 48 기"
+                  bfefrmtrm_dt:
+                    type: string
+                    description: 전전기일자
+                    example: "2016.12.31 현재"
+                  bfefrmtrm_amount:
+                    type: string
+                    description: 전전기금액
+                    example: "141,429,704,000,000"
+                  ord:
+                    type: string
+                    description: 계정과목 정렬순서
+                    example: "1"
+                  currency:
+                    type: string
+                    description: 통화 단위
+                    example: "KRW"

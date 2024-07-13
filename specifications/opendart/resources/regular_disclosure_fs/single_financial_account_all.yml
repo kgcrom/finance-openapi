@@ -1,0 +1,20 @@
+operationId: getSingleFinancialAccountAll
+
+summary: 단일회사 전체 재무제표
+
+description: |
+  상장법인(유가증권, 코스닥) 및 주요 비상장법인(사업보고서 제출대상 & IFRS 적용)이<br/>
+  제출한 정기보고서 내에 XBRL재무제표의 모든계정과목을 제공합니다.
+
+tags:
+  - RegularDisclosureFinancialStatement
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/corp_code
+  - $ref: ../../shared/parameters.yml#/bsns_year
+  - $ref: ../../shared/parameters.yml#/reprt_code
+  - $ref: ../../shared/parameters.yml#/fs_div
+
+responses:
+  "200":
+    $ref: responses/single_financial_account_all.yml

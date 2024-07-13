@@ -1,0 +1,66 @@
+description: 단일회사 주요 재무지표 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  bsns_year:
+                    type: string
+                    description: 사업연도
+                    example: "2019"
+                    maxLength: 4
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00126380"
+                    maxLength: 8
+                  stock_code:
+                    type: string
+                    description: 상장회사의 종목코드(6자리)
+                    example: "005930"
+                    maxLength: 6
+                  reprt_code:
+                    $ref: ../../../shared/response_body.yml#/reprt_code
+                  idx_cl_code:
+                    type: string
+                    description: |
+                      지표분류코드
+
+                      - M210000 : 수익성지표<br/>
+                      - M220000 : 안정성지표<br/>
+                      - M230000 : 성장성지표<br/>
+                      - M240000 : 활동성지표
+                    enum: ["M210000", "M220000", "M230000", "M240000"]
+                    example: "M210000"
+                  idx_cl_nm:
+                    type: string
+                    description: 지표분류명
+                    example: "수익성지표"
+                  idx_code:
+                    type: string
+                    description: 지표코드
+                    example: "M211000"
+                    maxLength: 7
+                  idx_nm:
+                    type: string
+                    description: 지표명
+                    example: "영업이익율"
+                  idx_val:
+                    type: string
+                    description: 지표값
+                    example: "0.256"

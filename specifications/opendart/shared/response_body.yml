@@ -38,3 +38,15 @@ corp_cls:
   type: string
   enum: ["Y", "K", "N", "E"]
   example: "Y"
+
+reprt_code:
+  description: |
+    보고서 코드
+
+    - 11011 : 사업보고서<br/>
+    - 11012 : 반기보고서<br/>
+    - 11013 : 1분기보고서<br/>
+    - 11014 : 3분기보고서
+  type: string
+  example: "11011"
+  maxLength: 5
