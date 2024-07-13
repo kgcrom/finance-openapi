@@ -1,4 +1,4 @@
-operationId: getShareLargestShareholderStock
+operationId: getLargestShareholderStock
 
 summary: 대량보유 상황보고서
 

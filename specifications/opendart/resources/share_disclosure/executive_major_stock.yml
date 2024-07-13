@@ -1,4 +1,4 @@
-operationId: getShareExecutiveMajorStock
+operationId: getExecutiveMajorStock
 
 summary: 임원ㆍ주요주주 소유보고
 

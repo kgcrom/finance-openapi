@@ -1,4 +1,4 @@
-operationId: getCorporateDocument
+operationId: getDocument
 
 summary: 공시서류원본파일
 

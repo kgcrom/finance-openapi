@@ -1,4 +1,4 @@
-operationId: getCorporateCompany
+operationId: getCompany
 
 summary: 기업개황
 
