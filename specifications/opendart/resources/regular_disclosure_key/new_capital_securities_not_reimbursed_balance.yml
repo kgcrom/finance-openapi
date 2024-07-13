@@ -1,4 +1,4 @@
-operationId: getRegularKeyNewCapitalSecuritiesNotReimbursedBalance
+operationId: getNewCapitalSecuritiesNotReimbursedBalance
 
 summary: 신종자본증권 미상환 잔액
 

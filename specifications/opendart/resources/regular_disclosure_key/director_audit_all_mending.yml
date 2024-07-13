@@ -1,4 +1,4 @@
-operationId: getRegularKeyDirectorAuditAllMending
+operationId: getDirectorAuditAllMending
 
 summary: 이사ㆍ감사의 전체 보수현황
 

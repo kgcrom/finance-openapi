@@ -1,4 +1,4 @@
-operationId: getRegularKeyEnterprisesBillNotReimbursedBalance
+operationId: getEnterprisesBillNotReimbursedBalance
 
 summary: 기업어음증권 미상환 잔액
 

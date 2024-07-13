@@ -1,4 +1,4 @@
-operationId: getRegularKeyExecutiveStatus
+operationId: getExecutiveStatus
 
 summary: 임원 현황
 

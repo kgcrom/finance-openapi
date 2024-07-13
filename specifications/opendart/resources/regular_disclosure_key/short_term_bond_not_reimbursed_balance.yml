@@ -1,4 +1,4 @@
-operationId: getRegularKeyShortTermBondNotReimbursedBalance
+operationId: getShortTermBondNotReimbursedBalance
 
 summary: 단기사채 미상환 잔액
 

@@ -1,4 +1,4 @@
-operationId: getRegularKeyAuditServiceConclusionStatus
+operationId: getAuditServiceConclusionStatus
 
 summary: 감사용역체결현황
 

@@ -1,4 +1,4 @@
-operationId: getRegularKeyOuterCorporateInvestmentStatus
+operationId: getOuterCorporateInvestmentStatus
 
 summary: 타법인 출자현황
 

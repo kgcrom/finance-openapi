@@ -1,4 +1,4 @@
-operationId: getRegularKeyMinorityShareholdersStatus
+operationId: getMinorityShareholdersStatus
 
 summary: 소액주주 현황
 

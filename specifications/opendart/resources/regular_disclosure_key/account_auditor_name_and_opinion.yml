@@ -1,4 +1,4 @@
-operationId: getRegularKeyAccountAuditorNameAndOpinion
+operationId: getAccountAuditorNameAndOpinion
 
 summary: 회계감사인의 명칭 및 감사의견
 

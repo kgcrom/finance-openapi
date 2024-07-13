@@ -1,4 +1,4 @@
-operationId: getRegularKeyStockTotalQuantityStatus
+operationId: getStockTotalQuantityStatus
 
 summary: 주식 총수 현황
 

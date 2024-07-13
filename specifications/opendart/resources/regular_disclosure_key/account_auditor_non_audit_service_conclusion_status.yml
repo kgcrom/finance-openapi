@@ -1,4 +1,4 @@
-operationId: getRegularKeyAccountAuditorNonAuditServiceConclusionStatus
+operationId: getAccountAuditorNonAuditServiceConclusionStatus
 
 summary: 회계감사인과의 비감사용역 계약체결 현황
 

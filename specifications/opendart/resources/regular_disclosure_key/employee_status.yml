@@ -1,4 +1,4 @@
-operationId: getRegularKeyEmployeeStatus
+operationId: getEmployeeStatus
 
 summary: 직원 현황
 

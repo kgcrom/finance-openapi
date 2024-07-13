@@ -1,4 +1,4 @@
-operationId: getRegularKeyIncreaseDecreaseStatus
+operationId: getIncreaseDecreaseStatus
 
 summary: 증자(감자) 현황
 

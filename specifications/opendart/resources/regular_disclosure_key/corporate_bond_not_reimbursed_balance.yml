@@ -1,4 +1,4 @@
-operationId: getRegularKeyCorporateBondNotReimbursedBalance
+operationId: getCorporateBondNotReimbursedBalance
 
 summary: 회사채 미상환 잔액
 

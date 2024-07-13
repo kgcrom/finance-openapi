@@ -1,4 +1,4 @@
-operationId: getRegularKeyPublicEquityCapitalUseDetails
+operationId: getPublicEquityCapitalUseDetails
 
 summary: 공모자금의 사용내역
 

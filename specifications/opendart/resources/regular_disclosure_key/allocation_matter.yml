@@ -1,4 +1,4 @@
-operationId: getRegularKeyAllocationMatter
+operationId: getAllocationMatter
 
 summary: 배당에 관한 사항
 

@@ -1,4 +1,4 @@
-operationId: getRegularKeyDirectorAuditorIndividualMending
+operationId: getDirectorAuditorIndividualMending
 
 summary: 이사ㆍ감사의 개인별 보수현황
 

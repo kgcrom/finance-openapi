@@ -1,4 +1,4 @@
-operationId: getRegularKeyConditionalCapitalNotReimbursedBalance
+operationId: getConditionalCapitalNotReimbursedBalance
 
 summary: 조건부 자본증권 미상환 잔액
 

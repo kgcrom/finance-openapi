@@ -1,4 +1,4 @@
-operationId: getRegularKeyDebtSecuritiesIssueAccomplishment
+operationId: getDebtSecuritiesIssueAccomplishment
 
 summary: 채무증권 발행실적
 

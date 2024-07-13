@@ -1,4 +1,4 @@
-operationId: getRegularKeyLargestShareholderChangeStatus
+operationId: getLargestShareholderChangeStatus
 
 summary: 최대주주 변동 현황
 

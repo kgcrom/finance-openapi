@@ -1,4 +1,4 @@
-operationId: getRegularKeyOutsideDirectorChangeStatus
+operationId: getOutsideDirectorChangeStatus
 
 summary: 사외이사 및 그 변동현황
 

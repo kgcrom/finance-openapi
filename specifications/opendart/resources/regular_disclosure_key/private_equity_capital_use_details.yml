@@ -1,4 +1,4 @@
-operationId: getRegularKeyPrivateEquityCapitalUseDetails
+operationId: getPrivateEquityCapitalUseDetails
 
 summary: 사모자금의 사용내역
 
