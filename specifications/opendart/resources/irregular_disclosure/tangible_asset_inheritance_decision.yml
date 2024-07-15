@@ -1,0 +1,17 @@
+operationId: getTangibleAssetInheritanceDecision
+
+summary: 유형자산 양수 결정
+
+description: 주요사항보고서(유형자산 양수 결정) 내에 주요 정보를 제공합니다.
+
+tags:
+  - IrregularDisclosure
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/corp_code
+  - $ref: ../../shared/parameters.yml#/bgn_de
+  - $ref: ../../shared/parameters.yml#/end_de
+
+responses:
+  "200":
+    $ref: responses/tangible_asset_inheritance_decision.yml

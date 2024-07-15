@@ -1,0 +1,284 @@
+description: 주식교환·이전 결정 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    type: string
+                    description: |
+                      법인구분
+
+                      - Y : 유가증권시장
+                      - K : 코스닥시장
+                      - N : 코넥스시장
+                      - E : 기타
+                    enum: ["Y", "K", "N", "E"]
+                    example: "Y"
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00219097"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사의 종목명
+                    example: "BGF"
+                  extr_sen:
+                    type: string
+                    description: 구분
+                    example: "주식교환"
+                  extr_stn:
+                    type: string
+                    description: 교환ㆍ이전 형태
+                    example: "소규모"
+                  extr_tgcmp_cmpnm:
+                    type: string
+                    description: 교환ㆍ이전 대상법인(회사명)
+                    example: "(주)비지에프포스트"
+                  extr_tgcmp_rp:
+                    type: string
+                    description: 교환ㆍ이전 대상법인(대표자)
+                    example: "전태진"
+                  extr_tgcmp_mbsn:
+                    type: string
+                    description: 교환ㆍ이전 대상법인(주요사업)
+                    example: "화물중개 사업"
+                  extr_tgcmp_rl_cmpn:
+                    type: string
+                    description: 교환ㆍ이전 대상법인(회사와의 관계)
+                    example: "자회사"
+                  extr_tgcmp_tisstk_ostk:
+                    type: string
+                    description: 교환ㆍ이전 대상법인(발행주식총수(주)(보통주식))
+                    example: "886,913"
+                  extr_tgcmp_tisstk_cstk:
+                    type: string
+                    description: 교환ㆍ이전 대상법인(발행주식총수(주)(종류주식))
+                    example: "-"
+                  rbsnfdtl_tast:
+                    type: string
+                    description: 교환ㆍ이전 대상법인(최근 사업연도 요약재무내용(원)(자산총계))
+                    example: "15,211,670,934"
+                  rbsnfdtl_tdbt:
+                    type: string
+                    description: 교환ㆍ이전 대상법인(최근 사업연도 요약재무내용(원)(부채총계))
+                    example: "2,504,897,257"
+                  rbsnfdtl_teqt:
+                    type: string
+                    description: 교환ㆍ이전 대상법인(최근 사업연도 요약재무내용(원)(자본총계))
+                    example: "12,706,773,677"
+                  rbsnfdtl_cpt:
+                    type: string
+                    description: 교환ㆍ이전 대상법인(최근 사업연도 요약재무내용(원)(자본금))
+                    example: "443,456,500"
+                  extr_rt:
+                    type: string
+                    description: 교환ㆍ이전 비율
+                    example: "(주)비지에프 : (주)비지에프포스트 = 1: 2.0472489"
+                  extr_rt_bs:
+                    type: string
+                    description: 교환ㆍ이전 비율 산출근거
+                    example: |
+                      (1) 기준주가 분석방법<br/>
+                      주권상장법인인 완전모회사가 되는 회사의 기준주가는 자본시장과 금융투자업에 관한 법률 시행령 제176조의5 제1항 및 제176조의6 제2항에 따라 주식교환을 위한 이사회결의일과 주식교환계약을 체결한 날 중 앞서는 날의 전일을 기산일로 최근 1개월 간의 거래량 가중산술평균종가, 최근 1주일 간의 거래량 가중산술평균종가, 최근일의 종가를 산술평균한 가액으로 산정하였습니다.<br/>
+                      - 최근 1개월 가중산술평균종가(2019.03.04 ~ 04.03)<br/>
+                        : 8,401원<br/>
+                      - 최근 1주일 가중산술평균종가(2019.03.28 ~ 04.03)<br/>
+                        : 8,069원<br/>
+                      - 최근일 종가(2019.04.03) : 8,230원<br/>
+                      - 산술평균가액 : 8,233원<br/>
+                      - 교환가액 : 8,233원<br/>
+                      (2) 본질가치 분석방법<br/>
+                      주권비상장법인인 완전자회사가 되는 회사의 본질가치는 증권의 발행 및 공시 등에관한 규정 시행세칙 제4조 내지 제6조에 따라 자산가치와 수익가치를 각각 1과 1.5로 하여 가중산술평균한 가액으로 산정하였습니다.<br/>
+                      - 자산가치: 14,327원<br/>
+                      - 수익가치: \n18,541원<br/>
+                      - 본질가치: \n16,855원<br/>
+                      - 교환가액: \n16,855원
+
+                      - 자본시장과 금융투자업에 관한 법률 시행령 제176조의5 제1항 제1호에 따르면 상술한 방법으로 산출된 가액을 기준으로 100분의 30(계열회사 간 주식교환의 경우에는 100분의 10)의 범위에서 할인 또는 할증한 가액을 기준주가로 적용할 수 있도록 규정되어 있으나 본 평가에서는 적용하지 아니하였습니다.
+                  exevl_atn:
+                    type: string
+                    description: 외부평가에 관한 사항(외부평가 여부)
+                    example: "예"
+                  exevl_bs_rs:
+                    type: string
+                    description: 외부평가에 관한 사항(근거 및 사유)
+                    example: "자본시장과금융투자업에관한법률 시행령 제176조의6제3항에 따라, 주식의 포괄적 교환 시 주식의 포괄적 교환 비율의 적정성에 대하여 외부평가기관의 평가를 받아야 합니다."
+                  exevl_intn:
+                    type: string
+                    description: 외부평가에 관한 사항(외부평가기관의 명칭)
+                    example: "이촌회계법인"
+                  exevl_pd:
+                    type: string
+                    description: 외부평가에 관한 사항(외부평가 기간)
+                    example: "2019년 03월 08일 ~ 2019년 04월 03일"
+                  exevl_op:
+                    type: string
+                    description: 외부평가에 관한 사항(외부평가 의견)
+                    example: |
+                      주식교환 당사회사간 주식교환비율의 기준이 되는 주당평가액에 대하여 각각 완전모회사가 되는 회사인 주식회사 비지에프는\n8,233원(액면가액 1,000원)으로 완전자회사가 되는 회사인 주식회사 비지에프포스트는<br/>
+                      16,855원(액면가액 500원)으로 추정되었는 바,<br/>
+                      주식교환 당사회사가 합의한 주식교환비율<br/>
+                      1:2.0472489은<br/>
+                      적정한 것으로판단됩니다.
+
+                      본 평가인의 검토 결과, 이러한 주식교환비율은 중요성의 관점에서 자본시장과 금융투자업에 관한 법률 제165조의 4, 동법 시행령 제 176조의 5와 6, 증권의 발행 및 공시 등에 관한 규정 제5-13조 및 동 규정 시행세칙 제4조 내지 제8조에서 규정하고 있는 주당 평가액 산정방법에 위배되어 산정되었다는 점이 발견되지 아니하였습니다.
+                  extr_pp:
+                    type: string
+                    description: 교환ㆍ이전 목적
+                    example: "주식교환"
+                  extrsc_extrctrd:
+                    type: string
+                    description: 교환ㆍ이전일정(교환ㆍ이전계약일)
+                    example: "2019년 04월 04일"
+                  extrsc_shddstd:
+                    type: string
+                    description: 교환ㆍ이전일정(주주확정기준일)
+                    example: "-"
+                  extrsc_shclspd_bgd:
+                    type: string
+                    description: 교환ㆍ이전일정(주주명부 폐쇄기간(시작일))
+                    example: "2019년 04월 20일"
+                  extrsc_shclspd_edd:
+                    type: string
+                    description: 교환ㆍ이전일정(주주명부 폐쇄기간(종료일))
+                    example: "2019년 04월 26일"
+                  extrsc_extrop_rcpd_bgd:
+                    type: string
+                    description: 교환ㆍ이전일정(주식교환ㆍ이전 반대의사 통지접수기간(시작일))
+                    example: "2019년 04월 27일"
+                  extrsc_extrop_rcpd_edd:
+                    type: string
+                    description: 교환ㆍ이전일정(주식교환ㆍ이전 반대의사 통지접수기간(종료일))
+                    example: "2019년 05월 03일"
+                  extrsc_gmtsck_prd:
+                    type: string
+                    description: 교환ㆍ이전일정(주주총회 예정일자)
+                    example: "2019년 05월 10일"
+                  extrsc_aprskh_expd_bgd:
+                    type: string
+                    description: 교환ㆍ이전일정(주식매수청구권 행사기간(시작일))
+                    example: "2019년 05월 04일"
+                  extrsc_aprskh_expd_edd:
+                    type: string
+                    description: 교환ㆍ이전일정(주식매수청구권 행사기간(종료일))
+                    example: "2019년 05월 10일"
+                  extrsc_osprpd_bgd:
+                    type: string
+                    description: 교환ㆍ이전일정(구주권제출기간(시작일))
+                    example: "2019년 05월 11일"
+                  extrsc_osprpd_edd:
+                    type: string
+                    description: 교환ㆍ이전일정(구주권제출기간(종료일))
+                    example: "2019년 05월 17일"
+                  extrsc_trspprpd:
+                    type: string
+                    description: |
+                      교환ㆍ이전일정(매매거래정지예정기간)
+
+                      ① 2019년 12월 08일까지 사용됨
+                    example: "-"
+                  extrsc_trspprpd_bgd:
+                    type: string
+                    description: |
+                      교환ㆍ이전일정(매매거래정지예정기간(시작일))
+
+                      ② 2019년 12월 09일부터 추가됨
+                    example: "2019년 05월 18일"
+                  extrsc_trspprpd_edd:
+                    type: string
+                    description: |
+                      교환ㆍ이전일정(매매거래정지예정기간(종료일))
+
+                      ② 2019년 12월 09일부터 추가됨
+                    example: "2019년 05월 24일"
+                  extrsc_extrdt:
+                    type: string
+                    description: 교환ㆍ이전일정(교환ㆍ이전일자)
+                    example: "2019년 05월 25일"
+                  extrsc_nstkdlprd:
+                    type: string
+                    description: 교환ㆍ이전일정(신주권교부예정일)
+                    example: "2019년 05월 26일"
+                  extrsc_nstklstprd:
+                    type: string
+                    description: 교환ㆍ이전일정(신주의 상장예정일)
+                    example: "2019년 05월 27일"
+                  atextr_cpcmpnm:
+                    type: string
+                    description: 교환ㆍ이전 후 완전모회사명
+                    example: "비지에프포스트"
+                  aprskh_plnprc:
+                    type: string
+                    description: 주식매수청구권에 관한 사항(매수예정가격)
+                    example: "9,999,999,999"
+                  aprskh_pym_plpd_mth:
+                    type: string
+                    description: 주식매수청구권에 관한 사항(지급예정시기, 지급방법)
+                    example: "-"
+                  aprskh_lmt:
+                    type: string
+                    description: 주식매수청구권에 관한 사항(주식매수청구권 제한 관련 내용)
+                    example: "-"
+                  aprskh_ctref:
+                    type: string
+                    description: 주식매수청구권에 관한 사항(계약에 미치는 효력)
+                    example: "-"
+                  bdlst_atn:
+                    type: string
+                    description: 우회상장 해당 여부
+                    example: "아니오"
+                  otcpr_bdlst_sf_atn:
+                    type: string
+                    description: 타법인의 우회상장 요건 충족 여부
+                    example: "아니오"
+                  bddd:
+                    type: string
+                    description: 이사회결의일(결정일)
+                    example: "2019년 04월 04일"
+                  od_a_at_t:
+                    type: string
+                    description: 사외이사참석여부(참석(명))
+                    example: "1"
+                  od_a_at_b:
+                    type: string
+                    description: 사외이사참석여부(불참(명))
+                    example: "-"
+                  adt_a_atn:
+                    type: string
+                    description: 감사(사외이사가 아닌 감사위원) 참석여부
+                    example: "참석"
+                  popt_ctr_atn:
+                    type: string
+                    description: 풋옵션 등 계약 체결여부
+                    example: "아니오"
+                  popt_ctr_cn:
+                    type: string
+                    description: 계약내용
+                    example: "-"
+                  rs_sm_atn:
+                    type: string
+                    description: 증권신고서 제출대상 여부
+                    example: "예"
+                  ex_sm_r:
+                    type: string
+                    description: 제출을 면제받은 경우 그 사유
+                    example: "-"

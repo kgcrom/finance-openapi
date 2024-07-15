@@ -1,0 +1,201 @@
+description: 교환사채권 발행결정 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    type: string
+                    description: |
+                      법인구분
+
+                      - Y : 유가증권시장
+                      - K : 코스닥시장
+                      - N : 코넥스시장
+                      - E : 기타
+                    enum: ["Y", "K", "N", "E"]
+                    example: "Y"
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00273420"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사의 종목명
+                    example: "이스트소프트"
+                  bd_tm:
+                    type: string
+                    description: 사채의 종류(회차)
+                    example: "1"
+                  bd_knd:
+                    type: string
+                    description: 사채의 종류(종류)
+                    example: "무기명식 이권부 무보증 사모교환사채"
+                  bd_fta:
+                    type: string
+                    description: 사채의 권면(전자등록)총액 (원)
+                    example: "6,000,000,000"
+                  ovis_fta:
+                    type: string
+                    description: 해외발행(권면(전자등록)총액)
+                    example: "-"
+                  ovis_fta_crn:
+                    type: string
+                    description: 해외발행(권면(전자등록)총액(통화단위))
+                    example: "-"
+                  ovis_ster:
+                    type: string
+                    description: 해외발행(기준환율등)
+                    example: "-"
+                  ovis_isar:
+                    type: string
+                    description: 해외발행(발행지역)
+                    example: "-"
+                  ovis_mktnm:
+                    type: string
+                    description: 해외발행(해외상장시 시장의 명칭)
+                    example: "-"
+                  fdpp_fclt:
+                    type: string
+                    description: 자금조달의 목적(시설자금 (원))
+                    example: "-"
+                  fdpp_bsninh:
+                    type: string
+                    description: |
+                      자금조달의 목적(영업양수자금 (원))
+
+                      ① 2019년 12월 9일부터 추가됨
+                    example: "-"
+                  fdpp_op:
+                    type: string
+                    description: 자금조달의 목적(운영자금 (원))
+                    example: "6,000,000,000"
+                  fdpp_dtrp:
+                    type: string
+                    description: |
+                      자금조달의 목적(채무상환자금 (원))
+
+                      ① 2019년 12월 9일부터 추가됨
+                    example: "-"
+                  fdpp_ocsa:
+                    type: string
+                    description: 자금조달의 목적(타법인 증권 취득자금 (원))
+                    example: "-"
+                  fdpp_etc:
+                    type: string
+                    description: 자금조달의 목적(기타자금 (원))
+                    example: "-"
+                  bd_intr_ex:
+                    type: string
+                    description: 사채의 이율(표면이자율 (%))
+                    example: "0"
+                  bd_intr_sf:
+                    type: string
+                    description: 사채의 이율(만기이자율 (%))
+                    example: "3.0"
+                  bd_mtd:
+                    type: string
+                    description: 사채만기일
+                    example: "2022년 12월 12일"
+                  bdis_mthn:
+                    type: string
+                    description: 사채발행방법
+                    example: "사모"
+                  ex_rt:
+                    type: string
+                    description: 교환에 관한 사항(교환비율 (%))
+                    example: "100"
+                  ex_prc:
+                    type: string
+                    description: 교환에 관한 사항(교환가액 (원/주))
+                    example: "5,080"
+                  ex_prc_dmth:
+                    type: string
+                    description: 교환에 관한 사항(교환가액 결정방법)
+                    example: '교환대상 주식1주로 교환되는 가격(이하 "교환가격”이라 함)은 본 사채 발행을 위한 발행회사의 이사회결의일의 전일인2019년12월09일의 종가의110%를 기준주가로 산정(단, 호가단위 미만은 절상)한다. (교환가액: 금 오천팔십원(5,080원), 2019년12월09일 종가 4,615원 기준110%)'
+                  extg:
+                    type: string
+                    description: 교환에 관한 사항(교환대상(종류))
+                    example: "줌인터넷 주식회사 보통주식"
+                  extg_stkcnt:
+                    type: string
+                    description: 교환에 관한 사항(교환대상(주식수))
+                    example: "1,181,102"
+                  extg_tisstk_vs:
+                    type: string
+                    description: 교환에 관한 사항(교환대상(주식총수 대비 비율(%))
+                    example: "4.60"
+                  exrqpd_bgd:
+                    type: string
+                    description: 교환에 관한 사항(교환청구기간(시작일))
+                    example: "2019년 12월 13일"
+                  exrqpd_edd:
+                    type: string
+                    description: 교환에 관한 사항(교환청구기간(종료일))
+                    example: "2022년 12월 05일"
+                  sbd:
+                    type: string
+                    description: 청약일
+                    example: "2019년 12월 12일"
+                  pymd:
+                    type: string
+                    description: 납입일
+                    example: "2019년 12월 12일"
+                  rpmcmp:
+                    type: string
+                    description: 대표주관회사
+                    example: "-"
+                  grint:
+                    type: string
+                    description: 보증기관
+                    example: "-"
+                  bddd:
+                    type: string
+                    description: 이사회결의일(결정일)
+                    example: "2019년 12월 10일"
+                  od_a_at_t:
+                    type: string
+                    description: 사외이사 참석여부(참석 (명))
+                    example: "3"
+                  od_a_at_b:
+                    type: string
+                    description: 사외이사 참석여부(불참 (명))
+                    example: "-"
+                  adt_a_atn:
+                    type: string
+                    description: 감사(감사위원) 참석여부
+                    example: "참석"
+                  rs_sm_atn:
+                    type: string
+                    description: 증권신고서 제출대상 여부
+                    example: "예"
+                  ex_sm_r:
+                    type: string
+                    description: 제출을 면제받은 경우 그 사유
+                    example: "사모발행으로 증권신고서 제출면제 (발행 후 1년간 권면분할 금지)"
+                  ovis_ltdtl:
+                    type: string
+                    description: 당해 사채의 해외발행과 연계된 대차거래 내역
+                    example: "-"
+                  ftc_stt_atn:
+                    type: string
+                    description: 공정거래위원회 신고대상 여부
+                    example: "미해당"

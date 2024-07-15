@@ -1,0 +1,17 @@
+operationId: getDisperseReason
+
+summary: 해산사유 발생
+
+description: 주요사항보고서(해산사유 발생) 내에 주요 정보를 제공합니다.
+
+tags:
+  - IrregularDisclosure
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/corp_code
+  - $ref: ../../shared/parameters.yml#/bgn_de
+  - $ref: ../../shared/parameters.yml#/end_de
+
+responses:
+  "200":
+    $ref: responses/disperse_reason.yml

@@ -1,0 +1,103 @@
+description: 무상증자 결정 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    type: string
+                    description: |
+                      법인구분
+
+                      - Y : 유가증권시장
+                      - K : 코스닥시장
+                      - N : 코넥스시장
+                      - E : 기타
+                    enum: ["Y", "K", "N", "E"]
+                    example: "Y"
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00121932"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사의 종목명
+                    example: "미원상사"
+                  nstk_ostk_cnt:
+                    type: string
+                    description: 신주의 종류와 수(보통주식 (주))
+                    example: "4,259,883"
+                  nstk_estk_cnt:
+                    type: string
+                    description: 신주의 종류와 수(기타주식 (주))
+                    example: "-"
+                  fv_ps:
+                    type: string
+                    description: 1주당 액면가액 (원)
+                    example: "5,000"
+                  bfic_tisstk_ostk:
+                    type: string
+                    description: 증자전 발행주식총수 (주)(보통주식 (주))
+                    example: "774,940"
+                  bfic_tisstk_estk:
+                    type: string
+                    description: 증자전 발행주식총수 (주)(기타주식 (주))
+                    example: "-"
+                  nstk_asstd:
+                    type: string
+                    description: 신주배정기준일
+                    example: "2019년 04월 01일"
+                  nstk_ascnt_ps_ostk:
+                    type: string
+                    description: 1주당 신주배정 주식수(보통주식 (주))
+                    example: "5.4970488"
+                  nstk_ascnt_ps_estk:
+                    type: string
+                    description: 1주당 신주배정 주식수(기타주식 (주))
+                    example: "-"
+                  nstk_dividrk:
+                    type: string
+                    description: 신주의 배당기산일
+                    example: "2019년 01월 01일"
+                  nstk_dlprd:
+                    type: string
+                    description: 신주권교부예정일
+                    example: "2019년 04월 17일"
+                  nstk_lstprd:
+                    type: string
+                    description: 신주의 상장 예정일
+                    example: "2019년 04월 18일"
+                  bddd:
+                    type: string
+                    description: 이사회결의일(결정일)
+                    example: "2019년 02월 27일"
+                  od_a_at_t:
+                    type: string
+                    description: 사외이사 참석여부(참석(명))
+                    example: "3"
+                  od_a_at_b:
+                    type: string
+                    description: 사외이사 참석여부(불참(명))
+                    example: "0"
+                  adt_a_atn:
+                    type: string
+                    description: 감사(감사위원)참석 여부
+                    example: "-"

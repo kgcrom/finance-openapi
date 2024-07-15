@@ -1,0 +1,17 @@
+operationId: getBondWithWarrantIssueDecision
+
+summary: 신주인수권부사채권 발행결정
+
+description: 주요사항보고서(신주인수권부사채권 발행결정) 내에 주요 정보를 제공합니다.
+
+tags:
+  - IrregularDisclosure
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/corp_code
+  - $ref: ../../shared/parameters.yml#/bgn_de
+  - $ref: ../../shared/parameters.yml#/end_de
+
+responses:
+  "200":
+    $ref: responses/bond_with_warrant_issue_decision.yml

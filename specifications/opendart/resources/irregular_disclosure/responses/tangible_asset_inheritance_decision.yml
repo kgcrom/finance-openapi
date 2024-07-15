@@ -1,0 +1,187 @@
+description: 유형자산 양수 결정 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    type: string
+                    description: |
+                      법인구분
+
+                      - Y : 유가증권시장
+                      - K : 코스닥시장
+                      - N : 코넥스시장
+                      - E : 기타
+                    enum: ["Y", "K", "N", "E"]
+                    example: "Y"
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00160375"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사의 종목명
+                    example: "진양폴리우레탄"
+                  ast_sen:
+                    type: string
+                    description: 자산구분
+                    example: "토지 및 건물"
+                  ast_nm:
+                    type: string
+                    description: 자산명
+                    example: "경기도 평택시 세교산단로 22번길 93번\n(세교동) 소재 \n토지 및 건물, 기타부대시설 일체"
+                  inhdtl_inhprc:
+                    type: string
+                    description: 양수내역(양수금액(원))
+                    example: "6,100,000,000"
+                  inhdtl_tast:
+                    type: string
+                    description: 양수내역(자산총액(원))
+                    example: "35,008,057,720"
+                  inhdtl_tast_vs:
+                    type: string
+                    description: 양수내역(자산총액대비(%))
+                    example: "17.42"
+                  inh_pp:
+                    type: string
+                    description: 양수목적
+                    example: "- 생산시설 확충을 위한 유형자산 취득"
+                  inh_af:
+                    type: string
+                    description: 양수영향
+                    example: "-물량 증가에 대응\n- 물류 개선을 통한 생산성 \n제고 및 매출 증대"
+                  inh_prd_ctr_cnsd:
+                    type: string
+                    description: 양수예정일자(계약체결일)
+                    example: "2019년 10월 11일"
+                  inh_prd_inh_std:
+                    type: string
+                    description: 양수예정일자(양수기준일)
+                    example: "2019년 10월 30일"
+                  inh_prd_rgs_prd:
+                    type: string
+                    description: 양수예정일자(등기예정일)
+                    example: "2019년 10월 30일"
+                  dlptn_cmpnm:
+                    type: string
+                    description: 거래상대방(회사명(성명))
+                    example: "일신정밀 주식회사"
+                  dlptn_cpt:
+                    type: string
+                    description: 거래상대방(자본금(원))
+                    example: "2,040,000,000"
+                  dlptn_mbsn:
+                    type: string
+                    description: 거래상대방(주요사업)
+                    example: "금속공작물 제조"
+                  dlptn_hoadd:
+                    type: string
+                    description: 거래상대방(본점소재지(주소))
+                    example: "경기도 평택시 세교동 537-10 (세교동)"
+                  dlptn_rl_cmpn:
+                    type: string
+                    description: 거래상대방(회사와의 관계)
+                    example: "-"
+                  dl_pym:
+                    type: string
+                    description: 거래대금지급
+                    example: "(1) 계약금(2019.10.11) : 400,000,000원\n(2) 잔금(2019.10.30) : 5,700,000,000원"
+                  exevl_atn:
+                    type: string
+                    description: 외부평가에 관한 사항(외부평가 여부)
+                    example: "예"
+                  exevl_bs_rs:
+                    type: string
+                    description: 외부평가에 관한 사항(근거 및 사유)
+                    example: "-근거 : 자본시장과 금융투자업에 관한 법률\n제161조 제1항제7호 및 동법 시행령\n제171조 제2항제5호에 해당\n- 사유 : 회사가 양수하기로 의사결정한 자산 양수도 가액의 적정성 여부 판단"
+                  exevl_intn:
+                    type: string
+                    description: 외부평가에 관한 사항(외부평가기관의 명칭)
+                    example: "현대회계법인"
+                  exevl_pd:
+                    type: string
+                    description: 외부평가에 관한 사항(외부평가 기간)
+                    example: "2019년 10월 04일 ~ 2019년 10월 11일"
+                  exevl_op:
+                    type: string
+                    description: 외부평가에 관한 사항(외부평가 의견)
+                    example: "적정"
+                  gmtsck_spd_atn:
+                    type: string
+                    description: 주주총회 특별결의 여부
+                    example: "미해당"
+                  gmtsck_prd:
+                    type: string
+                    description: 주주총회 예정일자
+                    example: "-"
+                  aprskh_exrq:
+                    type: string
+                    description: 주식매수청구권에 관한 사항(행사요건)
+                    example: "-"
+                  aprskh_plnprc:
+                    type: string
+                    description: 주식매수청구권에 관한 사항(매수예정가격)
+                    example: "-"
+                  aprskh_ex_pc_mth_pd_pl:
+                    type: string
+                    description: 주식매수청구권에 관한 사항(행사절차, 방법, 기간, 장소)
+                    example: "-"
+                  aprskh_pym_plpd_mth:
+                    type: string
+                    description: 주식매수청구권에 관한 사항(지급예정시기, 지급방법)
+                    example: "-"
+                  aprskh_lmt:
+                    type: string
+                    description: 주식매수청구권에 관한 사항(주식매수청구권 제한 관련 내용)
+                    example: "-"
+                  aprskh_ctref:
+                    type: string
+                    description: 주식매수청구권에 관한 사항(계약에 미치는 효력)
+                    example: "-"
+                  bddd:
+                    type: string
+                    description: 이사회결의일(결정일)
+                    example: "2019년 10월 11일"
+                  od_a_at_t:
+                    type: string
+                    description: 사외이사참석여부(참석(명))
+                    example: "1"
+                  od_a_at_b:
+                    type: string
+                    description: 사외이사참석여부(불참(명))
+                    example: "-"
+                  adt_a_atn:
+                    type: string
+                    description: 감사(사외이사가 아닌 감사위원) 참석여부
+                    example: "참석"
+                  ftc_stt_atn:
+                    type: string
+                    description: 공정거래위원회 신고대상 여부
+                    example: "미해당"
+                  popt_ctr_atn:
+                    type: string
+                    description: 풋옵션 등 계약 체결여부
+                    example: "아니오"
+                  popt_ctr_cn:
+                    type: string
+                    description: 계약내용
+                    example: "-"

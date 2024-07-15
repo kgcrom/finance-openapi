@@ -1,0 +1,17 @@
+operationId: getAssetInheritanceEtcPublicBookOption
+
+summary: 자산양수도(기타), 풋백옵션
+
+description: 주요사항보고서(자산양수도(기타), 풋백옵션) 내에 주요 정보를 제공합니다.
+
+tags:
+  - IrregularDisclosure
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/corp_code
+  - $ref: ../../shared/parameters.yml#/bgn_de
+  - $ref: ../../shared/parameters.yml#/end_de
+
+responses:
+  "200":
+    $ref: responses/asset_inheritance_etc_public_book_option.yml

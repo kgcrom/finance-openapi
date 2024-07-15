@@ -1,0 +1,169 @@
+description: 상각형 조건부자본증권 발행결정 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    type: string
+                    description: |
+                      법인구분
+
+                      - Y : 유가증권시장
+                      - K : 코스닥시장
+                      - N : 코넥스시장
+                      - E : 기타
+                    enum: ["Y", "K", "N", "E"]
+                    example: "Y"
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00382199"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사의 종목명
+                    example: "신한지주"
+                  bd_tm:
+                    type: string
+                    description: 사채의 종류(회차)
+                    example: "6"
+                  bd_knd:
+                    type: string
+                    description: 사채의 종류(종류)
+                    example: "해외 무기명식 무보증 \n무담보 상각형 \n조건부자본증권\n(후순위채)"
+                  bd_fta:
+                    type: string
+                    description: 사채의 권면(전자등록)총액 (원)
+                    example: "587,900,000,000"
+                  ovis_fta:
+                    type: string
+                    description: 해외발행(권면(전자등록)총액)
+                    example: "500,000,000"
+                  ovis_fta_crn:
+                    type: string
+                    description: 해외발행(권면(전자등록)총액(통화단위))
+                    example: "USD"
+                  ovis_ster:
+                    type: string
+                    description: 해외발행(기준환율등)
+                    example: "1175.8"
+                  ovis_isar:
+                    type: string
+                    description: 해외발행(발행지역)
+                    example: "미국, 아시아, 유럽 , 중동 등 "
+                  ovis_mktnm:
+                    type: string
+                    description: 해외발행(해외상장시 시장의 명칭)
+                    example: "싱가포르"
+                  fdpp_fclt:
+                    type: string
+                    description: 자금조달의 목적(시설자금 (원))
+                    example: "587,900,000,000"
+                  fdpp_bsninh:
+                    type: string
+                    description: |
+                      자금조달의 목적(영업양수자금 (원))
+
+                      ① 2019년 12월 9일부터 추가됨
+                    example: "587,900,000,000"
+                  fdpp_op:
+                    type: string
+                    description: 자금조달의 목적(운영자금 (원))
+                    example: "587,900,000,000"
+                  fdpp_dtrp:
+                    type: string
+                    description: |
+                      자금조달의 목적(채무상환자금 (원))
+
+                      ① 2019년 12월 9일부터 추가됨
+                    example: "587,900,000,000"
+                  fdpp_ocsa:
+                    type: string
+                    description: 자금조달의 목적(타법인 증권 취득자금 (원))
+                    example: "587,900,000,000"
+                  fdpp_etc:
+                    type: string
+                    description: 자금조달의 목적(기타자금 (원))
+                    example: "587,900,000,000"
+                  bd_intr_sf:
+                    type: string
+                    description: 사채의 이율(표면이자율 (%))
+                    example: "3.34"
+                  bd_intr_ex:
+                    type: string
+                    description: 사채의 이율(만기이자율 (%))
+                    example: "0"
+                  bd_mtd:
+                    type: string
+                    description: 사채만기일
+                    example: "2030년 02월 05일"
+                  dbtrs_sc:
+                    type: string
+                    description: 채무재조정에 관한 사항(채무재조정의 범위)
+                    example: "사채의 원리금 전액"
+                  sbd:
+                    type: string
+                    description: 청약일
+                    example: "2019년 07월 29일"
+                  pymd:
+                    type: string
+                    description: 납입일
+                    example: "2019년 08월 05일"
+                  rpmcmp:
+                    type: string
+                    description: 대표주관회사
+                    example: "BOA 메릴린치, 비앤피파리바, 씨티그룹, 크레딧스위스, HSBC"
+                  grint:
+                    type: string
+                    description: 보증기관
+                    example: "-"
+                  bddd:
+                    type: string
+                    description: 이사회결의일(결정일)
+                    example: "2019년 05월 10일"
+                  od_a_at_t:
+                    type: string
+                    description: 사외이사 참석여부(참석 (명))
+                    example: "11"
+                  od_a_at_b:
+                    type: string
+                    description: 사외이사 참석여부(불참 (명))
+                    example: "0"
+                  adt_a_atn:
+                    type: string
+                    description: 감사(감사위원) 참석여부
+                    example: "-"
+                  rs_sm_atn:
+                    type: string
+                    description: 증권신고서 제출대상 여부
+                    example: "아니오"
+                  ex_sm_r:
+                    type: string
+                    description: 제출을 면제받은 경우 그 사유
+                    example: "증권의 발행 및 공시 등에 관한 규정 제2-2조의 2(해외증권 발행시 증권의 모집으로 보는 전매기준)제2항 제3호의 요건을 모두 충족하여 전매기준에 해당되지 않음에 따라 증권신고서 제출의무가 없음."
+                  ovis_ltdtl:
+                    type: string
+                    description: 당해 사채의 해외발행과 연계된 대차거래 내역
+                    example: "-"
+                  ftc_stt_atn:
+                    type: string
+                    description: 공정거래위원회 신고대상 여부
+                    example: "미해당"

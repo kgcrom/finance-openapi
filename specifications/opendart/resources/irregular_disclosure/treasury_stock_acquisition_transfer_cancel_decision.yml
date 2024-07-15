@@ -1,0 +1,17 @@
+operationId: getTreasuryStockAcquisitionTransferCancelDecision
+
+summary: 자기주식취득 신탁계약 해지 결정
+
+description: 주요사항보고서(자기주식취득 신탁계약 해지 결정) 내에 주요 정보를 제공합니다.
+
+tags:
+  - IrregularDisclosureKey
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/corp_code
+  - $ref: ../../shared/parameters.yml#/bgn_de
+  - $ref: ../../shared/parameters.yml#/end_de
+
+responses:
+  "200":
+    $ref: responses/treasury_stock_acquisition_transfer_cancel_decision.yml

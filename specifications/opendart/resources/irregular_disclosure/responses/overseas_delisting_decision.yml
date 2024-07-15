@@ -1,0 +1,83 @@
+description: 해외 증권시장 주권등 상장폐지 결정 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    type: string
+                    description: |
+                      법인구분
+
+                      - Y : 유가증권시장
+                      - K : 코스닥시장
+                      - N : 코넥스시장
+                      - E : 기타
+                    enum: ["Y", "K", "N", "E"]
+                    example: "Y"
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00344287"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사의 종목명
+                    example: "HD현대인프라코어"
+                  dlststk_ostk_cnt:
+                    type: string
+                    description: 상장폐지주식 종류ㆍ수(주)(보통주식)
+                    example: "-"
+                  dlststk_estk_cnt:
+                    type: string
+                    description: 상장폐지주식 종류ㆍ수(주)(기타주식)
+                    example: "-"
+                  lstex_nt:
+                    type: string
+                    description: 상장거래소(소재국가)
+                    example: "싱가포르 증권거래소(싱가포르)"
+                  dlstrq_prd:
+                    type: string
+                    description: 폐지신청예정일자
+                    example: "2019년 11월 01일"
+                  dlst_prd:
+                    type: string
+                    description: 폐지(예정)일자
+                    example: "2019년 11월 29일"
+                  dlst_rs:
+                    type: string
+                    description: 폐지사유
+                    example: "GDR(보통주 예탁증권)의 전량 원주 전환에 따른 상장폐지 결정"
+                  bddd:
+                    type: string
+                    description: 이사회결의일(확인일)
+                    example: "2019년 10월 30일"
+                  od_a_at_t:
+                    type: string
+                    description: 사외이사 참석여부(참석(명))
+                    example: "4"
+                  od_a_at_b:
+                    type: string
+                    description: 사외이사 참석여부(불참(명))
+                    example: "0"
+                  adt_a_atn:
+                    type: string
+                    description: 감사(감사위원)참석여부
+                    example: "참석"

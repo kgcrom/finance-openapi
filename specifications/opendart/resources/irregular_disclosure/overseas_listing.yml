@@ -1,0 +1,17 @@
+operationId: getOverseasListing
+
+summary: 해외 증권시장 주권등 상장
+
+description: 주요사항보고서(해외 증권시장 주권등 상장) 내에 주요 정보를 제공합니다.
+
+tags:
+  - IrregularDisclosure
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/corp_code
+  - $ref: ../../shared/parameters.yml#/bgn_de
+  - $ref: ../../shared/parameters.yml#/end_de
+
+responses:
+  "200":
+    $ref: responses/overseas_listing.yml

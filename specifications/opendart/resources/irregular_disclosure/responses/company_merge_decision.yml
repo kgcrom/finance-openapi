@@ -1,0 +1,334 @@
+description: 회사합병 결정 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    type: string
+                    description: |
+                      법인구분
+
+                      - Y : 유가증권시장
+                      - K : 코스닥시장
+                      - N : 코넥스시장
+                      - E : 기타
+                    enum: ["Y", "K", "N", "E"]
+                    example: "Y"
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00155319"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사의 종목명
+                    example: "POSOC홀딩스"
+                  mg_mth:
+                    type: string
+                    description: 합병방법
+                    example: '본 분할합병은 상법 제530조의2 내지 제530조의11의 규정이 정하는 바에 따라 분할회사인 포스코에너지 주식회사가 영위하는 사업 중 부생발전 사업부문(이하 "분할부문" 또는 "분할합병대상부문")을 물적분할하여 주식회사 포스코에 흡수합병하는 방식의 분할합병입니다.'
+                  mg_stn:
+                    type: string
+                    description: 합병형태
+                    example: "소규모합병"
+                  mg_pp:
+                    type: string
+                    description: 합병목적
+                    example: "금번 분할합병은 포스코에너지 주식회사의 부생발전 사업부문을 분할하여 주식회사 포스코에 흡수합병하여 경영의 효율성을 강화하며, 궁극적으로 주식회사 포스코와 포스코에너지 주식회사의 기업가치와 주주의 가치를 제고함을 목적으로 합니다."
+                  mg_rt:
+                    type: string
+                    description: 합병비율
+                    example: |
+                      주식회사 포스코 : 포스코에너지 주식회사 = 1: 0.1145836\n\n본 분할합병은 포스코에너지 주식회사로부터 물적분할된 포스코에너지 주식회사 분할부문을 주식회사 포스코가 흡수합병하는 방식입니다.<br/>
+                      분할의 경우 포스코에너지가 포스코에너지 분할부문발행주식 100%를 배정받는 단순 물적분할 방식임에 따라 별도의 분할비율은산정하지 아니하였습니다.
+                  mg_rt_bs:
+                    type: string
+                    description: 합병비율 산출근거
+                    example: |
+                      가. 주식회사 포스코의 합병가액 산정
+
+                      주권상장법인의 합병가액은 원칙적으로 기준시가를 적용하되, 기준시가가 자산가치보다 낮은 경우에는 자산가치로 할 수 있도록 되어 있습니다.<br/>
+                      주권상장법인인 포스코의 기준시가는 자산가치보다 낮지만 다수의 시장참여자들에 의해 주식시장에서 거래되어 형성된 시가를 기초로 산정된 기준시가가 기업의 실질가치를 적절하게 반영하고 있다고 판단하여 본 평가에서는 기준시가를 합병가액으로산정하였습니다.<br/>
+                      또한, 기준시가와 자산가치 간 괴리가 있는 상황에서 합병법인이 보유한 영업의 불확실성 및 피투자회사의 영업성과를 반영하지 않고 원가법으로 인식하는 자산가치를 적용하여 합병비율을 평가할 경우 각 합병당사회사 및 그 이해관계자들의 이익을 균형적인 시각에서 합리적으로 고려하고 있다고 보기 어려움에 따라 기준시가가 자산가치보다 낮지만, 본 평가에서는 기준시가를 합병가액으로 산정하였습니다.
+
+                      - 기준시가 : 268,316원<br/>
+                      - 자산가치 : 498,099원<br/>
+                      - 합병가액 : 268,316원
+
+                      나. 포스코에너지 주식회사의 분할부문 합병가액 산정
+
+                      포스코에너지 주식회사 분할부문의 합병가액은 자본시장과금융투자업에관한법률 시행령 제176조의5에 의하여 자산가치와 수익가치를 각각 1과1.5의 비율로 가중산술평균한 가액(이하"본질가치")으로 산정하였으며, 상대가치는 비교목적으로 분석하였으나 3개 이상의 유사회사가 존재하지 아니하여 가치를 산정하지 아니하였습니다.
+
+                      - 본질가치 [(AX1+BX1.5)]/2.5 : 30,745원<br/>
+                        A. 자산가치 : 22,680원<br/>
+                        B. 수익가치 : 36,121원<br/>
+                        - 상대가치 : 해당사항 없음<br/>
+                        - 합병가액 : 30,745원
+                        
+                        다. 산출결과
+                        
+                        본 분할합병은 포스코에너지 주식회사로부터 물적분할된 포스코에너지 주식회사 분할부문을 주식회사 포스코가 흡수합병하는 방식입니다.<br/>
+                        분할의 경우 포스코에너지가 포스코에너지 분할부문발행주식 100%를 배정받는 단순 물적분할 방식임에 따라 별도의 분할비율은산정하지 아니하였습니다.\n\n주식회사 포스코가 포스코에너지 주식회사 분할부문을 합병함에 있어서 합병비율의 기준이 되는 주당평가액은 각각 268,316원(주당 액면가액 5,000원),30,745원(주당 액면가액 5,000원)으로 산정되었습니다.<br/>
+                        따라서 주식회사 포스코와 포스코에너지 주식회사 분할부문 간 합의한 합병비율은 1: 0.1145836로 산출되었습니다.
+                  exevl_atn:
+                    type: string
+                    description: 외부평가에 관한 사항(외부평가 여부)
+                    example: "외부평가 실시"
+                  exevl_bs_rs:
+                    type: string
+                    description: 외부평가에 관한 사항(근거 및 사유)
+                    example: "합병비율 산출근거"
+                  exevl_intn:
+                    type: string
+                    description: 외부평가에 관한 사항(외부평가기관의 명칭)
+                    example: "한국평가정보"
+                  exevl_pd:
+                    type: string
+                    description: 외부평가에 관한 사항(외부평가 기간)
+                    example: "2021.01.01 ~ 2021.01.31"
+                  exevl_op:
+                    type: string
+                    description: 외부평가에 관한 사항(외부평가 의견)
+                    example: |
+                      포스코가 포스코에너지 분할부문을 합병함에 있어서 합병비율의 기준이 되는 주당평가액은 각각 268,316원(주당 액면가액 5,000원),30,745원(주당 액면가액 5,000원)으로 산정되었습니다.<br/>
+                      따라서 포스코와 포스코에너지 분할부문 간 합의한 합병비율 1: 0.1145836는 적정한 것으로 판단됩니다.
+
+                      본 평가인의 검토 결과 이러한 합병비율은 중요성의 관점에서 자본시장과금융투자업에관한법률 시행령 제176조의5, 증권의발행및공시등에관한규정 제5-13조 및 동규정 시행세칙 제4조 내지 제8조에서 규정하고 있는 합병가액 산정방법에 위배되어 산정되었다는 점이 발견되지 아니하였습니다.
+                  mgnstk_ostk_cnt:
+                    type: string
+                    description: 합병신주의 종류와 수(주)(보통주식)
+                    example: "9,999,999,999"
+                  mgnstk_cstk_cnt:
+                    type: string
+                    description: 합병신주의 종류와 수(주)(종류주식)
+                    example: "9,999,999,999"
+                  mgptncmp_cmpnm:
+                    type: string
+                    description: 합병상대회사(회사명)
+                    example: "포스코에너지 주식회사"
+                  mgptncmp_mbsn:
+                    type: string
+                    description: 합병상대회사(주요사업)
+                    example: "부생발전 사업부문"
+                  mgptncmp_rl_cmpn:
+                    type: string
+                    description: 합병상대회사(회사와의 관계)
+                    example: "분할회사"
+                  rbsnfdtl_tast:
+                    type: string
+                    description: 합병상대회사(최근 사업연도 재무내용(원)(자산총계))
+                    example: "3,867,670,614,865"
+                  rbsnfdtl_tdbt:
+                    type: string
+                    description: 합병상대회사(최근 사업연도 재무내용(원)(부채총계))
+                    example: 2,646,632,871,609"
+                  rbsnfdtl_teqt:
+                    type: string
+                    description: 합병상대회사(최근 사업연도 재무내용(원)(자본총계))
+                    example: "1,221,037,743,256"
+                  rbsnfdtl_cpt:
+                    type: string
+                    description: 합병상대회사(최근 사업연도 재무내용(원)(자본금))
+                    example: "269,189,995,000"
+                  rbsnfdtl_sl:
+                    type: string
+                    description: 합병상대회사(최근 사업연도 재무내용(원)(매출액))
+                    example: "1,841,186,655,247"
+                  rbsnfdtl_nic:
+                    type: string
+                    description: 합병상대회사(최근 사업연도 재무내용(원)(당기순이익))
+                    example: "-89,402,397,910"
+                  eadtat_intn:
+                    type: string
+                    description: 합병상대회사(외부감사 여부(기관명))
+                    example: "한국감사인증"
+                  eadtat_op:
+                    type: string
+                    description: 합병상대회사(외부감사 여부(감사의견))
+                    example: "부적정"
+                  nmgcmp_cmpnm:
+                    type: string
+                    description: 신설합병회사(회사명)
+                    example: "포스코"
+                  ffdtl_tast:
+                    type: string
+                    description: 신설합병회사(설립시 재무내용(원)(자산총계))
+                    example: "-"
+                  ffdtl_tdbt:
+                    type: string
+                    description: 신설합병회사(설립시 재무내용(원)(부채총계))
+                    example: "-"
+                  ffdtl_teqt:
+                    type: string
+                    description: 신설합병회사(설립시 재무내용(원)(자본총계))
+                    example: "-"
+                  ffdtl_cpt:
+                    type: string
+                    description: 신설합병회사(설립시 재무내용(원)(자본금))
+                    example: "-"
+                  ffdtl_std:
+                    type: string
+                    description: 신설합병회사(설립시 재무내용(원)(현재기준))
+                    example: "-"
+                  nmgcmp_nbsn_rsl:
+                    type: string
+                    description: 신설합병회사(신설사업부문 최근 사업연도 매출액(원))
+                    example: "-"
+                  nmgcmp_mbsn:
+                    type: string
+                    description: 신설합병회사(주요사업)
+                    example: "-"
+                  nmgcmp_rlst_atn:
+                    type: string
+                    description: 신설합병회사(재상장신청 여부)
+                    example: "-"
+                  mgsc_mgctrd:
+                    type: string
+                    description: 합병일정(합병계약일)
+                    example: "2019년 12월 31일"
+                  mgsc_shddstd:
+                    type: string
+                    description: 합병일정(주주확정기준일)
+                    example: "2020년 01월 01일"
+                  mgsc_shclspd_bgd:
+                    type: string
+                    description: 합병일정(주주명부 폐쇄기간(시작일))
+                    example: "2020년 01월 02일"
+                  mgsc_shclspd_edd:
+                    type: string
+                    description: 합병일정(주주명부 폐쇄기간(종료일))
+                    example: "2020년 01월 03일"
+                  mgsc_mgop_rcpd_bgd:
+                    type: string
+                    description: 합병일정(합병반대의사통지 접수기간(시작일))
+                    example: "2020년 01월 04일"
+                  mgsc_mgop_rcpd_edd:
+                    type: string
+                    description: 합병일정(합병반대의사통지 접수기간(종료일))
+                    example: "2020년 01월 05일"
+                  mgsc_gmtsck_prd:
+                    type: string
+                    description: 합병일정(주주총회예정일자)
+                    example: "2020년 01월 06일"
+                  mgsc_aprskh_expd_bgd:
+                    type: string
+                    description: 합병일정(주식매수청구권 행사기간(시작일))
+                    example: "2020년 01월 07일"
+                  mgsc_aprskh_expd_edd:
+                    type: string
+                    description: 합병일정(주식매수청구권 행사기간(종료일))
+                    example: "2020년 01월 08일"
+                  mgsc_osprpd_bgd:
+                    type: string
+                    description: 합병일정(구주권 제출기간(시작일))
+                    example: "2020년 01월 09일"
+                  mgsc_osprpd_edd:
+                    type: string
+                    description: 합병일정(구주권 제출기간(종료일))
+                    example: "2020년 01월 10일"
+                  mgsc_trspprpd_bgd:
+                    type: string
+                    description: 합병일정(매매거래 정지예정기간(시작일))
+                    example: "2020년 01월 11일"
+                  mgsc_trspprpd_edd:
+                    type: string
+                    description: 합병일정(매매거래 정지예정기간(종료일))
+                    example: "2020년 01월 12일"
+                  mgsc_cdobprpd_bgd:
+                    type: string
+                    description: 합병일정(채권자이의 제출기간(시작일))
+                    example: "2020년 01월 13일"
+                  mgsc_cdobprpd_edd:
+                    type: string
+                    description: 합병일정(채권자이의 제출기간(종료일))
+                    example: "2020년 01월 14일"
+                  mgsc_mgdt:
+                    type: string
+                    description: 합병일정(합병기일)
+                    example: "2020년 01월 15일"
+                  mgsc_ergmd:
+                    type: string
+                    description: 합병일정(종료보고 총회일)
+                    example: "2020년 01월 16일"
+                  mgsc_mgrgsprd:
+                    type: string
+                    description: 합병일정(합병등기예정일자)
+                    example: "2020년 01월 17일"
+                  mgsc_nstkdlprd:
+                    type: string
+                    description: 합병일정(신주권교부예정일)
+                    example: "2020년 01월 18일"
+                  mgsc_nstklstprd:
+                    type: string
+                    description: 합병일정(신주의 상장예정일)
+                    example: "2020년 01월 19일"
+                  bdlst_atn:
+                    type: string
+                    description: 우회상장 해당 여부
+                    example: "아니오"
+                  otcpr_bdlst_sf_atn:
+                    type: string
+                    description: 타법인의 우회상장 요건 충족여부
+                    example: "아니오"
+                  aprskh_plnprc:
+                    type: string
+                    description: 주식매수청구권에 관한 사항(매수예정가격)
+                    example: "-"
+                  aprskh_pym_plpd_mth:
+                    type: string
+                    description: 주식매수청구권에 관한 사항(지급예정시기, 지급방법)
+                    example: "-"
+                  aprskh_ctref:
+                    type: string
+                    description: 주식매수청구권에 관한 사항(계약에 미치는 효력)
+                    example: "-"
+                  bddd:
+                    type: string
+                    description: 이사회결의일(결정일)
+                    example: "2020년 01월 20일"
+                  od_a_at_t:
+                    type: string
+                    description: 사외이사참석여부(참석(명))
+                    example: "7"
+                  od_a_at_b:
+                    type: string
+                    description: 사외이사참석여부(불참(명))
+                    example: "-"
+                  adt_a_atn:
+                    type: string
+                    description: 감사(사외이사가 아닌 감사위원) 참석여부
+                    example: "참석"
+                  popt_ctr_atn:
+                    type: string
+                    description: 풋옵션 등 계약 체결여부
+                    example: "아니오"
+                  popt_ctr_cn:
+                    type: string
+                    description: 계약내용
+                    example: "-"
+                  rs_sm_atn:
+                    type: string
+                    description: 증권신고서 제출대상 여부
+                    example: "아니오"
+                  ex_sm_r:
+                    type: string
+                    description: 제출을 면제받은 경우 그 사유
+                    example: "본건 분할합병은 분할합병신주를 발행하지 않고 분할합병대가로 현금만 지급하므로, 본건 분할합병 과정에서 증권신고서 제출이 필요한 증권의 모집이나 매출이 이루어지지 않습니다."

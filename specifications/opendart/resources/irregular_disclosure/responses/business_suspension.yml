@@ -1,0 +1,103 @@
+description: 영업정지 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    type: string
+                    description: |
+                      법인구분
+
+                      - Y : 유가증권시장
+                      - K : 코스닥시장
+                      - N : 코넥스시장
+                      - E : 기타
+                    enum: ["Y", "K", "N", "E"]
+                    example: "Y"
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00370006"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사의 종목명
+                    example: "iMBC"
+                  bsnsp_rm:
+                    type: string
+                    description: 영업정지 분야
+                    example: " 콘텐츠사업부분 일부"
+                  bsnsp_amt:
+                    type: string
+                    description: 영업정지 내역(영업정지금액)
+                    example: "12,704,835,489"
+                  rsl:
+                    type: string
+                    description: 영업정지 내역(최근매출총액)
+                    example: "58,074,993,049"
+                  sl_vs:
+                    type: string
+                    description: 영업정지 내역(매출액 대비)
+                    example: "21.9"
+                  ls_atn:
+                    type: string
+                    description: 영업정지 내역(대규모법인여부)
+                    example: "미해당"
+                  krx_stt_atn:
+                    type: string
+                    description: 영업정지 내역(거래소 의무공시 해당 여부)
+                    example: "O"
+                  bsnsp_cn:
+                    type: string
+                    description: 영업정지 내용
+                    example: "(주)문화방송 콘텐츠 국내 및 \n해외 유통 사업 일부"
+                  bsnsp_rs:
+                    type: string
+                    description: 영업정지사유
+                    example: "사업 계약 종료"
+                  ft_ctp:
+                    type: string
+                    description: 향후대책
+                    example: "광고 및 영상소재 서비스로의 사업 \n범위 확장"
+                  bsnsp_af:
+                    type: string
+                    description: 영업정지영향
+                    example: "영업정지로 총 매출액의 감소가 불가피하나, 신규 사업부문 확보를 통하여 영업이익으로의 영향은 미미할 것으로\n판단."
+                  bsnspd:
+                    type: string
+                    description: 영업정지일자
+                    example: "2019년 07월 31일"
+                  bddd:
+                    type: string
+                    description: 이사회결의일(결정일)
+                    example: "2019년 07월 31일"
+                  od_a_at_t:
+                    type: string
+                    description: 사외이사 참석여부(참석)
+                    example: "2"
+                  od_a_at_b:
+                    type: string
+                    description: 사외이사 참석여부(불참)
+                    example: "-"
+                  adt_a_atn:
+                    type: string
+                    description: 감사(감사위원) 참석여부
+                    example: "참석"

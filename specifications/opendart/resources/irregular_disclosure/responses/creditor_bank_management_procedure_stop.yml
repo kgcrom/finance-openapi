@@ -1,0 +1,63 @@
+description: 채권은행 등의 관리절차 중단 조회 결정
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    type: string
+                    description: |
+                      법인구분
+
+                      - Y : 유가증권시장
+                      - K : 코스닥시장
+                      - N : 코넥스시장
+                      - E : 기타
+                    enum: ["Y", "K", "N", "E"]
+                    example: "K"
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00141608"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사의 종목명
+                    example: "오리엔탈정공"
+                  mngt_pcsp_dd:
+                    type: string
+                    description: 관리절차중단 결정일자
+                    example: "2016년 02월 29일"
+                  mngt_int:
+                    type: string
+                    description: 관리기관
+                    example: "(주)오리엔탈정공 채권금융기관협의회\n(주채권은행: 한국산업은행)"
+                  sp_rs:
+                    type: string
+                    description: 중단사유
+                    example: "연합자산관리 주식회사(UAMCO) 앞 협약채권 매각에 따른공동관리 절차 종결"
+                  ft_ctp:
+                    type: string
+                    description: 향후대책
+                    example: "(주)오리엔탈정공의 채권금융기관협의회는 공동관리절차 종료 후 주주협의회를 구성하여 대주주로서의 적절한 경영관리를 통한 기업가치 제고 도모"
+                  cfd:
+                    type: string
+                    description: 확인일자
+                    example: "2016년 02월 29일"

@@ -1,0 +1,63 @@
+description: 회생절차 개시신청 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    type: string
+                    description: |
+                      법인구분
+
+                      - Y : 유가증권시장
+                      - K : 코스닥시장
+                      - N : 코넥스시장
+                      - E : 기타
+                    enum: ["Y", "K", "N", "E"]
+                    example: "Y"
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00367482"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사의 종목명
+                    example: "빛과전자"
+                  apcnt:
+                    type: string
+                    description: 신청인 (회사와의 관계)
+                    example: "주식회사 라이트론"
+                  cpct:
+                    type: string
+                    description: 관할법원
+                    example: "서울지방법원"
+                  rq_rs:
+                    type: string
+                    description: 신청사유
+                    example: "경영정상화 및 향후 계속기업으로서의 가치 보존"
+                  rqd:
+                    type: string
+                    description: 신청일자
+                    example: "2019년 04월 15일"
+                  ft_ctp_sc:
+                    type: string
+                    description: 향후대책 및 일정
+                    example: "1. 당사는 2019년 04월 14일자 이사회결정에 따라 대전지방법원에 회사재산보전처분,포괄적금지명령 및 회생절차개시을 신청하였고, 2019년 4월 18일 대전지방법원에서 당사가 제출한 회생절차개시신청서 및 첨부서류 등의 심사를 통해 보전처분이 결정되었습니다.\n\n2. 신청 이후 대전지방법원에서 당사가 제출한 회생절차개시신청서 및 첨부서류 등의 심사를 통한 회생절차개시 여부의 결정이 있을 예정입니다.\n\n3. 당사는 현재 접수통지만 받은 상태로 법원의 결정에 따른 변동사항 발생과 이에 따른 진행사항을 향후 공시할 예정입니다."

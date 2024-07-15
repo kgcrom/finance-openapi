@@ -1,0 +1,14 @@
+operationId: getStockRightBondTransferDecision
+
+summary: 주권 관련 사채권 양도 결정
+
+description: 주요사항보고서(주권 관련 사채권 양도 결정) 내에 주요 정보를 제공합니다.
+
+parameters:
+  - $ref: ../../shared/parameters.yml#/corp_code
+  - $ref: ../../shared/parameters.yml#/bgn_de
+  - $ref: ../../shared/parameters.yml#/end_de
+
+responses:
+  "200":
+    $ref: responses/stock_right_bond_transfer_decision.yml

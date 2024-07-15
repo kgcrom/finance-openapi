@@ -1,0 +1,67 @@
+description: 해외 증권시장 주권등 상장폐지 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    type: string
+                    description: |
+                      법인구분
+
+                      - Y : 유가증권시장
+                      - K : 코스닥시장
+                      - N : 코넥스시장
+                      - E : 기타
+                    enum: ["Y", "K", "N", "E"]
+                    example: "Y"
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00344287"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사의 종목명
+                    example: "HD현대인프라코어"
+                  lstex_nt:
+                    type: string
+                    description: 상장거래소 및 소재국가
+                    example: "싱가포르 증권거래소(싱가포르)"
+                  dlststk_ostk_cnt:
+                    type: string
+                    description: 상장폐지주식의 종류(보통주식(주))
+                    example: "9,999,999,999"
+                  dlststk_estk_cnt:
+                    type: string
+                    description: 상장폐지주식의 종류(기타주식(주))
+                    example: "9,999,999,999"
+                  tredd:
+                    type: string
+                    description: 매매거래종료일
+                    example: "2019년 12월 05일"
+                  dlst_rs:
+                    type: string
+                    description: 폐지사유
+                    example: "GDR(보통주 예탁증권)의 전량 원주 전환에 따른 상장폐지"
+                  cfd:
+                    type: string
+                    description: 확인일자
+                    example: "2019년 12월 05일"

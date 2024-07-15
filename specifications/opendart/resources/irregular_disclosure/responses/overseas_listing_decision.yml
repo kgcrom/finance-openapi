@@ -1,0 +1,107 @@
+description: 해외 증권시장 주권등 상장 결정 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    type: string
+                    description: |
+                      법인구분
+
+                      - Y : 유가증권시장
+                      - K : 코스닥시장
+                      - N : 코넥스시장
+                      - E : 기타
+                    enum: ["Y", "K", "N", "E"]
+                    example: "Y"
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00258801"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사의 종목명
+                    example: "카카오"
+                  lstprstk_ostk_cnt:
+                    type: string
+                    description: 상장예정주식 종류ㆍ수(주)(보통주식)
+                    example: "8,261,731"
+                  lstprstk_estk_cnt:
+                    type: string
+                    description: 상장예정주식 종류ㆍ수(주)(기타주식)
+                    example: "-"
+                  tisstk_ostk:
+                    type: string
+                    description: 발행주식 총수(주)(보통주식)
+                    example: "76,170,258"
+                  tisstk_estk:
+                    type: string
+                    description: 발행주식 총수(주)(기타주식)
+                    example: "-"
+                  psmth_nstk_sl:
+                    type: string
+                    description: 공모방법(신주발행 (주))
+                    example: "8,261,731"
+                  psmth_ostk_sl:
+                    type: string
+                    description: 공모방법(구주매출 (주))
+                    example: "-"
+                  fdpp:
+                    type: string
+                    description: 자금조달(신주발행) 목적
+                    example: "모바일 중심 글로벌 콘텐츠 / 플랫폼 회사 투자, AI 등 4차 산업 관련 국내외 기업 및 기술 투자"
+                  lststk_orlst:
+                    type: string
+                    description: 상장증권(원주상장 (주))
+                    example: "-"
+                  lststk_drlst:
+                    type: string
+                    description: 상장증권(DR상장 (주))
+                    example: "8,261,731"
+                  lstex_nt:
+                    type: string
+                    description: 상장거래소(소재국가)
+                    example: "싱가포르증권거래소(Singapore Exchange Securities Trading Limited)"
+                  lstpp:
+                    type: string
+                    description: 해외상장목적
+                    example: "해외기관 투자자 확대"
+                  lstprd:
+                    type: string
+                    description: 상장예정일자
+                    example: "    년   월 일 일"
+                  bddd:
+                    type: string
+                    description: 이사회결의일(결정일)
+                    example: "2018년 01월 18일"
+                  od_a_at_t:
+                    type: string
+                    description: 사외이사 참석여부(참석(명))
+                    example: "4"
+                  od_a_at_b:
+                    type: string
+                    description: 사외이사 참석여부(불참(명))
+                    example: "0"
+                  adt_a_atn:
+                    type: string
+                    description: 감사(감사위원)참석여부
+                    example: "참석"

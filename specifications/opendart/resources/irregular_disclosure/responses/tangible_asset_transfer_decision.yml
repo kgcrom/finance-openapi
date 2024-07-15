@@ -1,0 +1,171 @@
+description: 유형자산 양도 결정
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    type: string
+                    description: |
+                      법인구분
+
+                      - Y : 유가증권시장
+                      - K : 코스닥시장
+                      - N : 코넥스시장
+                      - E : 기타
+                    enum: ["Y", "K", "N", "E"]
+                    example: "Y"
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00106395"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사의 종목명
+                    example: "금호전기"
+                  ast_sen:
+                    type: string
+                    description: 자산구분
+                    example: "토지 및 건물"
+                  ast_nm:
+                    type: string
+                    description: 자산명
+                    example: "오산공장\n(경기도 화성시 경기동로 236 소재)"
+                  trfdtl_trfprc:
+                    type: string
+                    description: 양도내역(양도금액(원))
+                    example: "52,150,000,000"
+                  trfdtl_tast:
+                    type: string
+                    description: 양도내역(자산총액(원))
+                    example: "170,295,317,411"
+                  trfdtl_tast_vs:
+                    type: string
+                    description: 양도내역(자산총액대비(%))
+                    example: "30.62"
+                  trf_prd_rgs_prd:
+                    type: string
+                    description: 양도예정일자(등기예정일)
+                    example: "2019년 12월 31일"
+                  dlptn_cmpnm:
+                    type: string
+                    description: 거래상대방(회사명(성명))
+                    example: "마스턴제80호동탄피에프브이 주식회사"
+                  dlptn_cpt:
+                    type: string
+                    description: 거래상대방(자본금(원))
+                    example: "5,387,000,000"
+                  dlptn_mbsn:
+                    type: string
+                    description: 거래상대방(주요사업)
+                    example: "부동산업"
+                  dlptn_hoadd:
+                    type: string
+                    description: 거래상대방(본점소재지(주소))
+                    example: "서울시 서초구 강남대로 465"
+                  dlptn_rl_cmpn:
+                    type: string
+                    description: 거래상대방(회사와의 관계)
+                    example: "-"
+                  dl_pym:
+                    type: string
+                    description: 거래대금지급
+                    example: "- 계약금 : 5,215,000,000 (계약일)\n- 잔금 : 46,935,000,000 ('19.12.31 예정)\n* 상기 금액은 부가가치세 제외 금액임 "
+                  exevl_atn:
+                    type: string
+                    description: 외부평가에 관한 사항(외부평가 여부)
+                    example: "예"
+                  exevl_bs_rs:
+                    type: string
+                    description: 외부평가에 관한 사항(근거 및 사유)
+                    example: "- 근거 : 자본시장과금융투자업에관한법률 제161조 제1항 제7호 및 동법 시행령 제171조 제2항 제5호\n- 사유 : 회사가 양도하기로 결정한 자산양수도가액의 적정성 여부를 판단하기 위한 참고자료를 제공"
+                  exevl_intn:
+                    type: string
+                    description: 외부평가에 관한 사항(외부평가기관의 명칭)
+                    example: "삼덕회계법인"
+                  exevl_pd:
+                    type: string
+                    description: 외부평가에 관한 사항(외부평가 기간)
+                    example: "2019년 10월 07일 ~ 2019년 10월 11일"
+                  exevl_op:
+                    type: string
+                    description: 외부평가에 관한 사항(외부평가 의견)
+                    example: "적정"
+                  gmtsck_spd_atn:
+                    type: string
+                    description: 주주총회 특별결의 여부
+                    example: "미해당"
+                  gmtsck_prd:
+                    type: string
+                    description: 주주총회 예정일자
+                    example: "-"
+                  aprskh_exrq:
+                    type: string
+                    description: 주식매수청구권에 관한 사항(행사요건)
+                    example: "-"
+                  aprskh_plnprc:
+                    type: string
+                    description: 주식매수청구권에 관한 사항(매수예정가격)
+                    example: "9,999,999,999"
+                  aprskh_ex_pc_mth_pd_pl:
+                    type: string
+                    description: 주식매수청구권에 관한 사항(행사절차, 방법, 기간, 장소)
+                    example: "-"
+                  aprskh_pym_plpd_mth:
+                    type: string
+                    description: 주식매수청구권에 관한 사항(지급예정시기, 지급방법)
+                    example: "-"
+                  aprskh_lmt:
+                    type: string
+                    description: 주식매수청구권에 관한 사항(주식매수청구권 제한 관련 내용)
+                    example: "-"
+                  aprskh_ctref:
+                    type: string
+                    description: 주식매수청구권에 관한 사항(계약에 미치는 효력)
+                    example: "-"
+                  bddd:
+                    type: string
+                    description: 이사회결의일(결정일)
+                    example: "2019년 10월 11일"
+                  od_a_at_t:
+                    type: string
+                    description: 사외이사참석여부(참석(명))
+                    example: "1"
+                  od_a_at_b:
+                    type: string
+                    description: 사외이사참석여부(불참(명))
+                    example: "0"
+                  adt_a_atn:
+                    type: string
+                    description: 감사(사외이사가 아닌 감사위원) 참석여부
+                    example: "참석"
+                  ftc_stt_atn:
+                    type: string
+                    description: 공정거래위원회 신고대상 여부
+                    example: "미해당"
+                  popt_ctr_atn:
+                    type: string
+                    description: 풋옵션 등 계약 체결여부
+                    example: "아니오"
+                  popt_ctr_cn:
+                    type: string
+                    description: 계약내용
+                    example: "-"

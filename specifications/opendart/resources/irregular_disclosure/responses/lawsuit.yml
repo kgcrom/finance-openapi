@@ -1,0 +1,71 @@
+description: 소송 등의 제기 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    type: string
+                    description: |
+                      법인구분
+
+                      - Y : 유가증권시장
+                      - K : 코스닥시장
+                      - N : 코넥스시장
+                      - E : 기타
+                    enum: ["Y", "K", "N", "E"]
+                    example: "Y"
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00164830"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사의 종목명
+                    example: "HD한국조선해양"
+                  icnm:
+                    type: string
+                    description: 사건의 명칭
+                    example: "해양조선부문 노조와의 단체협약 체결"
+                  ac_ap:
+                    type: string
+                    description: 원고ㆍ신청인
+                    example: "해양조선부문 노조"
+                  rq_cn:
+                    type: string
+                    description: 청구내용
+                    example: "해양조선부문 노조와의 단체협약 체결"
+                  cpct:
+                    type: string
+                    description: 관할법원
+                    example: "서울중앙지방법원"
+                  ft_ctp:
+                    type: string
+                    description: 향후대책
+                    example: "당사는 법적 절차에 따라 대응할 예정임."
+                  lgd:
+                    type: string
+                    description: 제기일자
+                    example: "2019년 08월 30일"
+                  cfd:
+                    type: string
+                    description: 확인일자
+                    example: "2019년 08월 30일"

@@ -1,0 +1,223 @@
+description: 회사분할 결정 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    type: string
+                    description: |
+                      법인구분
+
+                      - Y : 유가증권시장
+                      - K : 코스닥시장
+                      - N : 코넥스시장
+                      - E : 기타
+                    enum: ["Y", "K", "N", "E"]
+                    example: "Y"
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00266961"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사의 종목명
+                    example: "NAVER"
+                  dv_mth:
+                    type: string
+                    description: 분할방법
+                    example: '1) 상법 제530조의2 내지 제530조의12의 규정이 정하는 바에 따라 아래 표와 같이 분할되는 회사가 영위하는 사업부문 중 일부 사업부문 (이하 "분할대상사업부문"이라 함)을 분할하여 분할신설회사를 설립하고, 분할되는 회사는 존속하면서 분할신설회사 발행주식의 총수를 취득하는 단순ㆍ물적분할의 방법으로 분할하며, 분할신설회사는 비상장법인으로 합니다.'
+                  dv_impef:
+                    type: string
+                    description: 분할의 중요영향 및 효과
+                    example: "본건 분할은 상법 제530조의2 내지 제530조의12 규정이 정하는 바에 따라 단순ㆍ물적분할 방식으로 진행됩니다. 이에 따라 본건 분할 전ㆍ후 분할되는 회사의 최대주주 소유주식 및 지분율의 변동은 없습니다. 또한, 본건 분할은 단순ㆍ물적분할 방식으로 진행되므로 분할 자체로는 연결재무제표 상에 미치는 영향이 없습니다."
+                  dv_rt:
+                    type: string
+                    description: 분할비율
+                    example: "분할되는 회사가 분할신설회사 발행주식의 100%를 배정받는 단순ㆍ물적분할 방식이므로 분할비율을 산정하지 않습니다."
+                  dv_trfbsnprt_cn:
+                    type: string
+                    description: 분할로 이전할 사업 및 재산의 내용
+                    example: '① 분할되는 회사는 분할계획서가 정하는 바에 따라 분할대상사업부문에 속하는 일체의 적극ㆍ소극재산 및 기타의 권리의무와 재산적 가치 있는 사실관계(인허가, 근로관계, 계약관계, 소송, 지적재산권 등을 모두 포함)(이하 "이전대상재산"이라 함)를 신설회사에 이전합니다.'
+                  atdv_excmp_cmpnm:
+                    type: string
+                    description: 분할 후 존속회사(회사명)
+                    example: "NAVER"
+                  atdvfdtl_tast:
+                    type: string
+                    description: 분할 후 존속회사(분할후 재무내용(원)(자산총계))
+                    example: "643,233,923,078"
+                  atdvfdtl_tdbt:
+                    type: string
+                    description: 분할 후 존속회사(분할후 재무내용(원)(부채총계))
+                    example: "610,752,121,394"
+                  atdvfdtl_teqt:
+                    type: string
+                    description: 분할 후 존속회사(분할후 재무내용(원)(자본총계))
+                    example: "32,481,801,684"
+                  atdvfdtl_cpt:
+                    type: string
+                    description: 분할 후 존속회사(분할후 재무내용(원)(자본금))
+                    example: "5,000,000,000"
+                  atdvfdtl_std:
+                    type: string
+                    description: 분할후 재무내용(원)(현재기준)
+                    example: "2019년 03월 31일"
+                  atdv_excmp_exbsn_rsl:
+                    type: string
+                    description: 존속사업부문 최근 사업연도매출액(원)
+                    example: "3,149,560,773,827"
+                  atdv_excmp_mbsn:
+                    type: string
+                    description: 주요사업
+                    example: "포털 및 검색광고"
+                  atdv_excmp_atdv_lstmn_atn:
+                    type: string
+                    description: 분할 후 상장유지 여부
+                    example: "예"
+                  dvfcmp_cmpnm:
+                    type: string
+                    description: 분할설립회사(회사명)
+                    example: "NAVER"
+                  ffdtl_tast:
+                    type: string
+                    description: 분할설립회사(설립시 재무내용(원)(자산총계))
+                    example: "643,233,923,078"
+                  ffdtl_tdbt:
+                    type: string
+                    description: 분할설립회사(설립시 재무내용(원)(부채총계))
+                    example: "610,752,121,394"
+                  ffdtl_teqt:
+                    type: string
+                    description: 분할설립회사(설립시 재무내용(원)(자본총계))
+                    example: "32,481,801,684"
+                  ffdtl_cpt:
+                    type: string
+                    description: 분할설립회사(설립시 재무내용(원)(자본금))
+                    example: "5,000,000,000"
+                  ffdtl_std:
+                    type: string
+                    description: 분할설립회사(설립시 재무내용(원)(현재기준))
+                    example: "2019년 03월 31일"
+                  dvfcmp_nbsn_rsl:
+                    type: string
+                    description: 신설사업부문 최근 사업연도 매출액(원)
+                    example: "3,149,560,773,827"
+                  dvfcmp_mbsn:
+                    type: string
+                    description: 분할설립회사(주요사업)
+                    example: "포털 및 검색광고"
+                  dvfcmp_rlst_atn:
+                    type: string
+                    description: 분할설립회사(재상장신청 여부)
+                    example: "예"
+                  abcr_crrt:
+                    type: string
+                    description: 감자에 관한 사항(감자비율(%))
+                    example: "17.42"
+                  abcr_osprpd_bgd:
+                    type: string
+                    description: 감자에 관한 사항(구주권 제출기간(시작일))
+                    example: "2019년 09월 23일"
+                  abcr_osprpd_edd:
+                    type: string
+                    description: 감자에 관한 사항(구주권 제출기간(종료일))
+                    example: "2019년 10월 24일"
+                  abcr_trspprpd_bgd:
+                    type: string
+                    description: 감자에 관한 사항(매매거래정지 예정기간(시작일))
+                    example: "2019년 09월 23일"
+                  abcr_trspprpd_edd:
+                    type: string
+                    description: 감자에 관한 사항(매매거래정지 예정기간(종료일))
+                    example: "2019년 10월 24일"
+                  abcr_nstkascnd:
+                    type: string
+                    description: 감자에 관한 사항(신주배정조건)
+                    example: "주주 주식수 비례여부 및 사유"
+                  abcr_shstkcnt_rt_at_rs:
+                    type: string
+                    description: 감자에 관한 사항(주주 주식수 비례여부 및 사유)
+                    example: "주주 주식수 비례여부 및 사유"
+                  abcr_nstkasstd:
+                    type: string
+                    description: 감자에 관한 사항(신주배정기준일)
+                    example: "2019년 09월 23일"
+                  abcr_nstkdlprd:
+                    type: string
+                    description: 감자에 관한 사항(신주권교부예정일)
+                    example: "-"
+                  abcr_nstklstprd:
+                    type: string
+                    description: 감자에 관한 사항(신주의 상장예정일)
+                    example: "-"
+                  gmtsck_prd:
+                    type: string
+                    description: 주주총회 예정일
+                    example: "2019년 09월 20일"
+                  cdobprpd_bgd:
+                    type: string
+                    description: 채권자 이의제출기간(시작일)
+                    example: "2019년 09월 23일"
+                  cdobprpd_edd:
+                    type: string
+                    description: 채권자 이의제출기간(종료일)
+                    example: "2019년 10월 24일"
+                  dvdt:
+                    type: string
+                    description: 분할기일
+                    example: "2019년 11월 1일"
+                  dvrgsprd:
+                    type: string
+                    description: 분할등기 예정일
+                    example: "2019년 11월 1일"
+                  bddd:
+                    type: string
+                    description: 이사회결의일(결정일)
+                    example: "2019년 10월 11일"
+                  od_a_at_t:
+                    type: string
+                    description: 사외이사참석여부(참석(명))
+                    example: "4"
+                  od_a_at_b:
+                    type: string
+                    description: 사외이사참석여부(불참(명))
+                    example: "0"
+                  adt_a_atn:
+                    type: string
+                    description: 감사(사외이사가 아닌 감사위원) 참석여부
+                    example: "-"
+                  popt_ctr_atn:
+                    type: string
+                    description: 풋옵션 등 계약 체결여부
+                    example: "아니오"
+                  popt_ctr_cn:
+                    type: string
+                    description: 계약내용
+                    example: "-"
+                  rs_sm_atn:
+                    type: string
+                    description: 증권신고서 제출대상 여부
+                    example: "아니오"
+                  ex_sm_r:
+                    type: string
+                    description: 제출을 면제받은 경우 그 사유
+                    example: "물적분할"

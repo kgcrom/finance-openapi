@@ -1,0 +1,143 @@
+description: 자기주식 취득 결정 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    type: string
+                    description: |
+                      법인구분
+
+                      - Y : 유가증권시장
+                      - K : 코스닥시장
+                      - N : 코넥스시장
+                      - E : 기타
+                    enum: ["Y", "K", "N", "E"]
+                    example: "Y"
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00164742"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사의 종목명
+                    example: "현대자동차"
+                  aqpln_stk_ostk:
+                    type: string
+                    description: 취득예정주식(주)(보통주식)
+                    example: "2,136,681"
+                  aqpln_stk_estk:
+                    type: string
+                    description: 취득예정주식(주)(기타주식)
+                    example: "632,707"
+                  aqpln_prc_ostk:
+                    type: string
+                    description: 취득예정금액(원)(보통주식)
+                    example: "259,606,741,500"
+                  aqpln_prc_estk:
+                    type: string
+                    description: 취득예정금액(원)(기타주식)
+                    example: "48,811,874,300"
+                  aqexpd_bgd:
+                    type: string
+                    description: 취득예상기간(시작일)
+                    example: "2019년 12월 05일"
+                  aqexpd_edd:
+                    type: string
+                    description: 취득예상기간(종료일)
+                    example: "2020년 03월 04일"
+                  hdexpd_bgd:
+                    type: string
+                    description: 보유예상기간(시작일)
+                    example: "-"
+                  hdexpd_edd:
+                    type: string
+                    description: 보유예상기간(종료일)
+                    example: "-"
+                  aq_pp:
+                    type: string
+                    description: 취득목적
+                    example: "자기주식 취득을 통한 주주가치 제고"
+                  aq_mth:
+                    type: string
+                    description: 취득방법
+                    example: "장내매수"
+                  cs_iv_bk:
+                    type: string
+                    description: 위탁투자중개업자
+                    example: "현대차증권"
+                  aq_wtn_div_ostk:
+                    type: string
+                    description: 취득 전 자기주식 보유현황(배당가능이익 범위 내 취득(주)(보통주식))
+                    example: "10,954,627"
+                  aq_wtn_div_ostk_rt:
+                    type: string
+                    description: 취득 전 자기주식 보유현황(배당가능이익 범위 내 취득(주)(비율(%)))
+                    example: "5.1"
+                  aq_wtn_div_estk:
+                    type: string
+                    description: 취득 전 자기주식 보유현황(배당가능이익 범위 내 취득(주)(기타주식))
+                    example: "2,956,430"
+                  aq_wtn_div_estk_rt:
+                    type: string
+                    description: 취득 전 자기주식 보유현황(배당가능이익 범위 내 취득(주)(비율(%)))
+                    example: "4.7"
+                  eaq_ostk:
+                    type: string
+                    description: 취득 전 자기주식 보유현황(기타취득(주)(보통주식))
+                    example: "9,999,999,999"
+                  eaq_ostk_rt:
+                    type: string
+                    description: 취득 전 자기주식 보유현황(기타취득(주)(비율(%))
+                    example: "취득 전 자기주식 보유현황(기타취득(주)(비율(%))"
+                  eaq_estk:
+                    type: string
+                    description: 취득 전 자기주식 보유현황(기타취득(주)(기타주식))
+                    example: "9,999,999,999"
+                  eaq_estk_rt:
+                    type: string
+                    description: 취득 전 자기주식 보유현황(기타취득(주)(비율(%))
+                    example: "-"
+                  aq_dd:
+                    type: string
+                    description: 취득결정일
+                    example: "2019년 12월 04일"
+                  od_a_at_t:
+                    type: string
+                    description: 사외이사참석여부(참석(명))
+                    example: "6"
+                  od_a_at_b:
+                    type: string
+                    description: 사외이사참석여부(불참(명))
+                    example: "-"
+                  adt_a_atn:
+                    type: string
+                    description: 감사(사외이사가 아닌 감사위원)참석여부
+                    example: "감사(사외이사가 아닌 감사위원)참석여부"
+                  d1_prodlm_ostk:
+                    type: string
+                    description: 1일 매수 주문수량 한도(보통주식)
+                    example: "213,668"
+                  d1_prodlm_estk:
+                    type: string
+                    description: 1일 매수 주문수량 한도(기타주식)
+                    example: "36,485"

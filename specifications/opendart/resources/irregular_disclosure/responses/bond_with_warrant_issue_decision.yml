@@ -1,0 +1,225 @@
+description: 신주인수권부사채권 발행결정 조회 성공
+
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              $ref: ../../../shared/response_body.yml#/status
+            message:
+              type: string
+              description: 에러 및 정보 메시지
+              example: 정상
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  rcept_no:
+                    $ref: ../../../shared/response_body.yml#/rcept_no
+                  corp_cls:
+                    type: string
+                    description: |
+                      법인구분
+
+                      - Y : 유가증권시장
+                      - K : 코스닥시장
+                      - N : 코넥스시장
+                      - E : 기타
+                    enum: ["Y", "K", "N", "E"]
+                    example: "Y"
+                  corp_code:
+                    type: string
+                    description: 공시대상회사의 고유번호(8자리)
+                    example: "00140131"
+                    maxLength: 8
+                  corp_name:
+                    type: string
+                    description: 공시대상회사의 종목명
+                    example: "키다리스튜디오"
+                  bd_tm:
+                    type: string
+                    description: 사채의 종류(회차)
+                    example: "24"
+                  bd_knd:
+                    type: string
+                    description: 사채의 종류(종류)
+                    example: "국내 무기명식 이권부 무보증 신주인수권부사채"
+                  bd_fta:
+                    type: string
+                    description: 사채의 권면(전자등록)총액 (원)
+                    example: "2,100,000,000"
+                  atcsc_rmislmt:
+                    type: string
+                    description: |
+                      정관상 잔여 발행한도 (원)
+
+                      ② 2020년 7월 6일부터 추가됨
+                    example: "-"
+                  ovis_fta:
+                    type: string
+                    description: 해외발행(권면(전자등록)총액)
+                    example: "-"
+                  ovis_fta_crn:
+                    type: string
+                    description: 해외발행(권면(전자등록)총액(통화단위))
+                    example: "-"
+                  ovis_ster:
+                    type: string
+                    description: 해외발행(기준환율등)
+                    example: "-"
+                  ovis_isar:
+                    type: string
+                    description: 해외발행(발행지역)
+                    example: "-"
+                  ovis_mktnm:
+                    type: string
+                    description: 해외발행(해외상장시 시장의 명칭)
+                    example: "-"
+                  fdpp_fclt:
+                    type: string
+                    description: 자금조달의 목적(시설자금 (원))
+                    example: "-"
+                  fdpp_bsninh:
+                    type: string
+                    description: |
+                      자금조달의 목적(영업양수자금 (원))
+
+                      ① 2019년 12월 9일부터 추가됨
+                    example: "-"
+                  fdpp_op:
+                    type: string
+                    description: 자금조달의 목적(운영자금 (원))
+                    example: "2,100,000,000"
+                  fdpp_dtrp:
+                    type: string
+                    description: |
+                      자금조달의 목적(채무상환자금 (원))
+
+                      ① 2019년 12월 9일부터 추가됨
+                    example: "-"
+                  fdpp_ocsa:
+                    type: string
+                    description: 자금조달의 목적(타법인 증권 취득자금 (원))
+                    example: "-"
+                  fdpp_etc:
+                    type: string
+                    description: 자금조달의 목적(기타자금 (원))
+                    example: "-"
+                  bd_intr_ex:
+                    type: string
+                    description: 사채의 이율(표면이자율 (%))
+                    example: "0"
+                  bd_intr_sf:
+                    type: string
+                    description: 사채의 이율(만기이자율 (%))
+                    example: "1"
+                  bd_mtd:
+                    type: string
+                    description: 사채만기일
+                    example: "2024년 09월 18일"
+                  bdis_mthn:
+                    type: string
+                    description: 사채발행방법
+                    example: "사모"
+                  ex_rt:
+                    type: string
+                    description: 신주인수권에 관한 사항(행사비율 (%))
+                    example: "100"
+                  ex_prc:
+                    type: string
+                    description: 신주인수권에 관한 사항(행사가액 (원/주))
+                    example: "4,370"
+                  ex_prc_dmth:
+                    type: string
+                    description: 신주인수권에 관한 사항(행사가액 결정방법)
+                    example: "본 사채 발행을 위한 이사회결의일 전일을 기산일로 하여 그 기산일부터 소급하여 산정한, ① 1개월 가중산술평균주가, 1주일 가중산술평균주가 및 최근일 가중산술평균주가를 산술평균한 가액, ② 최근일 가중산술평균주가 및 ③ 청약일전 제3거래일 가중산술평균주가 중 높은 가액으로 산정한다. 다만, 원단위 미만은 절상하여 산정한다"
+                  bdwt_div_atn:
+                    type: string
+                    description: 신주인수권에 관한 사항(사채와 인수권의 분리여부)
+                    example: "비분리"
+                  nstk_pym_mth:
+                    type: string
+                    description: 신주인수권에 관한 사항(신주대금 납입방법)
+                    example: "사채권 대용납입"
+                  nstk_isstk_knd:
+                    type: string
+                    description: 신주인수권에 관한 사항(신주인수권 행사에 따라 발행할 주식(종류))
+                    example: "주식회사 키다리스튜디오 기명식 보통주"
+                  nstk_isstk_cnt:
+                    type: string
+                    description: 신주인수권에 관한 사항(신주인수권 행사에 따라 발행할 주식(주식수))
+                    example: "480,549"
+                  nstk_isstk_tisstk_vs:
+                    type: string
+                    description: 신주인수권에 관한 사항(신주인수권 행사에 따라 발행할 주식(주식총수 대비 비율(%))
+                    example: "2.93"
+                  expd_bgd:
+                    type: string
+                    description: 신주인수권에 관한 사항(권리행사기간(시작일))
+                    example: "2020년 09월 18일"
+                  expd_edd:
+                    type: string
+                    description: 신주인수권에 관한 사항(권리행사기간(종료일))
+                    example: "2024년 08월 16일"
+                  act_mktprcfl_cvprc_lwtrsprc:
+                    type: string
+                    description: |
+                      신주인수권에 관한 사항(시가하락에 따른 행사가액 조정(최저 조정가액 (원)))
+
+                      ② 2020년 7월 6일부터 추가됨
+                    example: "-"
+                  act_mktprcfl_cvprc_lwtrsprc_bs:
+                    type: string
+                    description: |
+                      신주인수권에 관한 사항(시가하락에 따른 행사가액 조정(최저 조정가액 근거))
+
+                      ② 2020년 7월 6일부터 추가됨
+                    example: "-"
+                  rmislmt_lt70p:
+                    type: string
+                    description: |
+                      신주인수권에 관한 사항(시가하락에 따른 행사가액 조정(발행당시 행사가액의 70% 미만으로 조정가능한 잔여 발행한도 (원)))
+
+                      ② 2020년 7월 6일부터 추가됨
+                    example: "-"
+                  abmg:
+                    type: string
+                    description: 합병 관련 사항
+                    example: "해당사항 없음"
+                  sbd:
+                    type: string
+                    description: 청약일
+                    example: "-"
+                  pymd:
+                    type: string
+                    description: 납입일
+                    example: "2019년 09월 18일"
+                  rpmcmp:
+                    type: string
+                    description: 대표주관회사
+                    example: "-"
+                  grint:
+                    type: string
+                    description: 보증기관
+                    example: "-"
+                  rs_sm_atn:
+                    type: string
+                    description: 증권신고서 제출대상 여부
+                    example: "아니오"
+                  ex_sm_r:
+                    type: string
+                    description: 제출을 면제받은 경우 그 사유
+                    example: "사모발행으로 인한 제출면제(1년간 보호예수)"
+                  ovis_ltdtl:
+                    type: string
+                    description: 당해 사채의 해외발행과 연계된 대차거래 내역
+                    example: "해당사항 없음"
+                  ftc_stt_atn:
+                    type: string
+                    description: 공정거래위원회 신고대상 여부
+                    example: "미해당"

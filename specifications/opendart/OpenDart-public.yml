@@ -22,7 +22,7 @@ tags:
     description: 정기보고서 재무정보
   - name: ShareDisclosure
     description: 지분공시 종합정보
-  - name: IrregularDisclosureKey
+  - name: IrregularDisclosure
     description: 주요사항보고서 주요정보
 
 paths:
@@ -185,6 +185,150 @@ paths:
   /api/elestock.json:
     get:
       $ref: resources/share_disclosure/executive_major_stock.yml
+
+  /api/dfOcr.json:
+    get:
+      $ref: resources/irregular_disclosure/bankruptcy.yml
+
+  /api/bsnSp.json:
+    get:
+      $ref: resources/irregular_disclosure/business_suspension.yml
+
+  /api/ctrcvsBgrq.json:
+    get:
+      $ref: resources/irregular_disclosure/rehabilitation_procedure.yml
+
+  /api/dsRsOcr.json:
+    get:
+      $ref: resources/irregular_disclosure/disperse_reason.yml
+
+  /api/piicDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/paid_in_capital_increase.yml
+
+  /api/fricDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/free_in_capital_increase.yml
+
+  /api/pifricDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/capital_increase.yml
+
+  /api/crDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/capital_reduction.yml
+
+  /api/bnkMngtPcbg.json:
+    get:
+      $ref: resources/irregular_disclosure/creditor_bank_management_procedure_start.yml
+
+  /api/lwstLg.json:
+    get:
+      $ref: resources/irregular_disclosure/lawsuit.yml
+
+  /api/ovLstDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/overseas_listing_decision.yml
+
+  /api/ovDlstDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/overseas_delisting_decision.yml
+
+  /api/ovLst.json:
+    get:
+      $ref: resources/irregular_disclosure/overseas_listing.yml
+
+  /api/ovDlst.json:
+    get:
+      $ref: resources/irregular_disclosure/overseas_delisting.yml
+
+  /api/cvbdIsDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/convertible_bond_issue_decision.yml
+
+  /api/bdwtIsDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/bond_with_warrant_issue_decision.yml
+
+  /api/exbdIsDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/exchangeable_bond_issue_decision.yml
+
+  /api/bnkMngtPcsp.json:
+    get:
+      $ref: resources/irregular_disclosure/creditor_bank_management_procedure_stop.yml
+
+  /api/wdCocobdIsDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/withdrawal_convertible_bond_issue_decision.yml
+
+  /api/astInhtrfEtcPtbkOpt.json:
+    get:
+      $ref: resources/irregular_disclosure/asset_inheritance_etc_public_book_option.yml
+
+  /api/otcprStkInvscrTrfDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/outer_corporate_stock_investment_share_transfer_decision.yml
+
+  /api/tgastTrfDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/tangible_asset_transfer_decision.yml
+
+  /api/tgastInhDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/tangible_asset_inheritance_decision.yml
+
+  /api/otcprStkInvscrInhDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/outer_corporate_stock_investment_share_inheritance_decision.yml
+
+  /api/bsnTrfDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/business_transfer_decision.yml
+
+  /api/bsnInhDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/business_inheritance_decision.yml
+
+  /api/tsstkAqTrctrCcDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/treasury_stock_acquisition_transfer_cancel_decision.yml
+
+  /api/tsstkAqTrctrCnsDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/treasury_stock_acquisition_transfer_conclude_decision.yml
+
+  /api/tsstkDpDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/treasury_stock_disposal_decision.yml
+
+  /api/tsstkAqDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/treasury_stock_acquisition_decision.yml
+
+  /api/stkExtrDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/stock_exchange_decision.yml
+
+  /api/cmpDvmgDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/company_divide_merge_decision.yml
+
+  /api/cmpDvDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/company_divide_decision.yml
+
+  /api/cmpMgDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/company_merge_decision.yml
+
+  /api/stkrtbdInhDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/stock_right_bond_inheritance_decision.yml
+
+  /api/stkrtbdTrfDecsn.json:
+    get:
+      $ref: resources/irregular_disclosure/stock_right_bond_transfer_decision.yml
 
 components:
   securitySchemes:
