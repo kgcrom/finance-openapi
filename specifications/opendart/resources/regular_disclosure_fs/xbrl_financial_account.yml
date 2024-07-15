@@ -6,6 +6,9 @@ description: |
   상장법인(유가증권, 코스닥) 및 주요 비상장법인(사업보고서 제출대상 & IFRS 적용)이<br/>
   제출한 정기보고서 내에 XBRL재무제표의 원본파일(XBRL)을 제공합니다.
 
+tags:
+  - RegularDisclosureFinancialStatement
+
 parameters:
   - $ref: ../../shared/parameters.yml#/reprt_code
   - in: query
