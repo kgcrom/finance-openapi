@@ -28,7 +28,7 @@ jobs:
         uses: ./.github/actions/request-reviewer
         with:
           env: dev
-          region: seoul
+          region: kor
       - name: Echo variables
         run: |
           echo env: ${{ steps.request-reviewer.outputs.env }}
