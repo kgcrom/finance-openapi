@@ -1,0 +1,15 @@
+name: 'pr-reminder'
+description: 'Pull Request Reminder'
+
+inputs:
+  github-token:
+    description: 'GitHub 토큰'
+    required: true
+
+outputs:
+  slack-message:
+    description: '슬랙 전송 메시지'
+
+runs:
+  using: 'node20'
+  main: 'index.js'
