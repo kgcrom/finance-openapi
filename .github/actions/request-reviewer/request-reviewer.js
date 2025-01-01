@@ -1,3 +1,7 @@
+import { core } from '@actions/core'; 
+import { github } from '@actions/github';
+import { httpm } from '@actions/http-client';
+
 const ENV_REGION_MAP = {
   dev: {
     kor: {
