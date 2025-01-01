@@ -1,0 +1,32 @@
+name: Request Reviewer on PR
+
+on:
+  workflow_dispatch:
+
+jobs:
+  request-reviewer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Cache node modules
+        uses: actions/cache@v3
+        id: cache-modules
+        with:
+          path: node_modules
+          key: npm-packages-${{ hashFiles('./.github/package-lock.json') }}
+      - name: Install dependencies
+        if: steps.cache-modules.outputs.cache-hit != 'true'
+        run: npm install
+      - name: Request Reviewer
+        id: request-reviewer
+        uses: ./.github/actions/request-reviewer
+        with:
+          env: dev
+          region: seoul
+      - name: Echo variables
+        run: |
+          echo env: ${{ steps.request-reviewer.outputs.env }}
+          echo region: ${{ steps.request-reviewer.outputs.region }}

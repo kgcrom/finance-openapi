@@ -1,12 +1,16 @@
 {
   "name": "github-action",
   "version": "1.0.0",
-  "description": "github action javascript workflow",
+  "description": "Javascript Github Action",
   "license": "ISC",
   "author": "",
   "type": "commonjs",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@actions/core": "^1.11.1",
+    "@actions/github": "^6.0.0",
+    "@actions/http-client": "^2.2.3"
   }
 }
