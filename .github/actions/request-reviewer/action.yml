@@ -1,7 +1,10 @@
 name: 'request-reviewer'
 description: 'Request Random Reviewer'
 
-
+inputs:
+  github-token:
+    description: 'GitHub 토큰'
+    required: true
 
 outputs:
   slack-user-id:

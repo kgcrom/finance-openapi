@@ -9,7 +9,10 @@ jobs:
     defaults:
       run:
         working-directory: .github
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     runs-on: ubuntu-latest
+    
     steps:
       - name: Use Node.js
         uses: actions/setup-node@v4
@@ -23,7 +26,10 @@ jobs:
       - name: Request Reviewer
         id: request-reviewer
         uses: ./.github/actions/request-reviewer
+        with:
+          github-token: ${{ env.GITHUB_TOKEN }}
+
       - name: Echo variables
         run: |
-          echo "lang: ${{ steps.request-reviewer.outputs.lang }}"
-          echo "service: ${{ steps.request-reviewer.outputs.service }}"
+          echo "slackUserId: ${{ steps.request-reviewer.outputs.slack-user-id }}"
+          echo "slackMessage: ${{ steps.request-reviewer.outputs.slack-message }}"

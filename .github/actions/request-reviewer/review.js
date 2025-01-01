@@ -22,10 +22,13 @@ function selectRandomReviewer() {
 }
 
 async function main() {
+    const githubToken = core.getInput('github-token');
+    const octokit = github.getOctokit(githubToken);
+    
     const selectedReviewer = selectRandomReviewer();
     core.debug(`selectedReviewer: ${selectedReviewer}`);
 
-    await githubClient.rest.pulls.requestReviewers({
+    await octokit.rest.pulls.requestReviewers({
         owner: github.context.repo.owner,
         repo: github.context.repo.repo,
         pull_number: github.context.issue.number,
