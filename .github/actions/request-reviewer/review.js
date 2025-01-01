@@ -54,9 +54,11 @@ function selectRandomReviewer() {
     // });
 
     core.setOutput('slack-user-id', selectedReviewer.slackName);
-    core.debug(github.context.payload)
+    
     // p/r 링크, 
-    core.setOutput('slack-message', `리뷰 할당 되었습니다. 제목: ${github.context.issue.repo}, id: ${github.context.issue.number}, owner: ${github.context.issue.owner}`);
+    core.setOutput('slack-message', `리뷰 할당 되었습니다. repo: ${repoName}, 제목: ${title}, url: ${prUrl}, sender: ${sender}, labels: ${labels.join(', ')}`);
+    core.info(`context issue: ${github.context.issue.number}) `);
+    core.info(`payload: ${github.context.payload}`);
 
     // return slack UserId
     // reeturn slack message 
