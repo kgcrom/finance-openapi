@@ -14,5 +14,5 @@ outputs:
     description: 'Second value'
 
 runs:
-  using: 'node22'
-  main: 'action.js'
+  using: 'node20'
+  main: 'request-reviewer.js'
