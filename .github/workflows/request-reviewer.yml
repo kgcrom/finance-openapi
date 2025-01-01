@@ -31,5 +31,5 @@ jobs:
           region: kor
       - name: Echo variables
         run: |
-          echo env: ${{ steps.request-reviewer.outputs.env }}
-          echo region: ${{ steps.request-reviewer.outputs.region }}
+          echo "lang: ${{ steps.request-reviewer.outputs.lang }}"
+          echo "service: ${{ steps.request-reviewer.outputs.service }}"
