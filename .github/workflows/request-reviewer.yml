@@ -18,7 +18,9 @@ jobs:
         id: cache-modules
         with:
           path: node_modules
-          key: action-npm-packages-${{ hashFiles('./.github/package-lock.json') }}
+          key: ${{ runner.os }}-npm-packages-${{ hashFiles('./.github/**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-packages-
       - name: Install dependencies
         if: steps.cache-modules.outputs.cache-hit != 'true'
         run: npm install --prefix .github
