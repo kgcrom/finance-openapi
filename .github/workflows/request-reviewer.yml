@@ -10,8 +10,6 @@ jobs:
       run:
         working-directory: .github
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
 
     steps:
       - name: Use Node.js

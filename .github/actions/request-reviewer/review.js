@@ -28,12 +28,12 @@ async function main() {
     const selectedReviewer = selectRandomReviewer();
     core.debug(`selectedReviewer: ${selectedReviewer}`);
 
-    await octokit.rest.pulls.requestReviewers({
-        owner: github.context.repo.owner,
-        repo: github.context.repo.repo,
-        pull_number: github.context.issue.number,
-        reviewers: [selectedReviewer.githubName]
-    });
+    // await octokit.rest.pulls.requestReviewers({
+    //     owner: github.context.repo.owner,
+    //     repo: github.context.repo.repo,
+    //     pull_number: github.context.issue.number,
+    //     reviewers: [selectedReviewer.githubName]
+    // });
 
     core.setOutput('slack-user-id', selectedReviewer.slackName);
     // p/r 링크, 
