@@ -15,4 +15,4 @@ outputs:
 
 runs:
   using: 'node20'
-  main: 'request-reviewer.js'
+  main: 'index.js'

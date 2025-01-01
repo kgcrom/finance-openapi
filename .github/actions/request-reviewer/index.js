@@ -1,6 +1,6 @@
-import { core } from '@actions/core'; 
-import { github } from '@actions/github';
-import { httpm } from '@actions/http-client';
+const core = require('@actions/core'); 
+const github = require('@actions/github');
+const httpm = require('@actions/http-client');
 
 const ENV_REGION_MAP = {
   dev: {
