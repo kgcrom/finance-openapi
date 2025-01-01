@@ -5,6 +5,9 @@ on:
 
 jobs:
   request-reviewer:
+    defaults:
+      run:
+        working-directory: .github
     runs-on: ubuntu-latest
     steps:
       - name: Use Node.js
@@ -13,17 +16,8 @@ jobs:
           node-version: 20
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Cache node modules
-        uses: actions/cache@v3
-        id: cache-modules
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-npm-packages-${{ hashFiles('./.github/**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-npm-packages-
       - name: Install dependencies
-        if: steps.cache-modules.outputs.cache-hit != 'true'
-        run: npm install --prefix .github
+        run: npm install
 
       - name: Request Reviewer
         id: request-reviewer
