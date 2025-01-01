@@ -9,10 +9,8 @@ jobs:
     defaults:
       run:
         working-directory: .github
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Use Node.js
         uses: actions/setup-node@v4
@@ -27,7 +25,7 @@ jobs:
         id: request-reviewer
         uses: ./.github/actions/request-reviewer
         with:
-          github-token: ${{ env.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Echo variables
         run: |
