@@ -1,7 +1,8 @@
 name: Request Reviewer on PR
 
 on:
-  workflow_dispatch:
+  pull_request:
+    types: [opened, ready_for_review]
 
 jobs:
   request-reviewer:
@@ -22,9 +23,6 @@ jobs:
       - name: Request Reviewer
         id: request-reviewer
         uses: ./.github/actions/request-reviewer
-        with:
-          env: dev
-          region: kor
       - name: Echo variables
         run: |
           echo "lang: ${{ steps.request-reviewer.outputs.lang }}"
