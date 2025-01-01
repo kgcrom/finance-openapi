@@ -21,12 +21,30 @@ function selectRandomReviewer() {
     ];
 }
 
-async function main() {
+(async () => {
     const githubToken = core.getInput('github-token');
     const octokit = github.getOctokit(githubToken);
     
     const selectedReviewer = selectRandomReviewer();
     core.debug(`selectedReviewer: ${selectedReviewer}`);
+
+    const {
+        context: {
+            payload: {
+                pull_request: {
+                    title,
+                    html_url: prUrl,
+                    labels
+                },
+                sender,
+                requested_reviewer: requestedReviewer,
+                requested_team: requestedTeam,
+                repository: {
+                    full_name: repoName
+                }
+            }
+        }
+    } = github;
 
     // await octokit.rest.pulls.requestReviewers({
     //     owner: github.context.repo.owner,
@@ -37,10 +55,9 @@ async function main() {
 
     core.setOutput('slack-user-id', selectedReviewer.slackName);
     // p/r 링크, 
-    core.setOutput('slack-message', `리뷰 할당 되었습니다. 제목: ${github.context.issue.repo}, id: ${github.context.issue.number}, owner: ${github.context.issue.owner}`);
+    core.setOutput('slack-message', `리뷰 할당 되었습니다. 제목: ${title}, url: ${html_url}, sender: ${sender}, labels: ${labels.join(', ')}`);
+    core.debug(`context issue: ${github.context.issue.number}) `)
 
     // return slack UserId
     // reeturn slack message 
-}
-
-main();
+})();
