@@ -2,17 +2,16 @@ name: 'request-reviewer'
 description: 'Request Random Reviewer'
 
 inputs:
-  region:
-    required: true
-  env:
+  github-token:
+    description: 'GitHub 토큰'
     required: true
 
 outputs:
-  lang:
-    description: 'First value'
-  service:
-    description: 'Second value'
+  slack-user-id:
+    description: '리뷰어로 선정된 슬랙 유저 아이디'
+  slack-message:
+    description: '슬랙 전송 메시지'
 
 runs:
   using: 'node20'
-  main: 'index.js'
+  main: 'review.js'

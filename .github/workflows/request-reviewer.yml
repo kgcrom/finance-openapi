@@ -1,7 +1,8 @@
 name: Request Reviewer on PR
 
 on:
-  workflow_dispatch:
+  pull_request:
+    types: [opened, ready_for_review]
 
 jobs:
   request-reviewer:
@@ -9,6 +10,7 @@ jobs:
       run:
         working-directory: .github
     runs-on: ubuntu-latest
+
     steps:
       - name: Use Node.js
         uses: actions/setup-node@v4
@@ -33,9 +35,9 @@ jobs:
         id: request-reviewer
         uses: ./.github/actions/request-reviewer
         with:
-          env: dev
-          region: kor
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Echo variables
         run: |
-          echo "lang: ${{ steps.request-reviewer.outputs.lang }}"
-          echo "service: ${{ steps.request-reviewer.outputs.service }}"
+          echo "slackUserId: ${{ steps.request-reviewer.outputs.slack-user-id }}"
+          echo "slackMessage: ${{ steps.request-reviewer.outputs.slack-message }}"
