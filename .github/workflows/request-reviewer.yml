@@ -16,7 +16,17 @@ jobs:
           node-version: 20
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Cache node_modules
+        id: npm-cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}//.github/node_modules
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
       - name: Install dependencies
+        if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm install
 
       - name: Request Reviewer
